@@ -101,7 +101,7 @@ const Hero = () => {
         className="absolute inset-0 grid-pattern opacity-10 pointer-events-none"
       />
       
-      <div className="relative z-10 text-center text-paper px-6 mt-10 md:mt-20">
+      <div className="relative z-10 text-center text-paper px-6 mt-10 md:mt-16 pb-20">
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -186,7 +186,7 @@ const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: an
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className={`relative aspect-square md:aspect-video lg:aspect-square bg-zinc-100 dark:bg-zinc-900 border border-line rounded-[2rem] overflow-hidden flex items-center justify-center p-8 ${index % 2 !== 0 ? 'bg-zinc-800 border-white/10' : ''}`}
+      className={`relative aspect-square md:aspect-video lg:aspect-square border border-line rounded-[2rem] overflow-hidden flex items-center justify-center p-8 ${index % 2 !== 0 ? 'bg-zinc-800 border-white/10 text-white' : 'bg-zinc-100'}`}
     >
       {dashPreview}
     </motion.div>
@@ -194,8 +194,8 @@ const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: an
 );
 
 const ConnectDash = () => (
-  <div className="w-full space-y-4">
-    <div className="border border-line p-6 rounded-2xl bg-white flex items-center justify-between">
+  <div className="w-full space-y-4 text-ink">
+    <div className="border border-black/10 p-6 rounded-2xl bg-white flex items-center justify-between shadow-sm">
       <div className="flex items-center gap-4">
         <div className="w-10 h-10 bg-black rounded-full grid place-items-center"><Instagram size={20} color="white" /></div>
         <div>
@@ -205,44 +205,50 @@ const ConnectDash = () => (
       </div>
       <div className="bg-ink text-paper px-4 py-2 rounded-full font-mono text-[10px] uppercase">Synced</div>
     </div>
-    <div className="border border-line p-6 rounded-2xl bg-white/50 flex items-center justify-between opacity-50">
+    <div className="border border-black/10 p-6 rounded-2xl bg-white/50 flex items-center justify-between opacity-50">
       <div className="flex items-center gap-4">
         <div className="w-10 h-10 bg-black/20 rounded-full" />
         <div className="h-4 w-32 bg-black/10 rounded" />
       </div>
       <div className="h-8 w-20 bg-black/10 rounded-full" />
     </div>
-    <button className="w-full py-4 border-2 border-dashed border-line rounded-2xl font-mono text-xs uppercase hover:bg-ink hover:text-paper transition-all">
+    <button className="w-full py-4 border-2 border-dashed border-black/10 rounded-2xl font-mono text-xs uppercase hover:bg-ink hover:text-paper transition-all">
       + Aggregate New Profile
     </button>
   </div>
 );
 
 const SubmissionDash = () => (
-  <div className="w-full max-w-md space-y-6">
+  <div className="w-full max-w-md space-y-6 text-ink">
     <div className="relative">
       <input 
         disabled 
         value="/p/viral_content_id/" 
-        className="w-full bg-transparent border-b-2 border-ink py-4 font-mono text-2xl focus:outline-none placeholder:opacity-20" 
+        className="w-full bg-transparent border-b-2 border-ink py-4 font-mono text-2xl focus:outline-none placeholder:opacity-20 text-ink" 
       />
       <div className="absolute right-0 top-1/2 -translate-y-1/2">
-        <CheckCircle2 color="#111" />
+        <CheckCircle2 className="text-ink" />
       </div>
     </div>
-    <div className="bg-ink text-paper p-6 rounded-2xl flex justify-between items-center">
+    <div className="bg-ink text-paper p-6 rounded-2xl flex justify-between items-center hover:scale-[1.02] transition-transform cursor-pointer">
       <span className="font-display text-2xl uppercase tracking-tight">Post for Review</span>
       <ArrowRight />
     </div>
     <div className="grid grid-cols-2 gap-4">
-      <div className="p-4 border border-line rounded-xl"><p className="font-mono text-[10px] opacity-40">Status</p><p className="font-bold">Analyzing Velocity</p></div>
-      <div className="p-4 border border-line rounded-xl"><p className="font-mono text-[10px] opacity-40">Est. Yield</p><p className="font-bold">$120-$400</p></div>
+      <div className="p-4 border border-black/10 rounded-xl">
+        <p className="font-mono text-[10px] opacity-40">Status</p>
+        <p className="font-bold">Analyzing Velocity</p>
+      </div>
+      <div className="p-4 border border-black/10 rounded-xl">
+        <p className="font-mono text-[10px] opacity-40">Est. Yield</p>
+        <p className="font-bold">$120-$400</p>
+      </div>
     </div>
   </div>
 );
 
 const EarningsDash = () => (
-  <div className="w-full space-y-8">
+  <div className="w-full space-y-8 text-ink">
     <div className="text-center">
       <p className="font-mono text-[10px] uppercase opacity-40 mb-2">Withdrawable Capital</p>
       <h3 className="font-display text-7xl tracking-tighter leading-none">$14,204.60</h3>
@@ -252,7 +258,7 @@ const EarningsDash = () => (
         { date: 'APR 23, 2026', amt: '+ $2,400.00', label: 'Velocity Bonus' },
         { date: 'APR 21, 2026', amt: '+ $1,150.20', label: 'Ad Revenue Share' }
       ].map((tx, i) => (
-        <div key={i} className="flex justify-between items-center py-4 border-b border-white/10">
+        <div key={i} className="flex justify-between items-center py-4 border-b border-black/10">
           <div>
             <p className="font-mono text-[10px] opacity-40">{tx.date}</p>
             <p className="font-sans font-medium">{tx.label}</p>
@@ -261,7 +267,7 @@ const EarningsDash = () => (
         </div>
       ))}
     </div>
-    <button className="w-full bg-paper text-ink py-4 rounded-2xl font-display text-2xl">
+    <button className="w-full bg-ink text-paper py-4 rounded-2xl font-display text-2xl hover:opacity-90 active:scale-[0.98] transition-all">
       WITHDRAW TO WALLET
     </button>
   </div>
@@ -395,7 +401,7 @@ export default function App() {
 
       <Navigation />
       
-      <main>
+      <main className="relative">
         <Hero />
         
         <div id="process">
@@ -424,37 +430,37 @@ export default function App() {
         </div>
 
         <Contact />
+        
+        <div className="absolute bottom-10 right-10 z-[60] mix-blend-difference hidden md:block">
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="relative w-24 h-24"
+          >
+            <svg viewBox="0 0 100 100" className="w-full h-full">
+              <path 
+                id="circlePath" 
+                d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" 
+                fill="transparent"
+              />
+              <text className="font-mono text-[7px] uppercase fill-white tracking-[2.5px]">
+                <textPath xlinkHref="#circlePath">
+                  VIRAL YIELD ENGINE • CLIPNIC PROTOCOL • 
+                </textPath>
+              </text>
+            </svg>
+          </motion.div>
+        </div>
       </main>
 
       <Footer />
       
       {/* Floating Status Indicator */}
-      <div className="fixed bottom-10 left-10 z-[60] mix-blend-difference hidden md:block">
+      <div className="fixed bottom-10 left-10 z-[60] mix-blend-difference hidden md:block transition-opacity opacity-50 hover:opacity-100">
         <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[2px] text-white">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
           Live Network Stats: 2.1M Active Clips
         </div>
-      </div>
-
-      <div className="fixed bottom-10 right-10 z-[60] mix-blend-difference">
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="relative w-24 h-24"
-        >
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <path 
-              id="circlePath" 
-              d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" 
-              fill="transparent"
-            />
-            <text className="font-mono text-[7px] uppercase fill-white tracking-[2.5px]">
-              <textPath xlinkHref="#circlePath">
-                VIRAL YIELD ENGINE • CLIPNIC PROTOCOL • 
-              </textPath>
-            </text>
-          </svg>
-        </motion.div>
       </div>
 
       <style>{`
