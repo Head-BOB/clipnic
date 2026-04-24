@@ -232,15 +232,21 @@ const Hero = ({ activeView, setActiveView }: { activeView: 'clipper' | 'brand', 
           <div className="bg-white/5 p-2 rounded-full border border-white/10 flex gap-2 relative z-20">
             <button
               onMouseEnter={() => setActiveView('clipper')}
-              onClick={() => window.location.href = 'https://dash.clipnic.com/clipper'}
-              className={`px-8 py-3 rounded-full font-sans font-bold text-sm transition-all ${activeView === 'clipper' ? 'bg-brand text-black shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.4)]' : 'text-white hover:bg-white/10'}`}
+              onClick={() => {
+                if (activeView === 'clipper') window.location.href = 'https://dash.clipnic.com/clipper';
+                else setActiveView('clipper');
+              }}
+              className={`px-8 py-3 rounded-full font-sans font-bold text-[10px] md:text-sm transition-all ${activeView === 'clipper' ? 'bg-brand text-black shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.4)]' : 'text-white hover:bg-white/10'}`}
             >
               START EARNING
             </button>
             <button
               onMouseEnter={() => setActiveView('brand')}
-              onClick={() => window.location.href = 'https://dash.clipnic.com/brand'}
-              className={`px-8 py-3 rounded-full font-sans font-bold text-sm transition-all ${activeView === 'brand' ? 'bg-brand text-black shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.4)]' : 'text-white hover:bg-white/10'}`}
+              onClick={() => {
+                if (activeView === 'brand') window.location.href = 'https://dash.clipnic.com/brand';
+                else setActiveView('brand');
+              }}
+              className={`px-8 py-3 rounded-full font-sans font-bold text-[10px] md:text-sm transition-all ${activeView === 'brand' ? 'bg-brand text-black shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.4)]' : 'text-white hover:bg-white/10'}`}
             >
               LAUNCH CAMPAIGN
             </button>
@@ -855,8 +861,8 @@ export default function App() {
               whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
-                if (activeView === 'brand') setActiveView('clipper');
-                else window.location.href = 'https://app.clipnic.com/clipper';
+                if (activeView === 'clipper') window.location.href = 'https://dash.clipnic.com/clipper';
+                else setActiveView('clipper');
               }}
               className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'clipper' ? 'bg-ink text-paper' : ''}`}
             >
@@ -866,8 +872,8 @@ export default function App() {
               whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
-                if (activeView === 'clipper') setActiveView('brand');
-                else window.location.href = 'https://app.clipnic.com/brand';
+                if (activeView === 'brand') window.location.href = 'https://dash.clipnic.com/brand';
+                else setActiveView('brand');
               }}
               className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'brand' ? 'bg-ink text-paper' : 'bg-white hover:bg-black'}`}
             >
