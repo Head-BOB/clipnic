@@ -47,7 +47,7 @@ const BrandUnderConstruction = () => (
           onClick={() => window.location.href = '/'}
           className="px-12 py-4 rounded-full border-2 border-paper font-sans font-bold text-lg hover:bg-paper hover:text-ink transition-all uppercase tracking-widest"
         >
-          Return to Core
+          Return to Home
         </button>
       </div>
     </div>
