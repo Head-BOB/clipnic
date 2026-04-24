@@ -20,6 +20,7 @@ import {
   Box
 } from 'lucide-react';
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const BrandUnderConstruction = () => (
   <div className="min-h-screen bg-ink flex items-center justify-center p-6 text-center text-paper">
@@ -756,7 +757,7 @@ export default function App() {
 
   return (
     <div className="relative font-sans selection:bg-ink selection:text-paper">
-
+      <SpeedInsights />
       <Navigation onGetStarted={() => setGetStartedOpen(true)} />
 
       <main className="relative">
