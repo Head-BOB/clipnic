@@ -661,29 +661,10 @@ export default function App() {
   const [activeView, setActiveView] = useState<'clipper' | 'brand'>('clipper');
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
-  const cursorRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-      }
-    };
-    window.addEventListener('mousemove', moveCursor);
-    return () => window.removeEventListener('mousemove', moveCursor);
-  }, []);
+  const [getStartedOpen, setGetStartedOpen] = useState(false);
 
   return (
-    <div className={`relative font-sans selection:bg-ink selection:text-paper ${privacyOpen || termsOpen || getStartedOpen ? '' : 'cursor-none'}`}>
-      {/* Custom Cursor */}
-      {!(privacyOpen || termsOpen || getStartedOpen) && (
-        <div
-          ref={cursorRef}
-          className="fixed top-0 left-0 w-8 h-8 rounded-full border border-ink pointer-events-none z-[100] mix-blend-difference hidden lg:block -mt-4 -ml-4 transition-transform duration-100 ease-out flex items-center justify-center overflow-hidden"
-        >
-          <div className="w-1.5 h-1.5 bg-white rounded-full" />
-        </div>
-      )}
+    <div className="relative font-sans selection:bg-ink selection:text-paper">
 
       <Navigation onGetStarted={() => setGetStartedOpen(true)} />
 
