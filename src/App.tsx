@@ -22,19 +22,89 @@ import React, { useState, useRef, useEffect, ReactNode } from 'react';
 
 // --- Components ---
 
-const Navigation = () => {
+const Navigation = ({ onGetStarted }: { onGetStarted: () => void }) => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-8 px-6 lg:px-12 flex justify-between items-center">
-      <motion.div
+      <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         className="font-display text-2xl md:text-4xl tracking-widest"
       >
         CLIPNIC.COM
       </motion.div>
+      <motion.button
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        onClick={onGetStarted}
+        className="px-6 py-2 rounded-full border border-white font-sans font-bold text-xs tracking-widest hover:bg-white hover:text-black transition-all"
+      >
+        GET STARTED
+      </motion.button>
     </nav>
   );
 };
+
+const GetStartedModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <div className="fixed inset-0 z-[300] flex items-center justify-center p-6">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="absolute inset-0 bg-ink/90 backdrop-blur-md"
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          className="relative w-full max-w-xl bg-paper p-12 rounded-[3rem] shadow-2xl space-y-12 text-ink border-4 border-ink"
+        >
+          <div className="text-center space-y-4">
+            <h2 className="font-display text-5xl md:text-6xl tracking-tighter leading-none uppercase">Choose Your <br /> Terminal</h2>
+            <p className="font-sans opacity-60 text-lg">Select your path to continue into the ecosystem.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <button 
+              onClick={() => window.location.href = 'https://dash.clipnic.com/brand'}
+              className="group p-8 rounded-[2rem] border-2 border-ink hover:bg-ink hover:text-paper transition-all text-left space-y-4"
+            >
+              <div className="w-12 h-12 rounded-full bg-ink text-paper flex items-center justify-center group-hover:bg-brand group-hover:text-ink transition-colors">
+                <Zap size={24} />
+              </div>
+              <div>
+                <h4 className="font-display text-2xl uppercase tracking-tight">Launch Campaign</h4>
+                <p className="text-xs opacity-60 mt-1">Deploy capital. Scale reach.</p>
+              </div>
+            </button>
+
+            <button 
+              onClick={() => window.location.href = 'https://dash.clipnic.com/'}
+              className="group p-8 rounded-[2rem] border-2 border-ink hover:bg-ink hover:text-paper transition-all text-left space-y-4"
+            >
+              <div className="w-12 h-12 rounded-full bg-ink text-paper flex items-center justify-center group-hover:bg-brand group-hover:text-ink transition-colors">
+                <ArrowRight size={24} />
+              </div>
+              <div>
+                <h4 className="font-display text-2xl uppercase tracking-tight">Start Clipping</h4>
+                <p className="text-xs opacity-60 mt-1">Post content. Liquidate yield.</p>
+              </div>
+            </button>
+          </div>
+
+          <button 
+            onClick={onClose}
+            className="w-full py-4 text-xs font-bold uppercase tracking-[0.3em] opacity-40 hover:opacity-100 transition-opacity"
+          >
+            Cancel Transmission
+          </button>
+        </motion.div>
+      </div>
+    )}
+  </AnimatePresence>
+);
 
 const Hero = ({ activeView, setActiveView }: { activeView: 'clipper' | 'brand', setActiveView: (v: 'clipper' | 'brand') => void }) => {
   const containerRef = useRef(null);
@@ -109,30 +179,6 @@ const Hero = ({ activeView, setActiveView }: { activeView: 'clipper' | 'brand', 
             >
               LAUNCH CAMPAIGN
             </button>
-          </div>
-
-          {/* Cinematic Preview Overlay */}
-          <div className="relative w-full max-w-lg h-64 perspective-1000 hidden md:block">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeView}
-                initial={{ opacity: 0, rotateX: 20, y: 20, scale: 0.9 }}
-                animate={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
-                exit={{ opacity: 0, rotateX: -20, y: -20, scale: 0.9 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 bg-dash-bg/40 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl flex items-center justify-center overflow-hidden"
-              >
-                <div className="w-full transform scale-75 origin-center">
-                  {activeView === 'clipper' ? <EarningsDash /> : <BrandCampaignDash />}
-                </div>
-                {/* Decorative scanning line */}
-                <motion.div
-                  animate={{ y: [0, 256, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-brand to-transparent opacity-20 pointer-events-none"
-                />
-              </motion.div>
-            </AnimatePresence>
           </div>
         </motion.div>
       </div>
@@ -628,9 +674,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className={`relative font-sans selection:bg-ink selection:text-paper ${privacyOpen || termsOpen ? '' : 'cursor-none'}`}>
+    <div className={`relative font-sans selection:bg-ink selection:text-paper ${privacyOpen || termsOpen || getStartedOpen ? '' : 'cursor-none'}`}>
       {/* Custom Cursor */}
-      {!(privacyOpen || termsOpen) && (
+      {!(privacyOpen || termsOpen || getStartedOpen) && (
         <div
           ref={cursorRef}
           className="fixed top-0 left-0 w-8 h-8 rounded-full border border-ink pointer-events-none z-[100] mix-blend-difference hidden lg:block -mt-4 -ml-4 transition-transform duration-100 ease-out flex items-center justify-center overflow-hidden"
@@ -639,7 +685,7 @@ export default function App() {
         </div>
       )}
 
-      <Navigation />
+      <Navigation onGetStarted={() => setGetStartedOpen(true)} />
 
       <main className="relative">
         <Hero activeView={activeView} setActiveView={setActiveView} />
@@ -815,6 +861,7 @@ export default function App() {
       <Footer />
       <PrivacyOverlay isOpen={privacyOpen} onClose={() => setPrivacyOpen(false)} />
       <TermsOverlay isOpen={termsOpen} onClose={() => setTermsOpen(false)} />
+      <GetStartedModal isOpen={getStartedOpen} onClose={() => setGetStartedOpen(false)} />
 
       {/* Floating Status Indicator */}
 
