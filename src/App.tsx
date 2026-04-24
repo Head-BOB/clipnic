@@ -753,6 +753,9 @@ export default function App() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
   const [getStartedOpen, setGetStartedOpen] = useState(false);
+  const isBrandPath = window.location.pathname === '/brand' || window.location.pathname === '/brands';
+  const isPrivacyPath = window.location.pathname === '/privacy';
+  const isTermsPath = window.location.pathname === '/terms' || window.location.pathname === '/clipper-terms';
   const isHome = window.location.pathname === '/';
   const isComingSoon = window.location.pathname === '/coming-soon';
 
