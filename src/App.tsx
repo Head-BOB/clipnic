@@ -7,11 +7,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { 
   Zap, 
   ArrowRight, 
-  Menu, 
-  X, 
   Instagram, 
-  Twitter, 
-  Linkedin, 
   ChevronDown, 
   Link as LinkIcon, 
   Upload as UploadIcon, 
@@ -27,64 +23,20 @@ import React, { useState, useRef, useEffect, ReactNode } from 'react';
 // --- Components ---
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-8 px-6 lg:px-12 flex justify-between items-center">
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="font-display text-4xl tracking-tighter"
+        className="font-display text-2xl md:text-4xl tracking-widest"
       >
-        CLIPNIC
+        CLIPNIC.COM
       </motion.div>
-      
-      <div className="hidden md:flex gap-8 items-center font-mono text-xs uppercase tracking-widest text-paper">
-        <a href="#process" className="hover:opacity-50 transition-opacity">Protocol</a>
-        <a href="#earnings" className="hover:opacity-50 transition-opacity">Yields</a>
-        <a href="#campaigns" className="hover:opacity-50 transition-opacity">Campaigns</a>
-        <div className="flex gap-4">
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="border border-white/30 text-white px-6 py-2 rounded-full font-bold hover:bg-white hover:text-black transition-colors"
-          >
-            Launch Campaign
-          </motion.button>
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-brand text-ink px-6 py-2 rounded-full font-bold"
-          >
-            Start Clipping
-          </motion.button>
-        </div>
-      </div>
-
-      <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? <X size={32} /> : <Menu size={32} />}
-      </button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-24 left-0 w-full bg-black p-8 flex flex-col gap-6 md:hidden items-center text-center font-display text-3xl"
-          >
-            <a href="#process" onClick={() => setIsOpen(false)}>Protocol</a>
-            <a href="#earnings" onClick={() => setIsOpen(false)}>Yields</a>
-            <a href="#campaigns" onClick={() => setIsOpen(false)}>Campaigns</a>
-            <button className="bg-white text-black w-full py-4 rounded-xl mt-4">Login</button>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 };
 
-const Hero = () => {
+const Hero = ({ activeView, setActiveView }: { activeView: 'clipper' | 'brand', setActiveView: (v: 'clipper' | 'brand') => void }) => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -104,13 +56,17 @@ const Hero = () => {
       <div className="relative z-10 text-center text-paper px-6 flex flex-col items-center justify-center flex-grow">
         <div className="relative">
           <motion.h1 
+            key={activeView}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[12vw] md:text-[18vw] leading-[0.8] tracking-tighter"
+            className="font-display text-[14vw] md:text-[18vw] leading-[0.8] tracking-tighter"
           >
-            POST CLIPS <br />
-            <span className="text-stroke-paper text-ink">GET PAID</span>
+            {activeView === 'clipper' ? (
+              <>POST CLIPS <br /> <span className="text-stroke-paper text-ink">GET PAID</span></>
+            ) : (
+              <>GROW YOUR <br /> <span className="text-stroke-paper text-ink">BRAND</span></>
+            )}
           </motion.h1>
           
           <motion.div 
@@ -120,26 +76,44 @@ const Hero = () => {
         </div>
 
         <motion.p 
+          key={activeView + "p"}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 0.4 }}
           className="mt-6 max-w-xl mx-auto font-sans text-xl opacity-60 font-light text-balance"
         >
-          Clipnic is the primary infrastructure for turning engagement into capital. We pay clippers for high-velocity short-form content.
+          {activeView === 'clipper' 
+            ? "Clipnic is the primary infrastructure for turning engagement into capital. We pay clippers for high-velocity short-form content."
+            : "Deploy your brand across thousands of accounts. We automate the creator economy to give you infinite organic reach through short-form video."
+          }
         </motion.p>
 
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center"
+          transition={{ delay: 0.6 }}
+          className="mt-12 flex flex-col md:flex-row items-center gap-6"
         >
-          <button className="bg-brand text-black border border-brand px-12 py-4 rounded-full font-sans font-bold hover:bg-white hover:border-white transition-colors uppercase tracking-wide">
-            START EARNING
-          </button>
-          <button className="bg-transparent border border-white/30 text-white px-12 py-4 rounded-full font-sans font-bold hover:bg-white hover:text-black transition-colors uppercase tracking-wide">
-            LAUNCH CAMPAIGN
-          </button>
+          <div className="bg-white/5 p-2 rounded-full border border-white/10 flex gap-2">
+            <button 
+              onClick={() => {
+                if (activeView === 'brand') setActiveView('clipper');
+                else window.location.href = 'https://app.clipnic.com/clipper';
+              }}
+              className={`px-8 py-3 rounded-full font-sans font-bold text-sm transition-all ${activeView === 'clipper' ? 'bg-brand text-black' : 'text-white hover:bg-white/10'}`}
+            >
+              START EARNING
+            </button>
+            <button 
+              onClick={() => {
+                if (activeView === 'clipper') setActiveView('brand');
+                else window.location.href = 'https://app.clipnic.com/brand';
+              }}
+              className={`px-8 py-3 rounded-full font-sans font-bold text-sm transition-all ${activeView === 'brand' ? 'bg-brand text-black' : 'text-white hover:bg-white/10'}`}
+            >
+              LAUNCH CAMPAIGN
+            </button>
+          </div>
         </motion.div>
       </div>
 
@@ -165,7 +139,7 @@ const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: an
       <div className={`mb-8 p-6 inline-block rounded-full border-2 ${index % 2 !== 0 ? 'bg-paper text-ink border-paper' : 'bg-ink text-paper border-ink'}`}>
         <Icon size={32} />
       </div>
-      <h2 className="font-display text-7xl md:text-8xl tracking-tighter leading-none mb-8">
+      <h2 className="font-display text-4xl md:text-8xl tracking-tighter leading-none mb-8">
         {title}
       </h2>
       <p className="font-sans text-xl opacity-60 max-w-md font-light text-balance leading-relaxed">
@@ -280,7 +254,62 @@ const EarningsDash = () => (
   </div>
 );
 
-const InfiniteMarquee = () => {
+// --- Brand Previews ---
+
+const BrandCampaignDash = () => (
+  <div className="w-full space-y-4">
+    <div className="bg-dash-card border border-white/10 p-6 rounded-2xl">
+      <div className="flex items-center justify-between mb-6">
+        <p className="font-sans text-xs text-zinc-500 uppercase tracking-wide">Active Campaign</p>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+          <span className="font-sans text-[10px] text-emerald-500">RUNNING</span>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+          <span className="text-zinc-400">Budget Deployed</span>
+          <span className="text-white font-mono">$50,000.00</span>
+        </div>
+        <div className="w-full bg-black h-2 rounded-full overflow-hidden">
+          <div className="bg-brand w-[65%] h-full" />
+        </div>
+      </div>
+    </div>
+    <div className="grid grid-cols-2 gap-4">
+      <div className="p-4 bg-dash-card border border-white/10 rounded-2xl">
+        <p className="text-[10px] text-zinc-500 uppercase mb-1">Clippers Active</p>
+        <p className="text-2xl text-white font-display">1,420</p>
+      </div>
+      <div className="p-4 bg-dash-card border border-white/10 rounded-2xl">
+        <p className="text-[10px] text-zinc-500 uppercase mb-1">Avg. CPM</p>
+        <p className="text-2xl text-white font-display">$4.20</p>
+      </div>
+    </div>
+  </div>
+);
+
+const BrandMetricsDash = () => (
+  <div className="w-full space-y-4">
+    <div className="bg-dash-card border border-white/10 p-6 rounded-2xl">
+      <h3 className="font-sans text-sm text-white mb-4">Viral Velocity</h3>
+      <div className="h-32 flex items-end gap-1">
+        {[40, 20, 60, 80, 45, 90, 100, 70, 85].map((h, i) => (
+          <div key={i} className="flex-grow bg-brand/20 border-t-2 border-brand rounded-t-sm" style={{ height: `${h}%` }} />
+        ))}
+      </div>
+    </div>
+    <div className="p-5 bg-dash-card border border-white/10 rounded-2xl flex items-center justify-between">
+      <div>
+        <p className="text-[10px] text-zinc-500 uppercase">Estimated Reach</p>
+        <p className="text-xl text-white font-display">8.4M VIEWS</p>
+      </div>
+      <TrendingUp className="text-brand" size={24} />
+    </div>
+  </div>
+);
+
+const InfiniteMarquee = ({ activeView }: { activeView: 'clipper' | 'brand' }) => {
   return (
     <div className="bg-brand py-8 overflow-hidden whitespace-nowrap border-y-4 border-ink text-ink">
       <motion.div 
@@ -289,8 +318,11 @@ const InfiniteMarquee = () => {
         className="inline-block"
       >
         {[...Array(10)].map((_, i) => (
-          <span key={i} className="font-display font-medium text-4xl md:text-6xl mx-10 italic uppercase tracking-tighter">
-            LINK • CLIP • VIRALIZE • EARN • AGGREGATE • SCALE • 
+          <span key={i} className="font-display font-medium text-3xl md:text-6xl mx-10 italic uppercase tracking-tighter">
+            {activeView === 'clipper' 
+              ? "LINK • CLIP • VIRALIZE • EARN • AGGREGATE • SCALE • "
+              : "DEPLOY • SCALE • DOMINATE • ANALYZE • CONVERT • "
+            }
           </span>
         ))}
       </motion.div>
@@ -298,7 +330,7 @@ const InfiniteMarquee = () => {
   );
 };
 
-const Contact = () => {
+const Contact = ({ activeView, setActiveView }: { activeView: 'clipper' | 'brand', setActiveView: (v: 'clipper' | 'brand') => void }) => {
   return (
     <section id="campaigns" className="py-32 px-6 lg:px-12 bg-paper flex flex-col items-center text-center border-t border-line text-ink">
       <motion.div 
@@ -309,31 +341,41 @@ const Contact = () => {
       >
         <Zap size={40} className="fill-brand text-brand" />
       </motion.div>
-      <h2 className="font-display text-[12vw] tracking-tighter leading-[0.85] mb-12 uppercase">
-        Ready to <br />
-        Liquidate?
+      <h2 className="font-display text-[15vw] md:text-[12vw] tracking-tighter leading-[0.85] mb-12 uppercase">
+        {activeView === 'clipper' ? <>Ready to <br /> Liquidate?</> : <>Ready to <br /> Dominate?</>}
       </h2>
       <p className="max-w-2xl font-sans text-xl opacity-60 mb-16 font-light">
-        The viral economy is waiting. Connect your reach to our capital engine today.
+        {activeView === 'clipper' 
+          ? "The viral economy is waiting. Connect your reach to our capital engine today."
+          : "The feed is the new market. Connect your brand to our viral engine today."
+        }
       </p>
       <div className="flex flex-col md:flex-row gap-6 mt-6">
         <motion.button 
           whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
           whileTap={{ scale: 0.98 }}
-          className="group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors"
+          onClick={() => {
+            if (activeView === 'brand') setActiveView('clipper');
+            else window.location.href = 'https://app.clipnic.com/clipper';
+          }}
+          className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'clipper' ? 'bg-ink text-paper' : ''}`}
         >
-          <span className="relative z-10 uppercase text-ink group-hover:text-paper">Start Clipping</span>
+          <span className={`relative z-10 uppercase ${activeView === 'clipper' ? 'text-paper' : 'text-ink group-hover:text-paper'}`}>Start Earning</span>
         </motion.button>
         <motion.button 
           whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
           whileTap={{ scale: 0.98 }}
-          className="group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors bg-white hover:bg-black"
+          onClick={() => {
+            if (activeView === 'clipper') setActiveView('brand');
+            else window.location.href = 'https://app.clipnic.com/brand';
+          }}
+          className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'brand' ? 'bg-ink text-paper' : 'bg-white hover:bg-black'}`}
         >
-          <span className="relative z-10 uppercase text-ink group-hover:text-paper">Launch Campaign</span>
+          <span className={`relative z-10 uppercase ${activeView === 'brand' ? 'text-paper' : 'text-ink group-hover:text-paper'}`}>Launch Campaign</span>
         </motion.button>
       </div>
       
-      <div className="mt-32 w-full grid grid-cols-2 md:grid-cols-4 gap-12 font-mono text-xs uppercase tracking-widest text-left border-t border-line pt-20">
+      <div className="mt-32 w-full grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 font-mono text-[10px] md:text-xs uppercase tracking-widest text-left border-t border-line pt-20">
         <div>
           <p className="opacity-40 mb-4">Ecosystem</p>
           <div className="flex flex-col gap-2">
@@ -371,19 +413,24 @@ const Contact = () => {
 
 const Footer = () => (
   <footer className="bg-ink text-paper py-12 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-line">
-    <div className="font-display text-2xl tracking-tighter opacity-80">CLIPNIC.</div>
+    <div className="font-display text-2xl tracking-widest opacity-80 uppercase">CLIPNIC.COM</div>
     <div className="font-mono text-[10px] uppercase tracking-widest opacity-40">
-      CORE PROTOCOL VERSION 2.1.0-MONO // ALL SYSTEMS OPERATIONAL
+      © 2026 clipnic.com all rights reserved
     </div>
-    <div className="flex gap-6">
+    <div className="flex gap-6 items-center">
       <Instagram size={18} className="opacity-60 hover:opacity-100 cursor-pointer" />
-      <Twitter size={18} className="opacity-60 hover:opacity-100 cursor-pointer" />
-      <Linkedin size={18} className="opacity-60 hover:opacity-100 cursor-pointer" />
+      <a href="#" className="opacity-60 hover:opacity-100 cursor-pointer">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" className="opacity-60 hover:opacity-100 cursor-pointer">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.874.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </a>
     </div>
   </footer>
 );
 
 export default function App() {
+  const [activeView, setActiveView] = useState<'clipper' | 'brand'>('clipper');
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -409,34 +456,80 @@ export default function App() {
       <Navigation />
       
       <main className="relative">
-        <Hero />
+        <Hero activeView={activeView} setActiveView={setActiveView} />
         
         <div id="process">
-          <ProcessStep 
-            index={0}
-            icon={LinkIcon}
-            title="AGGREGATE PROFILES"
-            desc="Synchronize your TikTok, Instagram, and YouTube accounts. Our engine verifies your reach and establishes the connection."
-            dashPreview={<ConnectDash />}
-          />
-          <InfiniteMarquee />
-          <ProcessStep 
-            index={1}
-            icon={UploadIcon}
-            title="TRANSMIT CONTENT"
-            desc="Post your content natively on your accounts, then transmit the URL to our validation layer. We track velocity in real-time."
-            dashPreview={<SubmissionDash />}
-          />
-          <ProcessStep 
-            index={2}
-            icon={History}
-            title="LIQUIDATE YIELD"
-            desc="As views surge, your dashboard updates. Withdraw your capital through traditional rails or crypto-infrastructure."
-            dashPreview={<EarningsDash />}
-          />
+          <AnimatePresence mode="wait">
+            {activeView === 'clipper' ? (
+              <motion.div 
+                key="clipper-view"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <ProcessStep 
+                  index={0}
+                  icon={LinkIcon}
+                  title="AGGREGATE PROFILES"
+                  desc="Synchronize your TikTok, Instagram, and YouTube accounts. Our engine verifies your reach and establishes the connection."
+                  dashPreview={<ConnectDash />}
+                />
+                <InfiniteMarquee activeView="clipper" />
+                <ProcessStep 
+                  index={1}
+                  icon={UploadIcon}
+                  title="TRANSMIT CONTENT"
+                  desc="Post your content natively on your accounts, then transmit the URL to our validation layer. We track velocity in real-time."
+                  dashPreview={<SubmissionDash />}
+                />
+                <ProcessStep 
+                  index={2}
+                  icon={History}
+                  title="LIQUIDATE YIELD"
+                  desc="As views surge, your dashboard updates. Withdraw your capital through traditional rails or crypto-infrastructure."
+                  dashPreview={<EarningsDash />}
+                />
+              </motion.div>
+            ) : (
+              <motion.div 
+                key="brand-view"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <ProcessStep 
+                  index={0}
+                  icon={DollarSign}
+                  title="DEPLOY CAPITAL"
+                  desc="Fund your viral engine. Allocate budgets for bounties and watch as thousands of creators begin producing for your brand."
+                  dashPreview={<BrandCampaignDash />}
+                />
+                <InfiniteMarquee activeView="brand" />
+                <ProcessStep 
+                  index={1}
+                  icon={TrendingUp}
+                  title="AUTOMATE REWARDS"
+                  desc="Define your performance benchmarks. Our protocol automatically calculates and distributes yield based on real engagement."
+                  dashPreview={<BrandMetricsDash />}
+                />
+                <ProcessStep 
+                  index={2}
+                  icon={Share2}
+                  title="SCALE VIRAL REACH"
+                  desc="Achieve infinite organic reach. Your brand becomes the content, natively embedded in the feeds of millions."
+                  dashPreview={
+                    <div className="text-center p-10">
+                      <p className="font-display text-4xl text-white mb-4">8.4M+</p>
+                      <p className="font-sans text-zinc-500 uppercase tracking-widest text-xs">Total Network Impressions</p>
+                    </div>
+                  }
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        <Contact />
+        <Contact activeView={activeView} setActiveView={setActiveView} />
         
         <div className="absolute bottom-10 right-10 z-[60] mix-blend-difference hidden md:block">
           <motion.div 
