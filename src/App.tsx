@@ -16,9 +16,42 @@ import {
   Share2,
   Trophy,
   History,
-  CheckCircle2
+  CheckCircle2,
+  Box
 } from 'lucide-react';
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
+
+const BrandUnderConstruction = () => (
+  <div className="min-h-screen bg-ink flex items-center justify-center p-6 text-center text-paper">
+    <div className="max-w-2xl space-y-12">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="w-32 h-32 bg-paper/5 rounded-full flex items-center justify-center mx-auto border border-paper/10"
+      >
+        <Box size={56} className="text-brand" />
+      </motion.div>
+      <div className="space-y-6">
+        <h1 className="font-display text-[10vw] md:text-[6vw] tracking-tighter leading-none uppercase">Under <br /> Development</h1>
+        <p className="font-sans opacity-60 text-xl font-light">The brands webpage is currently under development. For inquiries or to get started, please contact us via Discord.</p>
+      </div>
+      <div className="pt-8 flex flex-col md:flex-row justify-center gap-6">
+        <button 
+          onClick={() => window.location.href = 'https://discord.gg/8KXdFCxZsR'}
+          className="px-12 py-4 rounded-full bg-brand text-ink font-sans font-bold text-lg hover:opacity-90 transition-all uppercase tracking-widest"
+        >
+          Join Our Discord
+        </button>
+        <button 
+          onClick={() => window.location.href = '/'}
+          className="px-12 py-4 rounded-full border-2 border-paper font-sans font-bold text-lg hover:bg-paper hover:text-ink transition-all uppercase tracking-widest"
+        >
+          Return to Core
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 // --- Components ---
 
@@ -501,64 +534,81 @@ const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-            <div className="space-y-6">
-              <h3 className="font-display text-4xl tracking-tight uppercase">1. Scope</h3>
-              <p className="opacity-60 leading-relaxed font-light">Clipnic is committed to handling your personal information in accordance with GDPR, CCPA, and COPPA. We process data across all platform activities.</p>
-            </div>
-            <div className="space-y-6">
-              <h3 className="font-display text-4xl tracking-tight uppercase">2. Minors</h3>
-              <p className="opacity-60 leading-relaxed font-light">Under 13: We do not knowingly collect data. Ages 13-17: Require verifiable parental consent via contact@clipnic.com.</p>
-            </div>
-          </div>
+          <div className="space-y-16">
+            <section className="space-y-6">
+              <h3 className="font-display text-4xl uppercase tracking-tight">1. Introduction & Scope</h3>
+              <p className="opacity-60 leading-relaxed font-light text-lg">
+                Clipnic is committed to protecting your privacy and handling your personal information in accordance with applicable data protection laws, including the General Data Protection Regulation (GDPR), the California Consumer Privacy Act (CCPA), the Children's Online Privacy Protection Act (COPPA), and other relevant privacy legislation. This Privacy Policy applies to all users—including content creators, brands, and clippers—and covers data collected via clipnic.com and our associated services.
+              </p>
+            </section>
 
-          <div className="p-12 border border-paper/10 rounded-[3rem] space-y-8">
-            <h3 className="font-display text-5xl tracking-tighter uppercase">3. Information Collection</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="space-y-4">
-                <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Direct</p>
-                <p className="text-sm opacity-60">Account details, payout info, and profile metadata provided by you.</p>
-              </div>
-              <div className="space-y-4">
-                <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Automatic</p>
-                <p className="text-sm opacity-60">Technical identifiers, IP addresses, and platform interaction analytics.</p>
-              </div>
-              <div className="space-y-4">
-                <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Third-Party</p>
-                <p className="text-sm opacity-60">Public metrics from YouTube, TikTok, and Instagram via secure OAuth tokens.</p>
-              </div>
-            </div>
-          </div>
+            <section className="space-y-6">
+              <h3 className="font-display text-4xl uppercase tracking-tight">2. Children's Privacy & Parental Consent</h3>
+              <p className="opacity-60 leading-relaxed font-light text-lg">
+                Clipnic is a platform that facilitates independent work and financial payouts. Children under 13 are strictly prohibited from creating accounts. Users aged 13 to 17 ("Minors") must obtain verifiable parental or legal guardian consent before using the platform. We reserve the right to request proof of age and consent at any time. If we discover that personal information from a child under 13 has been collected without verifiable consent, we will delete that information immediately.
+              </p>
+            </section>
 
-          <div className="space-y-12">
-            <h3 className="font-display text-6xl tracking-tighter uppercase">4. Utilization</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {["Service Provision", "Bounty Verification", "Security Monitoring", "Communications"].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 p-6 border border-paper/10 rounded-2xl">
-                  <div className="w-2 h-2 bg-brand rounded-full" />
-                  <span className="font-display text-2xl uppercase tracking-tight">{item}</span>
+            <section className="space-y-6">
+              <h3 className="font-display text-4xl uppercase tracking-tight">3. Information Collection</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg opacity-60 font-light">
+                <div className="space-y-4">
+                  <h4 className="font-bold text-paper">Information You Provide</h4>
+                  <p>Registration data (name, email), profile details (social media handles), and financial information required for payouts.</p>
                 </div>
-              ))}
-            </div>
+                <div className="space-y-4">
+                  <h4 className="font-bold text-paper">Automatic Collection</h4>
+                  <p>IP addresses, browser types, device identifiers, and platform interaction metrics via logs and cookies.</p>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="font-bold text-paper">Third-Party Data</h4>
+                  <p>Metrics from YouTube, TikTok, and Instagram via secure API connections (OAuth) to track video views and engagement velocity.</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="space-y-6">
+              <h3 className="font-display text-4xl uppercase tracking-tight">4. How We Use Your Information</h3>
+              <p className="opacity-60 leading-relaxed font-light text-lg">
+                We use your information to: (a) Provide and maintain the Clipnic platform; (b) Verify content performance and calculate payouts; (c) Process transactions and send financial statements; (d) Communicate platform updates and security alerts; (e) Prevent fraud and ensure compliance with our Terms of Service.
+              </p>
+            </section>
+
+            <section className="space-y-6">
+              <h3 className="font-display text-4xl uppercase tracking-tight">5. Cookies and Tracking</h3>
+              <p className="opacity-60 leading-relaxed font-light text-lg">
+                We use cookies and similar tracking technologies to track activity on our platform and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our platform.
+              </p>
+            </section>
+
+            <section className="space-y-6">
+              <h3 className="font-display text-4xl uppercase tracking-tight">6. Data Security</h3>
+              <p className="opacity-60 leading-relaxed font-light text-lg">
+                The security of your data is important to us, but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.
+              </p>
+            </section>
+
+            <section className="space-y-6">
+              <h3 className="font-display text-4xl uppercase tracking-tight">7. Your Rights & API Revocation</h3>
+              <p className="opacity-60 leading-relaxed font-light text-lg">
+                Depending on your location, you may have rights under GDPR or CCPA to access, correct, or delete your personal data. Furthermore, you can revoke Clipnic's access to your social media data at any time via your Google, TikTok, or Instagram security settings. Revoking access will stop future data collection but may result in the loss of access to specific campaigns.
+              </p>
+            </section>
+
+            <section className="space-y-6">
+              <h3 className="font-display text-4xl uppercase tracking-tight">8. Contact Information</h3>
+              <p className="opacity-60 leading-relaxed font-light text-lg">
+                If you have any questions about this Privacy Policy, please contact us at: <span className="text-paper font-bold underline">clipnicteam@gmail.com</span>.
+              </p>
+            </section>
           </div>
 
-          <div className="p-12 bg-brand text-ink rounded-[3rem] space-y-8">
-            <h3 className="font-display text-5xl tracking-tighter uppercase">7. API Revocation</h3>
-            <p className="text-xl leading-relaxed">
-              You can disconnect social accounts at any time. Revoking access via platform security settings (e.g., Google) will stop data collection but may restrict campaign access.
-            </p>
-          </div>
-
-          <div className="pt-20 border-t border-paper/10 flex flex-col md:flex-row justify-between gap-12">
-            <div className="space-y-4">
-              <h4 className="font-display text-4xl uppercase">Inquiries</h4>
-              <p className="font-mono text-xl">clipnicteam@gmail.com</p>
-            </div>
+          <div className="pt-20 border-t border-paper/10 flex justify-center">
             <button
               onClick={onClose}
-              className="px-12 py-4 rounded-full border-2 border-paper font-sans font-bold text-lg hover:bg-paper hover:text-ink transition-all"
+              className="px-12 py-4 rounded-full border-2 border-paper font-sans font-bold text-lg hover:bg-paper hover:text-ink transition-all uppercase tracking-widest"
             >
-              RETURN TO CORE
+              Return to Core
             </button>
           </div>
         </div>
@@ -662,6 +712,11 @@ export default function App() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
   const [getStartedOpen, setGetStartedOpen] = useState(false);
+  const [isBrandPath] = useState(window.location.pathname === '/brand' || window.location.pathname === '/brands');
+
+  if (isBrandPath) {
+    return <BrandUnderConstruction />;
+  }
 
   return (
     <div className="relative font-sans selection:bg-ink selection:text-paper">
