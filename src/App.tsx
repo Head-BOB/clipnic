@@ -124,37 +124,37 @@ const GetStartedModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => 
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="relative w-full max-w-xl bg-paper p-12 rounded-[3rem] shadow-2xl space-y-12 text-ink border-4 border-ink"
+          className="relative w-full max-w-xl bg-paper p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl space-y-8 md:space-y-12 text-ink border-4 border-ink"
         >
           <div className="text-center space-y-4">
-            <h2 className="font-display text-5xl md:text-6xl tracking-tighter leading-none uppercase">Choose Your <br /> Terminal</h2>
-            <p className="font-sans opacity-60 text-lg">Select your path to continue into the ecosystem.</p>
+            <h2 className="font-display text-4xl md:text-6xl tracking-tighter leading-none uppercase">Choose Your <br /> Terminal</h2>
+            <p className="font-sans opacity-60 text-base md:text-lg">Select your path to continue into the ecosystem.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <button
               onClick={() => window.location.href = 'https://dash.clipnic.com/brand'}
-              className="group p-8 rounded-[2rem] border-2 border-ink hover:bg-ink hover:text-paper transition-all text-left space-y-4"
+              className="group p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border-2 border-ink hover:bg-ink hover:text-paper transition-all text-left space-y-4"
             >
-              <div className="w-12 h-12 rounded-full bg-ink text-paper flex items-center justify-center group-hover:bg-brand group-hover:text-ink transition-colors">
-                <Zap size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-ink text-paper flex items-center justify-center group-hover:bg-brand group-hover:text-ink transition-colors">
+                <Zap size={20} className="md:w-6 md:h-6" />
               </div>
               <div>
-                <h4 className="font-display text-2xl uppercase tracking-tight">Launch Campaign</h4>
-                <p className="text-xs opacity-60 mt-1">Deploy capital. Scale reach.</p>
+                <h4 className="font-display text-xl md:text-2xl uppercase tracking-tight">Launch Campaign</h4>
+                <p className="text-[10px] md:text-xs opacity-60 mt-1">Deploy capital. Scale reach.</p>
               </div>
             </button>
 
             <button
               onClick={() => window.location.href = 'https://dash.clipnic.com/'}
-              className="group p-8 rounded-[2rem] border-2 border-ink hover:bg-ink hover:text-paper transition-all text-left space-y-4"
+              className="group p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border-2 border-ink hover:bg-ink hover:text-paper transition-all text-left space-y-4"
             >
-              <div className="w-12 h-12 rounded-full bg-ink text-paper flex items-center justify-center group-hover:bg-brand group-hover:text-ink transition-colors">
-                <ArrowRight size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-ink text-paper flex items-center justify-center group-hover:bg-brand group-hover:text-ink transition-colors">
+                <ArrowRight size={20} className="md:w-6 md:h-6" />
               </div>
               <div>
-                <h4 className="font-display text-2xl uppercase tracking-tight">Start Clipping</h4>
-                <p className="text-xs opacity-60 mt-1">Post content. Liquidate yield.</p>
+                <h4 className="font-display text-xl md:text-2xl uppercase tracking-tight">Start Clipping</h4>
+                <p className="text-[10px] md:text-xs opacity-60 mt-1">Post content. Liquidate yield.</p>
               </div>
             </button>
           </div>
