@@ -288,9 +288,11 @@ const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: an
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className={`relative aspect-square md:aspect-video lg:aspect-square bg-dash-bg border border-white/10 rounded-[2rem] overflow-hidden flex items-center justify-center p-8`}
+      className={`relative aspect-square md:aspect-video lg:aspect-square bg-dash-bg border border-white/10 rounded-[2rem] overflow-hidden flex items-center justify-center p-4 sm:p-8`}
     >
-      {dashPreview}
+      <div className="w-full scale-[0.85] sm:scale-100 origin-center">
+        {dashPreview}
+      </div>
     </motion.div>
   </section>
 );
@@ -335,10 +337,10 @@ const SubmissionDash = () => (
         <input
           disabled
           value="https://tiktok.com/@clipnic/video/123..."
-          className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 font-mono text-sm focus:outline-none text-zinc-300"
+          className="w-full bg-black border border-white/10 rounded-xl pl-4 pr-10 py-3 font-mono text-[10px] sm:text-sm focus:outline-none text-zinc-300"
         />
         <div className="absolute right-3 top-1/2 -translate-y-1/2">
-          <CheckCircle2 className="text-emerald-500" size={16} />
+          <CheckCircle2 className="text-emerald-500" size={14} />
         </div>
       </div>
     </div>
@@ -860,10 +862,7 @@ export default function App() {
             <motion.button
               whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                if (activeView === 'clipper') window.location.href = 'https://dash.clipnic.com/clipper';
-                else setActiveView('clipper');
-              }}
+              onClick={() => window.location.href = 'https://dash.clipnic.com/clipper'}
               className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'clipper' ? 'bg-ink text-paper' : ''}`}
             >
               <span className={`relative z-10 uppercase ${activeView === 'clipper' ? 'text-paper' : 'text-ink group-hover:text-paper'}`}>Start Earning</span>
@@ -871,10 +870,7 @@ export default function App() {
             <motion.button
               whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                if (activeView === 'brand') window.location.href = 'https://dash.clipnic.com/brand';
-                else setActiveView('brand');
-              }}
+              onClick={() => window.location.href = 'https://dash.clipnic.com/brand'}
               className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'brand' ? 'bg-ink text-paper' : 'bg-white hover:bg-black'}`}
             >
               <span className={`relative z-10 uppercase ${activeView === 'brand' ? 'text-paper' : 'text-ink group-hover:text-paper'}`}>Launch Campaign</span>
