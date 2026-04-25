@@ -204,10 +204,7 @@ const Hero = ({ activeView, setActiveView }: { activeView: 'clipper' | 'brand', 
             )}
           </motion.h1>
 
-          <motion.div
-            style={{ y: y1 }}
-            className="absolute -top-10 -left-10 w-40 h-40 border border-white/20 hidden md:block"
-          />
+
         </div>
 
         <motion.p
