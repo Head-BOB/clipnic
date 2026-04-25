@@ -648,14 +648,6 @@ const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
             </section>
           </div>
 
-          <div className="pt-20 border-t border-paper/10 flex justify-start">
-            <button
-              onClick={onClose}
-              className="px-12 py-4 rounded-full bg-brand text-ink font-sans font-bold text-lg hover:opacity-90 transition-all uppercase tracking-widest"
-            >
-              Close and Return
-            </button>
-          </div>
         </div>
       </motion.div>
     )}
@@ -750,12 +742,6 @@ const TermsOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => voi
               <h4 className="font-display text-4xl uppercase">Legal Node</h4>
               <p className="font-mono text-xl">legal@clipnic.com</p>
             </div>
-            <button
-              onClick={onClose}
-              className="px-12 py-4 rounded-full bg-brand text-ink font-sans font-bold text-lg hover:opacity-90 transition-all uppercase tracking-widest"
-            >
-              Acknowledge and Close
-            </button>
           </div>
         </div>
       </motion.div>
