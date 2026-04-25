@@ -17,7 +17,8 @@ import {
   Trophy,
   History,
   CheckCircle2,
-  Box
+  Box,
+  ArrowLeft
 } from 'lucide-react';
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -93,9 +94,11 @@ const Navigation = ({ onGetStarted }: { onGetStarted: () => void }) => {
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="font-display text-2xl md:text-4xl tracking-widest"
+        className="flex items-center gap-3 cursor-pointer"
+        onClick={() => window.location.href = '/'}
       >
-        CLIPNIC.COM
+        <img src="/branding_hero.png" className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover" alt="Logo" />
+        <span className="font-display text-xl md:text-2xl tracking-widest">CLIPNIC</span>
       </motion.div>
       <motion.button
         initial={{ opacity: 0, x: 20 }}
@@ -558,24 +561,16 @@ const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
       >
         <button
           onClick={onClose}
-          className="fixed top-10 right-10 w-16 h-16 rounded-full bg-paper border border-paper/10 flex items-center justify-center hover:scale-110 transition-all z-[210] shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+          className="fixed top-10 left-10 flex items-center gap-2 px-6 py-3 rounded-full bg-paper text-ink font-sans font-bold text-xs tracking-widest hover:bg-white transition-all z-[210] shadow-xl border border-ink/10 uppercase"
         >
-          <div className="w-10 h-10 rounded-full bg-ink flex items-center justify-center">
-            <Zap size={20} className="fill-brand text-brand" />
-          </div>
+          <ArrowLeft size={16} />
+          Back
         </button>
 
         <div className="max-w-4xl mx-auto space-y-20 pb-32">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="w-24 h-24 rounded-full bg-paper flex items-center justify-center border-4 border-ink shadow-[8px_8px_0_var(--color-brand)] mb-12"
-          >
-            <Zap size={40} className="fill-brand text-brand" />
-          </motion.div>
-          <div className="space-y-8">
-            <h1 className="font-display text-[10vw] md:text-[8vw] leading-none tracking-tighter uppercase">Privacy <br /> Protocol</h1>
-            <p className="font-mono text-xs uppercase tracking-[0.4em] opacity-40">Last Synchronized: April 24, 2026</p>
+          <div className="pt-12 space-y-8">
+            <h1 className="font-display text-[8vw] md:text-[6vw] leading-none tracking-tighter uppercase border-b-4 border-brand pb-8">Privacy Protocol</h1>
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Security Clearance Level: Standard | Last Updated: April 25, 2026</p>
           </div>
 
           <div className="space-y-12 text-xl md:text-2xl font-light leading-relaxed opacity-80">
@@ -595,7 +590,7 @@ const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
             <section className="space-y-6">
               <h3 className="font-display text-4xl uppercase tracking-tight">2. Minor Protection & Guardian Override</h3>
               <p className="opacity-60 leading-relaxed font-light text-lg">
-                As an engine for capital liquidation, we enforce strict age parameters. Users under 13 are purged from the network. Operators aged 13-17 ("Minors") require verified guardian authorization. Guardians retain the override right to review, delete, or halt further data harvesting by contacting our central node at <span className="text-paper">clipnicteam@gmail.com</span>.
+                As an engine for capital liquidation, we enforce strict age parameters. Users under 13 are purged from the network. Operators aged 13-17 ("Minors") require verified guardian authorization. Guardians retain the override right to review, delete, or halt further data harvesting by contacting our central node at <span className="text-paper">legal@clipnic.com</span>.
               </p>
             </section>
 
@@ -648,17 +643,17 @@ const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
             <section className="space-y-6">
               <h3 className="font-display text-4xl uppercase tracking-tight">8. Central Node Contact</h3>
               <p className="opacity-60 leading-relaxed font-light text-lg">
-                For inquiries regarding this Privacy Policy or to execute your data rights: <span className="text-paper font-bold underline">clipnicteam@gmail.com</span>.
+                For inquiries regarding this Privacy Policy or to execute your data rights: <span className="text-paper font-bold underline">legal@clipnic.com</span>.
               </p>
             </section>
           </div>
 
-          <div className="pt-20 border-t border-paper/10 flex justify-center">
+          <div className="pt-20 border-t border-paper/10 flex justify-start">
             <button
               onClick={onClose}
-              className="px-12 py-4 rounded-full border-2 border-paper font-sans font-bold text-lg hover:bg-paper hover:text-ink transition-all uppercase tracking-widest"
+              className="px-12 py-4 rounded-full bg-brand text-ink font-sans font-bold text-lg hover:opacity-90 transition-all uppercase tracking-widest"
             >
-              Return to Core
+              Close and Return
             </button>
           </div>
         </div>
@@ -678,24 +673,16 @@ const TermsOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => voi
       >
         <button
           onClick={onClose}
-          className="fixed top-10 right-10 w-16 h-16 rounded-full bg-paper border border-paper/10 flex items-center justify-center hover:scale-110 transition-all z-[210] shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+          className="fixed top-10 left-10 flex items-center gap-2 px-6 py-3 rounded-full bg-paper text-ink font-sans font-bold text-xs tracking-widest hover:bg-white transition-all z-[210] shadow-xl border border-ink/10 uppercase"
         >
-          <div className="w-10 h-10 rounded-full bg-ink flex items-center justify-center">
-            <Zap size={20} className="fill-brand text-brand" />
-          </div>
+          <ArrowLeft size={16} />
+          Back
         </button>
 
         <div className="max-w-4xl mx-auto space-y-20 pb-32">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="w-24 h-24 rounded-full bg-paper flex items-center justify-center border-4 border-ink shadow-[8px_8px_0_var(--color-brand)] mb-12"
-          >
-            <Zap size={40} className="fill-brand text-brand" />
-          </motion.div>
-          <div className="space-y-8">
-            <h1 className="font-display text-[10vw] md:text-[8vw] leading-none tracking-tighter uppercase">Service <br /> Protocol</h1>
-            <p className="font-mono text-xs uppercase tracking-[0.4em] opacity-40">Last Synchronized: April 24, 2026</p>
+          <div className="pt-12 space-y-8">
+            <h1 className="font-display text-[8vw] md:text-[6vw] leading-none tracking-tighter uppercase border-b-4 border-brand pb-8">Service Protocol</h1>
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Governance Code: ALPHA-01 | Last Updated: April 25, 2026</p>
           </div>
 
           <div className="space-y-12 text-xl md:text-2xl font-light leading-relaxed opacity-80">
@@ -760,14 +747,14 @@ const TermsOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => voi
 
           <div className="pt-20 border-t border-paper/10 flex flex-col md:flex-row justify-between gap-12">
             <div className="space-y-4">
-              <h4 className="font-display text-4xl uppercase">Central Node</h4>
-              <p className="font-mono text-xl">clipnicteam@gmail.com</p>
+              <h4 className="font-display text-4xl uppercase">Legal Node</h4>
+              <p className="font-mono text-xl">legal@clipnic.com</p>
             </div>
             <button
               onClick={onClose}
-              className="px-12 py-4 rounded-full border-2 border-paper font-sans font-bold text-lg hover:bg-paper hover:text-ink transition-all uppercase tracking-widest"
+              className="px-12 py-4 rounded-full bg-brand text-ink font-sans font-bold text-lg hover:opacity-90 transition-all uppercase tracking-widest"
             >
-              Acknowledge Protocol
+              Acknowledge and Close
             </button>
           </div>
         </div>
