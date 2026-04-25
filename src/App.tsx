@@ -97,8 +97,8 @@ const Navigation = ({ onGetStarted }: { onGetStarted: () => void }) => {
         className="flex items-center gap-3 cursor-pointer"
         onClick={() => window.location.href = '/'}
       >
-        <img src="/branding_hero.png" className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover" alt="Logo" />
-        <span className="font-display text-xl md:text-2xl tracking-widest">CLIPNIC</span>
+        <img src="/logo.webp" className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover" alt="Logo" />
+        <span className="font-display text-xl md:text-2xl tracking-widest">CLIPNIC.COM</span>
       </motion.div>
       <motion.button
         initial={{ opacity: 0, x: 20 }}
