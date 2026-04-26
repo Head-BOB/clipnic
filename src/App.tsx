@@ -557,97 +557,92 @@ const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[200] bg-ink text-paper overflow-y-auto p-6 md:p-20 font-sans cursor-auto selection:bg-brand selection:text-ink"
+        className="fixed inset-0 z-[200] bg-white text-black overflow-y-auto p-6 md:p-20 font-sans cursor-auto selection:bg-black selection:text-white"
       >
         <button
           onClick={onClose}
-          className="fixed top-10 left-10 flex items-center gap-2 px-6 py-3 rounded-full bg-paper text-ink font-sans font-bold text-xs tracking-widest hover:bg-white transition-all z-[210] shadow-xl border border-ink/10 uppercase"
+          className="fixed top-10 left-10 flex items-center gap-2 px-5 py-2.5 rounded-lg bg-black text-white font-sans font-bold text-xs tracking-widest hover:bg-zinc-800 transition-all z-[210] shadow-xl uppercase"
         >
-          <ArrowLeft size={16} />
-          Back
+          <ArrowLeft size={14} />
+          Return
         </button>
 
-        <div className="max-w-4xl mx-auto space-y-20 pb-32">
-          <div className="pt-12 space-y-8">
-            <h1 className="font-display text-[8vw] md:text-[6vw] leading-none tracking-tighter uppercase border-b-4 border-brand pb-8">Privacy Policy</h1>
-            <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Security Clearance Level: Standard | Last Updated: April 25, 2026</p>
+        <div className="max-w-3xl mx-auto space-y-12 pb-32">
+          <div className="pt-12 space-y-4 border-b-2 border-black pb-8">
+            <h1 className="font-sans text-4xl md:text-5xl font-black uppercase tracking-tight">Privacy Policy</h1>
+            <div className="flex flex-col md:flex-row md:justify-between gap-2 font-mono text-[10px] uppercase tracking-widest opacity-60">
+              <p>Document Ref: CP-PL-2026</p>
+              <p>Last Revised: April 25, 2026</p>
+            </div>
           </div>
 
-          <div className="space-y-12 text-xl md:text-2xl font-light leading-relaxed opacity-80">
+          <div className="text-lg leading-relaxed space-y-6">
+            <p className="font-bold uppercase tracking-tight">Introduction</p>
             <p>
-              Your Privacy is the Core: This Privacy Policy outlines how Clipnic ("we," "our," or "us") harvests, encrypts, and secures your identity within the ecosystem (clipnic.com). We bridge the gap between brands, creators, and the independent editing network ("Clippers").
+              This Privacy Policy outlines the mandatory protocols by which Clipnic ("the Company," "we," "our," or "us") collects, processes, and safeguards the personal data of users interfacing with the ecosystem (clipnic.com). By accessing the network, you acknowledge the data handling practices described herein.
             </p>
           </div>
 
-          <div className="space-y-16">
-            <section className="space-y-6">
-              <h3 className="font-display text-4xl uppercase tracking-tight">1. Data Transmission Scope</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">
-                Clipnic is committed to shielding your identity in alignment with global data protection frameworks, including GDPR, CCPA, and COPPA. This Policy applies to all network nodes—creators, brands, and clippers—covering all data streams across the ecosystem.
+          <div className="space-y-10">
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">1.0 Data Collection Framework</h3>
+              <p className="leading-relaxed opacity-80">
+                Clipnic adheres to international data protection standards (GDPR, CCPA, COPPA). We collect data necessary for system operation, including but not limited to:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 opacity-80">
+                <li>Direct identification data (Name, Email, Account Credentials)</li>
+                <li>Financial distribution metadata (PayPal/Bank identifiers)</li>
+                <li>System telemetry (IP signatures, browser identifiers)</li>
+                <li>Social platform performance metrics via OAuth tunnels</li>
+              </ul>
+            </section>
+
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">2.0 Protection of Minors</h3>
+              <p className="leading-relaxed opacity-80">
+                The ecosystem is prohibited for users under 13 years of age. Users aged 13-17 require verified parental or guardian consent. We reserve the right to terminate any accounts failing to provide sufficient proof of eligibility.
               </p>
             </section>
 
-            <section className="space-y-6">
-              <h3 className="font-display text-4xl uppercase tracking-tight">2. Minor Protection & Guardian Override</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">
-                As an engine for capital liquidation, we enforce strict age parameters. Users under 13 are purged from the network. Operators aged 13-17 ("Minors") require verified guardian authorization. Guardians retain the override right to review, delete, or halt further data harvesting by contacting our central node at <span className="text-paper">clipnicteam@gmail.com</span>.
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">3.0 Data Utilization & Purpose</h3>
+              <p className="leading-relaxed opacity-80">
+                Collected information is utilized strictly to:
+              </p>
+              <ul className="list-decimal pl-6 space-y-2 opacity-80 font-medium">
+                <li>Verify content performance and calculate bounty yields.</li>
+                <li>Process secure financial payouts.</li>
+                <li>Maintain network security and fraud prevention.</li>
+                <li>Calibrate marketplace algorithms for brands and creators.</li>
+              </ul>
+            </section>
+
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">4.0 Information Disclosure</h3>
+              <p className="leading-relaxed opacity-80">
+                We do not sell user data. Information is disclosed only to essential third-party service providers (payment processors, cloud infrastructure) under strict confidentiality agreements, or when legally compelled by government authorities.
               </p>
             </section>
 
-            <section className="space-y-6">
-              <h3 className="font-display text-4xl uppercase tracking-tight">3. Identity Harvesting</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg opacity-60 font-light">
-                <div className="space-y-4">
-                  <h4 className="font-bold text-paper">Direct Input</h4>
-                  <p>Account credentials, profile metadata, and financial liquidation details (PayPal/Bank) processed via secure third-party encryption.</p>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="font-bold text-paper">Automated Streams</h4>
-                  <p>IP signatures, browser telemetry, and device identifiers collected to maintain system integrity.</p>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="font-bold text-paper">Third-Party Sync (API)</h4>
-                  <p>Performance metrics from YouTube, TikTok, and Instagram via secure OAuth tunnels. We track engagement velocity, not your private passwords.</p>
-                </div>
-              </div>
-            </section>
-
-            <section className="space-y-6">
-              <h3 className="font-display text-4xl uppercase tracking-tight">4. Policy Utilization</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">
-                Data is utilized to: (a) Power the viral engine and marketplace; (b) Verify transmission performance and calibrate payouts; (c) Synchronize financial distributions; (d) Defend the network against fraudulent bots or algorithm manipulation.
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">5.0 Security & Encryption</h3>
+              <p className="leading-relaxed opacity-80">
+                All data transmissions are secured via TLS/SSL protocols. While we employ military-grade encryption at rest, users acknowledge that no digital transmission is entirely exempt from external risk.
               </p>
             </section>
 
-            <section className="space-y-6">
-              <h3 className="font-display text-4xl uppercase tracking-tight">5. Cookies & Session Tracking</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">
-                We deploy persistent and session-based tracking nodes to ensure seamless ecosystem navigation. Essential nodes cannot be bypassed as they maintain your secure session.
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">6.0 User Rights & Revocation</h3>
+              <p className="leading-relaxed opacity-80">
+                Users retain the absolute right to access, modify, or delete their data footprint. API permissions can be revoked through your respective platform security settings at any time.
               </p>
             </section>
 
-            <section className="space-y-6">
-              <h3 className="font-display text-4xl uppercase tracking-tight">6. Encryption Layer</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">
-                Identity data is shielded via HTTPS/TLS protocols and encrypted at rest. While we maintain a high-security perimeter, no digital transmission is immune to all potential breaches.
-              </p>
-            </section>
-
-            <section className="space-y-6">
-              <h3 className="font-display text-4xl uppercase tracking-tight">7. System Control & API Revocation</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">
-                You retain the right to access, rectify, or purge your data footprint. API tunnels can be severed at any time through your Google, TikTok, or Meta security dashboards. Severing these tunnels will halt performance tracking and bounty accumulation.
-              </p>
-            </section>
-
-            <section className="space-y-6">
-              <h3 className="font-display text-4xl uppercase tracking-tight">8. Central Node Contact</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">
-                For inquiries regarding this Privacy Policy or to execute your data rights: <span className="text-paper font-bold underline">clipnicteam@gmail.com</span>.
-              </p>
-            </section>
+            <div className="pt-12 border-t border-zinc-200">
+              <p className="font-mono text-[10px] uppercase tracking-widest font-bold">Contact Authority</p>
+              <p className="text-xl font-bold underline decoration-2 underline-offset-4">clipnicteam@gmail.com</p>
+            </div>
           </div>
-
         </div>
       </motion.div>
     )}
@@ -661,86 +656,170 @@ const TermsOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => voi
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[200] bg-ink text-paper overflow-y-auto p-6 md:p-20 font-sans cursor-auto selection:bg-brand selection:text-ink"
+        className="fixed inset-0 z-[200] bg-white text-black overflow-y-auto p-6 md:p-20 font-sans cursor-auto selection:bg-black selection:text-white"
       >
         <button
           onClick={onClose}
-          className="fixed top-10 left-10 flex items-center gap-2 px-6 py-3 rounded-full bg-paper text-ink font-sans font-bold text-xs tracking-widest hover:bg-white transition-all z-[210] shadow-xl border border-ink/10 uppercase"
+          className="fixed top-10 left-10 flex items-center gap-2 px-5 py-2.5 rounded-lg bg-black text-white font-sans font-bold text-xs tracking-widest hover:bg-zinc-800 transition-all z-[210] shadow-xl uppercase"
         >
-          <ArrowLeft size={16} />
-          Back
+          <ArrowLeft size={14} />
+          Return
         </button>
 
-        <div className="max-w-4xl mx-auto space-y-20 pb-32">
-          <div className="pt-12 space-y-8">
-            <h1 className="font-display text-[8vw] md:text-[6vw] leading-none tracking-tighter uppercase border-b-4 border-brand pb-8">Terms of Service</h1>
-            <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Governance Code: ALPHA-01 | Last Updated: April 25, 2026</p>
+        <div className="max-w-3xl mx-auto space-y-12 pb-32 font-sans text-black">
+          <div className="pt-12 space-y-4 border-b-2 border-black pb-8">
+            <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tight">Terms of Service</h1>
+            <div className="flex flex-col md:flex-row md:justify-between gap-2 font-mono text-[10px] uppercase tracking-widest opacity-60 font-bold">
+              <p>Platform: Clipnic (clipnic.com)</p>
+              <p>Last Updated: April 24, 2026</p>
+            </div>
           </div>
 
-          <div className="space-y-12 text-xl md:text-2xl font-light leading-relaxed opacity-80">
-            <p>
-              Agreement to Terms: By interfacing with Clipnic (clipnic.com), you agree to be bound by these Terms of Service and all governing ecosystem regulations.
+          <div className="text-lg leading-relaxed space-y-6">
+            <p className="font-bold uppercase tracking-tight text-sm">Agreement to Terms</p>
+            <p className="opacity-90">
+              By accessing and using Clipnic (clipnic.com), you agree to be bound by these Terms of Service and all applicable laws and regulations.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-            <div className="space-y-6">
-              <h3 className="font-display text-4xl tracking-tight uppercase">1. Terms Acceptance</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">These Terms govern your utilization of the Clipnic network. Establishing an account constitutes a legally binding link. If you decline these terms, system access is prohibited.</p>
-            </div>
-            <div className="space-y-6">
-              <h3 className="font-display text-4xl tracking-tight uppercase">2. Operator Eligibility</h3>
-              <p className="opacity-60 leading-relaxed font-light text-lg">Minimum Age: 13. Minor Operators (13-17) require explicit guardian supervision. The network reserves the right to verify credentials at any time.</p>
-            </div>
-          </div>
+          <div className="space-y-10">
+            <section className="p-8 bg-zinc-50 border border-zinc-200 rounded-2xl">
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-zinc-400">Table of Contents</h3>
+              <nav className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3 text-sm font-medium">
+                <ol className="list-decimal pl-4 space-y-3">
+                  <li>Acceptance of Terms</li>
+                  <li>Account & Age Requirements</li>
+                  <li>Service Description</li>
+                  <li>User Responsibilities</li>
+                  <li>Prohibited Uses</li>
+                </ol>
+                <ol className="list-decimal pl-4 space-y-3" start={6}>
+                  <li>Intellectual Property</li>
+                  <li>Payouts and Taxes</li>
+                  <li>Limitation of Liability</li>
+                  <li>Contact Information</li>
+                </ol>
+              </nav>
+            </section>
 
-          <div className="p-12 border border-paper/10 rounded-[3rem] space-y-8">
-            <h3 className="font-display text-5xl tracking-tighter uppercase">4. Operator Duties</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="space-y-4">
-                <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 text-brand">Clippers</p>
-                <p className="text-sm opacity-60">Must generate organic engagement velocity. Bot-driven interactions result in immediate node termination and forfeiture of all accumulated yield.</p>
-              </div>
-              <div className="space-y-4">
-                <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 text-brand">Brands</p>
-                <p className="text-sm opacity-60">Must maintain full rights to uploaded assets. Responsible for defining clear campaign parameters and bounty metrics.</p>
-              </div>
-            </div>
-          </div>
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">1.0 Acceptance of Terms</h3>
+              <p className="leading-relaxed opacity-80">
+                These Terms of Service ("Terms") govern your use of Clipnic's platform, which connects brands and content creators with independent video editors ("Clippers") to create and distribute promotional short-form content. By creating an account or using our services, you agree to these terms. These terms constitute a legally binding agreement between you and Clipnic. If you do not agree to these terms, you may not use our services.
+              </p>
+            </section>
 
-          <div className="space-y-12">
-            <h3 className="font-display text-6xl tracking-tighter uppercase">5. Restricted Transmissions</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4 p-8 border border-paper/10 rounded-[2rem]">
-                <h4 className="font-display text-2xl uppercase tracking-tight text-brand">Fake Engagement</h4>
-                <p className="opacity-60 leading-relaxed font-light">The utilization of automated scripts, bot networks, click farms, or any artificial methods to inflate view counts, likes, or comments is strictly prohibited. Any detection of non-organic velocity will result in immediate yield forfeiture and permanent node termination.</p>
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">2.0 Account & Age Requirements</h3>
+              <div className="space-y-4 leading-relaxed opacity-80">
+                <p>Because our platform involves financial payouts and independent work, we have specific age requirements to comply with international laws:</p>
+                <ul className="list-disc pl-6 space-y-4">
+                  <li><span className="font-bold">Minimum Age:</span> You must be at least 13 years old to use our services.</li>
+                  <li><span className="font-bold">Users Under 18 (Minors):</span> If you are between the ages of 13 and the age of legal majority in your jurisdiction (usually 18), you may only use Clipnic with the explicit consent, involvement, and supervision of a parent or legal guardian.</li>
+                  <li className="list-none pl-4 border-l-2 border-zinc-200 italic"><span className="font-bold">Guardian Liability:</span> By allowing a minor to use the platform, the parent or legal guardian agrees to be bound by these Terms and assumes full responsibility for the minor's actions, content, and any legal or tax obligations arising from payouts.</li>
+                  <li><span className="font-bold">Account Verification:</span> We reserve the right to request proof of age or parental consent at any time.</li>
+                </ul>
               </div>
-              <div className="space-y-4 p-8 border border-paper/10 rounded-[2rem]">
-                <h4 className="font-display text-2xl uppercase tracking-tight text-brand">Harmful Content</h4>
-                <p className="opacity-60 leading-relaxed font-light">Content transmitted through the network must adhere to universal safety standards. This includes the prohibition of hate speech, explicit violence, illegal substances, or any material that violates the hosting platform's (TikTok, IG, YouTube) community guidelines.</p>
-              </div>
-              <div className="space-y-4 p-8 border border-paper/10 rounded-[2rem]">
-                <h4 className="font-display text-2xl uppercase tracking-tight text-brand">Platform Abuse</h4>
-                <p className="opacity-60 leading-relaxed font-light">Attempting to exploit system vulnerabilities, bypassing the verification engine, or maintaining multiple accounts to manipulate campaign budgets is a breach of terms. We deploy advanced telemetry to detect and neutralize adversarial network behavior.</p>
-              </div>
-              <div className="space-y-4 p-8 border border-paper/10 rounded-[2rem]">
-                <h4 className="font-display text-2xl uppercase tracking-tight text-brand">Off-Platform Circumvention</h4>
-                <p className="opacity-60 leading-relaxed font-light">The Clipnic infrastructure is the exclusive rail for campaign execution and capital liquidation. Attempting to bypass platform fees, directly contacting ecosystem brands for off-platform deals, or redirecting traffic to unverified destinations is prohibited.</p>
-              </div>
-            </div>
-          </div>
+            </section>
 
-          <div className="p-12 bg-brand text-ink rounded-[3rem] space-y-8">
-            <h3 className="font-display text-5xl tracking-tighter uppercase">7. Capital Liquidation</h3>
-            <p className="text-xl leading-relaxed">
-              Yield is distributed based on verified performance metrics. We reserve the right to freeze payouts if fraudulent velocity is detected. Clippers operate as independent contractors responsible for all personal tax obligations.
-            </p>
-          </div>
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">3.0 Service Description</h3>
+              <div className="space-y-4 leading-relaxed opacity-80">
+                <p>Clipnic acts as an intermediary platform facilitating campaigns between Content Creators/Brands and Clippers:</p>
+                <ul className="list-disc pl-6 space-y-3">
+                  <li><span className="font-bold">For Brands/Creators:</span> A marketplace to post content, set bounties/campaign rules, and leverage a network of clippers to expand your audience.</li>
+                  <li><span className="font-bold">For Clippers:</span> A platform to access approved source content, create short-form clips, post them to social media (TikTok, YouTube Shorts, Instagram Reels, X), and earn bounties based on views, engagement, or conversions.</li>
+                  <li><span className="font-bold">Tracking & Analytics:</span> Tools to verify clip performance, track legitimate engagement, and process campaign bounties.</li>
+                </ul>
+              </div>
+            </section>
 
-          <div className="pt-20 border-t border-paper/10 flex flex-col md:flex-row justify-between gap-12">
-            <div className="space-y-4">
-              <h4 className="font-display text-4xl uppercase">Legal Node</h4>
-              <p className="font-mono text-xl">clipnicteam@gmail.com</p>
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">4.0 User Responsibilities</h3>
+              <div className="space-y-6 leading-relaxed opacity-80">
+                <p>Depending on your role on the platform, you have specific obligations:</p>
+                <div className="space-y-4">
+                  <h4 className="font-bold text-sm uppercase underline">All Users</h4>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li>Maintain accurate account and payment information.</li>
+                    <li>Keep login credentials secure and notify us immediately of unauthorized access.</li>
+                    <li>Comply with the Terms of Service of third-party platforms (TikTok, YouTube, Meta, etc.) where clips are posted.</li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="font-bold text-sm uppercase underline">For Clippers</h4>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><span className="font-bold">Quality & Brand Guidelines:</span> Only post clips that align with the specific campaign guidelines set by the Brand/Creator.</li>
+                    <li><span className="font-bold">Authentic Engagement:</span> You must generate organic views. The use of viewbots, engagement pods, or purchased traffic is strictly prohibited and will result in immediate termination and forfeiture of earnings.</li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="font-bold text-sm uppercase underline">For Brands/Creators</h4>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><span className="font-bold">Rights to Content:</span> You represent and warrant that you own or have the necessary licenses to the content you upload for Clippers to use.</li>
+                    <li><span className="font-bold">Clear Terms:</span> You are responsible for clearly defining campaign rules, acceptable content, and payout metrics.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">5.0 Prohibited Uses</h3>
+              <p className="leading-relaxed opacity-80 mb-4">You may not use our services for any unlawful purpose or in a way that damages the Clipnic ecosystem:</p>
+              <div className="grid grid-cols-1 gap-4">
+                {[
+                  { t: "Fake Engagement", d: "Using automated tools, bots, or paid services to artificially inflate views, likes, or followers on clips." },
+                  { t: "Harmful Content", d: "Creating or distributing clips that promote hate speech, violence, harassment, illegal acts, or explicit material." },
+                  { t: "Platform Abuse", d: "Attempting to manipulate Clipnic's tracking metrics, reverse engineering our software, or creating multiple accounts to exploit bounties." },
+                  { t: "Off-Platform Circumvention", d: "Brands and Clippers may not use Clipnic to make initial contact and then move their transactions off-platform to avoid fees." }
+                ].map((item, i) => (
+                  <div key={i} className="p-4 border border-zinc-200 rounded-xl">
+                    <p className="font-bold text-xs uppercase mb-1">{item.t}</p>
+                    <p className="text-sm opacity-70">{item.d}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">6.0 Intellectual Property</h3>
+              <ul className="list-disc pl-6 space-y-3 leading-relaxed opacity-80">
+                <li><span className="font-bold">Clipnic's Rights:</span> All platform software, design, and trademarks are owned by Clipnic.</li>
+                <li><span className="font-bold">Creator Content:</span> Brands/Creators retain ultimate ownership of their original content. By launching a campaign, the Creator grants Clippers a limited, revocable, non-exclusive license to edit, modify, and distribute the content solely for the purpose of the specific Clipnic campaign.</li>
+                <li><span className="font-bold">Takedown Rights:</span> Brands/Creators and Clipnic reserve the right to demand the removal of any clip from social media platforms if it violates campaign guidelines, harms the brand's reputation, or breaches these Terms.</li>
+              </ul>
+            </section>
+
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">7.0 Payouts and Taxes</h3>
+              <ul className="list-disc pl-6 space-y-3 leading-relaxed opacity-80">
+                <li><span className="font-bold">Bounties:</span> Clippers earn money based on the metrics explicitly defined in the active campaign. Payouts are subject to verification of organic engagement.</li>
+                <li><span className="font-bold">Withholding:</span> Clipnic reserves the right to withhold or cancel payouts if fraudulent activity, viewbotting, or copyright infringement is suspected.</li>
+                <li><span className="font-bold">Taxes:</span> Clippers (or their legal guardians, if under 18) are considered independent contractors. You are solely responsible for calculating, reporting, and paying all applicable local, state, or federal taxes on your Clipnic earnings.</li>
+              </ul>
+            </section>
+
+            <section className="space-y-4">
+              <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-black pl-4">8.0 Limitation of Liability</h3>
+              <div className="space-y-4 leading-relaxed opacity-80">
+                <p>To the maximum extent permitted by law:</p>
+                <ul className="list-disc pl-6 space-y-3">
+                  <li><span className="font-bold">"As Is" Service:</span> Clipnic is provided "as is" without warranties of any kind. We do not guarantee uninterrupted service or specific financial returns.</li>
+                  <li><span className="font-bold">Third-Party Platforms:</span> We are not responsible for changes to algorithms, API access, or bans issued by third-party platforms (e.g., TikTok, YouTube) that may affect a Clipper's ability to earn or a Brand's campaign reach.</li>
+                  <li><span className="font-bold">Dispute Resolution:</span> Clipnic acts as a facilitator. While we may offer mediation tools, we are not legally liable for disputes between Brands and Clippers regarding creative direction or third-party copyright strikes. Total liability to Clipnic is limited to the fees collected by Clipnic related to the specific dispute.</li>
+                </ul>
+              </div>
+            </section>
+
+            <div className="pt-12 border-t border-black space-y-6">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-widest font-black mb-2">9.0 Contact Information</p>
+                <p className="opacity-70 text-sm mb-4">If you have any questions, concerns, or need to verify parental consent regarding these Terms of Service, please contact us:</p>
+                <div className="space-y-2">
+                  <p className="text-xl font-black underline decoration-2 underline-offset-4">clipnicteam@gmail.com</p>
+                  <p className="font-mono text-sm opacity-60">www.clipnic.com/support</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
