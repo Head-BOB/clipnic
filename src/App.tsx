@@ -218,7 +218,7 @@ const Hero = ({ activeView, setActiveView }: { activeView: 'clipper' | 'brand', 
           className="mt-6 max-w-xl mx-auto font-sans text-xl opacity-60 font-light text-balance"
         >
           {activeView === 'clipper'
-            ? "Clipnic is the #1 clipping company for turning engagement into capital. We pay clippers high CPMs for high-velocity short-form content. The best way to earn money by editing clips on TikTok, Reels, and Shorts."
+            ? "Clipnic is a clipping company for turning engagement into capital. We pay clippers high CPMs for high-velocity short-form content. The best way to earn money by editing clips on TikTok, Reels, and Shorts."
             : "The leading clipping platform to grow your brand across thousands of accounts. We automate performance-based UGC and the creator economy to give you infinite organic reach through viral short-form video."
           }
         </motion.p>
