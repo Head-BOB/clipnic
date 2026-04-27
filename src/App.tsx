@@ -218,8 +218,8 @@ const Hero = ({ activeView, setActiveView }: { activeView: 'clipper' | 'brand', 
           className="mt-6 max-w-xl mx-auto font-sans text-xl opacity-60 font-light text-balance"
         >
           {activeView === 'clipper'
-            ? "Clipnic is the primary infrastructure for turning engagement into capital. We pay clippers for high-velocity short-form content."
-            : "Deploy your brand across thousands of accounts. We automate the creator economy to give you infinite organic reach through short-form video."
+            ? "Clipnic is the #1 clipping company for turning engagement into capital. We pay clippers high CPMs for high-velocity short-form content. The best way to earn money by editing clips on TikTok, Reels, and Shorts."
+            : "The leading clipping platform to grow your brand across thousands of accounts. We automate performance-based UGC and the creator economy to give you infinite organic reach through viral short-form video."
           }
         </motion.p>
 
@@ -941,21 +941,21 @@ export default function App() {
                   index={0}
                   icon={LinkIcon}
                   title="AGGREGATE PROFILES"
-                  desc="Synchronize your TikTok, Instagram, and YouTube accounts. Our engine verifies your reach and establishes the connection."
+                  desc="Synchronize your TikTok, Instagram, and YouTube accounts. Our engine verifies your reach and establishes the connection. Perfect for teen creators and editors looking to monetize their social presence."
                   dashPreview={<ConnectDash />}
                 />
                 <ProcessStep
                   index={1}
                   icon={UploadIcon}
                   title="TRANSMIT CONTENT"
-                  desc="Post your content natively on your accounts, then transmit the URL to our validation layer. We track velocity in real-time."
+                  desc="Post your content natively on your accounts, then transmit the URL to our validation layer. We track velocity in real-time. Learn how to clip and earn from every viral moment."
                   dashPreview={<SubmissionDash />}
                 />
                 <ProcessStep
                   index={2}
                   icon={History}
                   title="LIQUIDATE YIELD"
-                  desc="As views surge, your dashboard updates. Withdraw your capital through traditional rails or crypto-infrastructure."
+                  desc="As views surge, your dashboard updates. Withdraw your capital through traditional rails or crypto-infrastructure. High CPM rewards for top-performing short-form content."
                   dashPreview={<EarningsDash />}
                 />
               </motion.div>
@@ -970,21 +970,21 @@ export default function App() {
                   index={0}
                   icon={DollarSign}
                   title="DEPLOY CAPITAL"
-                  desc="Fund your viral engine. Allocate budgets for bounties and watch as thousands of creators begin producing for your brand."
+                  desc="Fund your viral engine. Allocate budgets for bounties and watch as thousands of creators begin producing for your brand. The ultimate strategy for US-based and global brands looking to grow fast."
                   dashPreview={<BrandCampaignDash />}
                 />
                 <ProcessStep
                   index={1}
                   icon={TrendingUp}
                   title="AUTOMATE REWARDS"
-                  desc="Define your performance benchmarks. Our protocol automatically calculates and distributes yield based on real engagement."
+                  desc="Define your performance benchmarks. Our protocol automatically calculates and distributes yield based on real engagement. Secure performance-based UGC at scale."
                   dashPreview={<BrandMetricsDash />}
                 />
                 <ProcessStep
                   index={2}
                   icon={Share2}
                   title="SCALE VIRAL REACH"
-                  desc="Achieve infinite organic reach. Your brand becomes the content, natively embedded in the feeds of millions."
+                  desc="Achieve infinite organic reach. Your brand becomes the content, natively embedded in the feeds of millions. A global clipping revolution, reaching creators from New York to London."
                   dashPreview={
                     <div className="text-center p-10">
                       <p className="font-display text-4xl text-white mb-4">8.4M+</p>
@@ -1011,8 +1011,8 @@ export default function App() {
           </h2>
           <p className="max-w-2xl font-sans text-xl opacity-60 mb-16 font-light">
             {activeView === 'clipper'
-              ? "The viral economy is waiting. Connect your reach to our capital engine today."
-              : "The feed is the new market. Connect your brand to our viral engine today."
+              ? "The viral economy is waiting. Connect your reach to our capital engine today. The #1 side hustle and part-time video editing opportunity for the digital generation."
+              : "The feed is the new market. Connect your brand to our viral engine today. Scalable UGC and short-form content solutions for modern brands."
             }
           </p>
           <div className="flex flex-col md:flex-row gap-6 mt-6">

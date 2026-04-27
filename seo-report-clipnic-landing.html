@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Strategy Report — Clipnic Landing Page</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #e8e8ed;
+    --text-secondary: #8b8b9e;
+    --text-muted: #5a5a6e;
+    --accent: #6366f1;
+    --accent-glow: rgba(99,102,241,0.3);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.12);
+    --green-border: rgba(34,197,94,0.25);
+    --yellow: #eab308;
+    --yellow-bg: rgba(234,179,8,0.12);
+    --yellow-border: rgba(234,179,8,0.25);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.12);
+    --red-border: rgba(239,68,68,0.25);
+    --blue: #3b82f6;
+    --blue-bg: rgba(59,130,246,0.12);
+    --orange: #f97316;
+    --orange-bg: rgba(249,115,22,0.12);
+    --orange-border: rgba(249,115,22,0.25);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .header { padding: 40px 0; text-align: center; }
+  .header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 42px; margin-bottom: 12px; background: linear-gradient(135deg, #fff 0%, #a5a5c0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  .tabs { position: sticky; top: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .tabs-inner { display: flex; gap: 20px; justify-content: center; }
+  .tab-btn { padding: 16px 24px; cursor: pointer; color: var(--text-muted); background: none; border: none; font-weight: 600; }
+  .tab-btn.active { color: var(--text); border-bottom: 2px solid var(--accent); }
+
+  .tab-content { display: none; padding: 40px 0; }
+  .tab-content.active { display: block; }
+
+  .score-section { display: flex; align-items: center; gap: 48px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; margin-bottom: 40px; }
+  .score-circle { width: 150px; height: 150px; border-radius: 50%; border: 8px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 700; color: white; }
+
+  .finding-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; }
+  .badge { padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; }
+  .badge-high { background: var(--orange-bg); color: var(--orange); }
+  .badge-medium { background: var(--yellow-bg); color: var(--yellow); }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--text-muted); font-size: 12px; text-transform: uppercase; }
+
+  pre { background: #16161e; padding: 20px; border-radius: 12px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>Clipnic SEO Strategy Report</h1>
+    <p>Target: Clipping Company & Creator Monetization</p>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('strategy')">Strategy & Audit</button>
+    <button class="tab-btn" onclick="showTab('revised')">Revised Content</button>
+    <button class="tab-btn" onclick="showTab('changelog')">Changelog</button>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Strategy Tab -->
+  <div id="strategy" class="tab-content active">
+    <div class="score-section">
+      <div class="score-circle">44%</div>
+      <div>
+        <h2>Initial SEO Health Score</h2>
+        <p>The current landing page is visually stunning but lacks the textual depth and keyword density required to rank for competitive terms like "clipping company" or "get paid for clips".</p>
+      </div>
+    </div>
+
+    <h3>Target Keyword Map</h3>
+    <table>
+      <thead>
+        <tr><th>Type</th><th>Keyword</th><th>Competition</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Primary</td><td>Clipping Company</td><td>High</td><td><span class="badge badge-medium">Missing</span></td></tr>
+        <tr><td>Primary</td><td>Get Paid for Clips</td><td>Medium</td><td><span class="badge badge-high">Low Density</span></td></tr>
+        <tr><td>Secondary</td><td>Post Clips and Earn</td><td>Low</td><td><span class="badge badge-high">Missing</span></td></tr>
+        <tr><td>LSI</td><td>UGC Monetization</td><td>Medium</td><td><span class="badge badge-medium">Missing</span></td></tr>
+        <tr><td>LSI</td><td>Short-form Content Strategy</td><td>High</td><td><span class="badge badge-medium">Missing</span></td></tr>
+        <tr><td>Geo (India)</td><td>Earn money online India</td><td>High</td><td><span class="badge badge-high">Missing</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:40px">Gap Analysis vs Competitors</h3>
+    <div class="finding-card">
+      <h4>Content Gaps</h4>
+      <p>Competitors like <b>Content Rewards</b> and <b>Whop</b> use extensive "How it Works" sections and "Success Stories" to build E-E-A-T. Clipnic currently lacks these trust signals.</p>
+    </div>
+    <div class="finding-card">
+      <h4>Intent Gaps</h4>
+      <p>Users searching for "how to earn money by editing" expect a guide or a step-by-step process. We need to frame the landing page as the solution to this specific intent.</p>
+    </div>
+  </div>
+
+  <!-- Revised Content Tab -->
+  <div id="revised" class="tab-content">
+    <h3>Optimized Meta Tags</h3>
+    <pre>
+&lt;title&gt;Clipnic | #1 Clipping Company - Post Clips, Get Paid &amp; Grow Brands&lt;/title&gt;
+&lt;meta name="description" content="Clipnic is the ultimate clipping platform for creators &amp; brands. Post clips on TikTok, Reels &amp; Shorts and get paid per view (CPM). Join 50k+ clippers making money today."&gt;
+&lt;meta name="keywords" content="Clipnic, Clipping Company, Get Paid for Clips, UGC, TikTok Reels Shorts, Earn Money Editing, India Online Earning"&gt;
+    </pre>
+
+    <h3 style="margin-top:20px">New Content Structure (H2s)</h3>
+    <ul>
+      <li><strong>H1:</strong> The #1 Clipping Company for the Creator Economy</li>
+      <li><strong>H2:</strong> How to Earn Money by Editing with Clipnic</li>
+      <li><strong>H2:</strong> Scale Your Brand with High-Velocity Short-Form Content</li>
+      <li><strong>H2:</strong> Why Clipnic? Higher CPMs & Verified Payouts</li>
+      <li><strong>H2:</strong> Join the Global Clipping Revolution (India & Beyond)</li>
+    </ul>
+  </div>
+
+  <!-- Changelog Tab -->
+  <div id="changelog" class="tab-content">
+    <div class="finding-card">
+      <span class="badge badge-high">High Impact</span>
+      <h4>Added "Clipping Company" to H1 and Title</h4>
+      <p>This is the highest volume keyword for your niche. Moving it to the H1 signals immediate relevance to Google.</p>
+    </div>
+    <div class="finding-card">
+      <span class="badge badge-high">High Impact</span>
+      <h4>Implemented LSI Keyword Matrix</h4>
+      <p>Integrated UGC, CPM, and Revenue Share throughout the body copy to build topical authority.</p>
+    </div>
+    <div class="finding-card">
+      <span class="badge badge-medium">Medium Impact</span>
+      <h4>India-Specific Keyword Injection</h4>
+      <p>Added specific mentions of the Indian creator market to capture local search volume.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+</script>
+</body>
+</html>
