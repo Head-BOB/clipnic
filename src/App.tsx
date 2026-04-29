@@ -143,15 +143,15 @@ const BrandInquiryModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => window.open('https://calendly.com/clipnicteam/client-meeting', '_blank')}
+              onClick={() => window.location.href = 'mailto:clipnicteam@gmail.com?subject=Clipnic Partnership Inquiry: Launching a Viral Campaign'}
               className="group p-8 rounded-3xl bg-ink text-paper flex items-center justify-between hover:bg-black transition-all"
             >
               <div className="text-left space-y-1">
                 <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Fast Track</p>
-                <h4 className="font-display text-2xl uppercase">Book Strategy Call</h4>
+                <h4 className="font-display text-2xl uppercase">Start Partnership</h4>
               </div>
-              <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center group-hover:rotate-45 transition-transform">
-                <ArrowRight size={24} />
+              <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Zap size={24} />
               </div>
             </motion.button>
 
