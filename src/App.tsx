@@ -1076,75 +1076,7 @@ export default function App() {
           setActiveView={setActiveView} 
           onBrandLaunch={() => setBrandInquiryOpen(true)} 
         />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="w-24 h-24 bg-ink rounded-full flex items-center justify-center text-paper mb-12 shadow-[8px_8px_0_var(--color-brand)] border-4 border-ink"
-          >
-            <Zap size={40} className="fill-brand text-brand" />
-          </motion.div>
-          <h2 className="font-display text-[15vw] md:text-[12vw] tracking-tighter leading-[0.85] mb-12 uppercase">
-            {activeView === 'clipper' ? <>Ready to <br /> Liquidate?</> : <>Ready to <br /> Dominate?</>}
-          </h2>
-          <p className="max-w-2xl font-sans text-xl opacity-60 mb-16 font-light">
-            {activeView === 'clipper'
-              ? "The viral economy is waiting. Connect your reach to our capital engine today. The #1 side hustle and part-time video editing opportunity for the digital generation."
-              : "The feed is the new market. Connect your brand to our viral engine today. Scalable UGC and short-form content solutions for modern brands."
-            }
-          </p>
-          <div className="flex flex-col md:flex-row gap-6 mt-6">
-            <motion.button
-              whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => window.location.href = 'https://dash.clipnic.com/clipper'}
-              className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'clipper' ? 'bg-ink text-paper' : ''}`}
-            >
-              <span className={`relative z-10 uppercase ${activeView === 'clipper' ? 'text-paper' : 'text-ink group-hover:text-paper'}`}>Start Earning</span>
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
-              whileTap={{ scale: 0.98 }}
-              onClick={onBrandLaunch}
-              className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'brand' ? 'bg-ink text-paper' : 'bg-white hover:bg-black'}`}
-            >
-              <span className={`relative z-10 uppercase ${activeView === 'brand' ? 'text-paper' : 'text-ink group-hover:text-paper'}`}>Launch Campaign</span>
-            </motion.button>
-          </div>
-
-          <div className="mt-32 w-full grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 font-mono text-[10px] md:text-xs uppercase tracking-widest text-left border-t border-line pt-20">
-            <div>
-              <p className="opacity-40 mb-4">Ecosystem</p>
-              <div className="flex flex-col gap-2">
-                <a href="/coming-soon" className="hover:underline">Documentation</a>
-                <a href="/coming-soon" className="hover:underline">Revenue Model</a>
-                <a href="/coming-soon" className="hover:underline">Viral Metrics</a>
-              </div>
-            </div>
-            <div>
-              <p className="opacity-40 mb-4">Command Center</p>
-              <div className="flex flex-col gap-2">
-                <button onClick={() => setGetStartedOpen(true)} className="hover:underline text-left uppercase">Dashboard</button>
-                <a href="/coming-soon" className="hover:underline">Campaign Registry</a>
-                <a href="/coming-soon" className="hover:underline">Payout History</a>
-              </div>
-            </div>
-            <div>
-              <p className="opacity-40 mb-4">Transmissions</p>
-              <div className="flex flex-col gap-2">
-                <a href="https://x.com/clipnicteam" target="_blank" className="hover:underline">Twitter / X</a>
-                <a href="https://discord.gg/8KXdFCxZsR" target="_blank" className="hover:underline">Discord Guild</a>
-              </div>
-            </div>
-            <div>
-              <p className="opacity-40 mb-4">Legal Framework</p>
-              <div className="flex flex-col gap-2">
-                <a href="/privacy" className="hover:underline text-left uppercase">Privacy Policy</a>
-                <a href="/terms" className="hover:underline text-left uppercase">Terms of Service</a>
-              </div>
-            </div>
-          </div>
-        </main>
+      </main>
 
       <Footer />
       <PrivacyOverlay isOpen={privacyOpen} onClose={() => setPrivacyOpen(false)} />
