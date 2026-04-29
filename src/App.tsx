@@ -1144,10 +1144,7 @@ export default function App() {
               </div>
             </div>
           </div>
-        </section>
-
-
-      </main>
+        </main>
 
       <Footer />
       <PrivacyOverlay isOpen={privacyOpen} onClose={() => setPrivacyOpen(false)} />
