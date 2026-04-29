@@ -112,78 +112,9 @@ const Navigation = ({ onGetStarted }: { onGetStarted: () => void }) => {
   );
 };
 
-const BrandInquiryModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <div className="fixed inset-0 z-[400] flex items-center justify-center p-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-          className="absolute inset-0 bg-ink/95 backdrop-blur-xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 30 }}
-          className="relative w-full max-w-2xl bg-paper p-8 md:p-16 rounded-[3rem] shadow-2xl space-y-10 text-ink border-4 border-ink overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl rounded-full -mr-16 -mt-16" />
-          
-          <div className="text-center space-y-6 relative z-10">
-            <div className="w-16 h-16 bg-ink text-brand rounded-2xl flex items-center justify-center mx-auto mb-8 rotate-3 shadow-xl">
-              <TrendingUp size={32} />
-            </div>
-            <h2 className="font-display text-4xl md:text-6xl tracking-tighter leading-none uppercase">Scale Your <br /> Viral Velocity</h2>
-            <p className="font-sans opacity-60 text-lg max-w-sm mx-auto font-light">Connect with our strategy team to deploy your first high-velocity campaign.</p>
-          </div>
 
-          <div className="grid grid-cols-1 gap-4 relative z-10">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => window.location.href = 'mailto:clipnicteam@gmail.com?subject=Clipnic Partnership Inquiry: Launching a Viral Campaign'}
-              className="group p-8 rounded-3xl bg-ink text-paper flex items-center justify-between hover:bg-black transition-all"
-            >
-              <div className="text-left space-y-1">
-                <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Fast Track</p>
-                <h4 className="font-display text-2xl uppercase">Start Partnership</h4>
-              </div>
-              <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Zap size={24} />
-              </div>
-            </motion.button>
 
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => window.location.href = 'mailto:clipnicteam@gmail.com?subject=Brand Campaign Inquiry'}
-              className="group p-8 rounded-3xl border-2 border-ink flex items-center justify-between hover:bg-ink/5 transition-all"
-            >
-              <div className="text-left space-y-1">
-                <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Direct Access</p>
-                <h4 className="font-display text-2xl uppercase">Request Info Pack</h4>
-              </div>
-              <div className="w-12 h-12 rounded-full border-2 border-ink flex items-center justify-center group-hover:scale-110 transition-transform">
-                <UploadIcon size={20} />
-              </div>
-            </motion.button>
-          </div>
-
-          <button
-            onClick={onClose}
-            className="w-full py-4 text-[10px] font-black uppercase tracking-[0.4em] opacity-30 hover:opacity-100 transition-opacity"
-          >
-            Back to Site
-          </button>
-        </motion.div>
-      </div>
-    )}
-  </AnimatePresence>
-);
-
-const GetStartedModal = ({ isOpen, onClose, onBrandInquiry }: { isOpen: boolean, onClose: () => void, onBrandInquiry: () => void }) => (
+const GetStartedModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => (
   <AnimatePresence>
     {isOpen && (
       <div className="fixed inset-0 z-[300] flex items-center justify-center p-6">
@@ -207,7 +138,7 @@ const GetStartedModal = ({ isOpen, onClose, onBrandInquiry }: { isOpen: boolean,
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <button
-              onClick={() => { onClose(); onBrandInquiry(); }}
+              onClick={() => window.location.href = 'mailto:clipnicteam@gmail.com?subject=Clipnic Partnership Inquiry: Launching a Viral Campaign'}
               className="group p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border-2 border-ink hover:bg-ink hover:text-paper transition-all text-left space-y-4"
             >
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-ink text-paper flex items-center justify-center group-hover:bg-brand group-hover:text-ink transition-colors">
@@ -978,7 +909,6 @@ export default function App() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
   const [getStartedOpen, setGetStartedOpen] = useState(false);
-  const [brandInquiryOpen, setBrandInquiryOpen] = useState(false);
   const isBrandPath = window.location.pathname === '/brand' || window.location.pathname === '/brands';
   const isPrivacyPath = window.location.pathname === '/privacy';
   const isTermsPath = window.location.pathname === '/terms' || window.location.pathname === '/clipper-terms';
@@ -999,7 +929,7 @@ export default function App() {
         <Hero 
           activeView={activeView} 
           setActiveView={setActiveView} 
-          onBrandLaunch={() => setBrandInquiryOpen(true)} 
+          onBrandLaunch={() => window.location.href = 'mailto:clipnicteam@gmail.com?subject=Clipnic Partnership Inquiry: Launching a Viral Campaign'} 
         />
 
         <div id="process">
@@ -1074,7 +1004,7 @@ export default function App() {
         <Contact 
           activeView={activeView} 
           setActiveView={setActiveView} 
-          onBrandLaunch={() => setBrandInquiryOpen(true)} 
+          onBrandLaunch={() => window.location.href = 'mailto:clipnicteam@gmail.com?subject=Clipnic Partnership Inquiry: Launching a Viral Campaign'} 
         />
       </main>
 
@@ -1084,11 +1014,6 @@ export default function App() {
       <GetStartedModal 
         isOpen={getStartedOpen} 
         onClose={() => setGetStartedOpen(false)} 
-        onBrandInquiry={() => setBrandInquiryOpen(true)}
-      />
-      <BrandInquiryModal 
-        isOpen={brandInquiryOpen} 
-        onClose={() => setBrandInquiryOpen(false)} 
       />
 
       {/* Floating Status Indicator */}
