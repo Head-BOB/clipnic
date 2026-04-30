@@ -230,8 +230,8 @@ const GetStartedModal = ({ isOpen, onClose, onBrandLaunch }: { isOpen: boolean, 
           className="relative w-full max-w-xl bg-paper p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl space-y-8 md:space-y-12 text-ink border-4 border-ink"
         >
           <div className="text-center space-y-4">
-            <h2 className="font-display text-4xl md:text-6xl tracking-tighter leading-none uppercase">Choose Your <br /> Terminal</h2>
-            <p className="font-sans opacity-60 text-base md:text-lg">Select your path to continue into the ecosystem.</p>
+            <h2 className="font-display text-4xl md:text-6xl tracking-tighter leading-none uppercase">Enter the <br /> Network</h2>
+            <p className="font-sans opacity-60 text-base md:text-lg">Select your entry point to start growing or earning.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
