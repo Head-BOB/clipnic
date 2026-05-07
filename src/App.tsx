@@ -724,6 +724,90 @@ const BrandMetricsDash = () => (
 );
 
 
+const faqItems = [
+  {
+    q: 'What do I need to get started?',
+    a: 'Just your content and a clear direction for your brand. Our team takes it from there — setting up your campaign infrastructure, briefing clippers, and launching distribution. No technical knowledge needed on your end.',
+  },
+  {
+    q: 'Will I have to manage anything?',
+    a: 'Nothing. We handle the full operation: building your clipping community, launching accounts across platforms, tracking performance, and optimising for reach. You just watch the numbers move.',
+  },
+  {
+    q: 'What results can I expect?',
+    a: 'Every campaign is different, but here\'s the standard: branded pages tailored to your identity, millions of organic views across TikTok, Reels and Shorts, a live dashboard with all your analytics, weekly performance reports, and 24/7 support from our team.',
+  },
+];
+
+const BrandFAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section className="py-32 px-6 lg:px-12 bg-paper text-ink border-t border-ink/5">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-20 lg:gap-32 items-start">
+
+          {/* Left label */}
+          <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-32">
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Before You Ask</p>
+            <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
+              Common<br />Questions
+            </h2>
+            <p className="font-sans text-base opacity-50 font-light leading-relaxed max-w-xs">
+              Everything you need to know before launching your first campaign with Clipnic.
+            </p>
+          </div>
+
+          {/* Accordion */}
+          <div className="lg:w-2/3 space-y-0 divide-y-2 divide-ink/10 border-y-2 border-ink/10">
+            {faqItems.map((item, i) => (
+              <div key={i}>
+                <button
+                  id={`faq-${i}`}
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-8 py-8 text-left group"
+                >
+                  <span className="font-display text-xl md:text-2xl uppercase tracking-tight group-hover:text-brand transition-colors">
+                    {item.q}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: openIndex === i ? 45 : 0 }}
+                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                    className="shrink-0 w-8 h-8 rounded-full border-2 border-ink/20 flex items-center justify-center group-hover:border-brand group-hover:bg-brand transition-all"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <line x1="6" y1="0" x2="6" y2="12" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="0" y1="6" x2="12" y2="6" stroke="currentColor" strokeWidth="1.5" />
+                    </svg>
+                  </motion.div>
+                </button>
+                <AnimatePresence initial={false}>
+                  {openIndex === i && (
+                    <motion.div
+                      key="answer"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="font-sans text-base md:text-lg opacity-60 font-light leading-relaxed pb-8 max-w-2xl">
+                        {item.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
 const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipper' | 'brand', setActiveView: (v: 'clipper' | 'brand') => void, onBrandLaunch: () => void }) => {
   return (
     <section id="campaigns" className="py-32 px-6 lg:px-12 bg-paper flex flex-col items-center text-center border-t border-line text-ink">
@@ -1760,6 +1844,7 @@ export default function App() {
                     </div>
                   </div>
                 </section>
+                <BrandFAQ />
               </motion.div>
             )}
           </AnimatePresence>
