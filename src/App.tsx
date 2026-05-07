@@ -1333,20 +1333,29 @@ const CaseStudiesPage = () => {
   return (
     <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
       {/* Nav */}
-      <nav className="p-8 lg:p-12 flex justify-between items-center border-b border-white/5 bg-ink/50 backdrop-blur-xl sticky top-0 z-50">
-        <div
-          className="flex items-center gap-2 cursor-pointer group"
-          onClick={() => (window.location.href = '/')}
-        >
-          <img src="logo.webp" className="w-8 h-8 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all" alt="Clipnic Logo" />
-          <span className="font-display text-xl tracking-widest uppercase">CLIPNIC</span>
+      <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-8 px-6 lg:px-12 flex justify-between items-center">
+        <div className="flex items-center gap-8 md:gap-12">
+          <button
+            onClick={() => (window.location.href = '/')}
+            className="font-mono text-[10px] uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity flex items-center gap-2"
+          >
+            <ArrowLeft size={14} />
+            Back
+          </button>
+          <div
+            className="flex items-center gap-2 cursor-pointer group"
+            onClick={() => (window.location.href = '/')}
+          >
+            <img src="logo.webp" className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all" alt="Clipnic Logo" />
+            <span className="font-display text-xl md:text-2xl tracking-widest uppercase">CLIPNIC</span>
+          </div>
         </div>
+        
         <button
           onClick={() => (window.location.href = '/')}
-          className="font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity flex items-center gap-2"
+          className="hidden md:block px-6 py-2 rounded-full border border-white font-sans font-bold text-xs tracking-widest hover:bg-white hover:text-black transition-all"
         >
-          <ArrowLeft size={12} />
-          Back to Home
+          GET STARTED
         </button>
       </nav>
 
