@@ -1883,7 +1883,7 @@ export default function App() {
 
                 {/* 4. HOW IT WORKS (ROADMAP + VISUALS) */}
                 <section id="how-it-works" className="bg-white text-ink border-t border-ink/5 pt-32">
-                  <div className="max-w-6xl mx-auto px-6 lg:px-0">
+                  <div className="max-w-6xl mx-auto px-6 lg:px-0 mb-32">
                     <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Roadmap</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
 
@@ -1924,17 +1924,17 @@ export default function App() {
                 </section>
 
                 {/* 5. WATCH YOUR BRAND GROW (ANALYTICS PREVIEW) */}
-                <section className="pb-32 pt-16 px-6 lg:px-12 bg-white text-ink">
+                <section className="py-32 px-6 lg:px-12 bg-ink text-paper">
                   <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
                     <div>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-8">See It Working</p>
-                      <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase mb-12 leading-none text-ink">Watch your<br />brand grow</h2>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand mb-8">See It Working</p>
+                      <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase mb-12 leading-none">Watch your<br />brand grow</h2>
                       <p className="font-sans text-xl opacity-60 leading-relaxed mb-12 font-light">
                         Every view, every like, every new follower, you see it all happening live on your dashboard. No spreadsheets. No waiting for reports. Just open the screen and watch your content spread across the internet.
                       </p>
                       <button
                         onClick={() => setBrandGatewayOpen(true)}
-                        className="px-10 py-5 bg-ink text-paper font-bold uppercase tracking-widest text-xs rounded-full hover:bg-brand hover:text-ink transition-all"
+                        className="px-10 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all"
                       >
                         Start Growing Today
                       </button>
