@@ -963,7 +963,6 @@ const Footer = () => (
     </div>
   </footer>
 );
-);
 
 const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => (
   <AnimatePresence>
