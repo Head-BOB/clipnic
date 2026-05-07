@@ -1392,7 +1392,7 @@ const CaseStudiesPage = () => {
         >
           <div className="flex items-center gap-4">
             <div className="w-8 md:w-12 h-px bg-brand" />
-            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Case Archive 001</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Success Ledger 001</p>
           </div>
           <h1 className="font-display text-[12vw] md:text-[10vw] leading-[0.85] tracking-tighter uppercase">
             Case <br />
@@ -1495,7 +1495,7 @@ const CaseStudiesPage = () => {
                     </div>
 
                     <div className="space-y-8 md:space-y-10">
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Brand-Safe Protocol</p>
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Integrity Matrix</p>
                       <div className="space-y-6 md:space-y-8">
                         <div className="flex items-start gap-5 md:gap-6">
                           <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
@@ -1530,7 +1530,7 @@ const CaseStudiesPage = () => {
                           <h4 className="font-display text-2xl md:text-3xl uppercase">Viral Components</h4>
                         </div>
                         <div className="px-3 py-1.5 md:px-4 md:py-2 bg-ink border border-white/10 rounded-lg md:rounded-xl font-mono text-[8px] md:text-[9px] uppercase tracking-widest opacity-60">
-                          Secure Archive
+                          Performance Ledger
                         </div>
                       </div>
 
@@ -1643,7 +1643,7 @@ const CaseStudiesSection = () => {
             whileHover={{ x: 10 }}
             className="inline-flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] hover:text-brand transition-all pb-2 border-b border-ink/10 group"
           >
-            Explore Case Archive
+            Explore Success Ledger
             <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
           </motion.a>
         </div>
