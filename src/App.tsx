@@ -493,8 +493,8 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
           className="mt-6 max-w-xl mx-auto font-sans text-xl opacity-60 font-light text-balance"
         >
           {activeView === 'clipper'
-            ? "Clipnic is a Content distribution company for turning engagement into capital. We pay clippers high CPMs for high-velocity short-form content. The best way to earn money by editing clips on TikTok, Reels, and Shorts."
-            : "The leading clipping platform to grow your brand across thousands of accounts. We automate performance-based UGC and the creator economy to give you infinite organic reach through viral short-form video."
+            ? "Edit short clips. Post them on TikTok, Reels or Shorts. Get paid every time people watch them. No experience needed — if you love scrolling, you can do this."
+            : "We turn your existing content into thousands of short viral clips, posted across creator accounts all over the internet. You only pay when the views come in. Zero ad spend. Zero guesswork."
           }
         </motion.p>
 
@@ -725,31 +725,51 @@ const BrandMetricsDash = () => (
 
 const brandFaqItems = [
   {
-    q: 'What do I need to get started?',
-    a: 'Just your content and a clear direction for your brand. Our team takes it from there setting up your campaign infrastructure, briefing clippers, and launching distribution. No technical knowledge needed on your end.',
+    q: 'What kind of content works best?',
+    a: 'Long-form content works best — podcasts, YouTube videos, Twitch streams, interviews. Basically anything over 10 minutes that has entertaining or valuable moments inside it. Our editors are trained to find those moments and turn them into clips that stop the scroll.',
+  },
+  {
+    q: 'How is this different from running ads?',
+    a: 'With ads, you pay for impressions whether or not anyone actually cares. With Clipnic, real creators post your content on their real accounts. It looks native, it feels native, and people actually watch it. You only pay based on real views — making your budget go 5-10x further than traditional ads.',
   },
   {
     q: 'Will I have to manage anything?',
-    a: 'Nothing. We handle the full operation: building your clipping community, launching accounts across platforms, tracking performance, and optimising for reach. You just watch the numbers move.',
+    a: 'Nothing. We handle everything — briefing the editors, reviewing their clips, pushing distribution, and reporting performance. You get a live dashboard with all your numbers and a weekly summary from our team. Your only job is to watch the growth.',
   },
   {
-    q: 'What results can I expect?',
-    a: 'Every campaign is different, but here\'s the standard: branded pages tailored to your identity, millions of organic views across TikTok, Reels and Shorts, a live dashboard with all your analytics, weekly performance reports, and 24/7 support from our team.',
+    q: 'How quickly can I see results?',
+    a: 'Most campaigns see their first clips posted within 48 hours of launch. Views typically start building within the first week. By week 3–4 you usually see compounding organic growth as the best-performing clips keep circulating through algorithmic feeds.',
+  },
+  {
+    q: 'What results can I realistically expect?',
+    a: 'It depends on your content and niche, but here is what a typical campaign looks like: millions of views across TikTok, Reels and Shorts, hundreds of pieces of branded short-form content across different creators, measurable follower growth and brand search uplift — all tracked live in your dashboard.',
   },
 ];
 
 const clipperFaqItems = [
   {
-    q: 'Do I need to monetize my channel?',
-    a: 'No, you don\'t have to be monetized. Earnings are based on views, engagement, and the specific bounty rules for each campaign. Clipnic handles the attribution and payouts regardless of your channel status.',
+    q: 'Do I need to be a professional editor?',
+    a: 'Not at all. If you know how to cut a video in CapCut, Premiere, or even your phone\'s built-in editor, you can do this. We provide the source content and specific instructions on what kind of clip to make. Most of our top earners started with zero editing experience.',
+  },
+  {
+    q: 'Do I need to monetize my channel to earn?',
+    a: 'No. Your channel does not need to be monetized. We pay you directly based on how many views your clips get — completely separate from YouTube or TikTok\'s own monetization. Even a brand new account with 0 followers can start earning on day one.',
+  },
+  {
+    q: 'How much can I actually make?',
+    a: 'It depends on how many clips you post and how well they perform. Some clippers earn $50–$200 a month posting casually. Others who post consistently and hit viral clips are making $1,000–$5,000+ per month. There is no cap — the more views you drive, the more you earn.',
   },
   {
     q: 'How do I get paid?',
-    a: 'Payouts are processed directly to your linked wallet or bank account once you hit the minimum threshold. You can track your earnings in real-time on your dashboard.',
+    a: 'You link your bank account or PayPal when you sign up. Every time your clips hit the payout threshold, the money is sent directly to you. You can track every cent in real-time on your dashboard — no guessing, no waiting for a reply.',
   },
   {
-    q: 'Can I post on multiple platforms?',
-    a: 'Yes! We encourage distribution across TikTok, YouTube Shorts, and Instagram Reels. Each platform helps you reach different audiences and increase your earning potential.',
+    q: 'Can I post clips on multiple platforms?',
+    a: 'Yes, and we encourage it. Posting the same clip on TikTok, YouTube Shorts, and Instagram Reels means three separate view counts — which means three separate payouts. Cross-posting is one of the fastest ways to multiply your earnings.',
+  },
+  {
+    q: 'Am I allowed to re-post content I do not own?',
+    a: 'Yes — that is literally what this is. The brands and creators on Clipnic have given you explicit permission to clip and post their content. You are fully covered. Think of it like being an authorized re-distributor, not copyright infringement.',
   },
 ];
 
@@ -1746,22 +1766,22 @@ export default function App() {
                 <ProcessStep
                   index={0}
                   icon={LinkIcon}
-                  title="AGGREGATE PROFILES"
-                  desc="Synchronize your TikTok, Instagram, and YouTube accounts. Our engine verifies your reach and establishes the connection. Perfect for teen creators and editors looking to monetize their social presence."
+                  title="CONNECT YOUR ACCOUNTS"
+                  desc="Link your TikTok, Instagram, or YouTube. Takes 2 minutes. No minimum followers needed — anyone with an account can start earning. We verify it's you and you're ready to go."
                   dashPreview={<ConnectDash />}
                 />
                 <ProcessStep
                   index={1}
                   icon={UploadIcon}
-                  title="TRANSMIT CONTENT"
-                  desc="Post your content natively on your accounts, then transmit the URL to our validation layer. We track velocity in real-time. Learn how to clip and earn from every viral moment."
+                  title="POST CLIPS & SUBMIT"
+                  desc="Pick a campaign, cut a clip from the source content (we'll show you how), post it on your account, then paste the link into your dashboard. That's it. We do the rest — tracking your views 24/7."
                   dashPreview={<SubmissionDash />}
                 />
                 <ProcessStep
                   index={2}
                   icon={History}
-                  title="GET PAID INSTANTLY"
-                  desc="As views surge, your dashboard updates. Withdraw your capital through traditional rails or crypto-infrastructure. High CPM rewards for top-performing short-form content."
+                  title="WATCH THE MONEY ADD UP"
+                  desc="Every 1,000 views earns you money. The more clips you post, the more you earn. When you're ready to cash out, withdraw straight to your bank or PayPal — no minimum waiting period."
                   dashPreview={<EarningsDash />}
                 />
               </motion.div>
@@ -1775,22 +1795,22 @@ export default function App() {
                 <ProcessStep
                   index={0}
                   icon={DollarSign}
-                  title="FUND YOUR CAMPAIGN"
-                  desc="Fund your viral engine. Allocate budgets for bounties and watch as thousands of creators begin producing for your brand. The ultimate strategy for US-based and global brands looking to grow fast."
+                  title="SEND US YOUR CONTENT"
+                  desc="Share your podcast, stream, YouTube video, or any long-form content. We review it, brief our network of editors on how to clip it, and launch your campaign — usually within 48 hours."
                   dashPreview={<BrandCampaignDash />}
                 />
                 <ProcessStep
                   index={1}
                   icon={TrendingUp}
-                  title="PAY ONLY FOR PERFORMANCE"
-                  desc="Define your performance benchmarks. Our protocol automatically calculates and distributes yield based on real engagement. Secure performance-based UGC at scale."
+                  title="YOUR CLIPS GO EVERYWHERE"
+                  desc="Hundreds of creators start turning your content into short viral clips, posting them on TikTok, Reels and Shorts across their own accounts. Your brand shows up on feeds you could never reach with ads."
                   dashPreview={<BrandMetricsDash />}
                 />
                 <ProcessStep
                   index={2}
                   icon={Share2}
-                  title="SCALE VIRAL REACH"
-                  desc="Achieve infinite organic reach. Your brand becomes the content, natively embedded in the feeds of millions. A global clipping revolution, decentralized and unstoppable."
+                  title="ONLY PAY FOR REAL VIEWS"
+                  desc="You only pay when real people watch your clips. No upfront ad spend. No wasted budget. Watch your view count, follower growth and brand mentions climb through your live analytics dashboard."
                   dashPreview={
                     <div className="text-center p-10">
                       <p className="font-display text-4xl text-white mb-4">8.4M+</p>
