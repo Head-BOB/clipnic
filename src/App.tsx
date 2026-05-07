@@ -563,7 +563,7 @@ const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: an
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className={`relative aspect-square md:aspect-video lg:aspect-square ${index === 0 ? 'bg-black' : 'bg-dash-bg'} border border-white/10 rounded-[2rem] overflow-hidden flex items-center justify-center p-4 sm:p-8`}
+      className={`relative aspect-square md:aspect-video lg:aspect-square bg-black border border-white/10 rounded-[2rem] overflow-hidden flex items-center justify-center p-4 sm:p-8`}
     >
       <div className="w-full scale-[0.85] sm:scale-100 origin-center flex justify-center">
         {dashPreview}
@@ -606,13 +606,13 @@ const ConnectDash = () => (
 
 const SubmissionDash = () => (
   <div className="w-full max-w-md space-y-4">
-    <div className="bg-dash-card border border-white/10 p-6 rounded-2xl">
-      <p className="font-sans text-xs text-zinc-500 mb-2 uppercase tracking-wide">Submit Clip URL</p>
+    <div className="bg-black border border-white/10 p-6 rounded-3xl shadow-2xl">
+      <p className="font-sans text-[10px] text-white/40 uppercase tracking-widest mb-3">Secure Transmission</p>
       <div className="relative">
         <input
           disabled
           value="https://tiktok.com/@clipnic/video/123..."
-          className="w-full bg-black border border-white/10 rounded-xl pl-4 pr-10 py-3 font-mono text-[10px] sm:text-sm focus:outline-none text-zinc-300"
+          className="w-full bg-white/5 border border-white/10 rounded-xl pl-4 pr-10 py-3 font-mono text-[10px] sm:text-sm focus:outline-none text-white/60"
         />
         <div className="absolute right-3 top-1/2 -translate-y-1/2">
           <CheckCircle2 className="text-emerald-500" size={14} />
@@ -620,47 +620,50 @@ const SubmissionDash = () => (
       </div>
     </div>
     <div className="grid grid-cols-2 gap-4">
-      <div className="p-5 bg-dash-card border border-white/10 rounded-2xl">
-        <p className="font-sans text-[11px] text-zinc-500 uppercase tracking-widest font-medium mb-1">Status</p>
-        <p className="font-sans font-medium text-emerald-400">Yield Generating</p>
+      <div className="p-5 bg-black border border-white/10 rounded-3xl shadow-2xl">
+        <p className="font-sans text-[9px] text-white/40 uppercase tracking-widest mb-2">Network Status</p>
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <p className="font-sans font-bold text-sm text-white">Live Sync</p>
+        </div>
       </div>
-      <div className="p-5 bg-dash-card border border-white/10 rounded-2xl">
-        <p className="font-sans text-[11px] text-zinc-500 uppercase tracking-widest font-medium mb-1">Est. Yield</p>
-        <p className="font-mono font-medium text-white">$120.50</p>
+      <div className="p-5 bg-black border border-white/10 rounded-3xl shadow-2xl">
+        <p className="font-sans text-[9px] text-white/40 uppercase tracking-widest mb-2">Total Yield</p>
+        <p className="font-mono font-bold text-white text-lg">$120.50</p>
       </div>
     </div>
   </div>
 );
 
 const EarningsDash = () => (
-  <div className="w-full space-y-6">
+  <div className="w-full space-y-6 max-w-md">
     <div className="grid grid-cols-2 gap-4">
-      <div className="p-6 bg-dash-card border border-white/10 rounded-2xl">
-        <p className="font-sans text-[11px] text-zinc-500 uppercase tracking-widest font-medium mb-3">Total Clips</p>
-        <p className="font-sans font-medium text-4xl text-white">24</p>
+      <div className="p-6 bg-black border border-white/10 rounded-3xl shadow-2xl">
+        <p className="font-sans text-[9px] text-white/40 uppercase tracking-widest mb-3">Assets</p>
+        <p className="font-display text-4xl text-white">24</p>
       </div>
-      <div className="p-6 bg-dash-card border border-white/10 rounded-2xl">
-        <p className="font-sans text-[11px] text-zinc-500 uppercase tracking-widest font-medium mb-3">Total Views</p>
-        <p className="font-sans font-medium text-4xl text-white">1.2M</p>
+      <div className="p-6 bg-black border border-white/10 rounded-3xl shadow-2xl">
+        <p className="font-sans text-[9px] text-white/40 uppercase tracking-widest mb-3">Reach</p>
+        <p className="font-display text-4xl text-white">1.2M</p>
       </div>
     </div>
 
-    <div className="p-6 bg-dash-card border border-white/10 rounded-2xl">
+    <div className="p-8 bg-black border border-white/10 rounded-[2.5rem] shadow-2xl">
       <div className="flex items-center justify-between mb-8">
-        <h3 className="font-sans font-semibold text-white">Recent Payouts</h3>
-        <p className="font-sans text-xs text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-md">Available: $8,512</p>
+        <h3 className="font-display text-xl uppercase text-white">Recent Yield</h3>
+        <p className="font-mono text-[10px] text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full uppercase font-bold">Safe: $8,512</p>
       </div>
       <div className="space-y-4">
         {[
-          { date: 'APR 23', amt: '+ $2,400.00', label: 'Velocity Bonus' },
-          { date: 'APR 21', amt: '+ $1,150.20', label: 'Ad Revenue Share' }
+          { date: 'APR 23', amt: '+ $2,400.00', label: 'Inbound Yield' },
+          { date: 'APR 21', amt: '+ $1,150.20', label: 'Network Share' }
         ].map((tx, i) => (
-          <div key={i} className="flex justify-between items-center py-3 border-b border-white/5 last:border-0 last:pb-0">
+          <div key={i} className="flex justify-between items-center py-4 border-b border-white/5 last:border-0 last:pb-0">
             <div>
-              <p className="font-sans font-medium text-sm text-zinc-200">{tx.label}</p>
-              <p className="font-sans text-xs text-zinc-500 mt-1">{tx.date}</p>
+              <p className="font-sans font-bold text-sm text-white">{tx.label}</p>
+              <p className="font-mono text-[9px] text-white/30 mt-1 uppercase tracking-widest">{tx.date}</p>
             </div>
-            <p className="font-mono text-sm text-white">{tx.amt}</p>
+            <p className="font-mono text-sm text-white font-bold">{tx.amt}</p>
           </div>
         ))}
       </div>
