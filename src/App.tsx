@@ -96,7 +96,7 @@ const BrandPartnershipPage = () => {
                 <h2 className="font-display text-4xl uppercase">Transmission Received</h2>
                 <p className="font-sans opacity-60 text-lg">Our strategy team will review your brand and reach out within 24 hours.</p>
               </div>
-              <button 
+              <button
                 onClick={() => setSubmitted(false)}
                 className="font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
               >
@@ -106,29 +106,29 @@ const BrandPartnershipPage = () => {
           ) : (
             <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-[3rem] space-y-8 backdrop-blur-3xl shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl rounded-full -mr-16 -mt-16" />
-              
+
               <div className="space-y-6 relative z-10">
                 <div className="space-y-2">
                   <label className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-40 ml-4">Brand / Company Name</label>
-                  <input 
+                  <input
                     required
-                    type="text" 
+                    type="text"
                     placeholder="Enter brand name"
                     className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-4 focus:border-brand/50 focus:outline-none transition-all placeholder:opacity-20"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-40 ml-4">Corporate Email</label>
-                  <input 
+                  <input
                     required
-                    type="email" 
+                    type="email"
                     placeholder="name@company.com"
                     className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-4 focus:border-brand/50 focus:outline-none transition-all placeholder:opacity-20"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-40 ml-4">Campaign Goal</label>
-                  <textarea 
+                  <textarea
                     required
                     rows={4}
                     placeholder="What are you looking to achieve?"
@@ -342,7 +342,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="relative w-full max-w-xl bg-paper p-8 md:p-12 rounded-[3rem] shadow-2xl text-ink border-4 border-ink overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl rounded-full -mr-16 -mt-16" />
-            
+
             {view === 'options' ? (
               <div className="space-y-10 relative z-10">
                 <div className="text-center space-y-4">
@@ -401,27 +401,27 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                   </div>
                 ) : (
                   <form onSubmit={handleWebhookSubmit} className="space-y-4">
-                    <input 
+                    <input
                       required
                       placeholder="Brand / Company Name"
                       value={formData.brand}
-                      onChange={e => setFormData({...formData, brand: e.target.value})}
+                      onChange={e => setFormData({ ...formData, brand: e.target.value })}
                       className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-ink/50 focus:outline-none transition-all"
                     />
-                    <input 
+                    <input
                       required
                       type="email"
                       placeholder="Corporate Email"
                       value={formData.email}
-                      onChange={e => setFormData({...formData, email: e.target.value})}
+                      onChange={e => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-ink/50 focus:outline-none transition-all"
                     />
-                    <textarea 
+                    <textarea
                       required
                       rows={3}
                       placeholder="Campaign Goals"
                       value={formData.goal}
-                      onChange={e => setFormData({...formData, goal: e.target.value})}
+                      onChange={e => setFormData({ ...formData, goal: e.target.value })}
                       className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-ink/50 focus:outline-none transition-all resize-none"
                     />
                     <button
@@ -726,7 +726,7 @@ const BrandMetricsDash = () => (
 const brandFaqItems = [
   {
     q: 'What do I need to get started?',
-    a: 'Just your content and a clear direction for your brand. Our team takes it from there — setting up your campaign infrastructure, briefing clippers, and launching distribution. No technical knowledge needed on your end.',
+    a: 'Just your content and a clear direction for your brand. Our team takes it from there setting up your campaign infrastructure, briefing clippers, and launching distribution. No technical knowledge needed on your end.',
   },
   {
     q: 'Will I have to manage anything?',
@@ -775,7 +775,11 @@ const GenericFAQ = ({ items, title, subtitle }: { items: { q: string, a: string 
           {/* Accordion */}
           <div className="lg:w-2/3 space-y-0 divide-y-2 divide-ink/10 border-y-2 border-ink/10">
             {items.map((item, i) => (
-              <div key={i}>
+              <div 
+                key={i}
+                onMouseEnter={() => setOpenIndex(i)}
+                onMouseLeave={() => setOpenIndex(null)}
+              >
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
                   className="w-full flex items-center justify-between gap-8 py-8 text-left group"
@@ -848,11 +852,10 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
           onClick={() => {
             window.location.href = 'https://dash.clipnic.com/clipper';
           }}
-          className={`px-12 py-5 rounded-full font-sans font-bold text-lg uppercase tracking-widest transition-all shadow-xl ${
-            activeView === 'clipper' 
-              ? 'bg-ink text-paper' 
+          className={`px-12 py-5 rounded-full font-sans font-bold text-lg uppercase tracking-widest transition-all shadow-xl ${activeView === 'clipper'
+              ? 'bg-ink text-paper'
               : 'bg-white border-2 border-ink text-ink hover:bg-ink hover:text-paper'
-          }`}
+            }`}
         >
           Start Earning
         </motion.button>
@@ -860,11 +863,10 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={onBrandLaunch}
-          className={`px-12 py-5 rounded-full font-sans font-bold text-lg uppercase tracking-widest transition-all shadow-xl ${
-            activeView === 'brand' 
-              ? 'bg-ink text-paper' 
+          className={`px-12 py-5 rounded-full font-sans font-bold text-lg uppercase tracking-widest transition-all shadow-xl ${activeView === 'brand'
+              ? 'bg-ink text-paper'
               : 'bg-white border-2 border-ink text-ink hover:bg-ink hover:text-paper'
-          }`}
+            }`}
         >
           Launch Campaign
         </motion.button>
@@ -1006,7 +1008,7 @@ const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
               <h3 className="text-xl font-black uppercase tracking-tight border-l-4 border-brand pl-4">3.0 Information Collection</h3>
               <div className="space-y-6 leading-relaxed opacity-60">
                 <p>We collect information through three primary methods:</p>
-                
+
                 <div className="space-y-4">
                   <h4 className="font-bold text-sm uppercase underline text-paper">A. Directly from You</h4>
                   <ul className="list-disc pl-6 space-y-2">
@@ -1701,10 +1703,10 @@ export default function App() {
       <Navigation onGetStarted={() => setGetStartedOpen(true)} />
 
       <main className="relative">
-        <Hero 
-          activeView={activeView} 
-          setActiveView={setActiveView} 
-          onBrandLaunch={() => setBrandGatewayOpen(true)} 
+        <Hero
+          activeView={activeView}
+          setActiveView={setActiveView}
+          onBrandLaunch={() => setBrandGatewayOpen(true)}
         />
 
         <div id="process">
@@ -1776,7 +1778,7 @@ export default function App() {
                   <div className="max-w-6xl mx-auto">
                     <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Protocol Standard</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">Brand Safety</h2>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                       <div className="space-y-6">
                         <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
@@ -1785,7 +1787,7 @@ export default function App() {
                         <h4 className="font-display text-2xl uppercase">100% Human Traffic</h4>
                         <p className="font-sans opacity-60 leading-relaxed font-light">"No bots. Our engine verifies all accounts to ensure your views are from real, organic feeds."</p>
                       </div>
-                      
+
                       <div className="space-y-6">
                         <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
                           <CheckCircle2 size={24} />
@@ -1793,7 +1795,7 @@ export default function App() {
                         <h4 className="font-display text-2xl uppercase">Vetted Clippers</h4>
                         <p className="font-sans opacity-60 leading-relaxed font-light">"Every creator in our network passes strict quality control and adheres to your specific brand guidelines."</p>
                       </div>
-                      
+
                       <div className="space-y-6">
                         <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
                           <CheckCircle2 size={24} />
@@ -1813,7 +1815,7 @@ export default function App() {
                       <p className="font-sans text-xl opacity-60 leading-relaxed mb-12 font-light">
                         Monitor every impression in real-time. Our intelligence layer provides deep insights into which creatives are driving the most value, allowing you to scale your viral reach with surgical precision.
                       </p>
-                      <button 
+                      <button
                         onClick={() => setBrandGatewayOpen(true)}
                         className="px-10 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all"
                       >
@@ -1859,40 +1861,40 @@ export default function App() {
         <CaseStudiesSection />
 
         {activeView === 'brand' ? (
-          <GenericFAQ 
-            items={brandFaqItems} 
-            title={<>Common<br />Questions</>} 
+          <GenericFAQ
+            items={brandFaqItems}
+            title={<>Common<br />Questions</>}
             subtitle="Everything you need to know before launching your first campaign with Clipnic."
           />
         ) : (
-          <GenericFAQ 
-            items={clipperFaqItems} 
-            title={<>Clipper<br />Questions</>} 
+          <GenericFAQ
+            items={clipperFaqItems}
+            title={<>Clipper<br />Questions</>}
             subtitle="Everything you need to know before you start editing and earning with Clipnic."
           />
         )}
 
-        <Contact 
-          activeView={activeView} 
-          setActiveView={setActiveView} 
-          onBrandLaunch={() => setBrandGatewayOpen(true)} 
+        <Contact
+          activeView={activeView}
+          setActiveView={setActiveView}
+          onBrandLaunch={() => setBrandGatewayOpen(true)}
         />
       </main>
 
       <Footer />
       <PrivacyOverlay isOpen={privacyOpen} onClose={() => setPrivacyOpen(false)} />
       <TermsOverlay isOpen={termsOpen} onClose={() => setTermsOpen(false)} />
-      <GetStartedModal 
-        isOpen={getStartedOpen} 
-        onClose={() => setGetStartedOpen(false)} 
+      <GetStartedModal
+        isOpen={getStartedOpen}
+        onClose={() => setGetStartedOpen(false)}
         onBrandLaunch={() => {
           setGetStartedOpen(false);
           setBrandGatewayOpen(true);
         }}
       />
-      <BrandGatewayModal 
-        isOpen={brandGatewayOpen} 
-        onClose={() => setBrandGatewayOpen(false)} 
+      <BrandGatewayModal
+        isOpen={brandGatewayOpen}
+        onClose={() => setBrandGatewayOpen(false)}
       />
 
       {/* Floating Status Indicator */}
