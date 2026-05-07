@@ -354,30 +354,30 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => window.open('https://discord.com/users/1497492779226366153', '_blank')}
+                    onClick={() => setView('form')}
                     className="group p-8 rounded-3xl bg-ink text-paper flex items-center justify-between hover:bg-black transition-all"
                   >
                     <div className="text-left space-y-1">
-                      <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Direct Access</p>
-                      <h4 className="font-display text-2xl uppercase">Contact Discord</h4>
+                      <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Asynchronous</p>
+                      <h4 className="font-display text-2xl uppercase">Email Transmission</h4>
                     </div>
-                    <div className="w-12 h-12 rounded-full bg-[#5865F2] text-white flex items-center justify-center group-hover:rotate-12 transition-transform">
-                      <Share2 size={24} />
+                    <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Box size={20} />
                     </div>
                   </motion.button>
 
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => setView('form')}
+                    onClick={() => window.open('https://discord.com/users/1497492779226366153', '_blank')}
                     className="group p-8 rounded-3xl border-2 border-ink flex items-center justify-between hover:bg-ink/5 transition-all"
                   >
                     <div className="text-left space-y-1">
-                      <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Automated</p>
-                      <h4 className="font-display text-2xl uppercase">Inquiry Form</h4>
+                      <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Direct Access</p>
+                      <h4 className="font-display text-2xl uppercase">Discord Uplink</h4>
                     </div>
-                    <div className="w-12 h-12 rounded-full border-2 border-ink flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Box size={20} />
+                    <div className="w-12 h-12 rounded-full border-2 border-ink flex items-center justify-center group-hover:rotate-12 transition-transform">
+                      <Share2 size={24} />
                     </div>
                   </motion.button>
                 </div>
@@ -440,7 +440,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
               onClick={onClose}
               className="w-full mt-8 py-2 text-[10px] font-black uppercase tracking-[0.4em] opacity-30 hover:opacity-100 transition-opacity"
             >
-              Exit Gateway
+              ABORT UPLINK
             </button>
           </motion.div>
         </div>
@@ -1316,9 +1316,9 @@ const caseStudiesData = [
     handle: '@daxmainfocus',
     handleUrl: 'https://www.youtube.com/@daxmainfocus',
     category: 'Music Artist',
-    tagline: 'Authorised Clips · Organic Growth Engine',
+    tagline: 'Internal Pilot · Authorized Simulation',
     description:
-      'Dax is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long form content, chopping viral moments, formatting for Shorts and Reels, and distributing through our clipper network with zero paid promotion.',
+      'The Dax campaign served as a high-velocity internal pilot. Clipnic utilized authorized source content to stress-test our decentralized clipping pipeline, demonstrating how viral moments could be systematically identified and distributed through a controlled simulation of our clipper network.',
     result: '250K+',
     resultLabel: 'Organic Views Generated',
     duration: '6 Weeks',
