@@ -1852,7 +1852,8 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-                  <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
+                </section>
+                <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
                     <div className="max-w-6xl mx-auto">
                       <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Flow Protocol</p>
                       <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How to distribute<br />your content</h2>
