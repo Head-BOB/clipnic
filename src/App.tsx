@@ -1914,34 +1914,6 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-
-                  <div className="bg-ink text-paper">
-                    <ProcessStep
-                      index={0}
-                      icon={DollarSign}
-                      title="SEND US YOUR VIDEO"
-                      desc="Upload your podcast, YouTube video, stream, or any long video. Does not matter how long it is or what it is about. Our team watches it and finds the best parts."
-                      dashPreview={<BrandCampaignDash />}
-                    />
-                    <ProcessStep
-                      index={1}
-                      icon={TrendingUp}
-                      title="WE MAKE THE SHORTS"
-                      desc="Our editors cut your video into short, punchy clips, the kind that stop people from scrolling. They add hooks, captions, and catchy themes. Then they post them on TikTok, Reels and Shorts."
-                      dashPreview={<BrandMetricsDash />}
-                    />
-                    <ProcessStep
-                      index={2}
-                      icon={Share2}
-                      title="YOU PAY ONLY FOR VIEWS"
-                      desc="Real people watch your clips on real accounts. Your brand gets seen. You watch it all happen live in your dashboard, views, likes, followers, and you only pay for what actually works."
-                      dashPreview={
-                        <div className="text-center p-10">
-                          <p className="font-display text-4xl text-white mb-4">8.4M+</p>
-                          <p className="font-sans text-zinc-500 uppercase tracking-widest text-xs">Real people reached organically</p>
-                        </div>
-                      }
-                    />
                   </div>
                 </section>
 
