@@ -1633,26 +1633,26 @@ const CaseStudiesSection = () => {
   const cs = caseStudiesData[0];
   const metricIcons = [Eye, Play, BarChart2, TrendingUp];
   return (
-    <section className="py-40 px-6 lg:px-12 bg-ink text-paper border-t border-white/5 relative overflow-hidden">
+    <section className="py-24 md:py-40 px-6 lg:px-12 bg-ink text-paper border-t border-white/5 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(200,241,53,0.05)_0%,transparent_50%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-12 mb-24">
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 md:gap-12 mb-16 md:mb-24 text-center md:text-left">
+          <div className="space-y-4 md:space-y-6">
+            <div className="flex items-center justify-center md:justify-start gap-3">
               <div className="w-8 h-px bg-brand" />
               <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-brand">Featured Success</p>
             </div>
-            <h2 className="font-display text-7xl md:text-9xl tracking-tighter uppercase leading-[0.8] m-0">
-              Case <br /> <span className="text-brand">Studies</span>
+            <h2 className="font-display text-6xl md:text-9xl tracking-tighter uppercase leading-[0.85] md:leading-[0.8] m-0">
+              Case <br className="hidden md:block" /> <span className="text-brand">Studies</span>
             </h2>
           </div>
           <motion.a
             href="/case-studies"
             whileHover={{ x: 10 }}
-            className="inline-flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] hover:text-brand transition-all pb-2 border-b border-white/10 group"
+            className="inline-flex items-center justify-center md:justify-start gap-4 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.3em] hover:text-brand transition-all pb-2 border-b border-white/10 group"
           >
             Explore Success Ledger
             <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
@@ -1665,7 +1665,7 @@ const CaseStudiesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative bg-white/[0.02] border border-white/10 rounded-[3.5rem] overflow-hidden cursor-pointer group shadow-xl"
+          className="relative bg-white/[0.02] border border-white/10 rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden cursor-pointer group shadow-xl"
           onClick={() => (window.location.href = '/case-studies')}
         >
           {/* Hover glow */}
@@ -1676,41 +1676,41 @@ const CaseStudiesSection = () => {
 
           <div className="relative grid lg:grid-cols-2 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/5">
             {/* Left: Info */}
-            <div className="px-10 md:px-16 py-16 space-y-12">
+            <div className="px-8 md:px-16 py-12 md:py-16 space-y-10 md:space-y-12">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brand/10 border border-brand/20 text-brand font-bold">
+                  <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brand/10 border border-brand/20 text-brand font-bold">
                     {cs.category}
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">{cs.duration} Phase</span>
+                  <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-widest opacity-40">{cs.duration} Phase</span>
                 </div>
-                <h3 className="font-display text-7xl md:text-8xl tracking-tighter uppercase leading-none">
+                <h3 className="font-display text-5xl md:text-8xl tracking-tighter uppercase leading-none">
                   {cs.client}
                 </h3>
-                <p className="font-sans text-xl opacity-40 font-light leading-relaxed max-w-md">
+                <p className="font-sans text-lg md:text-xl opacity-40 font-light leading-relaxed max-w-md">
                   {cs.description}
                 </p>
               </div>
 
-              <div className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest group-hover:text-brand transition-colors">
-                Read Full
+              <div className="inline-flex items-center gap-3 font-mono text-[9px] md:text-[10px] uppercase tracking-widest group-hover:text-brand transition-colors">
+                Read Full Case Study
                 <ArrowRight size={12} className="group-hover:translate-x-2 transition-transform" />
               </div>
             </div>
 
             {/* Right: Big Stat Focus */}
             <div
-              className="px-10 md:px-16 py-16 flex flex-col justify-center items-center text-center space-y-10 bg-white/[0.02]"
+              className="px-8 md:px-16 py-12 md:py-16 flex flex-col justify-center items-center text-center space-y-8 md:space-y-10 bg-white/[0.01]"
             >
               <div className="space-y-2">
-                <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-30">{cs.resultLabel}</p>
-                <p className="font-display text-[10rem] md:text-[12rem] leading-none tracking-tighter text-brand group-hover:scale-105 transition-transform duration-1000">
+                <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.4em] opacity-30">{cs.resultLabel}</p>
+                <p className="font-display text-8xl md:text-[12rem] leading-none tracking-tighter text-brand group-hover:scale-105 transition-transform duration-1000">
                   {cs.result}
                 </p>
               </div>
 
               {/* Mini metric grid */}
-              <div className="grid grid-cols-2 gap-8 w-full max-w-sm">
+              <div className="grid grid-cols-2 gap-6 md:gap-8 w-full max-w-sm">
                 {cs.metrics.slice(0, 2).map((m, i) => {
                   const Icon = metricIcons[i];
                   return (
@@ -1719,13 +1719,13 @@ const CaseStudiesSection = () => {
                         <Icon size={12} />
                         <span className="font-mono text-[9px] uppercase tracking-widest">{m.label}</span>
                       </div>
-                      <p className="font-display text-3xl tracking-tight">{m.value}</p>
+                      <p className="font-display text-2xl md:text-3xl tracking-tight">{m.value}</p>
                     </div>
                   );
                 })}
               </div>
 
-              <div className="flex items-center gap-3 px-6 py-2 rounded-full border border-white/5 bg-white/5 font-mono text-[9px] uppercase tracking-widest opacity-40">
+              <div className="flex items-center gap-3 px-6 py-2 rounded-full border border-white/5 bg-white/5 font-mono text-[8px] md:text-[9px] uppercase tracking-widest opacity-40">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 Verified Organic Distribution
               </div>
