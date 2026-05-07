@@ -900,8 +900,8 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
 };
 
 const Footer = () => (
-  <footer className="bg-ink text-paper pt-24 pb-12 px-0 border-t border-white/5">
-    <div className="max-w-7xl mx-auto space-y-20">
+  <footer className="bg-ink text-paper pt-16 pb-12 px-0 border-t border-white/5">
+    <div className="max-w-[1600px] mx-auto px-8 md:px-16 space-y-12">
       {/* Top Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-24">
         <div className="col-span-2 md:col-span-1 space-y-6">
