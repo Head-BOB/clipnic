@@ -1128,7 +1128,7 @@ const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => v
                 <p className="font-mono text-[10px] uppercase tracking-widest font-black mb-2 opacity-40">8.0 Contact Information</p>
                 <p className="opacity-60 text-sm mb-4">If you have any questions about this Privacy Policy, need to verify parental consent, or wish to exercise your data rights, please contact our privacy team:</p>
                 <div className="space-y-2">
-                  <p className="text-xl font-black underline decoration-brand decoration-2 underline-offset-4 text-brand">clipnicteam@gmail.com</p>
+                  <p className="text-xl font-black underline decoration-brand decoration-2 underline-offset-4 text-brand"> hello@clipnic.com</p>
                   <p className="font-mono text-xs uppercase tracking-widest opacity-40">Subject Line: Privacy Policy Inquiry - [Your Subject]</p>
                 </div>
               </div>
@@ -1307,7 +1307,7 @@ const TermsOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => voi
                 <p className="font-mono text-[10px] uppercase tracking-widest font-black mb-2 opacity-40">9.0 Contact Information</p>
                 <p className="opacity-60 text-sm mb-4">If you have any questions, concerns, or need to verify parental consent regarding these Terms of Service, please contact us:</p>
                 <div className="space-y-2">
-                  <p className="text-xl font-black underline decoration-brand decoration-2 underline-offset-4 text-brand">clipnicteam@gmail.com</p>
+                  <p className="text-xl font-black underline decoration-brand decoration-2 underline-offset-4 text-brand"> hello@clipnic.com</p>
                   <p className="font-mono text-sm opacity-40">www.clipnic.com/support</p>
                 </div>
               </div>
