@@ -1392,8 +1392,8 @@ const CaseStudiesPage = () => {
             <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Case Archive 001</p>
           </div>
           <h1 className="font-display text-[12vw] md:text-[10vw] leading-[0.85] tracking-tighter uppercase">
-            Proof of <br />
-            <span className="text-brand">Performance</span>
+            Case <br />
+            <span className="text-brand">Studies</span>
           </h1>
           <p className="font-sans text-lg md:text-2xl opacity-60 font-light max-w-2xl leading-relaxed">
             Real distribution. Real impact. Zero paid spend. This is the Clipnic standard for organic short form growth.
@@ -1632,7 +1632,7 @@ const CaseStudiesSection = () => {
               <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-brand">Featured Success</p>
             </div>
             <h2 className="font-display text-7xl md:text-9xl tracking-tighter uppercase leading-[0.8] m-0">
-              Proof of <br /> <span className="text-brand">Performance</span>
+              Case <br /> <span className="text-brand">Studies</span>
             </h2>
           </div>
           <motion.a
