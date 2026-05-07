@@ -846,19 +846,18 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
         }
       </p>
       <div className="flex flex-col md:flex-row gap-6 mt-8">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => {
-            window.location.href = 'https://dash.clipnic.com/clipper';
-          }}
-          className={`px-12 py-5 rounded-full font-sans font-bold text-lg uppercase tracking-widest transition-all shadow-xl ${activeView === 'clipper'
-            ? 'bg-ink text-paper'
-            : 'bg-white border-2 border-ink text-ink hover:bg-ink hover:text-paper'
-            }`}
-        >
-          Start Earning
-        </motion.button>
+        {activeView === 'clipper' && (
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              window.location.href = 'https://dash.clipnic.com/clipper';
+            }}
+            className="px-12 py-5 rounded-full font-sans font-bold text-lg uppercase tracking-widest transition-all shadow-xl bg-ink text-paper"
+          >
+            Start Earning
+          </motion.button>
+        )}
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -1604,14 +1603,8 @@ const CaseStudiesPage = () => {
           className="flex flex-col sm:flex-row items-center gap-6 relative z-10 mt-8"
         >
           <button 
-            onClick={() => window.location.href = '/?v=clipper'}
-            className="px-10 py-4 bg-white text-black text-[10px] font-bold tracking-widest uppercase hover:bg-gray-200 transition-colors w-full sm:w-auto"
-          >
-            Start Earning
-          </button>
-          <button 
             onClick={() => window.location.href = '/?v=brand'}
-            className="px-10 py-4 border border-white/20 text-[#F5F5F5] text-[10px] font-bold tracking-widest uppercase hover:bg-white/5 transition-colors w-full sm:w-auto"
+            className="px-10 py-4 bg-white text-black text-[10px] font-bold tracking-widest uppercase hover:bg-gray-200 transition-colors w-full sm:w-auto"
           >
             Launch Campaign
           </button>
