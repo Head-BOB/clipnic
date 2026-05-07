@@ -563,9 +563,9 @@ const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: an
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className={`relative aspect-square md:aspect-video lg:aspect-square bg-dash-bg border border-white/10 rounded-[2rem] overflow-hidden flex items-center justify-center p-4 sm:p-8`}
+      className={`relative aspect-square md:aspect-video lg:aspect-square ${index === 0 ? 'bg-black' : 'bg-dash-bg'} border border-white/10 rounded-[2rem] overflow-hidden flex items-center justify-center p-4 sm:p-8`}
     >
-      <div className="w-full scale-[0.85] sm:scale-100 origin-center">
+      <div className="w-full scale-[0.85] sm:scale-100 origin-center flex justify-center">
         {dashPreview}
       </div>
     </motion.div>
@@ -573,31 +573,31 @@ const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: an
 );
 
 const ConnectDash = () => (
-  <div className="w-full space-y-4">
-    <div className="border border-white/10 p-6 rounded-2xl bg-dash-card flex items-center justify-between text-white shadow-xl shadow-black/50">
+  <div className="w-full space-y-4 max-w-sm">
+    <div className="p-6 rounded-3xl bg-black border border-white/10 flex items-center justify-between text-white shadow-2xl">
       <div className="flex items-center gap-4">
-        <div className="w-10 h-10 bg-black border border-white/10 rounded-full grid place-items-center"><Instagram size={20} className="text-pink-500" /></div>
+        <div className="w-10 h-10 bg-white/5 rounded-full grid place-items-center"><Instagram size={20} className="text-white" /></div>
         <div>
-          <p className="font-sans font-medium text-sm text-white">Link Socials</p>
-          <p className="font-sans text-xs text-zinc-500">Connect primary platform</p>
+          <p className="font-sans font-bold text-sm text-white">Link Socials</p>
+          <p className="font-sans text-[10px] text-white/40 uppercase tracking-widest">Primary Platform</p>
         </div>
       </div>
-      <div className="bg-pink-500/10 border border-pink-500/20 text-pink-400 px-3 py-1.5 rounded-full font-sans text-[10px] uppercase font-semibold flex items-center gap-2">
-        <CheckCircle2 size={12} />
-        IG: @CLIPNICTEAM
+      <div className="text-emerald-400 font-mono text-[10px] uppercase font-bold flex items-center gap-2">
+        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        @CLIPNICTEAM
       </div>
     </div>
 
-    <div className="border border-white/10 p-6 rounded-2xl bg-dash-card flex items-center justify-between text-white shadow-xl shadow-black/50 opacity-60">
+    <div className="p-6 rounded-3xl bg-black border border-white/10 flex items-center justify-between text-white shadow-2xl">
       <div className="flex items-center gap-4">
-        <div className="w-10 h-10 bg-[#5865F2] rounded-full grid place-items-center"><div className="w-5 h-5 bg-white rounded-full mask-clipping" /></div>
+        <div className="w-10 h-10 bg-white/5 rounded-full grid place-items-center"><Share2 size={18} className="text-white" /></div>
         <div>
-          <p className="font-sans font-medium text-sm text-white">Discord Verification</p>
-          <p className="font-sans text-xs text-zinc-500">Join server to confirm identity</p>
+          <p className="font-sans font-bold text-sm text-white">Discord Verification</p>
+          <p className="font-sans text-[10px] text-white/40 uppercase tracking-widest">Identity Sync</p>
         </div>
       </div>
-      <div className="text-emerald-400 px-3 py-1.5 font-sans text-sm font-medium flex items-center gap-2">
-        <CheckCircle2 size={16} />
+      <div className="bg-emerald-500 text-black px-3 py-1 rounded-full font-sans text-[10px] uppercase font-black flex items-center gap-2">
+        <CheckCircle2 size={10} />
         Verified
       </div>
     </div>
