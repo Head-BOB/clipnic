@@ -1357,9 +1357,9 @@ const caseStudiesData = [
 
 const CaseStudiesPage = () => {
   return (
-    <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
+    <div className="min-h-screen bg-paper text-ink selection:bg-brand selection:text-ink">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-6 md:py-8 px-6 lg:px-12 flex justify-between items-center">
+      <nav className="fixed top-0 left-0 w-full z-50 py-6 md:py-8 px-6 lg:px-12 flex justify-between items-center bg-paper/80 backdrop-blur-md border-b border-ink/5">
         <div className="flex items-center gap-6 md:gap-12">
           <button
             onClick={() => (window.location.href = '/?v=brand')}
@@ -1379,7 +1379,7 @@ const CaseStudiesPage = () => {
 
         <button
           onClick={() => (window.location.href = '/?v=brand')}
-          className="px-5 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
+          className="px-5 py-2 rounded-full border border-ink font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-ink hover:text-paper transition-all whitespace-nowrap"
         >
           GET STARTED
         </button>
@@ -1426,11 +1426,11 @@ const CaseStudiesPage = () => {
               className="relative group"
             >
               {/* Card Container */}
-              <div className="relative bg-white/[0.02] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden backdrop-blur-sm shadow-2xl">
+              <div className="relative bg-ink/5 border border-ink/10 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden backdrop-blur-sm shadow-2xl">
 
                 {/* Header Section */}
                 <div
-                  className="px-6 md:px-16 pt-12 md:pt-16 pb-10 md:pb-12 border-b border-white/5"
+                  className="px-6 md:px-16 pt-12 md:pt-16 pb-10 md:pb-12 border-b border-ink/5"
                   style={{ background: `radial-gradient(circle at top left, rgba(${cs.accentRgb},0.08) 0%, transparent 60%)` }}
                 >
                   <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12">
