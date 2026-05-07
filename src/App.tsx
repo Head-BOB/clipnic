@@ -777,23 +777,23 @@ const GenericFAQ = ({ items, title, subtitle }: { items: { q: string, a: string 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-32 px-6 lg:px-12 bg-paper text-ink border-t border-ink/5">
+    <section className="py-32 px-6 lg:px-12 bg-ink text-paper border-t border-white/5">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-20 lg:gap-32 items-start">
 
           {/* Left label */}
           <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-32">
-            <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Before You Ask</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Before You Ask</p>
             <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
               {title}
             </h2>
-            <p className="font-sans text-base opacity-50 font-light leading-relaxed max-w-xs">
+            <p className="font-sans text-base opacity-40 font-light leading-relaxed max-w-xs">
               {subtitle}
             </p>
           </div>
 
           {/* Accordion */}
-          <div className="lg:w-2/3 space-y-0 divide-y-2 divide-ink/10 border-y-2 border-ink/10">
+          <div className="lg:w-2/3 space-y-0 divide-y-2 divide-white/10 border-y-2 border-white/10">
             {items.map((item, i) => (
               <div
                 key={i}
@@ -810,7 +810,7 @@ const GenericFAQ = ({ items, title, subtitle }: { items: { q: string, a: string 
                   <motion.div
                     animate={{ rotate: openIndex === i ? 45 : 0 }}
                     transition={{ duration: 0.25, ease: 'easeInOut' }}
-                    className="shrink-0 w-8 h-8 rounded-full border-2 border-ink/20 flex items-center justify-center group-hover:border-brand group-hover:bg-brand transition-all"
+                    className="shrink-0 w-8 h-8 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:border-brand group-hover:bg-brand transition-all"
                   >
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                       <line x1="6" y1="0" x2="6" y2="12" stroke="currentColor" strokeWidth="1.5" />
@@ -828,7 +828,7 @@ const GenericFAQ = ({ items, title, subtitle }: { items: { q: string, a: string 
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="font-sans text-base md:text-lg opacity-60 font-light leading-relaxed pb-8 max-w-2xl">
+                      <p className="font-sans text-base md:text-lg opacity-40 font-light leading-relaxed pb-8 max-w-2xl">
                         {item.a}
                       </p>
                     </motion.div>
@@ -1622,9 +1622,9 @@ const CaseStudiesSection = () => {
   const cs = caseStudiesData[0];
   const metricIcons = [Eye, Play, BarChart2, TrendingUp];
   return (
-    <section className="py-40 px-6 lg:px-12 bg-ink text-paper border-t border-white/5 relative overflow-hidden">
+    <section className="py-40 px-6 lg:px-12 bg-paper text-ink border-t border-ink/5 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(200,241,53,0.03)_0%,transparent_50%)] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(200,241,53,0.05)_0%,transparent_50%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -1641,7 +1641,7 @@ const CaseStudiesSection = () => {
           <motion.a
             href="/case-studies"
             whileHover={{ x: 10 }}
-            className="inline-flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] hover:text-brand transition-all pb-2 border-b border-white/20 group"
+            className="inline-flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] hover:text-brand transition-all pb-2 border-b border-ink/10 group"
           >
             Explore Case Archive
             <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
@@ -1654,7 +1654,7 @@ const CaseStudiesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative bg-white/[0.02] border border-white/10 rounded-[3.5rem] overflow-hidden cursor-pointer group"
+          className="relative bg-ink/5 border border-ink/10 rounded-[3.5rem] overflow-hidden cursor-pointer group shadow-xl"
           onClick={() => (window.location.href = '/case-studies')}
         >
           {/* Hover glow */}
@@ -1663,15 +1663,15 @@ const CaseStudiesSection = () => {
             style={{ background: `radial-gradient(circle at center, rgba(${cs.accentRgb},0.08) 0%, transparent 70%)` }}
           />
 
-          <div className="relative grid lg:grid-cols-2 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/5">
+          <div className="relative grid lg:grid-cols-2 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-ink/5">
             {/* Left: Info */}
             <div className="px-10 md:px-16 py-16 space-y-12">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brand/10 border border-brand/20 text-brand">
+                  <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brand/10 border border-brand/20 text-brand font-bold">
                     {cs.category}
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-widest opacity-30">{cs.duration} Phase</span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">{cs.duration} Phase</span>
                 </div>
                 <h3 className="font-display text-7xl md:text-8xl tracking-tighter uppercase leading-none">
                   {cs.client}
@@ -1689,7 +1689,7 @@ const CaseStudiesSection = () => {
 
             {/* Right: Big Stat Focus */}
             <div
-              className="px-10 md:px-16 py-16 flex flex-col justify-center items-center text-center space-y-10 bg-white/[0.01]"
+              className="px-10 md:px-16 py-16 flex flex-col justify-center items-center text-center space-y-10 bg-ink/[0.02]"
             >
               <div className="space-y-2">
                 <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-30">{cs.resultLabel}</p>
@@ -1714,7 +1714,7 @@ const CaseStudiesSection = () => {
                 })}
               </div>
 
-              <div className="flex items-center gap-3 px-6 py-2 rounded-full border border-white/5 bg-white/5 font-mono text-[9px] uppercase tracking-widest opacity-40">
+              <div className="flex items-center gap-3 px-6 py-2 rounded-full border border-ink/5 bg-ink/5 font-mono text-[9px] uppercase tracking-widest opacity-40">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 Verified Organic Distribution
               </div>
