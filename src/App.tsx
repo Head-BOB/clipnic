@@ -1810,15 +1810,15 @@ export default function App() {
                       <div className="space-y-8">
                         <h4 className="font-display text-3xl uppercase tracking-tight">The Problem we fix</h4>
                         <p className="font-sans text-xl opacity-60 leading-relaxed font-light">
-                          Most brands and products care deeply about making great content. They spend thousands on production, but they <span className="text-[#ff6b6b] opacity-100 font-medium">fail at distribution</span>.
-                          <span className="block mt-4 font-bold text-ink opacity-100">Creation without distribution is a <span className="text-[#ff6b6b]">waste of time and money</span>.</span>
+                          Most brands and products care deeply about making great content. They spend thousands on production, but they <span className="text-[#ff3333] opacity-100 font-medium">fail at distribution</span>.
+                          <span className="block mt-4 font-bold text-ink opacity-100">Creation without distribution is a <span className="text-[#ff3333]">waste of time and money</span>.</span>
                         </p>
                       </div>
                       <div className="space-y-8">
                         <h4 className="font-display text-3xl uppercase tracking-tight">The Solution</h4>
                         <p className="font-sans text-xl opacity-60 leading-relaxed font-light">
-                          We fix this so you can <span className="text-[#ff6b6b] opacity-100 font-medium">focus only on creation</span> while we <span className="text-[#ff6b6b] opacity-100 font-medium">handle the distribution</span>. We have a massive community of professional editors who take your long videos and turn them into <span className="text-[#ff6b6b] opacity-100 font-medium">viral shorts</span> with high impact hooks.
-                          <span className="block mt-4 font-bold text-ink opacity-100">You get the views, we do the work, and you <span className="text-[#ff6b6b]">see all the data live</span> in your dashboard.</span>
+                          We fix this so you can <span className="text-[#ff3333] opacity-100 font-medium">focus only on creation</span> while we <span className="text-[#ff3333] opacity-100 font-medium">handle the distribution</span>. We have a massive community of professional editors who take your long videos and turn them into <span className="text-[#ff3333] opacity-100 font-medium">viral shorts</span> with high impact hooks.
+                          <span className="block mt-4 font-bold text-ink opacity-100">You get the views, we do the work, and you <span className="text-[#ff3333]">see all the data live</span> in your dashboard.</span>
                         </p>
                       </div>
                     </div>
