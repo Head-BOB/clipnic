@@ -953,11 +953,7 @@ const Footer = () => (
       {/* Bottom Bar */}
       <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-30 text-center md:text-left">
-          © 2026 CLIPNIC.COM · ALL  S SECURED BY INTEGRITY MATRIX
-        </div>
-        <div className="flex items-center gap-8 font-mono text-[9px] uppercase tracking-widest opacity-30">
-          <span>SYSTEM STATUS: OPTIMAL</span>
-          <span>STABLE RELAY 001</span>
+          © 2026 CLIPNIC.COM · ALL RIGHTS RESERVED
         </div>
       </div>
     </div>
