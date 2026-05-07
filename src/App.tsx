@@ -1333,56 +1333,56 @@ const CaseStudiesPage = () => {
   return (
     <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-8 px-6 lg:px-12 flex justify-between items-center">
-        <div className="flex items-center gap-8 md:gap-12">
+      <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-6 md:py-8 px-6 lg:px-12 flex justify-between items-center">
+        <div className="flex items-center gap-6 md:gap-12">
           <button
             onClick={() => (window.location.href = '/?v=brand')}
             className="font-mono text-[10px] uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity flex items-center gap-2"
           >
             <ArrowLeft size={14} />
-            Back
+            <span className="hidden sm:inline">Back</span>
           </button>
           <div
             className="flex items-center gap-2 cursor-pointer group"
             onClick={() => (window.location.href = '/?v=brand')}
           >
             <img src="logo.webp" className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all" alt="Clipnic Logo" />
-            <span className="font-display text-xl md:text-2xl tracking-widest uppercase">CLIPNIC</span>
+            <span className="font-display text-lg md:text-2xl tracking-widest uppercase">CLIPNIC</span>
           </div>
         </div>
         
         <button
           onClick={() => (window.location.href = '/?v=brand')}
-          className="hidden md:block px-6 py-2 rounded-full border border-white font-sans font-bold text-xs tracking-widest hover:bg-white hover:text-black transition-all"
+          className="px-5 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
         >
           GET STARTED
         </button>
       </nav>
 
       {/* Hero */}
-      <div className="max-w-7xl mx-auto px-6 pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-6 pt-32 md:pt-48 pb-16 md:pb-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-8"
+          className="space-y-6 md:space-y-8"
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-px bg-brand" />
-            <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-brand">Case Archive 001</p>
+            <div className="w-8 md:w-12 h-px bg-brand" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Case Archive 001</p>
           </div>
-          <h1 className="font-display text-[14vw] md:text-[10vw] leading-[0.8] tracking-tighter uppercase">
+          <h1 className="font-display text-[12vw] md:text-[10vw] leading-[0.85] tracking-tighter uppercase">
             Proof of <br />
             <span className="text-brand">Performance</span>
           </h1>
-          <p className="font-sans text-xl md:text-2xl opacity-60 font-light max-w-2xl leading-relaxed">
+          <p className="font-sans text-lg md:text-2xl opacity-60 font-light max-w-2xl leading-relaxed">
             Real distribution. Real impact. Zero paid spend. This is the Clipnic standard for organic short-form growth.
           </p>
         </motion.div>
       </div>
 
       {/* Case Study Cards */}
-      <div className="max-w-7xl mx-auto px-6 pb-48 space-y-24">
+      <div className="max-w-7xl mx-auto px-6 pb-32 md:pb-48 space-y-16 md:space-y-24">
         {caseStudiesData.map((cs) => {
           const MetricIcon0 = cs.metrics[0].icon;
           const MetricIcon1 = cs.metrics[1].icon;
@@ -1395,37 +1395,37 @@ const CaseStudiesPage = () => {
               key={cs.id}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative group"
             >
               {/* Card Container */}
-              <div className="relative bg-white/[0.02] border border-white/10 rounded-[3rem] overflow-hidden backdrop-blur-sm">
+              <div className="relative bg-white/[0.02] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden backdrop-blur-sm shadow-2xl">
                 
                 {/* Header Section */}
                 <div 
-                  className="px-8 md:px-16 pt-16 pb-12 border-b border-white/5"
+                  className="px-6 md:px-16 pt-12 md:pt-16 pb-10 md:pb-12 border-b border-white/5"
                   style={{ background: `radial-gradient(circle at top left, rgba(${cs.accentRgb},0.08) 0%, transparent 60%)` }}
                 >
-                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
-                    <div className="space-y-6 flex-1">
+                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12">
+                    <div className="space-y-4 md:space-y-6 flex-1">
                       <div className="flex items-center gap-3">
-                        <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
-                        <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">{cs.category}</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
+                        <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-widest opacity-40">{cs.category}</span>
                       </div>
-                      <h2 className="font-display text-7xl md:text-9xl tracking-tighter uppercase leading-none m-0">
+                      <h2 className="font-display text-5xl md:text-9xl tracking-tighter uppercase leading-none m-0">
                         {cs.client}
                       </h2>
-                      <p className="font-sans text-lg opacity-40 font-light max-w-lg italic">
+                      <p className="font-sans text-base md:text-lg opacity-40 font-light max-w-lg italic">
                         "{cs.tagline}"
                       </p>
                     </div>
 
                     {/* Highlight Metric */}
-                    <div className="lg:text-right space-y-4">
+                    <div className="lg:text-right space-y-2 md:space-y-4">
                       <p className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-30">{cs.resultLabel}</p>
                       <div className="flex lg:justify-end items-baseline gap-4">
-                        <p className="font-display text-8xl md:text-[10rem] leading-none tracking-tighter text-brand">
+                        <p className="font-display text-7xl md:text-[10rem] leading-none tracking-tighter text-brand">
                           {cs.result}
                         </p>
                       </div>
@@ -1434,20 +1434,20 @@ const CaseStudiesPage = () => {
                 </div>
 
                 {/* Metrics Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/5 divide-x divide-white/5 bg-white/[0.01]">
+                <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/5 divide-x divide-y md:divide-y-0 divide-white/5 bg-white/[0.01]">
                   {cs.metrics.map((m, i) => {
                     const Icon = metricIcons[i];
                     return (
-                      <div key={i} className="px-8 md:px-12 py-10 space-y-4">
+                      <div key={i} className="px-6 md:px-12 py-8 md:py-10 space-y-4">
                         <div className="flex items-center justify-between opacity-30">
-                          <Icon size={16} />
-                          <TrendingUp size={12} className="text-brand" />
+                          <Icon size={14} />
+                          <TrendingUp size={10} className="text-brand" />
                         </div>
                         <div className="space-y-1">
-                          <p className="font-display text-4xl md:text-5xl tracking-tight leading-none">
+                          <p className="font-display text-3xl md:text-5xl tracking-tight leading-none">
                             {m.value}
                           </p>
-                          <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">{m.label}</p>
+                          <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-widest opacity-40">{m.label}</p>
                         </div>
                       </div>
                     );
@@ -1457,39 +1457,39 @@ const CaseStudiesPage = () => {
                 {/* Body Content */}
                 <div className="grid lg:grid-cols-5 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/5">
                   {/* Left: Executive Summary */}
-                  <div className="lg:col-span-2 px-8 md:px-16 py-20 space-y-16">
-                    <div className="space-y-8">
+                  <div className="lg:col-span-2 px-6 md:px-16 py-12 md:py-20 space-y-12 md:space-y-16">
+                    <div className="space-y-6 md:space-y-8">
                       <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-brand/20 bg-brand/5">
                         <div className="w-1.5 h-1.5 rounded-full bg-brand" />
-                        <span className="font-mono text-[9px] uppercase tracking-widest text-brand">Case Study ID: {cs.id.slice(-4)}</span>
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-brand">Case ID: {cs.id.slice(-4)}</span>
                       </div>
-                      <div className="space-y-6">
+                      <div className="space-y-4 md:space-y-6">
                         <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">The Strategy</p>
-                        <p className="font-sans text-2xl font-light leading-relaxed opacity-80">
+                        <p className="font-sans text-lg md:text-2xl font-light leading-relaxed opacity-80">
                           {cs.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="space-y-10">
+                    <div className="space-y-8 md:space-y-10">
                       <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Brand-Safe Protocol</p>
-                      <div className="space-y-8">
-                        <div className="flex items-start gap-6">
-                          <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                            <TrendingUp size={18} className="text-brand" />
+                      <div className="space-y-6 md:space-y-8">
+                        <div className="flex items-start gap-5 md:gap-6">
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                            <TrendingUp size={16} className="text-brand" />
                           </div>
                           <div>
-                            <h4 className="font-display text-lg uppercase tracking-tight">Exponential Scale</h4>
-                            <p className="font-sans text-sm opacity-40 font-light mt-1">Growth achieved through decentralized distribution nodes.</p>
+                            <h4 className="font-display text-base md:text-lg uppercase tracking-tight">Exponential Scale</h4>
+                            <p className="font-sans text-xs md:text-sm opacity-40 font-light mt-1">Growth achieved through decentralized distribution nodes.</p>
                           </div>
                         </div>
-                        <div className="flex items-start gap-6">
-                          <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                            <Box size={18} className="text-brand" />
+                        <div className="flex items-start gap-5 md:gap-6">
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                            <Box size={16} className="text-brand" />
                           </div>
                           <div>
-                            <h4 className="font-display text-lg uppercase tracking-tight">Verified Assets</h4>
-                            <p className="font-sans text-sm opacity-40 font-light mt-1">Every clip is tracked and validated through our command center.</p>
+                            <h4 className="font-display text-base md:text-lg uppercase tracking-tight">Verified Assets</h4>
+                            <p className="font-sans text-xs md:text-sm opacity-40 font-light mt-1">Every clip is tracked and validated through our command center.</p>
                           </div>
                         </div>
                       </div>
@@ -1497,31 +1497,31 @@ const CaseStudiesPage = () => {
                   </div>
 
                   {/* Right: Intelligence Grid */}
-                  <div className="lg:col-span-3 px-8 md:px-16 py-20 bg-white/[0.01] relative">
+                  <div className="lg:col-span-3 px-6 md:px-16 py-12 md:py-20 bg-white/[0.01] relative">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(200,241,53,0.02)_0%,transparent_60%)]" />
                     
-                    <div className="relative z-10 space-y-16">
+                    <div className="relative z-10 space-y-12 md:space-y-16">
                       <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Distribution Data</p>
-                          <h4 className="font-display text-3xl uppercase">Viral Components</h4>
+                          <h4 className="font-display text-2xl md:text-3xl uppercase">Viral Components</h4>
                         </div>
-                        <div className="px-4 py-2 bg-ink border border-white/10 rounded-xl font-mono text-[9px] uppercase tracking-widest opacity-60">
+                        <div className="px-3 py-1.5 md:px-4 md:py-2 bg-ink border border-white/10 rounded-lg md:rounded-xl font-mono text-[8px] md:text-[9px] uppercase tracking-widest opacity-60">
                           Secure Archive
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-8 md:gap-12">
+                      <div className="grid grid-cols-2 gap-4 md:gap-12">
                         {cs.featuredVideos.map((v) => (
                           <a
                             key={v.videoId}
                             href={v.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative flex flex-col gap-6"
+                            className="group relative flex flex-col gap-4 md:gap-6"
                           >
                             {/* Thumbnail */}
-                            <div className="relative aspect-[9/16] rounded-[2.5rem] overflow-hidden border border-white/10 group-hover:border-brand/40 transition-all duration-700 shadow-2xl">
+                            <div className="relative aspect-[9/16] rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 group-hover:border-brand/40 transition-all duration-700 shadow-2xl">
                               <img
                                 src={`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`}
                                 alt={v.label}
@@ -1530,19 +1530,19 @@ const CaseStudiesPage = () => {
                               <div className="absolute inset-0 bg-ink/50 group-hover:bg-ink/20 transition-colors duration-700" />
                               
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-14 h-14 rounded-full bg-brand text-ink flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-[0_0_60px_rgba(200,241,53,0.5)]">
-                                  <Play size={22} fill="currentColor" />
+                                <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-brand text-ink flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-[0_0_60px_rgba(200,241,53,0.5)]">
+                                  <Play size={16} md:size={22} fill="currentColor" />
                                 </div>
                               </div>
 
-                              <div className="absolute top-6 right-6 font-display text-base px-5 py-2 rounded-2xl bg-ink/90 backdrop-blur-xl border border-white/10 text-white">
+                              <div className="absolute top-3 right-3 md:top-6 md:right-6 font-display text-xs md:text-base px-3 py-1 md:px-5 md:py-2 rounded-xl md:rounded-2xl bg-ink/90 backdrop-blur-xl border border-white/10 text-white">
                                 {v.views}
                               </div>
                             </div>
                             
-                            <div className="space-y-1 px-4">
-                              <p className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-30">{v.type}</p>
-                              <h4 className="font-display text-xl uppercase tracking-tight group-hover:text-brand transition-colors duration-300">{v.label}</h4>
+                            <div className="space-y-1 px-2 md:px-4">
+                              <p className="font-mono text-[8px] md:text-[10px] uppercase tracking-[0.3em] opacity-30">{v.type}</p>
+                              <h4 className="font-display text-sm md:text-xl uppercase tracking-tight group-hover:text-brand transition-colors duration-300">{v.label}</h4>
                             </div>
                           </a>
                         ))}
@@ -1561,11 +1561,11 @@ const CaseStudiesPage = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="text-center pt-24 space-y-12"
+          className="text-center pt-16 md:pt-24 space-y-8 md:space-y-12"
         >
           <div className="space-y-4">
             <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">The engine is ready</p>
-            <h2 className="font-display text-7xl md:text-9xl tracking-tighter uppercase leading-none">
+            <h2 className="font-display text-5xl md:text-9xl tracking-tighter uppercase leading-tight md:leading-none">
               Launch Your <br />
               <span className="text-brand">Campaign</span>
             </h2>
@@ -1574,10 +1574,10 @@ const CaseStudiesPage = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => (window.location.href = '/?v=brand')}
-            className="inline-flex items-center gap-4 px-16 py-6 bg-brand text-ink font-bold uppercase tracking-widest text-base rounded-full shadow-[0_20px_60px_rgba(200,241,53,0.3)] hover:shadow-[0_20px_80px_rgba(200,241,53,0.5)] transition-all"
+            className="inline-flex items-center gap-4 px-10 py-5 md:px-16 md:py-6 bg-brand text-ink font-bold uppercase tracking-widest text-sm md:text-base rounded-full shadow-[0_20px_60px_rgba(200,241,53,0.3)] hover:shadow-[0_20px_80px_rgba(200,241,53,0.5)] transition-all"
           >
             Get Started Now
-            <ArrowRight size={20} />
+            <ArrowRight size={18} md:size={20} />
           </motion.button>
         </motion.div>
       </div>
