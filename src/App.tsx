@@ -1274,13 +1274,13 @@ const TermsOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => voi
 const caseStudiesData = [
   {
     id: 'daxmain',
-    client: 'DaxMain',
+    client: 'Dax',
     handle: '@daxmainfocus',
     handleUrl: 'https://www.youtube.com/@daxmainfocus',
     category: 'Music Artist',
     tagline: 'Authorised Clips · Organic Growth Engine',
     description:
-      'DaxMain is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long-form content, chopping viral moments, formatting for Shorts and Reels, and distributing through our clipper network with zero paid promotion.',
+      'Dax is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long-form content, chopping viral moments, formatting for Shorts and Reels, and distributing through our clipper network with zero paid promotion.',
     result: '250K+',
     resultLabel: 'Organic Views Generated',
     duration: '6 Weeks',
@@ -1392,15 +1392,6 @@ const CaseStudiesPage = () => {
                     <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
                       {cs.client}
                     </h2>
-                    <a
-                      href={cs.handleUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 font-mono text-xs opacity-40 hover:opacity-100 transition-opacity"
-                    >
-                      {cs.handle}
-                      <ExternalLink size={12} />
-                    </a>
                   </div>
 
                   {/* Big stat */}
@@ -1566,7 +1557,7 @@ const CaseStudiesSection = () => {
           <div className="space-y-4">
             <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Proof of Work</p>
             <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase leading-none">
-              Case <br /> Studies
+              Case <br /> <span className="text-brand">Studies</span>
             </h2>
           </div>
           <motion.a
@@ -1612,7 +1603,6 @@ const CaseStudiesSection = () => {
                 <h3 className="font-display text-6xl md:text-7xl tracking-tighter uppercase leading-none mb-3">
                   {cs.client}
                 </h3>
-                <p className="font-mono text-xs opacity-30">{cs.handle}</p>
               </div>
 
               <p className="font-sans text-lg opacity-60 font-light leading-relaxed max-w-md">
