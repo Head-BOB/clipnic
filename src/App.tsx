@@ -18,7 +18,11 @@ import {
   History,
   CheckCircle2,
   Box,
-  ArrowLeft
+  ArrowLeft,
+  Eye,
+  Play,
+  BarChart2,
+  ExternalLink
 } from 'lucide-react';
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -740,24 +744,32 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
           : "The feed is the new market. Connect your brand to our viral engine today."
         }
       </p>
-      <div className="flex flex-col md:flex-row gap-6 mt-6">
+      <div className="flex flex-col md:flex-row gap-6 mt-8">
         <motion.button
-          whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => {
             window.location.href = 'https://dash.clipnic.com/clipper';
           }}
-          className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'clipper' ? 'bg-ink text-paper' : ''}`}
+          className={`px-12 py-5 rounded-full font-sans font-bold text-lg uppercase tracking-widest transition-all shadow-xl ${
+            activeView === 'clipper' 
+              ? 'bg-ink text-paper' 
+              : 'bg-white border-2 border-ink text-ink hover:bg-ink hover:text-paper'
+          }`}
         >
-          <span className={`relative z-10 uppercase ${activeView === 'clipper' ? 'text-paper' : 'text-ink group-hover:text-paper'}`}>Start Earning</span>
+          Start Earning
         </motion.button>
         <motion.button
-          whileHover={{ scale: 1.02, backgroundColor: "#000", color: "#fff" }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={onBrandLaunch}
-          className={`group relative px-12 py-4 rounded-full border-2 border-ink font-sans font-bold text-lg overflow-hidden transition-colors ${activeView === 'brand' ? 'bg-ink text-paper' : 'bg-white hover:bg-black'}`}
+          className={`px-12 py-5 rounded-full font-sans font-bold text-lg uppercase tracking-widest transition-all shadow-xl ${
+            activeView === 'brand' 
+              ? 'bg-ink text-paper' 
+              : 'bg-white border-2 border-ink text-ink hover:bg-ink hover:text-paper'
+          }`}
         >
-          <span className={`relative z-10 uppercase ${activeView === 'brand' ? 'text-paper' : 'text-ink group-hover:text-paper'}`}>Launch Campaign</span>
+          Launch Campaign
         </motion.button>
       </div>
 
@@ -1173,6 +1185,364 @@ const TermsOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => voi
   </AnimatePresence>
 );
 
+// ─── Case Studies Data ───────────────────────────────────────────────────────
+
+const caseStudiesData = [
+  {
+    id: 'daxmain',
+    client: 'DaxMain',
+    handle: '@daxmainfocus',
+    handleUrl: 'https://www.youtube.com/@daxmainfocus',
+    category: 'Music Artist',
+    tagline: 'Authorised Clips · Organic Growth Engine',
+    description:
+      'DaxMain is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long-form content — chopping viral moments, formatting for Shorts & Reels, and distributing through our clipper network with zero paid promotion.',
+    result: '250K+',
+    resultLabel: 'Organic Views Generated',
+    duration: '6 Weeks',
+    clippers: '12',
+    platforms: ['YouTube Shorts', 'Instagram Reels', 'TikTok'],
+    metrics: [
+      { label: 'Total Views', value: '250K+', icon: Eye },
+      { label: 'Clips Published', value: '40+', icon: Play },
+      { label: 'Avg. Views / Clip', value: '6,250', icon: BarChart2 },
+      { label: 'Impressions', value: '400K+', icon: TrendingUp },
+    ],
+    highlight:
+      'Every single view was organic — no ad spend, no botted traffic. Pure clipper-driven distribution across short-form platforms.',
+    color: '#C8F135',
+    accentRgb: '200,241,53',
+  },
+];
+
+// ─── CaseStudiesPage ─────────────────────────────────────────────────────────
+
+const CaseStudiesPage = () => {
+  return (
+    <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
+      {/* Nav */}
+      <nav className="p-8 lg:p-12 flex justify-between items-center border-b border-white/5">
+        <div
+          className="flex items-center gap-1.5 cursor-pointer"
+          onClick={() => (window.location.href = '/')}
+        >
+          <img src="logo.webp" className="w-8 h-8 rounded-lg object-cover" alt="Clipnic Logo" />
+          <span className="font-display text-xl tracking-widest uppercase">CLIPNIC.COM</span>
+        </div>
+        <button
+          onClick={() => (window.location.href = '/')}
+          className="font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity flex items-center gap-2"
+        >
+          <ArrowLeft size={12} />
+          Back to Home
+        </button>
+      </nav>
+
+      {/* Hero */}
+      <div className="max-w-6xl mx-auto px-6 pt-24 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-6"
+        >
+          <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Proof of Work</p>
+          <h1 className="font-display text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter uppercase">
+            Case <br />
+            <span className="text-stroke-paper text-ink">Studies</span>
+          </h1>
+          <p className="font-sans text-xl opacity-60 font-light max-w-xl leading-relaxed">
+            Real campaigns. Real numbers. Zero paid ads. Here's what happens when the
+            Clipnic engine runs at full velocity.
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Case Study Cards */}
+      <div className="max-w-6xl mx-auto px-6 pb-32 space-y-8">
+        {caseStudiesData.map((cs) => {
+          const MetricIcon0 = cs.metrics[0].icon;
+          const MetricIcon1 = cs.metrics[1].icon;
+          const MetricIcon2 = cs.metrics[2].icon;
+          const MetricIcon3 = cs.metrics[3].icon;
+          const metricIcons = [MetricIcon0, MetricIcon1, MetricIcon2, MetricIcon3];
+          return (
+            <motion.div
+              key={cs.id}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white/[0.03] border border-white/10 rounded-[3rem] overflow-hidden"
+            >
+              {/* Top banner */}
+              <div
+                className="relative px-10 pt-12 pb-10 border-b border-white/10"
+                style={{ background: `radial-gradient(ellipse at top left, rgba(${cs.accentRgb},0.12) 0%, transparent 70%)` }}
+              >
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <span
+                        className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border"
+                        style={{ color: cs.color, borderColor: `rgba(${cs.accentRgb},0.3)`, background: `rgba(${cs.accentRgb},0.08)` }}
+                      >
+                        {cs.category}
+                      </span>
+                      <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">
+                        {cs.duration} campaign
+                      </span>
+                    </div>
+                    <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
+                      {cs.client}
+                    </h2>
+                    <a
+                      href={cs.handleUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 font-mono text-xs opacity-40 hover:opacity-100 transition-opacity"
+                    >
+                      {cs.handle}
+                      <ExternalLink size={12} />
+                    </a>
+                  </div>
+
+                  {/* Big stat */}
+                  <div className="text-right">
+                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-2">{cs.resultLabel}</p>
+                    <p
+                      className="font-display text-6xl md:text-8xl tracking-tighter"
+                      style={{ color: cs.color }}
+                    >
+                      {cs.result}
+                    </p>
+                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mt-2">
+                      100% Organic · No Paid Ads
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Metrics grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/10">
+                {cs.metrics.map((m, i) => {
+                  const Icon = metricIcons[i];
+                  return (
+                    <div
+                      key={i}
+                      className={`px-8 py-8 space-y-3 ${i < cs.metrics.length - 1 ? 'border-r border-white/10' : ''}`}
+                    >
+                      <Icon size={16} className="opacity-30" />
+                      <p className="font-display text-3xl md:text-4xl tracking-tight" style={{ color: cs.color }}>
+                        {m.value}
+                      </p>
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">{m.label}</p>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Body */}
+              <div className="grid md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+                {/* Description */}
+                <div className="px-10 py-10 space-y-6">
+                  <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Campaign Overview</p>
+                  <p className="font-sans text-lg opacity-70 leading-relaxed font-light">{cs.description}</p>
+                  <div className="pt-4 space-y-3">
+                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Platforms Deployed</p>
+                    <div className="flex flex-wrap gap-2">
+                      {cs.platforms.map((p) => (
+                        <span
+                          key={p}
+                          className="font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 border border-white/10 rounded-full opacity-60"
+                        >
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Highlight */}
+                <div
+                  className="px-10 py-10 flex flex-col justify-between gap-8"
+                  style={{ background: `radial-gradient(ellipse at bottom right, rgba(${cs.accentRgb},0.07) 0%, transparent 70%)` }}
+                >
+                  <div className="space-y-4">
+                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Key Insight</p>
+                    <blockquote
+                      className="font-display text-2xl md:text-3xl tracking-tighter leading-tight"
+                      style={{ borderLeft: `3px solid ${cs.color}`, paddingLeft: '1.5rem' }}
+                    >
+                      "{cs.highlight}"
+                    </blockquote>
+                  </div>
+                  <div className="flex items-center gap-6 flex-wrap">
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Clippers</p>
+                      <p className="font-display text-3xl" style={{ color: cs.color }}>{cs.clippers}</p>
+                    </div>
+                    <div className="w-px h-10 bg-white/10" />
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Duration</p>
+                      <p className="font-display text-3xl" style={{ color: cs.color }}>{cs.duration}</p>
+                    </div>
+                    <div className="w-px h-10 bg-white/10" />
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Ad Spend</p>
+                      <p className="font-display text-3xl" style={{ color: cs.color }}>$0</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.7 }}
+          className="text-center pt-16 space-y-8"
+        >
+          <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Ready to be next?</p>
+          <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
+            Launch Your <br />
+            <span className="text-brand">Campaign</span>
+          </h2>
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => (window.location.href = '/')}
+            className="inline-flex items-center gap-3 px-12 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-sm rounded-full shadow-[0_20px_60px_rgba(200,241,53,0.25)] hover:shadow-[0_20px_80px_rgba(200,241,53,0.4)] transition-all"
+          >
+            Get Started
+            <ArrowRight size={16} />
+          </motion.button>
+        </motion.div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+// ─── CaseStudies Landing Section ─────────────────────────────────────────────
+
+const CaseStudiesSection = () => {
+  const cs = caseStudiesData[0];
+  const metricIcons = [Eye, Play, BarChart2, TrendingUp];
+  return (
+    <section className="py-32 px-6 lg:px-12 bg-ink text-paper border-t border-white/5">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
+          <div className="space-y-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Proof of Work</p>
+            <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase leading-none">
+              Case <br /> Studies
+            </h2>
+          </div>
+          <motion.a
+            href="/case-studies"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 rounded-full font-mono text-[10px] uppercase tracking-widest hover:border-brand hover:text-brand transition-all shrink-0"
+          >
+            View All Cases
+            <ArrowRight size={12} />
+          </motion.a>
+        </div>
+
+        {/* Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="relative bg-white/[0.03] border border-white/10 rounded-[2.5rem] overflow-hidden cursor-pointer group"
+          onClick={() => (window.location.href = '/case-studies')}
+        >
+          {/* Hover glow */}
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+            style={{ background: `radial-gradient(ellipse at top left, rgba(${cs.accentRgb},0.1) 0%, transparent 60%)` }}
+          />
+
+          <div className="relative grid md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            {/* Left: Info */}
+            <div className="px-10 py-12 space-y-8">
+              <div className="flex items-center gap-3 flex-wrap">
+                <span
+                  className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border"
+                  style={{ color: cs.color, borderColor: `rgba(${cs.accentRgb},0.3)`, background: `rgba(${cs.accentRgb},0.08)` }}
+                >
+                  {cs.category}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-widest opacity-30">{cs.tagline}</span>
+              </div>
+
+              <div>
+                <h3 className="font-display text-6xl md:text-7xl tracking-tighter uppercase leading-none mb-3">
+                  {cs.client}
+                </h3>
+                <p className="font-mono text-xs opacity-30">{cs.handle}</p>
+              </div>
+
+              <p className="font-sans text-lg opacity-60 font-light leading-relaxed max-w-md">
+                {cs.description}
+              </p>
+
+              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest group-hover:text-brand transition-colors">
+                View Full Case Study
+                <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+
+            {/* Right: Stats */}
+            <div
+              className="px-10 py-12 flex flex-col justify-between gap-10"
+              style={{ background: `radial-gradient(ellipse at bottom right, rgba(${cs.accentRgb},0.06) 0%, transparent 70%)` }}
+            >
+              {/* Big stat */}
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-3">{cs.resultLabel}</p>
+                <p className="font-display text-7xl md:text-8xl tracking-tighter" style={{ color: cs.color }}>
+                  {cs.result}
+                </p>
+                <div className="mt-4 flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-400">
+                    100% Organic · Zero Ad Spend
+                  </span>
+                </div>
+              </div>
+
+              {/* Metric grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {cs.metrics.map((m, i) => {
+                  const Icon = metricIcons[i];
+                  return (
+                    <div key={i} className="bg-white/5 border border-white/[0.08] rounded-2xl px-5 py-4 space-y-2">
+                      <Icon size={14} className="opacity-30" />
+                      <p className="font-display text-2xl tracking-tighter" style={{ color: cs.color }}>
+                        {m.value}
+                      </p>
+                      <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">{m.label}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+// ─── App ─────────────────────────────────────────────────────────────────────
+
 export default function App() {
   const [activeView, setActiveView] = useState<'clipper' | 'brand'>('clipper');
   const [privacyOpen, setPrivacyOpen] = useState(false);
@@ -1182,12 +1552,14 @@ export default function App() {
   const isBrandPath = window.location.pathname === '/brand' || window.location.pathname === '/brands';
   const isPrivacyPath = window.location.pathname === '/privacy';
   const isTermsPath = window.location.pathname === '/terms' || window.location.pathname === '/clipper-terms';
+  const isCaseStudiesPath = window.location.pathname === '/case-studies';
   const isHome = window.location.pathname === '/';
   const isComingSoon = window.location.pathname === '/coming-soon';
 
   if (isBrandPath || isComingSoon) return <BrandPartnershipPage />;
   if (isPrivacyPath) return <PrivacyOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isTermsPath) return <TermsOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
+  if (isCaseStudiesPath) return <CaseStudiesPage />;
   if (!isHome) return <NotFound />;
 
   return (
@@ -1350,6 +1722,8 @@ export default function App() {
             )}
           </AnimatePresence>
         </div>
+
+        <CaseStudiesSection />
 
         <Contact 
           activeView={activeView} 
