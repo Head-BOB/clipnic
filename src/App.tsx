@@ -93,7 +93,7 @@ const BrandPartnershipPage = () => {
                 <CheckCircle2 size={40} />
               </div>
               <div className="space-y-4">
-                <h2 className="font-display text-4xl uppercase">Transmission Received</h2>
+                <h2 className="font-display text-4xl uppercase">  Received</h2>
                 <p className="font-sans opacity-60 text-lg">Our strategy team will review your brand and reach out within 24 hours.</p>
               </div>
               <button
@@ -173,8 +173,8 @@ const NotFound = () => (
         </div>
       </motion.div>
       <div className="space-y-6">
-        <h1 className="font-display text-[10vw] md:text-[8vw] tracking-tighter leading-none uppercase">Transmission <br /> Lost</h1>
-        <p className="font-sans opacity-60 text-xl font-light max-w-lg mx-auto">The requested sector could not be located in the current feed. The transmission may have been purged.</p>
+        <h1 className="font-display text-[10vw] md:text-[8vw] tracking-tighter leading-none uppercase">  <br /> Lost</h1>
+        <p className="font-sans opacity-60 text-xl font-light max-w-lg mx-auto">The requested sector could not be located in the current feed. The   may have been purged.</p>
       </div>
       <div className="pt-8">
         <button
@@ -303,7 +303,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
               { name: "🎯 Campaign Goal", value: formData.goal }
             ],
             timestamp: new Date().toISOString(),
-            footer: { text: "Clipnic Transmission System" }
+            footer: { text: "Clipnic   System" }
           }]
         })
       });
@@ -359,7 +359,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                   >
                     <div className="text-left space-y-1">
                       <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Asynchronous</p>
-                      <h4 className="font-display text-2xl uppercase">Email Transmission</h4>
+                      <h4 className="font-display text-2xl uppercase">Email  </h4>
                     </div>
                     <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center group-hover:scale-110 transition-transform">
                       <Box size={20} />
@@ -396,7 +396,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                     <div className="w-16 h-16 bg-brand text-ink rounded-full flex items-center justify-center mx-auto mb-6">
                       <CheckCircle2 size={32} />
                     </div>
-                    <h4 className="font-display text-3xl uppercase">Transmission Sent</h4>
+                    <h4 className="font-display text-3xl uppercase">  Sent</h4>
                     <p className="font-sans opacity-60 text-sm">Our team has been notified via Discord.</p>
                   </div>
                 ) : (
@@ -430,7 +430,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                     >
                       {status === 'sending' ? 'Transmitting...' : 'Submit Inquiry'}
                     </button>
-                    {status === 'error' && <p className="text-center text-red-500 text-[10px] uppercase font-bold">Transmission Failed. Try again.</p>}
+                    {status === 'error' && <p className="text-center text-red-500 text-[10px] uppercase font-bold">  Failed. Try again.</p>}
                   </form>
                 )}
               </div>
@@ -607,7 +607,7 @@ const ConnectDash = () => (
 const SubmissionDash = () => (
   <div className="w-full max-w-md space-y-4">
     <div className="bg-black border border-white/10 p-6 rounded-3xl shadow-2xl">
-      <p className="font-sans text-[10px] text-white/40 uppercase tracking-widest mb-3">Secure Transmission</p>
+      <p className="font-sans text-[10px] text-white/40 uppercase tracking-widest mb-3">Secure  </p>
       <div className="relative">
         <input
           disabled
@@ -953,7 +953,7 @@ const Footer = () => (
       {/* Bottom Bar */}
       <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-30 text-center md:text-left">
-          © 2026 CLIPNIC.COM · ALL TRANSMISSIONS SECURED BY INTEGRITY MATRIX
+          © 2026 CLIPNIC.COM · ALL  S SECURED BY INTEGRITY MATRIX
         </div>
         <div className="flex items-center gap-8 font-mono text-[9px] uppercase tracking-widest opacity-30">
           <span>SYSTEM STATUS: OPTIMAL</span>
@@ -1693,7 +1693,7 @@ const CaseStudiesSection = () => {
               </div>
 
               <div className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest group-hover:text-brand transition-colors">
-                Read Full Transmission
+                Read Full
                 <ArrowRight size={12} className="group-hover:translate-x-2 transition-transform" />
               </div>
             </div>
