@@ -493,8 +493,8 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
           className="mt-6 max-w-xl mx-auto font-sans text-xl opacity-60 font-light text-balance"
         >
           {activeView === 'clipper'
-            ? "Edit short clips. Post them on TikTok, Reels or Shorts. Get paid every time people watch them. No experience needed — if you love scrolling, you can do this."
-            : "We turn your existing content into thousands of short viral clips, posted across creator accounts all over the internet. You only pay when the views come in. Zero ad spend. Zero guesswork."
+            ? "Pick a video, cut it into a short clip, post it on TikTok or Reels. That's it. Every time someone watches your clip, you get paid. No boss. No schedule. Just post and earn."
+            : "You make the videos. We get them in front of millions. Our editors chop your content into short viral clips and post them all over TikTok, Reels and YouTube Shorts — organically, for free, until the views come in."
           }
         </motion.p>
 
@@ -861,8 +861,8 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
       </h2>
       <p className="max-w-2xl font-sans text-xl opacity-60 mb-16 font-light">
         {activeView === 'clipper'
-          ? "The viral economy is waiting. Connect your reach to our capital engine today."
-          : "The feed is the new market. Connect your brand to our viral engine today."
+          ? "Thousands of people are already getting paid just for posting short clips online. Join them today."
+          : "Great content deserves to be seen. Stop letting it sit unwatched — let us distribute it for you."
         }
       </p>
       <div className="flex flex-col md:flex-row gap-6 mt-8">
@@ -1767,21 +1767,21 @@ export default function App() {
                   index={0}
                   icon={LinkIcon}
                   title="CONNECT YOUR ACCOUNTS"
-                  desc="Link your TikTok, Instagram, or YouTube. Takes 2 minutes. No minimum followers needed — anyone with an account can start earning. We verify it's you and you're ready to go."
+                  desc="Link your TikTok, Instagram, or YouTube in 2 minutes. No minimum followers. No special skills. If you have an account, you can start. We just need to confirm it's really you."
                   dashPreview={<ConnectDash />}
                 />
                 <ProcessStep
                   index={1}
                   icon={UploadIcon}
-                  title="POST CLIPS & SUBMIT"
-                  desc="Pick a campaign, cut a clip from the source content (we'll show you how), post it on your account, then paste the link into your dashboard. That's it. We do the rest — tracking your views 24/7."
+                  title="POST A CLIP & SHARE THE LINK"
+                  desc="Browse open campaigns, pick a video, cut a short clip from it (we show you exactly how), post it on your account, then paste the link into your dashboard. Done. We track your views automatically."
                   dashPreview={<SubmissionDash />}
                 />
                 <ProcessStep
                   index={2}
                   icon={History}
-                  title="WATCH THE MONEY ADD UP"
-                  desc="Every 1,000 views earns you money. The more clips you post, the more you earn. When you're ready to cash out, withdraw straight to your bank or PayPal — no minimum waiting period."
+                  title="COLLECT YOUR EARNINGS"
+                  desc="Every 1,000 views puts money in your balance. Post more clips, earn more money. When you want to cash out, hit withdraw and it goes straight to your bank or PayPal. Simple as that."
                   dashPreview={<EarningsDash />}
                 />
               </motion.div>
@@ -1795,58 +1795,58 @@ export default function App() {
                 <ProcessStep
                   index={0}
                   icon={DollarSign}
-                  title="SEND US YOUR CONTENT"
-                  desc="Share your podcast, stream, YouTube video, or any long-form content. We review it, brief our network of editors on how to clip it, and launch your campaign — usually within 48 hours."
+                  title="SEND US YOUR VIDEO"
+                  desc="Upload your podcast, YouTube video, stream, or any long video. Doesn't matter how long it is or what it's about. Our team watches it and finds the best parts."
                   dashPreview={<BrandCampaignDash />}
                 />
                 <ProcessStep
                   index={1}
                   icon={TrendingUp}
-                  title="YOUR CLIPS GO EVERYWHERE"
-                  desc="Hundreds of creators start turning your content into short viral clips, posting them on TikTok, Reels and Shorts across their own accounts. Your brand shows up on feeds you could never reach with ads."
+                  title="WE MAKE THE SHORTS"
+                  desc="Our editors cut your video into short, punchy clips — the kind that stop people from scrolling. They add hooks, captions, and catchy themes. Then they post them on TikTok, Reels and Shorts."
                   dashPreview={<BrandMetricsDash />}
                 />
                 <ProcessStep
                   index={2}
                   icon={Share2}
-                  title="ONLY PAY FOR REAL VIEWS"
-                  desc="You only pay when real people watch your clips. No upfront ad spend. No wasted budget. Watch your view count, follower growth and brand mentions climb through your live analytics dashboard."
+                  title="YOU PAY ONLY FOR VIEWS"
+                  desc="Real people watch your clips on real accounts. Your brand gets seen. You watch it all happen live in your dashboard — views, likes, followers — and you only pay for what actually works."
                   dashPreview={
                     <div className="text-center p-10">
                       <p className="font-display text-4xl text-white mb-4">8.4M+</p>
-                      <p className="font-sans text-zinc-500 uppercase tracking-widest text-xs">Total Network Impressions</p>
+                      <p className="font-sans text-zinc-500 uppercase tracking-widest text-xs">Real people reached organically</p>
                     </div>
                   }
                 />
 
                 <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
                   <div className="max-w-6xl mx-auto">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Protocol Standard</p>
-                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">Brand Safety</h2>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Why it works</p>
+                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">Not ads.<br />Real reach.</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                       <div className="space-y-6">
                         <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
                           <CheckCircle2 size={24} />
                         </div>
-                        <h4 className="font-display text-2xl uppercase">100% Human Traffic</h4>
-                        <p className="font-sans opacity-60 leading-relaxed font-light">"No bots. Our engine verifies all accounts to ensure your views are from real, organic feeds."</p>
+                        <h4 className="font-display text-2xl uppercase">Real people, real accounts</h4>
+                        <p className="font-sans opacity-60 leading-relaxed font-light">Every clip is posted by a real person on their real TikTok or Instagram account. No bots. No fake views. When someone watches your clip, it's because they chose to.</p>
                       </div>
 
                       <div className="space-y-6">
                         <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
                           <CheckCircle2 size={24} />
                         </div>
-                        <h4 className="font-display text-2xl uppercase">Vetted Clippers</h4>
-                        <p className="font-sans opacity-60 leading-relaxed font-light">"Every creator in our network passes strict quality control and adheres to your specific brand guidelines."</p>
+                        <h4 className="font-display text-2xl uppercase">No ad spend needed</h4>
+                        <p className="font-sans opacity-60 leading-relaxed font-light">You don't pay thousands upfront hoping an ad might work. With Clipnic, you only pay after real people actually watch your clips. Your money goes 5-10x further than traditional advertising.</p>
                       </div>
 
                       <div className="space-y-6">
                         <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
                           <CheckCircle2 size={24} />
                         </div>
-                        <h4 className="font-display text-2xl uppercase">Real-Time Tracking</h4>
-                        <p className="font-sans opacity-60 leading-relaxed font-light">"Monitor exactly where your content is being posted through your command center."</p>
+                        <h4 className="font-display text-2xl uppercase">See everything live</h4>
+                        <p className="font-sans opacity-60 leading-relaxed font-light">Your dashboard shows you exactly how many views you got, on which platform, from which clip. No guessing. No waiting for a report. Just open your screen and see your brand growing in real-time.</p>
                       </div>
                     </div>
                   </div>
@@ -1855,16 +1855,16 @@ export default function App() {
                 <section className="py-32 px-6 lg:px-12 bg-ink text-paper">
                   <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
                     <div>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand mb-8">Performance Layer</p>
-                      <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase mb-12 leading-none">Analytics <br /> & Scale</h2>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand mb-8">See It Working</p>
+                      <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase mb-12 leading-none">Watch your<br />brand grow</h2>
                       <p className="font-sans text-xl opacity-60 leading-relaxed mb-12 font-light">
-                        Monitor every impression in real-time. Our intelligence layer provides deep insights into which creatives are driving the most value, allowing you to scale your viral reach with surgical precision.
+                        Every view, every like, every new follower — you see it all happening live on your dashboard. No spreadsheets. No waiting for reports. Just open the screen and watch your content spread across the internet.
                       </p>
                       <button
                         onClick={() => setBrandGatewayOpen(true)}
                         className="px-10 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all"
                       >
-                        Launch Command Center
+                        Start Growing Today
                       </button>
                     </div>
                     <div className="relative">
@@ -1900,39 +1900,39 @@ export default function App() {
                 </section>
                 <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
                     <div className="max-w-6xl mx-auto">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Flow Protocol</p>
-                      <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How to distribute<br />your content</h2>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Simple 4-step process</p>
+                      <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
 
                       <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                         <div className="space-y-4">
                           <p className="font-display text-4xl text-brand">01</p>
-                          <h4 className="font-display text-xl uppercase">Submit Content</h4>
+                          <h4 className="font-display text-xl uppercase">Send us your video</h4>
                           <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Give us your raw content. Whether it's long-form videos, streams, or podcasts, our engine is ready to process.
+                            Share any long video — a podcast, YouTube video, stream, interview. Doesn't need to be perfect. Just send it.
                           </p>
                         </div>
 
                         <div className="space-y-4">
                           <p className="font-display text-4xl text-brand">02</p>
-                          <h4 className="font-display text-xl uppercase">Launch Campaign</h4>
+                          <h4 className="font-display text-xl uppercase">We study your brand</h4>
                           <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            We will make a custom campaign tailored to your brand goals, setting bounties and distribution rules.
+                            Our team learns your tone, your style, your audience. Then we brief our editors on exactly how your clips should look and feel.
                           </p>
                         </div>
 
                         <div className="space-y-4">
                           <p className="font-display text-4xl text-brand">03</p>
-                          <h4 className="font-display text-xl uppercase">Organic Reach</h4>
+                          <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
                           <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Our clippers generate pure organic content. View all metrics in our highly advanced command center.
+                            Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts — on their own accounts. Hundreds of clips. Zero effort from you.
                           </p>
                         </div>
 
                         <div className="space-y-4">
                           <p className="font-display text-4xl text-brand">04</p>
-                          <h4 className="font-display text-xl uppercase">Exponential Growth</h4>
+                          <h4 className="font-display text-xl uppercase">Watch the views grow</h4>
                           <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Grow your content presence. Scale your brand natively across every major short-form feed simultaneously.
+                            Log into your dashboard and see every view, like and follower in real-time. Pay only for what actually gets watched.
                           </p>
                         </div>
                       </div>
