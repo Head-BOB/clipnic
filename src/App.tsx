@@ -57,7 +57,7 @@ const BrandPartnershipPage = () => {
         >
           <div className="space-y-6">
             <h1 className="font-display text-[12vw] lg:text-[7vw] leading-[0.85] tracking-tighter uppercase">Scale <br /> Your <br /> <span className="text-brand">Viral</span> Velocity</h1>
-            <p className="font-sans text-xl opacity-60 font-light max-w-md leading-relaxed">Join the global infrastructure for short-form video distribution. Deploy your first high-velocity campaign today.</p>
+            <p className="font-sans text-xl opacity-60 font-light max-w-md leading-relaxed">Join the global infrastructure for short form video distribution. Deploy your first high velocity campaign today.</p>
           </div>
 
           <div className="space-y-8">
@@ -726,50 +726,50 @@ const BrandMetricsDash = () => (
 const brandFaqItems = [
   {
     q: 'What kind of content works best?',
-    a: 'Long-form content works best — podcasts, YouTube videos, Twitch streams, interviews. Basically anything over 10 minutes that has entertaining or valuable moments inside it. Our editors are trained to find those moments and turn them into clips that stop the scroll.',
+    a: 'Long form content works best, podcasts, YouTube videos, Twitch streams, interviews. Basically anything over 10 minutes that has entertaining or valuable moments inside it. Our editors are trained to find those moments and turn them into clips that stop the scroll.',
   },
   {
     q: 'How is this different from running ads?',
-    a: 'With ads, you pay for impressions whether or not anyone actually cares. With Clipnic, real creators post your content on their real accounts. It looks native, it feels native, and people actually watch it. You only pay based on real views — making your budget go 5-10x further than traditional ads.',
+    a: 'With ads, you pay for impressions whether or not anyone actually cares. With Clipnic, real creators post your content on their real accounts. It looks native, it feels native, and people actually watch it. You only pay based on real views, making your budget go 5 to 10x further than traditional ads.',
   },
   {
     q: 'Will I have to manage anything?',
-    a: 'Nothing. We handle everything — briefing the editors, reviewing their clips, pushing distribution, and reporting performance. You get a live dashboard with all your numbers and a weekly summary from our team. Your only job is to watch the growth.',
+    a: 'Nothing. We handle everything, briefing the editors, reviewing their clips, pushing distribution, and reporting performance. You get a live dashboard with all your numbers and a weekly summary from our team. Your only job is to watch the growth.',
   },
   {
     q: 'How quickly can I see results?',
-    a: 'Most campaigns see their first clips posted within 48 hours of launch. Views typically start building within the first week. By week 3–4 you usually see compounding organic growth as the best-performing clips keep circulating through algorithmic feeds.',
+    a: 'Most campaigns see their first clips posted within 48 hours of launch. Views typically start building within the first week. By week 3 or 4 you usually see compounding organic growth as the best performing clips keep circulating through algorithmic feeds.',
   },
   {
     q: 'What results can I realistically expect?',
-    a: 'It depends on your content and niche, but here is what a typical campaign looks like: millions of views across TikTok, Reels and Shorts, hundreds of pieces of branded short-form content across different creators, measurable follower growth and brand search uplift — all tracked live in your dashboard.',
+    a: 'It depends on your content and niche, but here is what a typical campaign looks like: millions of views across TikTok, Reels and Shorts, hundreds of pieces of branded short form content across different creators, measurable follower growth and brand search uplift, all tracked live in your dashboard.',
   },
 ];
 
 const clipperFaqItems = [
   {
     q: 'Do I need to be a professional editor?',
-    a: 'Not at all. If you know how to cut a video in CapCut, Premiere, or even your phone\'s built-in editor, you can do this. We provide the source content and specific instructions on what kind of clip to make. Most of our top earners started with zero editing experience.',
+    a: 'Not at all. If you know how to cut a video in CapCut, Premiere, or even your phone\'s built in editor, you can do this. We provide the source content and specific instructions on what kind of clip to make. Most of our top earners started with zero editing experience.',
   },
   {
     q: 'Do I need to monetize my channel to earn?',
-    a: 'No. Your channel does not need to be monetized. We pay you directly based on how many views your clips get — completely separate from YouTube or TikTok\'s own monetization. Even a brand new account with 0 followers can start earning on day one.',
+    a: 'No. Your channel does not need to be monetized. We pay you directly based on how many views your clips get, completely separate from YouTube or TikTok\'s own monetization. Even a brand new account with 0 followers can start earning on day one.',
   },
   {
     q: 'How much can I actually make?',
-    a: 'It depends on how many clips you post and how well they perform. Some clippers earn $50–$200 a month posting casually. Others who post consistently and hit viral clips are making $1,000–$5,000+ per month. There is no cap — the more views you drive, the more you earn.',
+    a: 'It depends on how many clips you post and how well they perform. Some clippers earn $50 to $200 a month posting casually. Others who post consistently and hit viral clips are making $1,000 to $5,000 plus per month. There is no cap, the more views you drive, the more you earn.',
   },
   {
     q: 'How do I get paid?',
-    a: 'You link your bank account or PayPal when you sign up. Every time your clips hit the payout threshold, the money is sent directly to you. You can track every cent in real-time on your dashboard — no guessing, no waiting for a reply.',
+    a: 'You link your bank account or PayPal when you sign up. Every time your clips hit the payout threshold, the money is sent directly to you. You can track every cent in real time on your dashboard, no guessing, no waiting for a reply.',
   },
   {
     q: 'Can I post clips on multiple platforms?',
-    a: 'Yes, and we encourage it. Posting the same clip on TikTok, YouTube Shorts, and Instagram Reels means three separate view counts — which means three separate payouts. Cross-posting is one of the fastest ways to multiply your earnings.',
+    a: 'Yes, and we encourage it. Posting the same clip on TikTok, YouTube Shorts, and Instagram Reels means three separate view counts, which means three separate payouts. Cross posting is one of the fastest ways to multiply your earnings.',
   },
   {
     q: 'Am I allowed to re-post content I do not own?',
-    a: 'Yes — that is literally what this is. The brands and creators on Clipnic have given you explicit permission to clip and post their content. You are fully covered. Think of it like being an authorized re-distributor, not copyright infringement.',
+    a: 'Yes, that is literally what this is. The brands and creators on Clipnic have given you explicit permission to clip and post their content. You are fully covered. Think of it like being an authorized redistributor, not copyright infringement.',
   },
 ];
 
@@ -862,7 +862,7 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
       <p className="max-w-2xl font-sans text-xl opacity-60 mb-16 font-light">
         {activeView === 'clipper'
           ? "Thousands of people are already getting paid just for posting short clips online. Join them today."
-          : "Great content deserves to be seen. Stop letting it sit unwatched — let us distribute it for you."
+          : "Great content deserves to be seen. Stop letting it sit unwatched, let us distribute it for you."
         }
       </p>
       <div className="flex flex-col md:flex-row gap-6 mt-8">
@@ -1315,7 +1315,7 @@ const caseStudiesData = [
     category: 'Music Artist',
     tagline: 'Authorised Clips · Organic Growth Engine',
     description:
-      'Dax is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long-form content, chopping viral moments, formatting for Shorts and Reels, and distributing through our clipper network with zero paid promotion.',
+      'Dax is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long form content, chopping viral moments, formatting for Shorts and Reels, and distributing through our clipper network with zero paid promotion.',
     result: '250K+',
     resultLabel: 'Organic Views Generated',
     duration: '6 Weeks',
@@ -1341,7 +1341,7 @@ const caseStudiesData = [
       { label: 'Impressions', value: '400K+', icon: TrendingUp },
     ],
     highlight:
-      'Every single view was organic — no ad spend, no botted traffic. Pure clipper-driven distribution across short-form platforms.',
+      'Every single view was organic, no ad spend, no botted traffic. Pure clipper driven distribution across short form platforms.',
     color: '#C8F135',
     accentRgb: '200,241,53',
   },
@@ -1396,7 +1396,7 @@ const CaseStudiesPage = () => {
             <span className="text-brand">Performance</span>
           </h1>
           <p className="font-sans text-lg md:text-2xl opacity-60 font-light max-w-2xl leading-relaxed">
-            Real distribution. Real impact. Zero paid spend. This is the Clipnic standard for organic short-form growth.
+            Real distribution. Real impact. Zero paid spend. This is the Clipnic standard for organic short form growth.
           </p>
         </motion.div>
       </div>
@@ -1767,7 +1767,7 @@ export default function App() {
                   index={0}
                   icon={LinkIcon}
                   title="CONNECT YOUR ACCOUNTS"
-                  desc="Link your TikTok, Instagram, or YouTube in 2 minutes. No minimum followers. No special skills. If you have an account, you can start. We just need to confirm it's really you."
+                  desc="Link your TikTok, Instagram, or YouTube in 2 minutes. No minimum followers. No special skills. If you have an account, you can start. We just need to confirm it is really you."
                   dashPreview={<ConnectDash />}
                 />
                 <ProcessStep
@@ -1803,14 +1803,14 @@ export default function App() {
                   index={1}
                   icon={TrendingUp}
                   title="WE MAKE THE SHORTS"
-                  desc="Our editors cut your video into short, punchy clips — the kind that stop people from scrolling. They add hooks, captions, and catchy themes. Then they post them on TikTok, Reels and Shorts."
+                  desc="Our editors cut your video into short, punchy clips, the kind that stop people from scrolling. They add hooks, captions, and catchy themes. Then they post them on TikTok, Reels and Shorts."
                   dashPreview={<BrandMetricsDash />}
                 />
                 <ProcessStep
                   index={2}
                   icon={Share2}
                   title="YOU PAY ONLY FOR VIEWS"
-                  desc="Real people watch your clips on real accounts. Your brand gets seen. You watch it all happen live in your dashboard — views, likes, followers — and you only pay for what actually works."
+                  desc="Real people watch your clips on real accounts. Your brand gets seen. You watch it all happen live in your dashboard, views, likes, followers, and you only pay for what actually works."
                   dashPreview={
                     <div className="text-center p-10">
                       <p className="font-display text-4xl text-white mb-4">8.4M+</p>
@@ -1858,7 +1858,7 @@ export default function App() {
                       <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand mb-8">See It Working</p>
                       <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase mb-12 leading-none">Watch your<br />brand grow</h2>
                       <p className="font-sans text-xl opacity-60 leading-relaxed mb-12 font-light">
-                        Every view, every like, every new follower — you see it all happening live on your dashboard. No spreadsheets. No waiting for reports. Just open the screen and watch your content spread across the internet.
+                        Every view, every like, every new follower, you see it all happening live on your dashboard. No spreadsheets. No waiting for reports. Just open the screen and watch your content spread across the internet.
                       </p>
                       <button
                         onClick={() => setBrandGatewayOpen(true)}
@@ -1908,7 +1908,7 @@ export default function App() {
                           <p className="font-display text-4xl text-brand">01</p>
                           <h4 className="font-display text-xl uppercase">Send us your video</h4>
                           <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Share any long video — a podcast, YouTube video, stream, interview. Doesn't need to be perfect. Just send it.
+                            Share any long video, a podcast, YouTube video, stream, interview. Doesn't need to be perfect. Just send it.
                           </p>
                         </div>
 
@@ -1924,7 +1924,7 @@ export default function App() {
                           <p className="font-display text-4xl text-brand">03</p>
                           <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
                           <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts — on their own accounts. Hundreds of clips. Zero effort from you.
+                            Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts, on their own accounts. Hundreds of clips. Zero effort from you.
                           </p>
                         </div>
 
