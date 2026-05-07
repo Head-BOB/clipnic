@@ -494,7 +494,7 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
         >
           {activeView === 'clipper'
             ? "Pick a video, cut it into a short clip, post it on TikTok or Reels. That's it. Every time someone watches your clip, you get paid. No boss. No schedule. Just post and earn."
-            : "You make the videos. We get them in front of millions. Our editors chop your content into short viral clips and post them all over TikTok, Reels and YouTube Shorts — organically, for free, until the views come in."
+            : "You make the videos. We get them in front of millions. Our editors chop your content into short viral clips and post them all over TikTok, Reels and YouTube Shorts organically, for free, until the views come in."
           }
         </motion.p>
 
@@ -1370,7 +1370,7 @@ const CaseStudiesPage = () => {
             <span className="font-display text-lg md:text-2xl tracking-widest uppercase">CLIPNIC</span>
           </div>
         </div>
-        
+
         <button
           onClick={() => (window.location.href = '/?v=brand')}
           className="px-5 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
@@ -1409,7 +1409,7 @@ const CaseStudiesPage = () => {
           const MetricIcon2 = cs.metrics[2].icon;
           const MetricIcon3 = cs.metrics[3].icon;
           const metricIcons = [MetricIcon0, MetricIcon1, MetricIcon2, MetricIcon3];
-          
+
           return (
             <motion.div
               key={cs.id}
@@ -1421,9 +1421,9 @@ const CaseStudiesPage = () => {
             >
               {/* Card Container */}
               <div className="relative bg-white/[0.02] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden backdrop-blur-sm shadow-2xl">
-                
+
                 {/* Header Section */}
-                <div 
+                <div
                   className="px-6 md:px-16 pt-12 md:pt-16 pb-10 md:pb-12 border-b border-white/5"
                   style={{ background: `radial-gradient(circle at top left, rgba(${cs.accentRgb},0.08) 0%, transparent 60%)` }}
                 >
@@ -1519,7 +1519,7 @@ const CaseStudiesPage = () => {
                   {/* Right: Intelligence Grid */}
                   <div className="lg:col-span-3 px-6 md:px-16 py-12 md:py-20 bg-white/[0.01] relative">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(200,241,53,0.02)_0%,transparent_60%)]" />
-                    
+
                     <div className="relative z-10 space-y-12 md:space-y-16">
                       <div className="flex items-center justify-between">
                         <div className="space-y-1">
@@ -1548,7 +1548,7 @@ const CaseStudiesPage = () => {
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                               />
                               <div className="absolute inset-0 bg-ink/50 group-hover:bg-ink/20 transition-colors duration-700" />
-                              
+
                               <div className="absolute inset-0 flex items-center justify-center">
                                 <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-brand text-ink flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-[0_0_60px_rgba(200,241,53,0.5)]">
                                   <Play size={16} md:size={22} fill="currentColor" />
@@ -1559,7 +1559,7 @@ const CaseStudiesPage = () => {
                                 {v.views}
                               </div>
                             </div>
-                            
+
                             <div className="space-y-1 px-2 md:px-4">
                               <p className="font-mono text-[8px] md:text-[10px] uppercase tracking-[0.3em] opacity-30">{v.type}</p>
                               <h4 className="font-display text-sm md:text-xl uppercase tracking-tight group-hover:text-brand transition-colors duration-300">{v.label}</h4>
@@ -1616,7 +1616,7 @@ const CaseStudiesSection = () => {
     <section className="py-40 px-6 lg:px-12 bg-ink text-paper border-t border-white/5 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(200,241,53,0.03)_0%,transparent_50%)] pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-12 mb-24">
@@ -1659,7 +1659,7 @@ const CaseStudiesSection = () => {
             <div className="px-10 md:px-16 py-16 space-y-12">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                   <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brand/10 border border-brand/20 text-brand">
+                  <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brand/10 border border-brand/20 text-brand">
                     {cs.category}
                   </span>
                   <span className="font-mono text-[10px] uppercase tracking-widest opacity-30">{cs.duration} Phase</span>
@@ -1899,45 +1899,45 @@ export default function App() {
                   </div>
                 </section>
                 <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
-                    <div className="max-w-6xl mx-auto">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Simple 4-step process</p>
-                      <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
+                  <div className="max-w-6xl mx-auto">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Simple 4-step process</p>
+                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
 
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-                        <div className="space-y-4">
-                          <p className="font-display text-4xl text-brand">01</p>
-                          <h4 className="font-display text-xl uppercase">Send us your video</h4>
-                          <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Share any long video, a podcast, YouTube video, stream, interview. Doesn't need to be perfect. Just send it.
-                          </p>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">01</p>
+                        <h4 className="font-display text-xl uppercase">Send us your video</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Share any long video, a podcast, YouTube video, stream, interview. Doesn't need to be perfect. Just send it.
+                        </p>
+                      </div>
 
-                        <div className="space-y-4">
-                          <p className="font-display text-4xl text-brand">02</p>
-                          <h4 className="font-display text-xl uppercase">We study your brand</h4>
-                          <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Our team learns your tone, your style, your audience. Then we brief our editors on exactly how your clips should look and feel.
-                          </p>
-                        </div>
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">02</p>
+                        <h4 className="font-display text-xl uppercase">We study your brand</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Our team learns your tone, your style, your audience. Then we brief our editors on exactly how your clips should look and feel.
+                        </p>
+                      </div>
 
-                        <div className="space-y-4">
-                          <p className="font-display text-4xl text-brand">03</p>
-                          <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
-                          <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts, on their own accounts. Hundreds of clips. Zero effort from you.
-                          </p>
-                        </div>
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">03</p>
+                        <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts, on their own accounts. Hundreds of clips. Zero effort from you.
+                        </p>
+                      </div>
 
-                        <div className="space-y-4">
-                          <p className="font-display text-4xl text-brand">04</p>
-                          <h4 className="font-display text-xl uppercase">Watch the views grow</h4>
-                          <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                            Log into your dashboard and see every view, like and follower in real-time. Pay only for what actually gets watched.
-                          </p>
-                        </div>
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">04</p>
+                        <h4 className="font-display text-xl uppercase">Watch the views grow</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Log into your dashboard and see every view, like and follower in real-time. Pay only for what actually gets watched.
+                        </p>
                       </div>
                     </div>
-                  </section>
+                  </div>
+                </section>
               </motion.div>
             )}
           </AnimatePresence>
