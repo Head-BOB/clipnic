@@ -1333,13 +1333,13 @@ const CaseStudiesPage = () => {
   return (
     <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
       {/* Nav */}
-      <nav className="p-8 lg:p-12 flex justify-between items-center border-b border-white/5">
+      <nav className="p-8 lg:p-12 flex justify-between items-center border-b border-white/5 bg-ink/50 backdrop-blur-xl sticky top-0 z-50">
         <div
-          className="flex items-center gap-1.5 cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer group"
           onClick={() => (window.location.href = '/')}
         >
-          <img src="logo.webp" className="w-8 h-8 rounded-lg object-cover" alt="Clipnic Logo" />
-          <span className="font-display text-xl tracking-widest uppercase">CLIPNIC.COM</span>
+          <img src="logo.webp" className="w-8 h-8 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all" alt="Clipnic Logo" />
+          <span className="font-display text-xl tracking-widest uppercase">CLIPNIC</span>
         </div>
         <button
           onClick={() => (window.location.href = '/')}
@@ -1351,179 +1351,202 @@ const CaseStudiesPage = () => {
       </nav>
 
       {/* Hero */}
-      <div className="max-w-6xl mx-auto px-6 pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-6 pt-32 pb-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-6"
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-8"
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Proof of Work</p>
-          <h1 className="font-display text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter uppercase">
-            Case <br />
-            <span className="text-brand">Studies</span>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-px bg-brand" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-brand">Case Archive 001</p>
+          </div>
+          <h1 className="font-display text-[14vw] md:text-[10vw] leading-[0.8] tracking-tighter uppercase">
+            Proof of <br />
+            <span className="text-brand">Performance</span>
           </h1>
-          <p className="font-sans text-xl opacity-60 font-light max-w-xl leading-relaxed">
-            Real campaigns. Real numbers. Zero paid ads. Here's what happens when the
-            Clipnic engine runs at full velocity.
+          <p className="font-sans text-xl md:text-2xl opacity-60 font-light max-w-2xl leading-relaxed">
+            Real distribution. Real impact. Zero paid spend. This is the Clipnic standard for organic short-form growth.
           </p>
         </motion.div>
       </div>
 
       {/* Case Study Cards */}
-      <div className="max-w-6xl mx-auto px-6 pb-32 space-y-8">
+      <div className="max-w-7xl mx-auto px-6 pb-48 space-y-24">
         {caseStudiesData.map((cs) => {
           const MetricIcon0 = cs.metrics[0].icon;
           const MetricIcon1 = cs.metrics[1].icon;
           const MetricIcon2 = cs.metrics[2].icon;
           const MetricIcon3 = cs.metrics[3].icon;
           const metricIcons = [MetricIcon0, MetricIcon1, MetricIcon2, MetricIcon3];
+          
           return (
             <motion.div
               key={cs.id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white/[0.03] border border-white/10 rounded-[3rem] overflow-hidden"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative group"
             >
-              {/* Top banner */}
-              <div
-                className="relative px-10 pt-12 pb-10 border-b border-white/10"
-                style={{ background: `radial-gradient(ellipse at top left, rgba(${cs.accentRgb},0.12) 0%, transparent 70%)` }}
-              >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <span
-                        className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border"
-                        style={{ color: cs.color, borderColor: `rgba(${cs.accentRgb},0.3)`, background: `rgba(${cs.accentRgb},0.08)` }}
-                      >
-                        {cs.category}
-                      </span>
-                      <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">
-                        {cs.duration} campaign
-                      </span>
+              {/* Card Container */}
+              <div className="relative bg-white/[0.02] border border-white/10 rounded-[3rem] overflow-hidden backdrop-blur-sm">
+                
+                {/* Header Section */}
+                <div 
+                  className="px-8 md:px-16 pt-16 pb-12 border-b border-white/5"
+                  style={{ background: `radial-gradient(circle at top left, rgba(${cs.accentRgb},0.08) 0%, transparent 60%)` }}
+                >
+                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
+                    <div className="space-y-6 flex-1">
+                      <div className="flex items-center gap-3">
+                        <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
+                        <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">{cs.category}</span>
+                      </div>
+                      <h2 className="font-display text-7xl md:text-9xl tracking-tighter uppercase leading-none m-0">
+                        {cs.client}
+                      </h2>
+                      <p className="font-sans text-lg opacity-40 font-light max-w-lg italic">
+                        "{cs.tagline}"
+                      </p>
                     </div>
-                    <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
-                      {cs.client}
-                    </h2>
-                  </div>
 
-                  {/* Big stat */}
-                  <div className="text-right">
-                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-2">{cs.resultLabel}</p>
-                    <p
-                      className="font-display text-6xl md:text-8xl tracking-tighter"
-                      style={{ color: cs.color }}
-                    >
-                      {cs.result}
-                    </p>
-                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mt-2">
-                      100% Organic · No Paid Ads
-                    </p>
+                    {/* Highlight Metric */}
+                    <div className="lg:text-right space-y-4">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-30">{cs.resultLabel}</p>
+                      <div className="flex lg:justify-end items-baseline gap-4">
+                        <p className="font-display text-8xl md:text-[10rem] leading-none tracking-tighter text-brand">
+                          {cs.result}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Metrics grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/10">
-                {cs.metrics.map((m, i) => {
-                  const Icon = metricIcons[i];
-                  return (
-                    <div
-                      key={i}
-                      className={`px-8 py-8 space-y-3 ${i < cs.metrics.length - 1 ? 'border-r border-white/10' : ''}`}
-                    >
-                      <Icon size={16} className="opacity-30" />
-                      <p className="font-display text-3xl md:text-4xl tracking-tight" style={{ color: cs.color }}>
-                        {m.value}
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/5 divide-x divide-white/5 bg-white/[0.01]">
+                  {cs.metrics.map((m, i) => {
+                    const Icon = metricIcons[i];
+                    return (
+                      <div key={i} className="px-8 md:px-12 py-10 space-y-4">
+                        <div className="flex items-center justify-between opacity-30">
+                          <Icon size={16} />
+                          <TrendingUp size={12} className="text-brand" />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-display text-4xl md:text-5xl tracking-tight leading-none">
+                            {m.value}
+                          </p>
+                          <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">{m.label}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Body Content */}
+                <div className="grid lg:grid-cols-5 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/5">
+                  {/* Left: Story */}
+                  <div className="lg:col-span-2 px-8 md:px-16 py-16 space-y-12">
+                    <div className="space-y-6">
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">The Strategy</p>
+                      <p className="font-sans text-xl font-light leading-relaxed opacity-70">
+                        {cs.description}
                       </p>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">{m.label}</p>
                     </div>
-                  );
-                })}
-              </div>
 
-              {/* Body */}
-              <div className="grid md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-                {/* Featured Videos */}
-                <div className="px-10 py-10 space-y-6">
-                  <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Featured Clips</p>
-                  <div className="grid grid-cols-2 gap-4">
-                    {cs.featuredVideos.map((v) => (
-                      <a
-                        key={v.videoId}
-                        href={v.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 transition-all"
-                      >
-                        {/* Thumbnail */}
-                        <div className="relative aspect-[9/16] bg-white/5 overflow-hidden">
-                          <img
-                            src={`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`}
-                            alt={v.label}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          {/* Overlay */}
-                          <div className="absolute inset-0 bg-ink/40 group-hover:bg-ink/20 transition-colors" />
-                          {/* Play icon */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                              <Play size={14} className="text-white ml-0.5" fill="white" />
+                    <div className="space-y-8">
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Key Outcomes</p>
+                      <div className="space-y-6">
+                        <div className="flex items-start gap-4">
+                          <div className="w-1.5 h-1.5 rounded-full bg-brand mt-2" />
+                          <p className="font-sans text-base opacity-50 font-light">Exponential growth through authorized clipper distribution.</p>
+                        </div>
+                        <div className="flex items-start gap-4">
+                          <div className="w-1.5 h-1.5 rounded-full bg-brand mt-2" />
+                          <p className="font-sans text-base opacity-50 font-light">100% organic traction across Shorts, Reels, and TikTok.</p>
+                        </div>
+                        <div className="flex items-start gap-4">
+                          <div className="w-1.5 h-1.5 rounded-full bg-brand mt-2" />
+                          <p className="font-sans text-base opacity-50 font-light">Full data transparency through the Clipnic dashboard.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right: Featured Clips */}
+                  <div className="lg:col-span-3 px-8 md:px-16 py-16 bg-white/[0.01]">
+                    <div className="flex items-center justify-between mb-12">
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Top Performing Clips</p>
+                      <span className="font-mono text-[10px] uppercase tracking-widest text-brand">Live Feed</span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-6 md:gap-10">
+                      {cs.featuredVideos.map((v) => (
+                        <a
+                          key={v.videoId}
+                          href={v.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group relative flex flex-col gap-4"
+                        >
+                          {/* Thumbnail */}
+                          <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 group-hover:border-brand/40 transition-all duration-500 shadow-2xl">
+                            <img
+                              src={`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`}
+                              alt={v.label}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-ink/40 group-hover:bg-ink/10 transition-colors duration-500" />
+                            
+                            {/* Play Button */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_40px_rgba(200,241,53,0.4)]">
+                                <Play size={18} fill="currentColor" />
+                              </div>
+                            </div>
+
+                            {/* Views Badge */}
+                            <div className="absolute top-4 right-4 font-display text-sm px-4 py-1.5 rounded-full bg-ink/80 backdrop-blur-md border border-white/10 text-white">
+                              {v.views}
                             </div>
                           </div>
-                          {/* Views badge */}
-                          <div
-                            className="absolute top-3 right-3 font-display text-sm px-2.5 py-1 rounded-full"
-                            style={{ background: `rgba(${cs.accentRgb},0.9)`, color: '#111' }}
-                          >
-                            {v.views}
+                          
+                          <div className="px-2">
+                            <p className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 mb-1">{v.type}</p>
+                            <h4 className="font-display text-lg uppercase tracking-tight group-hover:text-brand transition-colors">{v.label}</h4>
                           </div>
-                        </div>
-                        {/* Label */}
-                        <div className="px-4 py-3 space-y-0.5">
-                          <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">{v.label}</p>
-                          <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest opacity-60 group-hover:opacity-100 group-hover:text-brand transition-all">
-                            Watch on YouTube
-                            <ExternalLink size={10} />
-                          </div>
-                        </div>
-                      </a>
-                    ))}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Highlight */}
-                <div
-                  className="px-10 py-10 flex flex-col justify-between gap-8"
-                  style={{ background: `radial-gradient(ellipse at bottom right, rgba(${cs.accentRgb},0.07) 0%, transparent 70%)` }}
-                >
-                  <div className="space-y-4">
-                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Key Insight</p>
-                    <blockquote
-                      className="font-sans text-sm md:text-base opacity-70 leading-relaxed font-light"
-                      style={{ borderLeft: `3px solid ${cs.color}`, paddingLeft: '1.25rem' }}
-                    >
-                      "{cs.highlight}"
-                    </blockquote>
-                  </div>
-                  <div className="flex items-center gap-6 flex-wrap">
+                {/* Footer Metrics */}
+                <div className="px-8 md:px-16 py-10 bg-white/[0.03] border-t border-white/5 flex flex-wrap items-center justify-between gap-12">
+                   <div className="flex items-center gap-16">
                     <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Clippers</p>
-                      <p className="font-display text-3xl" style={{ color: cs.color }}>{cs.clippers}</p>
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Clipper Nodes</p>
+                      <p className="font-display text-3xl text-brand">{cs.clippers}</p>
                     </div>
                     <div className="w-px h-10 bg-white/10" />
                     <div>
                       <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Duration</p>
-                      <p className="font-display text-3xl" style={{ color: cs.color }}>{cs.duration}</p>
+                      <p className="font-display text-3xl">{cs.duration}</p>
                     </div>
                     <div className="w-px h-10 bg-white/10" />
                     <div>
                       <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Ad Spend</p>
-                      <p className="font-display text-3xl" style={{ color: cs.color }}>$0</p>
+                      <p className="font-display text-3xl">$0</p>
                     </div>
-                  </div>
+                   </div>
+                   
+                   <div className="flex items-center gap-4 px-6 py-3 bg-brand/5 border border-brand/20 rounded-full">
+                     <div className="w-2 h-2 rounded-full bg-brand animate-pulse" />
+                     <span className="font-mono text-[10px] uppercase tracking-widest text-brand">Campaign Status: Scaled</span>
+                   </div>
                 </div>
               </div>
             </motion.div>
@@ -1533,23 +1556,26 @@ const CaseStudiesPage = () => {
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          className="text-center pt-16 space-y-8"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="text-center pt-24 space-y-12"
         >
-          <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Ready to be next?</p>
-          <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
-            Launch Your <br />
-            <span className="text-brand">Campaign</span>
-          </h2>
+          <div className="space-y-4">
+            <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">The engine is ready</p>
+            <h2 className="font-display text-7xl md:text-9xl tracking-tighter uppercase leading-none">
+              Launch Your <br />
+              <span className="text-brand">Campaign</span>
+            </h2>
+          </div>
           <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => (window.location.href = '/')}
-            className="inline-flex items-center gap-3 px-12 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-sm rounded-full shadow-[0_20px_60px_rgba(200,241,53,0.25)] hover:shadow-[0_20px_80px_rgba(200,241,53,0.4)] transition-all"
+            className="inline-flex items-center gap-4 px-16 py-6 bg-brand text-ink font-bold uppercase tracking-widest text-base rounded-full shadow-[0_20px_60px_rgba(200,241,53,0.3)] hover:shadow-[0_20px_80px_rgba(200,241,53,0.5)] transition-all"
           >
-            Get Started
-            <ArrowRight size={16} />
+            Get Started Now
+            <ArrowRight size={20} />
           </motion.button>
         </motion.div>
       </div>
@@ -1565,104 +1591,101 @@ const CaseStudiesSection = () => {
   const cs = caseStudiesData[0];
   const metricIcons = [Eye, Play, BarChart2, TrendingUp];
   return (
-    <section className="py-32 px-6 lg:px-12 bg-ink text-paper border-t border-white/5">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-40 px-6 lg:px-12 bg-ink text-paper border-t border-white/5 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(200,241,53,0.03)_0%,transparent_50%)] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
-          <div className="space-y-4">
-            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Proof of Work</p>
-            <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase leading-none">
-              Case <br /> <span className="text-brand">Studies</span>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-12 mb-24">
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-px bg-brand" />
+              <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-brand">Featured Success</p>
+            </div>
+            <h2 className="font-display text-7xl md:text-9xl tracking-tighter uppercase leading-[0.8] m-0">
+              Proof of <br /> <span className="text-brand">Performance</span>
             </h2>
           </div>
           <motion.a
             href="/case-studies"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 rounded-full font-mono text-[10px] uppercase tracking-widest hover:border-brand hover:text-brand transition-all shrink-0"
+            whileHover={{ x: 10 }}
+            className="inline-flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.3em] hover:text-brand transition-all pb-2 border-b border-white/20 group"
           >
-            View All Cases
-            <ArrowRight size={12} />
+            Explore Case Archive
+            <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
           </motion.a>
         </div>
 
-        {/* Card */}
+        {/* Featured Case Card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="relative bg-white/[0.03] border border-white/10 rounded-[2.5rem] overflow-hidden cursor-pointer group"
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative bg-white/[0.02] border border-white/10 rounded-[3.5rem] overflow-hidden cursor-pointer group"
           onClick={() => (window.location.href = '/case-studies')}
         >
           {/* Hover glow */}
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-            style={{ background: `radial-gradient(ellipse at top left, rgba(${cs.accentRgb},0.1) 0%, transparent 60%)` }}
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"
+            style={{ background: `radial-gradient(circle at center, rgba(${cs.accentRgb},0.08) 0%, transparent 70%)` }}
           />
 
-          <div className="relative grid md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+          <div className="relative grid lg:grid-cols-2 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/5">
             {/* Left: Info */}
-            <div className="px-10 py-12 space-y-8">
-              <div className="flex items-center gap-3 flex-wrap">
-                <span
-                  className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border"
-                  style={{ color: cs.color, borderColor: `rgba(${cs.accentRgb},0.3)`, background: `rgba(${cs.accentRgb},0.08)` }}
-                >
-                  {cs.category}
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-widest opacity-30">{cs.tagline}</span>
-              </div>
-
-              <div>
-                <h3 className="font-display text-6xl md:text-7xl tracking-tighter uppercase leading-none mb-3">
+            <div className="px-10 md:px-16 py-16 space-y-12">
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                   <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brand/10 border border-brand/20 text-brand">
+                    {cs.category}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest opacity-30">{cs.duration} Phase</span>
+                </div>
+                <h3 className="font-display text-7xl md:text-8xl tracking-tighter uppercase leading-none">
                   {cs.client}
                 </h3>
+                <p className="font-sans text-xl opacity-60 font-light leading-relaxed max-w-md">
+                  {cs.description}
+                </p>
               </div>
 
-              <p className="font-sans text-lg opacity-60 font-light leading-relaxed max-w-md">
-                {cs.description}
-              </p>
-
-              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest group-hover:text-brand transition-colors">
-                View Full Case Study
-                <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+              <div className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest group-hover:text-brand transition-colors">
+                Read Full Transmission
+                <ArrowRight size={12} className="group-hover:translate-x-2 transition-transform" />
               </div>
             </div>
 
-            {/* Right: Stats */}
+            {/* Right: Big Stat Focus */}
             <div
-              className="px-10 py-12 flex flex-col justify-between gap-10"
-              style={{ background: `radial-gradient(ellipse at bottom right, rgba(${cs.accentRgb},0.06) 0%, transparent 70%)` }}
+              className="px-10 md:px-16 py-16 flex flex-col justify-center items-center text-center space-y-10 bg-white/[0.01]"
             >
-              {/* Big stat */}
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-3">{cs.resultLabel}</p>
-                <p className="font-display text-7xl md:text-8xl tracking-tighter" style={{ color: cs.color }}>
+              <div className="space-y-2">
+                <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-30">{cs.resultLabel}</p>
+                <p className="font-display text-[10rem] md:text-[12rem] leading-none tracking-tighter text-brand group-hover:scale-105 transition-transform duration-1000">
                   {cs.result}
                 </p>
-                <div className="mt-4 flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-400">
-                    100% Organic · Zero Ad Spend
-                  </span>
-                </div>
               </div>
 
-              {/* Metric grid */}
-              <div className="grid grid-cols-2 gap-4">
-                {cs.metrics.map((m, i) => {
+              {/* Mini metric grid */}
+              <div className="grid grid-cols-2 gap-8 w-full max-w-sm">
+                {cs.metrics.slice(0, 2).map((m, i) => {
                   const Icon = metricIcons[i];
                   return (
-                    <div key={i} className="bg-white/5 border border-white/[0.08] rounded-2xl px-5 py-4 space-y-2">
-                      <Icon size={14} className="opacity-30" />
-                      <p className="font-display text-2xl tracking-tighter" style={{ color: cs.color }}>
-                        {m.value}
-                      </p>
-                      <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">{m.label}</p>
+                    <div key={i} className="text-center space-y-2">
+                      <div className="flex items-center justify-center gap-2 opacity-30">
+                        <Icon size={12} />
+                        <span className="font-mono text-[9px] uppercase tracking-widest">{m.label}</span>
+                      </div>
+                      <p className="font-display text-3xl tracking-tight">{m.value}</p>
                     </div>
                   );
                 })}
+              </div>
+
+              <div className="flex items-center gap-3 px-6 py-2 rounded-full border border-white/5 bg-white/5 font-mono text-[9px] uppercase tracking-widest opacity-40">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Verified Organic Distribution
               </div>
             </div>
           </div>
