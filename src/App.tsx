@@ -930,13 +930,20 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
 
 const Footer = () => (
   <footer className="bg-ink text-paper py-8 px-6 lg:px-12 border-t border-white/5">
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
         <div className="font-display text-xl tracking-widest opacity-90 uppercase">CLIPNIC.COM</div>
         <div className="font-mono text-[9px] uppercase tracking-widest opacity-30">
           © 2026 clipnic.com all rights reserved
         </div>
       </div>
+
+      <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 font-mono text-[9px] uppercase tracking-widest opacity-40">
+        <a href="mailto:hello@clipnic.com" className="hover:text-brand transition-colors">Inquiries: hello@clipnic.com</a>
+        <a href="mailto:support@clipnic.com" className="hover:text-brand transition-colors">Support: support@clipnic.com</a>
+        <a href="mailto:collab@clipnic.com" className="hover:text-brand transition-colors">Brands: collab@clipnic.com</a>
+      </div>
+
       <div className="flex gap-6 items-center">
         <a href="https://instagram.com/clipnicteam" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 cursor-pointer transition-opacity">
           <Instagram size={16} />
