@@ -1670,7 +1670,11 @@ const CaseStudiesSection = () => {
 // ─── App ─────────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [activeView, setActiveView] = useState<'clipper' | 'brand'>('clipper');
+  const getInitialView = (): 'clipper' | 'brand' => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('v') === 'brand' ? 'brand' : 'clipper';
+  };
+  const [activeView, setActiveView] = useState<'clipper' | 'brand'>(getInitialView);
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
   const [getStartedOpen, setGetStartedOpen] = useState(false);
