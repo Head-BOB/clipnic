@@ -1867,37 +1867,53 @@ export default function App() {
                     <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Roadmap</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-                      <div className="space-y-4">
-                        <p className="font-display text-4xl text-brand">01</p>
-                        <h4 className="font-display text-xl uppercase">Send us your video</h4>
-                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                          Share any long video, a podcast, YouTube video, stream, interview. Does not need to be perfect. Just send it.
-                        </p>
+                    <div className="relative">
+                      {/* Connecting Arrows (Desktop) */}
+                      <div className="hidden md:flex absolute top-5 left-0 w-full pointer-events-none opacity-20">
+                        <div className="flex-1 flex justify-center items-center translate-x-1/2"><ArrowRight size={16} /></div>
+                        <div className="flex-1 flex justify-center items-center translate-x-1/2"><ArrowRight size={16} /></div>
+                        <div className="flex-1 flex justify-center items-center translate-x-1/2"><ArrowRight size={16} /></div>
+                        <div className="flex-1" /> {/* Spacer for last column */}
                       </div>
 
-                      <div className="space-y-4">
-                        <p className="font-display text-4xl text-brand">02</p>
-                        <h4 className="font-display text-xl uppercase">We study your brand</h4>
-                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                          Our team learns your tone, your style, your audience. Then we brief our editors on exactly how your clips should look and feel.
-                        </p>
-                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16">
+                        <div className="space-y-4 relative">
+                          <p className="font-display text-4xl text-brand">01</p>
+                          <h4 className="font-display text-xl uppercase">Send us your video</h4>
+                          <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                            Share any long video, a podcast, YouTube video, stream, interview. Does not need to be perfect. Just send it.
+                          </p>
+                          {/* Mobile Arrow */}
+                          <div className="md:hidden flex justify-center pt-8 opacity-20"><ArrowRight size={16} className="rotate-90" /></div>
+                        </div>
 
-                      <div className="space-y-4">
-                        <p className="font-display text-4xl text-brand">03</p>
-                        <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
-                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                          Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts, on their own accounts. Hundreds of clips. Zero effort from you.
-                        </p>
-                      </div>
+                        <div className="space-y-4 relative">
+                          <p className="font-display text-4xl text-brand">02</p>
+                          <h4 className="font-display text-xl uppercase">We study your brand</h4>
+                          <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                            Our team learns your tone, your style, your audience. Then we brief our editors on exactly how your clips should look and feel.
+                          </p>
+                          {/* Mobile Arrow */}
+                          <div className="md:hidden flex justify-center pt-8 opacity-20"><ArrowRight size={16} className="rotate-90" /></div>
+                        </div>
 
-                      <div className="space-y-4">
-                        <p className="font-display text-4xl text-brand">04</p>
-                        <h4 className="font-display text-xl uppercase">Watch the views grow</h4>
-                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                          Log into your dashboard and see every view, like and follower in real-time. Pay only for what actually gets watched.
-                        </p>
+                        <div className="space-y-4 relative">
+                          <p className="font-display text-4xl text-brand">03</p>
+                          <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
+                          <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                            Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts, on their own accounts. Hundreds of clips. Zero effort from you.
+                          </p>
+                          {/* Mobile Arrow */}
+                          <div className="md:hidden flex justify-center pt-8 opacity-20"><ArrowRight size={16} className="rotate-90" /></div>
+                        </div>
+
+                        <div className="space-y-4">
+                          <p className="font-display text-4xl text-brand">04</p>
+                          <h4 className="font-display text-xl uppercase">Watch the views grow</h4>
+                          <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                            Log into your dashboard and see every view, like and follower in real-time. Pay only for what actually gets watched.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
