@@ -1330,10 +1330,20 @@ const caseStudiesData = [
 // ─── CaseStudiesPage ─────────────────────────────────────────────────────────
 
 const CaseStudiesPage = () => {
+  const cs = caseStudiesData[0];
+  const [activeClip, setActiveClip] = useState<number | null>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveClip(Math.floor(Math.random() * cs.featuredVideos.length));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [cs.featuredVideos.length]);
+
   return (
-    <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
+    <div className="min-h-screen bg-[#0A0A0A] text-[#F5F5F5] selection:bg-brand selection:text-ink font-sans">
       {/* Nav */}
-      <nav className="p-8 lg:p-12 flex justify-between items-center border-b border-white/5">
+      <nav className="p-8 lg:p-12 flex justify-between items-center border-b border-white/10">
         <div
           className="flex items-center gap-1.5 cursor-pointer"
           onClick={() => (window.location.href = '/')}
@@ -1351,208 +1361,262 @@ const CaseStudiesPage = () => {
       </nav>
 
       {/* Hero */}
-      <div className="max-w-6xl mx-auto px-6 pt-24 pb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-6"
-        >
-          <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Proof of Work</p>
-          <h1 className="font-display text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter uppercase">
-            Case <br />
-            <span className="text-brand">Studies</span>
-          </h1>
-          <p className="font-sans text-xl opacity-60 font-light max-w-xl leading-relaxed">
-            Real campaigns. Real numbers. Zero paid ads. Here's what happens when the
-            Clipnic engine runs at full velocity.
-          </p>
-        </motion.div>
-      </div>
+      <section className="w-full pt-24 pb-32 flex flex-col items-center justify-center relative border-b border-white/10 overflow-hidden">
+        <div className="z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <span className="px-3 py-1 bg-brand text-black text-[10px] font-bold uppercase tracking-tighter">Case Study: 01</span>
+            <span className="h-[1px] w-12 bg-white/20"></span>
+            <span className="text-[10px] uppercase tracking-widest opacity-40">{cs.category} & Strategy</span>
+          </motion.div>
 
-      {/* Case Study Cards */}
-      <div className="max-w-6xl mx-auto px-6 pb-32 space-y-8">
-        {caseStudiesData.map((cs) => {
-          const MetricIcon0 = cs.metrics[0].icon;
-          const MetricIcon1 = cs.metrics[1].icon;
-          const MetricIcon2 = cs.metrics[2].icon;
-          const MetricIcon3 = cs.metrics[3].icon;
-          const metricIcons = [MetricIcon0, MetricIcon1, MetricIcon2, MetricIcon3];
-          return (
+          <motion.h1
+            className="font-black text-[14vw] sm:text-[140px] leading-[0.85] tracking-tighter m-0 p-0 uppercase"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            {cs.client}
+          </motion.h1>
+
+          <motion.h1
+            className="font-black text-[14vw] sm:text-[140px] leading-[0.85] tracking-tighter m-0 p-0 uppercase text-transparent"
+            style={{ WebkitTextStroke: "1px rgba(255, 255, 255, 0.3)" }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            TAKEOVER
+          </motion.h1>
+
+          <motion.p
+            className="mt-12 max-w-2xl text-sm leading-relaxed opacity-60 font-light"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            How we engineered a viral blitzkreig for {cs.client}, turning high-velocity short-form
+            content into an unstoppable engagement machine through automated production and strategic distribution.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Metrics Grid */}
+      <section className="w-full bg-[#0A0A0A] border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/10">
+          {[
+            { label: "Total Views Generated", value: cs.result, icon: Eye },
+            { label: "Videos Produced", value: cs.metrics[1].value, icon: Play }
+          ].map((metric, i) => (
             <motion.div
-              key={cs.id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white/[0.03] border border-white/10 rounded-[3rem] overflow-hidden"
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="flex flex-col p-10 lg:p-14"
             >
-              {/* Top banner */}
-              <div
-                className="relative px-10 pt-12 pb-10 border-b border-white/10"
-                style={{ background: `radial-gradient(ellipse at top left, rgba(${cs.accentRgb},0.12) 0%, transparent 70%)` }}
-              >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <span
-                        className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border"
-                        style={{ color: cs.color, borderColor: `rgba(${cs.accentRgb},0.3)`, background: `rgba(${cs.accentRgb},0.08)` }}
-                      >
-                        {cs.category}
-                      </span>
-                      <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">
-                        {cs.duration} campaign
-                      </span>
-                    </div>
-                    <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
-                      {cs.client}
-                    </h2>
-                  </div>
-
-                  {/* Big stat */}
-                  <div className="text-right">
-                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-2">{cs.resultLabel}</p>
-                    <p
-                      className="font-display text-6xl md:text-8xl tracking-tighter"
-                      style={{ color: cs.color }}
-                    >
-                      {cs.result}
-                    </p>
-                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mt-2">
-                      100% Organic · No Paid Ads
-                    </p>
-                  </div>
-                </div>
+              <div className="flex items-center gap-3 mb-6">
+                <metric.icon size={16} className="text-[#F5F5F5] opacity-40" />
               </div>
-
-              {/* Metrics grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/10">
-                {cs.metrics.map((m, i) => {
-                  const Icon = metricIcons[i];
-                  return (
-                    <div
-                      key={i}
-                      className={`px-8 py-8 space-y-3 ${i < cs.metrics.length - 1 ? 'border-r border-white/10' : ''}`}
-                    >
-                      <Icon size={16} className="opacity-30" />
-                      <p className="font-display text-3xl md:text-4xl tracking-tight" style={{ color: cs.color }}>
-                        {m.value}
-                      </p>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">{m.label}</p>
-                    </div>
-                  );
-                })}
+              <div className="font-black tracking-tighter text-5xl lg:text-7xl mb-4 text-[#F5F5F5]">
+                {metric.value}
               </div>
-
-              {/* Body */}
-              <div className="grid md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-                {/* Featured Videos */}
-                <div className="px-10 py-10 space-y-6">
-                  <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Featured Clips</p>
-                  <div className="grid grid-cols-2 gap-4">
-                    {cs.featuredVideos.map((v) => (
-                      <a
-                        key={v.videoId}
-                        href={v.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 transition-all"
-                      >
-                        {/* Thumbnail */}
-                        <div className="relative aspect-[9/16] bg-white/5 overflow-hidden">
-                          <img
-                            src={`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`}
-                            alt={v.label}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          {/* Overlay */}
-                          <div className="absolute inset-0 bg-ink/40 group-hover:bg-ink/20 transition-colors" />
-                          {/* Play icon */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                              <Play size={14} className="text-white ml-0.5" fill="white" />
-                            </div>
-                          </div>
-                          {/* Views badge */}
-                          <div
-                            className="absolute top-3 right-3 font-display text-sm px-2.5 py-1 rounded-full"
-                            style={{ background: `rgba(${cs.accentRgb},0.9)`, color: '#111' }}
-                          >
-                            {v.views}
-                          </div>
-                        </div>
-                        {/* Label */}
-                        <div className="px-4 py-3 space-y-0.5">
-                          <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">{v.label}</p>
-                          <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest opacity-60 group-hover:opacity-100 group-hover:text-brand transition-all">
-                            Watch on YouTube
-                            <ExternalLink size={10} />
-                          </div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Highlight */}
-                <div
-                  className="px-10 py-10 flex flex-col justify-between gap-8"
-                  style={{ background: `radial-gradient(ellipse at bottom right, rgba(${cs.accentRgb},0.07) 0%, transparent 70%)` }}
-                >
-                  <div className="space-y-4">
-                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Key Insight</p>
-                    <blockquote
-                      className="font-sans text-sm md:text-base opacity-70 leading-relaxed font-light"
-                      style={{ borderLeft: `3px solid ${cs.color}`, paddingLeft: '1.25rem' }}
-                    >
-                      "{cs.highlight}"
-                    </blockquote>
-                  </div>
-                  <div className="flex items-center gap-6 flex-wrap">
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Clippers</p>
-                      <p className="font-display text-3xl" style={{ color: cs.color }}>{cs.clippers}</p>
-                    </div>
-                    <div className="w-px h-10 bg-white/10" />
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Duration</p>
-                      <p className="font-display text-3xl" style={{ color: cs.color }}>{cs.duration}</p>
-                    </div>
-                    <div className="w-px h-10 bg-white/10" />
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Ad Spend</p>
-                      <p className="font-display text-3xl" style={{ color: cs.color }}>$0</p>
-                    </div>
-                  </div>
-                </div>
+              <div className="text-[10px] uppercase font-bold tracking-widest opacity-40">
+                {metric.label}
               </div>
             </motion.div>
-          );
-        })}
+          ))}
+        </div>
+      </section>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          className="text-center pt-16 space-y-8"
+      {/* Story Section */}
+      <section className="w-full py-24 px-6 md:px-12 border-b border-white/10 relative">
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="p-8 border border-white/10 bg-[#111]"
+            >
+              <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-8">
+                <span className="w-2 h-2 bg-brand"></span>
+                <h3 className="text-[10px] uppercase tracking-widest opacity-60 font-bold">The Objective</h3>
+              </div>
+              <h4 className="text-4xl md:text-5xl font-black tracking-tighter mb-6 uppercase leading-none">Saturate the <br />Feed</h4>
+              <p className="font-sans text-sm leading-relaxed opacity-60 font-light">
+                {cs.client} needed to push his new release across all short-form platforms simultaneously. Traditional ad spend was yielding diminishing returns. The goal was authentic, high-velocity distribution that felt organic but performed predictably at an algorithmic scale.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="p-8 border border-white/10 bg-[#111]"
+            >
+              <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-8">
+                <span className="w-2 h-2 bg-brand"></span>
+                <h3 className="text-[10px] uppercase tracking-widest opacity-60 font-bold">The Capital Engine</h3>
+              </div>
+              <h4 className="text-4xl md:text-5xl font-black tracking-tighter mb-6 uppercase leading-none">Weaponized <br />Clipping</h4>
+              <p className="font-sans text-sm leading-relaxed opacity-60 font-light">
+                We unleashed our army of verified clippers. By providing raw assets and performance incentives, we decentralized the content creation process. The result? Thousands of unique edits, hitting the algorithm from every angle, bypassing ad fatigue completely.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Showcase */}
+      <section className="w-full border-b border-white/10 py-24 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between border-b border-white/10 pb-12 mb-12 gap-8">
+            <div>
+              <div className="text-[10px] uppercase tracking-widest opacity-40 mb-4 font-bold">The Output</div>
+              <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85] m-0 p-0">
+                Viral<br /><span className="text-transparent" style={{ WebkitTextStroke: "1px rgba(255, 255, 255, 0.3)" }}>Velocity</span>
+              </h2>
+            </div>
+            <div className="flex items-center gap-3 px-4 py-2 border border-white/10 bg-white/[0.02]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full bg-brand opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 bg-brand"></span>
+              </span>
+              <span className="text-[10px] font-mono opacity-60 uppercase tracking-widest">Live Performance</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {cs.featuredVideos.map((clip, i) => {
+              const isPlaying = activeClip === i;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="group relative aspect-[9/16] bg-[#111] border border-white/5 cursor-pointer overflow-hidden p-6 flex flex-col justify-between"
+                  onClick={() => window.open(clip.url, '_blank')}
+                >
+                  <img 
+                    src={`https://i.ytimg.com/vi/${clip.videoId}/hqdefault.jpg`} 
+                    alt={clip.label}
+                    className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity"
+                  />
+                  
+                  <div className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ${isPlaying ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
+                    <div className="w-16 h-16 border border-white/20 rounded-full flex items-center justify-center backdrop-blur-md bg-white/5">
+                      <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 flex justify-between items-start">
+                    <div className="text-[10px] font-mono opacity-50 uppercase">{clip.label}</div>
+                    {isPlaying && <div className="w-2 h-2 bg-brand animate-pulse"></div>}
+                  </div>
+
+                  <div className="relative z-10">
+                    <div className="text-[10px] uppercase font-bold opacity-40 mb-1">Impact</div>
+                    <div className={`text-4xl font-black tracking-tighter ${isPlaying ? 'text-brand' : 'text-white'} transition-colors`}>{clip.views}</div>
+                  </div>
+                  
+                  <div className="absolute top-6 right-6 w-32 h-32 border-r border-t border-brand/30 opacity-40 mix-blend-screen pointer-events-none transition-transform group-hover:scale-110"></div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Pipeline Section */}
+      <section className="w-full bg-[#0A0A0A] border-b border-white/10 py-24 px-6 md:px-12">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-[10px] uppercase tracking-widest opacity-40 mb-12 font-bold text-center">The Pipeline</div>
+          
+          <div className="space-y-4">
+            {[
+              { name: "Project Zenith", type: "Fashion", expected: "Q3 Launch" },
+              { name: "Vortex Media", type: "SaaS", expected: "Q4 Launch" }
+            ].map((study, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="p-6 border border-white/10 bg-white/[0.02] flex flex-col sm:flex-row justify-between items-start sm:items-center opacity-40 hover:opacity-100 transition-opacity cursor-not-allowed group"
+              >
+                <div>
+                  <div className="text-lg font-black uppercase tracking-widest">{study.name}</div>
+                  <div className="text-[10px] uppercase mt-1 opacity-60 font-mono tracking-wide">{study.expected} — {study.type}</div>
+                </div>
+                <div className="text-xs font-mono mt-4 sm:mt-0 tracking-widest group-hover:text-brand transition-colors">[LOCKED]</div>
+              </motion.div>
+            ))}
+            
+            <div className="flex flex-col items-center justify-center border border-dashed border-white/10 p-12 mt-4 hover:border-white/30 transition-colors cursor-pointer group">
+               <div className="text-[10px] uppercase font-bold text-center opacity-40 tracking-widest group-hover:opacity-100 transition-opacity">
+                 Space reserved for your brand's next success story
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="w-full bg-[#0A0A0A] py-32 flex flex-col items-center justify-center text-center px-6 relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+
+        <motion.div 
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-[10px] font-mono tracking-widest uppercase opacity-60 mb-8 border border-white/10 px-4 py-2 bg-[#111]"
         >
-          <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Ready to be next?</p>
-          <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
-            Launch Your <br />
-            <span className="text-brand">Campaign</span>
-          </h2>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => (window.location.href = '/')}
-            className="inline-flex items-center gap-3 px-12 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-sm rounded-full shadow-[0_20px_60px_rgba(200,241,53,0.25)] hover:shadow-[0_20px_80px_rgba(200,241,53,0.4)] transition-all"
-          >
-            Get Started
-            <ArrowRight size={16} />
-          </motion.button>
+          // Init Sequence
         </motion.div>
-      </div>
+
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-black text-[10vw] sm:text-[100px] leading-[0.85] tracking-tighter uppercase mb-12 relative z-10 m-0 p-0"
+        >
+          READY TO<br />
+          <span className="text-brand">SCALE</span>
+        </motion.h2>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center gap-6 relative z-10 mt-8"
+        >
+          <button 
+            onClick={() => window.location.href = '/?v=clipper'}
+            className="px-10 py-4 bg-white text-black text-[10px] font-bold tracking-widest uppercase hover:bg-gray-200 transition-colors w-full sm:w-auto"
+          >
+            Start Earning
+          </button>
+          <button 
+            onClick={() => window.location.href = '/?v=brand'}
+            className="px-10 py-4 border border-white/20 text-[#F5F5F5] text-[10px] font-bold tracking-widest uppercase hover:bg-white/5 transition-colors w-full sm:w-auto"
+          >
+            Launch Campaign
+          </button>
+        </motion.div>
+      </section>
 
       <Footer />
     </div>
