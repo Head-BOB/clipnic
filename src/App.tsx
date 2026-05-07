@@ -1362,16 +1362,7 @@ const CaseStudiesPage = () => {
       {/* Hero */}
       <section className="w-full pt-24 pb-32 flex flex-col items-center justify-center relative border-b border-white/10 overflow-hidden">
         <div className="z-10 flex flex-col items-center text-center px-6 max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-4 mb-8"
-          >
-            <span className="px-3 py-1 bg-brand text-black text-[10px] font-bold uppercase tracking-tighter">Protocol Test: 01</span>
-            <span className="h-[1px] w-12 bg-white/20"></span>
-            <span className="text-[10px] uppercase tracking-widest opacity-40">{cs.category} Phase</span>
-          </motion.div>
+
 
           <motion.h1
             className="font-black text-[14vw] sm:text-[140px] leading-[0.85] tracking-tighter m-0 p-0 uppercase"
@@ -1398,8 +1389,7 @@ const CaseStudiesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            The original proof-of-concept for the Clipnic engine. We used {cs.client} as a test subject to engineer a viral blitzkreig, verifying how high-velocity short-form 
-            content can dominate the feed through automated production and strategic distribution.
+            The first major campaign powered by the Clipnic engine. We engineered a viral blitzkreig for {cs.client}, turning high-velocity content into an unstoppable engagement machine through our decentralized distribution network.
           </motion.p>
         </div>
       </section>
@@ -1815,7 +1805,7 @@ export default function App() {
                   index={1}
                   icon={TrendingUp}
                   title="PAY ONLY FOR PERFORMANCE"
-                  desc="Define your performance benchmarks. Our protocol automatically calculates and distributes yield based on real engagement. Secure performance-based UGC at scale."
+                  desc="Define your performance benchmarks. Our system automatically calculates and distributes yield based on real engagement. Secure performance-based UGC at scale."
                   dashPreview={<BrandMetricsDash />}
                 />
                 <ProcessStep
@@ -1833,7 +1823,7 @@ export default function App() {
 
                 <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
                   <div className="max-w-6xl mx-auto">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Protocol Standard</p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Command Center</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">Brand Safety</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
@@ -1912,7 +1902,7 @@ export default function App() {
                 </section>
                 <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
                     <div className="max-w-6xl mx-auto">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Flow Protocol</p>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Distribution Flow</p>
                       <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How to distribute<br />your content</h2>
 
                       <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
