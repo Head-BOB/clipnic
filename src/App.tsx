@@ -1370,8 +1370,8 @@ const CaseStudiesPage = () => {
                   <div className="space-y-4">
                     <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Key Insight</p>
                     <blockquote
-                      className="font-display text-2xl md:text-3xl tracking-tighter leading-tight"
-                      style={{ borderLeft: `3px solid ${cs.color}`, paddingLeft: '1.5rem' }}
+                      className="font-sans text-sm md:text-base opacity-70 leading-relaxed font-light"
+                      style={{ borderLeft: `3px solid ${cs.color}`, paddingLeft: '1.25rem' }}
                     >
                       "{cs.highlight}"
                     </blockquote>
