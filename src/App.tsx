@@ -1861,7 +1861,49 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* 3. WATCH YOUR BRAND GROW (ANALYTICS PREVIEW) */}
+                {/* 3. HOW IT WORKS (ROADMAP + VISUALS) */}
+                <section id="how-it-works" className="bg-white text-ink border-t border-ink/5 pt-32 pb-60">
+                  <div className="max-w-6xl mx-auto px-6 lg:px-0">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Roadmap</p>
+                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">01</p>
+                        <h4 className="font-display text-xl uppercase">Send us your video</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Share any long video, a podcast, YouTube video, stream, interview. Does not need to be perfect. Just send it.
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">02</p>
+                        <h4 className="font-display text-xl uppercase">We study your brand</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Our team learns your tone, your style, your audience. Then we brief our editors on exactly how your clips should look and feel.
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">03</p>
+                        <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts, on their own accounts. Hundreds of clips. Zero effort from you.
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">04</p>
+                        <h4 className="font-display text-xl uppercase">Watch the views grow</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Log into your dashboard and see every view, like and follower in real-time. Pay only for what actually gets watched.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* 4. WATCH YOUR BRAND GROW (ANALYTICS PREVIEW) */}
                 <section className="py-32 px-6 lg:px-12 bg-ink text-paper">
                   <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
                     <div>
@@ -1904,48 +1946,6 @@ export default function App() {
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                {/* 4. HOW IT WORKS (ROADMAP + VISUALS) */}
-                <section id="how-it-works" className="bg-white text-ink border-t border-ink/5 pt-32 pb-60">
-                  <div className="max-w-6xl mx-auto px-6 lg:px-0">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Roadmap</p>
-                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-                      <div className="space-y-4">
-                        <p className="font-display text-4xl text-brand">01</p>
-                        <h4 className="font-display text-xl uppercase">Send us your video</h4>
-                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                          Share any long video, a podcast, YouTube video, stream, interview. Does not need to be perfect. Just send it.
-                        </p>
-                      </div>
-
-                      <div className="space-y-4">
-                        <p className="font-display text-4xl text-brand">02</p>
-                        <h4 className="font-display text-xl uppercase">We study your brand</h4>
-                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                          Our team learns your tone, your style, your audience. Then we brief our editors on exactly how your clips should look and feel.
-                        </p>
-                      </div>
-
-                      <div className="space-y-4">
-                        <p className="font-display text-4xl text-brand">03</p>
-                        <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
-                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                          Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts, on their own accounts. Hundreds of clips. Zero effort from you.
-                        </p>
-                      </div>
-
-                      <div className="space-y-4">
-                        <p className="font-display text-4xl text-brand">04</p>
-                        <h4 className="font-display text-xl uppercase">Watch the views grow</h4>
-                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
-                          Log into your dashboard and see every view, like and follower in real-time. Pay only for what actually gets watched.
-                        </p>
                       </div>
                     </div>
                   </div>
