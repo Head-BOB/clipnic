@@ -723,8 +723,7 @@ const BrandMetricsDash = () => (
   </div>
 );
 
-
-const faqItems = [
+const brandFaqItems = [
   {
     q: 'What do I need to get started?',
     a: 'Just your content and a clear direction for your brand. Our team takes it from there — setting up your campaign infrastructure, briefing clippers, and launching distribution. No technical knowledge needed on your end.',
@@ -739,7 +738,22 @@ const faqItems = [
   },
 ];
 
-const BrandFAQ = () => {
+const clipperFaqItems = [
+  {
+    q: 'Do I need to monetize my channel?',
+    a: 'No, you don\'t have to be monetized. Earnings are based on views, engagement, and the specific bounty rules for each campaign. Clipnic handles the attribution and payouts regardless of your channel status.',
+  },
+  {
+    q: 'How do I get paid?',
+    a: 'Payouts are processed directly to your linked wallet or bank account once you hit the minimum threshold. You can track your earnings in real-time on your dashboard.',
+  },
+  {
+    q: 'Can I post on multiple platforms?',
+    a: 'Yes! We encourage distribution across TikTok, YouTube Shorts, and Instagram Reels. Each platform helps you reach different audiences and increase your earning potential.',
+  },
+];
+
+const GenericFAQ = ({ items, title, subtitle }: { items: { q: string, a: string }[], title: string, subtitle: string }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -751,19 +765,18 @@ const BrandFAQ = () => {
           <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-32">
             <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Before You Ask</p>
             <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase leading-none">
-              Common<br />Questions
+              {title}
             </h2>
             <p className="font-sans text-base opacity-50 font-light leading-relaxed max-w-xs">
-              Everything you need to know before launching your first campaign with Clipnic.
+              {subtitle}
             </p>
           </div>
 
           {/* Accordion */}
           <div className="lg:w-2/3 space-y-0 divide-y-2 divide-ink/10 border-y-2 border-ink/10">
-            {faqItems.map((item, i) => (
+            {items.map((item, i) => (
               <div key={i}>
                 <button
-                  id={`faq-${i}`}
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
                   className="w-full flex items-center justify-between gap-8 py-8 text-left group"
                 >
@@ -1838,13 +1851,26 @@ export default function App() {
                     </div>
                   </div>
                 </section>
-                <BrandFAQ />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
         <CaseStudiesSection />
+
+        {activeView === 'brand' ? (
+          <GenericFAQ 
+            items={brandFaqItems} 
+            title={<>Common<br />Questions</>} 
+            subtitle="Everything you need to know before launching your first campaign with Clipnic."
+          />
+        ) : (
+          <GenericFAQ 
+            items={clipperFaqItems} 
+            title={<>Clipper<br />Questions</>} 
+            subtitle="Everything you need to know before you start editing and earning with Clipnic."
+          />
+        )}
 
         <Contact 
           activeView={activeView} 
