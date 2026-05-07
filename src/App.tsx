@@ -1292,10 +1292,10 @@ const caseStudiesData = [
     client: 'Dax',
     handle: '@daxmainfocus',
     handleUrl: 'https://www.youtube.com/@daxmainfocus',
-    category: 'Music Artist',
-    tagline: 'Authorised Clips · Organic Growth Engine',
+    category: 'Beta Testing',
+    tagline: 'Internal Proof of Concept',
     description:
-      'Dax is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long-form content, chopping viral moments, formatting for Shorts and Reels, and distributing through our clipper network with zero paid promotion.',
+      'Dax served as the primary artist for the Clipnic internal beta test. We built a full clipping pipeline around his long-form content to verify our automated distribution engine, generating high-velocity reach with zero paid promotion.',
     result: '250K+',
     resultLabel: 'Organic Views Generated',
     duration: '6 Weeks',
@@ -1369,9 +1369,9 @@ const CaseStudiesPage = () => {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-4 mb-8"
           >
-            <span className="px-3 py-1 bg-brand text-black text-[10px] font-bold uppercase tracking-tighter">Case Study: 01</span>
+            <span className="px-3 py-1 bg-brand text-black text-[10px] font-bold uppercase tracking-tighter">Protocol Test: 01</span>
             <span className="h-[1px] w-12 bg-white/20"></span>
-            <span className="text-[10px] uppercase tracking-widest opacity-40">{cs.category} & Strategy</span>
+            <span className="text-[10px] uppercase tracking-widest opacity-40">{cs.category} Phase</span>
           </motion.div>
 
           <motion.h1
@@ -1399,8 +1399,8 @@ const CaseStudiesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            How we engineered a viral blitzkreig for {cs.client}, turning high-velocity short-form
-            content into an unstoppable engagement machine through automated production and strategic distribution.
+            The original proof-of-concept for the Clipnic engine. We used {cs.client} as a test subject to engineer a viral blitzkreig, verifying how high-velocity short-form 
+            content can dominate the feed through automated production and strategic distribution.
           </motion.p>
         </div>
       </section>
