@@ -1593,7 +1593,13 @@ const CaseStudiesPage = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => (window.location.href = '/?v=brand')}
+            onClick={() => {
+              if (activeView === 'brand') onBrandLaunch();
+              else {
+                setActiveView('brand');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
             className="inline-flex items-center gap-4 px-10 py-5 md:px-16 md:py-6 bg-brand text-ink font-bold uppercase tracking-widest text-sm md:text-base rounded-full shadow-[0_20px_60px_rgba(200,241,53,0.3)] hover:shadow-[0_20px_80px_rgba(200,241,53,0.5)] transition-all"
           >
             Get Started Now
@@ -1825,10 +1831,11 @@ export default function App() {
                     <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12 text-brand">Why Clipnic</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">Built for <br /> Scale.</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                       {[
                         { title: "Zero Effort", desc: "Just send us your video link. Our community handles the editing, posting, and distribution across TikTok, Reels, and Shorts." },
                         { title: "Performance Only", desc: "Stop paying for 'hopes and dreams'. You only pay when real people actually watch and engage with your content." },
+                        { title: "Brand Safe", desc: "We brief every editor on your brand guidelines. You maintain total control over your image while getting massive reach." },
                         { title: "Full Transparency", desc: "Track every view, like, and share in real time. Our dashboard gives you more data than any traditional agency ever could." }
                       ].map((item, i) => (
                         <div key={i} className="p-10 border border-white/10 rounded-[2.5rem] bg-white/[0.02] space-y-6">
