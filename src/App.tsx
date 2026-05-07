@@ -1861,35 +1861,49 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* 3. NOT ADS. REAL REACH. */}
-                <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
-                  <div className="max-w-6xl mx-auto">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Strategy</p>
-                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">Not ads.<br />Real reach.</h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-                      <div className="space-y-6">
-                        <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
-                          <CheckCircle2 size={24} />
+                {/* 3. WATCH YOUR BRAND GROW (ANALYTICS PREVIEW) */}
+                <section className="py-32 px-6 lg:px-12 bg-ink text-paper">
+                  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand mb-8">See It Working</p>
+                      <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase mb-12 leading-none">Watch your<br />brand grow</h2>
+                      <p className="font-sans text-xl opacity-60 leading-relaxed mb-12 font-light">
+                        Every view, every like, every new follower, you see it all happening live on your dashboard. No spreadsheets. No waiting for reports. Just open the screen and watch your content spread across the internet.
+                      </p>
+                      <button
+                        onClick={() => setBrandGatewayOpen(true)}
+                        className="px-10 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all"
+                      >
+                        Start Growing Today
+                      </button>
+                    </div>
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-brand/20 blur-[120px] rounded-full animate-pulse" />
+                      <div className="relative bg-ink border border-white/10 rounded-[3rem] p-10 overflow-hidden backdrop-blur-xl">
+                        <div className="space-y-8">
+                          <div className="flex justify-between items-end">
+                            <div>
+                              <p className="text-[10px] uppercase tracking-widest opacity-40 mb-1 text-paper">Growth Velocity</p>
+                              <p className="text-4xl font-bold font-mono text-brand">+842%</p>
+                            </div>
+                            <TrendingUp className="text-brand" size={32} />
+                          </div>
+                          <div className="h-40 flex items-end gap-2 text-paper">
+                            {[40, 70, 45, 90, 65, 80, 95].map((h, i) => (
+                              <div key={i} className="flex-1 bg-brand/20 rounded-t-lg transition-all hover:bg-brand" style={{ height: `${h}%` }} />
+                            ))}
+                          </div>
+                          <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/5 text-paper">
+                            <div>
+                              <p className="text-[10px] uppercase tracking-widest opacity-40 mb-1">Total Reach</p>
+                              <p className="text-xl font-bold font-mono">12.4M</p>
+                            </div>
+                            <div>
+                              <p className="text-[10px] uppercase tracking-widest opacity-40 mb-1">Active Nodes</p>
+                              <p className="text-xl font-bold font-mono">1,204</p>
+                            </div>
+                          </div>
                         </div>
-                        <h4 className="font-display text-2xl uppercase">Real people, real accounts</h4>
-                        <p className="font-sans opacity-60 leading-relaxed font-light">Every clip is posted by a real person on their real TikTok or Instagram account. No bots. No fake views. When someone watches your clip, it is because they chose to.</p>
-                      </div>
-
-                      <div className="space-y-6">
-                        <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
-                          <CheckCircle2 size={24} />
-                        </div>
-                        <h4 className="font-display text-2xl uppercase">No ad spend needed</h4>
-                        <p className="font-sans opacity-60 leading-relaxed font-light">You do not pay thousands upfront hoping an ad might work. With Clipnic, you only pay after real people actually watch your clips. Your money goes 5 to 10x further than traditional advertising.</p>
-                      </div>
-
-                      <div className="space-y-6">
-                        <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
-                          <CheckCircle2 size={24} />
-                        </div>
-                        <h4 className="font-display text-2xl uppercase">See everything live</h4>
-                        <p className="font-sans opacity-60 leading-relaxed font-light">Your dashboard shows you exactly how many views you got, on which platform, from which clip. No guessing. No waiting for a report. Just open your screen and see your brand growing in real time.</p>
                       </div>
                     </div>
                   </div>
@@ -1937,49 +1951,35 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* 5. WATCH YOUR BRAND GROW (ANALYTICS PREVIEW) */}
-                <section className="py-32 px-6 lg:px-12 bg-ink text-paper">
-                  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand mb-8">See It Working</p>
-                      <h2 className="font-display text-5xl md:text-7xl tracking-tighter uppercase mb-12 leading-none">Watch your<br />brand grow</h2>
-                      <p className="font-sans text-xl opacity-60 leading-relaxed mb-12 font-light">
-                        Every view, every like, every new follower, you see it all happening live on your dashboard. No spreadsheets. No waiting for reports. Just open the screen and watch your content spread across the internet.
-                      </p>
-                      <button
-                        onClick={() => setBrandGatewayOpen(true)}
-                        className="px-10 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all"
-                      >
-                        Start Growing Today
-                      </button>
-                    </div>
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-brand/20 blur-[120px] rounded-full animate-pulse" />
-                      <div className="relative bg-ink border border-white/10 rounded-[3rem] p-10 overflow-hidden backdrop-blur-xl">
-                        <div className="space-y-8">
-                          <div className="flex justify-between items-end">
-                            <div>
-                              <p className="text-[10px] uppercase tracking-widest opacity-40 mb-1 text-paper">Growth Velocity</p>
-                              <p className="text-4xl font-bold font-mono text-brand">+842%</p>
-                            </div>
-                            <TrendingUp className="text-brand" size={32} />
-                          </div>
-                          <div className="h-40 flex items-end gap-2 text-paper">
-                            {[40, 70, 45, 90, 65, 80, 95].map((h, i) => (
-                              <div key={i} className="flex-1 bg-brand/20 rounded-t-lg transition-all hover:bg-brand" style={{ height: `${h}%` }} />
-                            ))}
-                          </div>
-                          <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/5 text-paper">
-                            <div>
-                              <p className="text-[10px] uppercase tracking-widest opacity-40 mb-1">Total Reach</p>
-                              <p className="text-xl font-bold font-mono">12.4M</p>
-                            </div>
-                            <div>
-                              <p className="text-[10px] uppercase tracking-widest opacity-40 mb-1">Active Nodes</p>
-                              <p className="text-xl font-bold font-mono">1,204</p>
-                            </div>
-                          </div>
+                {/* 5. NOT ADS. REAL REACH. */}
+                <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
+                  <div className="max-w-6xl mx-auto">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Strategy</p>
+                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">Not ads.<br />Real reach.</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+                      <div className="space-y-6">
+                        <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
+                          <CheckCircle2 size={24} />
                         </div>
+                        <h4 className="font-display text-2xl uppercase">Real people, real accounts</h4>
+                        <p className="font-sans opacity-60 leading-relaxed font-light">Every clip is posted by a real person on their real TikTok or Instagram account. No bots. No fake views. When someone watches your clip, it is because they chose to.</p>
+                      </div>
+
+                      <div className="space-y-6">
+                        <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
+                          <CheckCircle2 size={24} />
+                        </div>
+                        <h4 className="font-display text-2xl uppercase">No ad spend needed</h4>
+                        <p className="font-sans opacity-60 leading-relaxed font-light">You do not pay thousands upfront hoping an ad might work. With Clipnic, you only pay after real people actually watch your clips. Your money goes 5 to 10x further than traditional advertising.</p>
+                      </div>
+
+                      <div className="space-y-6">
+                        <div className="w-12 h-12 bg-ink text-paper rounded-2xl flex items-center justify-center">
+                          <CheckCircle2 size={24} />
+                        </div>
+                        <h4 className="font-display text-2xl uppercase">See everything live</h4>
+                        <p className="font-sans opacity-60 leading-relaxed font-light">Your dashboard shows you exactly how many views you got, on which platform, from which clip. No guessing. No waiting for a report. Just open your screen and see your brand growing in real time.</p>
                       </div>
                     </div>
                   </div>
