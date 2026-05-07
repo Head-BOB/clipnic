@@ -1882,8 +1882,8 @@ export default function App() {
                 </section>
 
                 {/* 4. HOW IT WORKS (ROADMAP + VISUALS) */}
-                <section id="how-it-works" className="bg-white text-ink border-t border-ink/5 pt-32">
-                  <div className="max-w-6xl mx-auto px-6 lg:px-0 mb-32">
+                <section id="how-it-works" className="bg-white text-ink border-t border-ink/5 pt-32 pb-60">
+                  <div className="max-w-6xl mx-auto px-6 lg:px-0">
                     <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Roadmap</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
 
