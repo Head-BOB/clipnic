@@ -1883,7 +1883,7 @@ export default function App() {
 
                 {/* 4. HOW IT WORKS (ROADMAP + VISUALS) */}
                 <section id="how-it-works" className="bg-white text-ink border-t border-ink/5 pt-32">
-                  <div className="max-w-6xl mx-auto px-6 lg:px-0 mb-32">
+                  <div className="max-w-6xl mx-auto px-6 lg:px-0">
                     <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Roadmap</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
 
@@ -1924,7 +1924,7 @@ export default function App() {
                 </section>
 
                 {/* 5. WATCH YOUR BRAND GROW (ANALYTICS PREVIEW) */}
-                <section className="py-32 px-6 lg:px-12 bg-white text-ink">
+                <section className="pb-32 pt-16 px-6 lg:px-12 bg-white text-ink">
                   <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
                     <div>
                       <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-8">See It Working</p>
