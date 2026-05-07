@@ -1852,6 +1852,45 @@ export default function App() {
                       </div>
                     </div>
                   </div>
+                <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
+                  <div className="max-w-6xl mx-auto">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">Flow Protocol</p>
+                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How to distribute<br />your content</h2>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">01</p>
+                        <h4 className="font-display text-xl uppercase">Submit Content</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Give us your raw content. Whether it's long-form videos, streams, or podcasts, our engine is ready to process.
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">02</p>
+                        <h4 className="font-display text-xl uppercase">Launch Campaign</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          We will make a custom campaign tailored to your brand goals, setting bounties and distribution rules.
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">03</p>
+                        <h4 className="font-display text-xl uppercase">Organic Reach</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Our clippers generate pure organic content. View all metrics in our highly advanced command center.
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">04</p>
+                        <h4 className="font-display text-xl uppercase">Exponential Growth</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Grow your content presence. Scale your brand natively across every major short-form feed simultaneously.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </section>
               </motion.div>
             )}
