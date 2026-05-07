@@ -901,11 +901,11 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
           </div>
         </div>
         <div>
-          <p className="opacity-40 mb-4">Command Center</p>
+          <p className="opacity-40 mb-4">Direct Lines</p>
           <div className="flex flex-col gap-2">
-            <a href="#" className="hover:underline">Dashboard</a>
-            <a href="#" className="hover:underline">Campaign Registry</a>
-            <a href="#" className="hover:underline">Payout History</a>
+            <a href="mailto:hello@clipnic.com" className="hover:underline">Inquiries: hello@clipnic.com</a>
+            <a href="mailto:support@clipnic.com" className="hover:underline">Support: support@clipnic.com</a>
+            <a href="mailto:collab@clipnic.com" className="hover:underline">Brands: collab@clipnic.com</a>
           </div>
         </div>
         <div>
@@ -936,12 +936,6 @@ const Footer = () => (
         <div className="font-mono text-[9px] uppercase tracking-widest opacity-30">
           © 2026 clipnic.com all rights reserved
         </div>
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 font-mono text-[9px] uppercase tracking-widest opacity-40">
-        <a href="mailto:hello@clipnic.com" className="hover:text-brand transition-colors">Inquiries: hello@clipnic.com</a>
-        <a href="mailto:support@clipnic.com" className="hover:text-brand transition-colors">Support: support@clipnic.com</a>
-        <a href="mailto:collab@clipnic.com" className="hover:text-brand transition-colors">Brands: collab@clipnic.com</a>
       </div>
 
       <div className="flex gap-6 items-center">
