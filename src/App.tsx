@@ -1346,7 +1346,7 @@ const CaseStudiesPage = () => {
           <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand">Proof of Work</p>
           <h1 className="font-display text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter uppercase">
             Case <br />
-            <span className="text-stroke-paper text-ink">Studies</span>
+            <span className="text-brand">Studies</span>
           </h1>
           <p className="font-sans text-xl opacity-60 font-light max-w-xl leading-relaxed">
             Real campaigns. Real numbers. Zero paid ads. Here's what happens when the
