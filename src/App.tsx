@@ -894,66 +894,75 @@ const Contact = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'cl
         </motion.button>
       </div>
 
-      <div className="mt-32 w-full grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 font-mono text-[10px] md:text-xs uppercase tracking-widest text-left border-t border-line pt-20">
-        <div>
-          <p className="opacity-40 mb-4">Ecosystem</p>
-          <div className="flex flex-col gap-2">
-            <a href="#" className="hover:underline">Documentation</a>
-            <a href="#" className="hover:underline">Revenue Model</a>
-            <a href="#" className="hover:underline">Viral Metrics</a>
-          </div>
-        </div>
-        <div>
-          <p className="opacity-40 mb-4">Direct Lines</p>
-          <div className="flex flex-col gap-2">
-            <a href="mailto:hello@clipnic.com" className="hover:underline">Inquiries: hello@clipnic.com</a>
-            <a href="mailto:support@clipnic.com" className="hover:underline">Support: support@clipnic.com</a>
-            <a href="mailto:collab@clipnic.com" className="hover:underline">Brands: collab@clipnic.com</a>
-          </div>
-        </div>
-        <div>
-          <p className="opacity-40 mb-4">Transmissions</p>
-          <div className="flex flex-col gap-2">
-            <a href="https://x.com/clipnic" target="_blank" rel="noopener noreferrer" className="hover:underline">Twitter / X</a>
-            <a href="https://discord.gg/pW6RJs8Ctp" target="_blank" rel="noopener noreferrer" className="hover:underline">Discord Guild</a>
-          </div>
-        </div>
-        <div>
-          <p className="opacity-40 mb-4">Legal Framework</p>
-          <div className="flex flex-col gap-2">
-            <a href="/privacy" className="hover:underline">Privacy Policy</a>
-            <a href="/terms" className="hover:underline">Terms of Service</a>
-            <a href="/terms" className="hover:underline">Clipper Terms</a>
-          </div>
-        </div>
-      </div>
+
     </section>
   );
 };
 
 const Footer = () => (
-  <footer className="bg-ink text-paper py-8 px-6 lg:px-12 border-t border-white/5">
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-        <div className="font-display text-xl tracking-widest opacity-90 uppercase">CLIPNIC.COM</div>
-        <div className="font-mono text-[9px] uppercase tracking-widest opacity-30">
-          © 2026 clipnic.com all rights reserved
+  <footer className="bg-ink text-paper pt-24 pb-12 px-6 lg:px-12 border-t border-white/5">
+    <div className="max-w-7xl mx-auto space-y-20">
+      {/* Top Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-24">
+        <div className="col-span-2 md:col-span-1 space-y-6">
+          <div className="font-display text-2xl tracking-widest uppercase text-brand">CLIPNIC.COM</div>
+          <p className="font-sans text-sm opacity-40 leading-relaxed max-w-xs font-light">
+            Empowering the next generation of creators through high-velocity decentralized distribution.
+          </p>
+          <div className="flex gap-5 items-center pt-4">
+            <a href="https://instagram.com/clipnicteam" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 transition-opacity">
+              <Instagram size={18} />
+            </a>
+            <a href="https://x.com/clipnic" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 transition-opacity">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+            </a>
+            <a href="https://discord.gg/pW6RJs8Ctp" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 transition-opacity">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.874.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" /></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6">Channels</p>
+          <div className="flex flex-col gap-3 font-sans text-sm font-light">
+            <a href="mailto:hello@clipnic.com" className="opacity-60 hover:opacity-100 hover:text-brand transition-all">hello@clipnic.com</a>
+            <a href="mailto:support@clipnic.com" className="opacity-60 hover:opacity-100 hover:text-brand transition-all">support@clipnic.com</a>
+            <a href="mailto:collab@clipnic.com" className="opacity-60 hover:opacity-100 hover:text-brand transition-all">collab@clipnic.com</a>
+          </div>
+        </div>
+
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6">Ecosystem</p>
+          <div className="flex flex-col gap-3 font-sans text-sm font-light">
+            <a href="#" className="opacity-60 hover:opacity-100 transition-all">Success Ledger</a>
+            <a href="#" className="opacity-60 hover:opacity-100 transition-all">Revenue Model</a>
+            <a href="#" className="opacity-60 hover:opacity-100 transition-all">Viral Metrics</a>
+          </div>
+        </div>
+
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6">Legal</p>
+          <div className="flex flex-col gap-3 font-sans text-sm font-light">
+            <a href="/privacy" className="opacity-60 hover:opacity-100 transition-all">Privacy Policy</a>
+            <a href="/terms" className="opacity-60 hover:opacity-100 transition-all">Terms of Service</a>
+            <a href="/terms" className="opacity-60 hover:opacity-100 transition-all">Clipper Terms</a>
+          </div>
         </div>
       </div>
 
-      <div className="flex gap-6 items-center">
-        <a href="https://instagram.com/clipnicteam" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 cursor-pointer transition-opacity">
-          <Instagram size={16} />
-        </a>
-        <a href="https://x.com/clipnic" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 cursor-pointer transition-opacity">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-        </a>
-        <a href="https://discord.gg/pW6RJs8Ctp" target="_blank" rel="noopener noreferrer" className="opacity-40 hover:opacity-100 cursor-pointer transition-opacity">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.874.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" /></svg>
-        </a>
+      {/* Bottom Bar */}
+      <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-30 text-center md:text-left">
+          © 2026 CLIPNIC.COM · ALL TRANSMISSIONS SECURED BY INTEGRITY MATRIX
+        </div>
+        <div className="flex items-center gap-8 font-mono text-[9px] uppercase tracking-widest opacity-30">
+          <span>SYSTEM STATUS: OPTIMAL</span>
+          <span>STABLE RELAY 001</span>
+        </div>
       </div>
     </div>
   </footer>
+);
 );
 
 const PrivacyOverlay = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => (
@@ -1357,9 +1366,9 @@ const caseStudiesData = [
 
 const CaseStudiesPage = () => {
   return (
-    <div className="min-h-screen bg-paper text-ink selection:bg-brand selection:text-ink">
+    <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 w-full z-50 py-6 md:py-8 px-6 lg:px-12 flex justify-between items-center bg-paper/80 backdrop-blur-md border-b border-ink/5">
+      <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-6 md:py-8 px-6 lg:px-12 flex justify-between items-center">
         <div className="flex items-center gap-6 md:gap-12">
           <button
             onClick={() => (window.location.href = '/?v=brand')}
@@ -1379,7 +1388,7 @@ const CaseStudiesPage = () => {
 
         <button
           onClick={() => (window.location.href = '/?v=brand')}
-          className="px-5 py-2 rounded-full border border-ink font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-ink hover:text-paper transition-all whitespace-nowrap"
+          className="px-5 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
         >
           GET STARTED
         </button>
@@ -1426,11 +1435,11 @@ const CaseStudiesPage = () => {
               className="relative group"
             >
               {/* Card Container */}
-              <div className="relative bg-ink/5 border border-ink/10 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden backdrop-blur-sm shadow-2xl">
+              <div className="relative bg-white/[0.02] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden backdrop-blur-sm shadow-2xl">
 
                 {/* Header Section */}
                 <div
-                  className="px-6 md:px-16 pt-12 md:pt-16 pb-10 md:pb-12 border-b border-ink/5"
+                  className="px-6 md:px-16 pt-12 md:pt-16 pb-10 md:pb-12 border-b border-white/5"
                   style={{ background: `radial-gradient(circle at top left, rgba(${cs.accentRgb},0.08) 0%, transparent 60%)` }}
                 >
                   <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 md:gap-12">
