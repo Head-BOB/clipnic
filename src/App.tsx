@@ -1795,16 +1795,16 @@ export default function App() {
                 {/* 1. WHAT WE DO */}
                 <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
                   <div className="max-w-6xl mx-auto">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Mission</p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">What are we?</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-16 leading-[0.9]">
                       We are a <br /><span className="text-brand">Content Distribution</span><br />Platform.
                     </h2>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
                       <div className="space-y-8">
                         <h4 className="font-display text-3xl uppercase tracking-tight">The Problem we fix</h4>
                         <p className="font-sans text-xl opacity-60 leading-relaxed font-light">
-                          Most brands and products care deeply about making great content. They spend thousands on production, but they fail at distribution. 
+                          Most brands and products care deeply about making great content. They spend thousands on production, but they fail at distribution.
                           <span className="block mt-4 font-bold text-ink opacity-100">Creation without distribution is a waste of time and money.</span>
                         </p>
                       </div>
@@ -1874,34 +1874,75 @@ export default function App() {
                   </div>
                 </section>
 
-                {/* 4. HOW IT WORKS (3 STEPS) */}
-                <section className="bg-ink text-paper">
-                  <ProcessStep
-                    index={0}
-                    icon={DollarSign}
-                    title="SEND US YOUR VIDEO"
-                    desc="Upload your podcast, YouTube video, stream, or any long video. Does not matter how long it is or what it is about. Our team watches it and finds the best parts."
-                    dashPreview={<BrandCampaignDash />}
-                  />
-                  <ProcessStep
-                    index={1}
-                    icon={TrendingUp}
-                    title="WE MAKE THE SHORTS"
-                    desc="Our editors cut your video into short, punchy clips, the kind that stop people from scrolling. They add hooks, captions, and catchy themes. Then they post them on TikTok, Reels and Shorts."
-                    dashPreview={<BrandMetricsDash />}
-                  />
-                  <ProcessStep
-                    index={2}
-                    icon={Share2}
-                    title="YOU PAY ONLY FOR VIEWS"
-                    desc="Real people watch your clips on real accounts. Your brand gets seen. You watch it all happen live in your dashboard, views, likes, followers, and you only pay for what actually works."
-                    dashPreview={
-                      <div className="text-center p-10">
-                        <p className="font-display text-4xl text-white mb-4">8.4M+</p>
-                        <p className="font-sans text-zinc-500 uppercase tracking-widest text-xs">Real people reached organically</p>
+                {/* 4. HOW IT WORKS (ROADMAP + VISUALS) */}
+                <section id="how-it-works" className="bg-white text-ink border-t border-ink/5 pt-32">
+                  <div className="max-w-6xl mx-auto px-6 lg:px-0 mb-32">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">The Roadmap</p>
+                    <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-20">How it<br />works</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">01</p>
+                        <h4 className="font-display text-xl uppercase">Send us your video</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Share any long video, a podcast, YouTube video, stream, interview. Does not need to be perfect. Just send it.
+                        </p>
                       </div>
-                    }
-                  />
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">02</p>
+                        <h4 className="font-display text-xl uppercase">We study your brand</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Our team learns your tone, your style, your audience. Then we brief our editors on exactly how your clips should look and feel.
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">03</p>
+                        <h4 className="font-display text-xl uppercase">Clips go everywhere</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Editors make short clips with catchy hooks and post them on TikTok, Reels and Shorts, on their own accounts. Hundreds of clips. Zero effort from you.
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <p className="font-display text-4xl text-brand">04</p>
+                        <h4 className="font-display text-xl uppercase">Watch the views grow</h4>
+                        <p className="font-sans opacity-60 text-sm leading-relaxed font-light">
+                          Log into your dashboard and see every view, like and follower in real-time. Pay only for what actually gets watched.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-ink text-paper">
+                    <ProcessStep
+                      index={0}
+                      icon={DollarSign}
+                      title="SEND US YOUR VIDEO"
+                      desc="Upload your podcast, YouTube video, stream, or any long video. Does not matter how long it is or what it is about. Our team watches it and finds the best parts."
+                      dashPreview={<BrandCampaignDash />}
+                    />
+                    <ProcessStep
+                      index={1}
+                      icon={TrendingUp}
+                      title="WE MAKE THE SHORTS"
+                      desc="Our editors cut your video into short, punchy clips, the kind that stop people from scrolling. They add hooks, captions, and catchy themes. Then they post them on TikTok, Reels and Shorts."
+                      dashPreview={<BrandMetricsDash />}
+                    />
+                    <ProcessStep
+                      index={2}
+                      icon={Share2}
+                      title="YOU PAY ONLY FOR VIEWS"
+                      desc="Real people watch your clips on real accounts. Your brand gets seen. You watch it all happen live in your dashboard, views, likes, followers, and you only pay for what actually works."
+                      dashPreview={
+                        <div className="text-center p-10">
+                          <p className="font-display text-4xl text-white mb-4">8.4M+</p>
+                          <p className="font-sans text-zinc-500 uppercase tracking-widest text-xs">Real people reached organically</p>
+                        </div>
+                      }
+                    />
+                  </div>
                 </section>
 
                 {/* 5. WATCH YOUR BRAND GROW (ANALYTICS PREVIEW) */}
