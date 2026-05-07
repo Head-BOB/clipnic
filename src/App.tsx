@@ -1196,12 +1196,25 @@ const caseStudiesData = [
     category: 'Music Artist',
     tagline: 'Authorised Clips · Organic Growth Engine',
     description:
-      'DaxMain is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long-form content — chopping viral moments, formatting for Shorts & Reels, and distributing through our clipper network with zero paid promotion.',
+      'DaxMain is an independent rap artist with a dedicated fanbase. Clipnic built a full clipping pipeline around his long-form content, chopping viral moments, formatting for Shorts and Reels, and distributing through our clipper network with zero paid promotion.',
     result: '250K+',
     resultLabel: 'Organic Views Generated',
     duration: '6 Weeks',
     clippers: '12',
-    platforms: ['YouTube Shorts', 'Instagram Reels', 'TikTok'],
+    featuredVideos: [
+      {
+        url: 'https://www.youtube.com/shorts/zqdjDLRnvUE',
+        videoId: 'zqdjDLRnvUE',
+        views: '190K+',
+        label: 'Top Performing Clip',
+      },
+      {
+        url: 'https://www.youtube.com/shorts/zNv2-8o4-78',
+        videoId: 'zNv2-8o4-78',
+        views: '40K+',
+        label: 'Viral Moment',
+      },
+    ],
     metrics: [
       { label: 'Total Views', value: '250K+', icon: Eye },
       { label: 'Clips Published', value: '40+', icon: Play },
@@ -1343,22 +1356,51 @@ const CaseStudiesPage = () => {
 
               {/* Body */}
               <div className="grid md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-                {/* Description */}
+                {/* Featured Videos */}
                 <div className="px-10 py-10 space-y-6">
-                  <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Campaign Overview</p>
-                  <p className="font-sans text-lg opacity-70 leading-relaxed font-light">{cs.description}</p>
-                  <div className="pt-4 space-y-3">
-                    <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Platforms Deployed</p>
-                    <div className="flex flex-wrap gap-2">
-                      {cs.platforms.map((p) => (
-                        <span
-                          key={p}
-                          className="font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 border border-white/10 rounded-full opacity-60"
-                        >
-                          {p}
-                        </span>
-                      ))}
-                    </div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest opacity-40">Featured Clips</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {cs.featuredVideos.map((v) => (
+                      <a
+                        key={v.videoId}
+                        href={v.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-white/30 transition-all"
+                      >
+                        {/* Thumbnail */}
+                        <div className="relative aspect-[9/16] bg-white/5 overflow-hidden">
+                          <img
+                            src={`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`}
+                            alt={v.label}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          {/* Overlay */}
+                          <div className="absolute inset-0 bg-ink/40 group-hover:bg-ink/20 transition-colors" />
+                          {/* Play icon */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                              <Play size={14} className="text-white ml-0.5" fill="white" />
+                            </div>
+                          </div>
+                          {/* Views badge */}
+                          <div
+                            className="absolute top-3 right-3 font-display text-sm px-2.5 py-1 rounded-full"
+                            style={{ background: `rgba(${cs.accentRgb},0.9)`, color: '#111' }}
+                          >
+                            {v.views}
+                          </div>
+                        </div>
+                        {/* Label */}
+                        <div className="px-4 py-3 space-y-0.5">
+                          <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">{v.label}</p>
+                          <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest opacity-60 group-hover:opacity-100 group-hover:text-brand transition-all">
+                            Watch on YouTube
+                            <ExternalLink size={10} />
+                          </div>
+                        </div>
+                      </a>
+                    ))}
                   </div>
                 </div>
 
