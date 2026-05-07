@@ -289,7 +289,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
 
     setStatus('sending');
     try {
-      const response = await fetch('https://discord.com/api/webhooks/1499094004422148390/mkc18PEy2nbbFP6LuXRIcH9LRLwmAVkdbDv1Chpe3T7mAGexWX5-xMJQuUVTeUcOeXy5', {
+      const response = await fetch(import.meta.env.VITE_DISCORD_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
