@@ -1456,106 +1456,99 @@ const CaseStudiesPage = () => {
 
                 {/* Body Content */}
                 <div className="grid lg:grid-cols-5 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/5">
-                  {/* Left: Story */}
-                  <div className="lg:col-span-2 px-8 md:px-16 py-16 space-y-12">
-                    <div className="space-y-6">
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">The Strategy</p>
-                      <p className="font-sans text-xl font-light leading-relaxed opacity-70">
-                        {cs.description}
-                      </p>
+                  {/* Left: Executive Summary */}
+                  <div className="lg:col-span-2 px-8 md:px-16 py-20 space-y-16">
+                    <div className="space-y-8">
+                      <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-brand/20 bg-brand/5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-brand" />
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-brand">Case Study ID: {cs.id.slice(-4)}</span>
+                      </div>
+                      <div className="space-y-6">
+                        <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">The Strategy</p>
+                        <p className="font-sans text-2xl font-light leading-relaxed opacity-80">
+                          {cs.description}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="space-y-8">
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Key Outcomes</p>
-                      <div className="space-y-6">
-                        <div className="flex items-start gap-4">
-                          <div className="w-1.5 h-1.5 rounded-full bg-brand mt-2" />
-                          <p className="font-sans text-base opacity-50 font-light">Exponential growth through authorized clipper distribution.</p>
+                    <div className="space-y-10">
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Brand-Safe Protocol</p>
+                      <div className="space-y-8">
+                        <div className="flex items-start gap-6">
+                          <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                            <TrendingUp size={18} className="text-brand" />
+                          </div>
+                          <div>
+                            <h4 className="font-display text-lg uppercase tracking-tight">Exponential Scale</h4>
+                            <p className="font-sans text-sm opacity-40 font-light mt-1">Growth achieved through decentralized distribution nodes.</p>
+                          </div>
                         </div>
-                        <div className="flex items-start gap-4">
-                          <div className="w-1.5 h-1.5 rounded-full bg-brand mt-2" />
-                          <p className="font-sans text-base opacity-50 font-light">100% organic traction across Shorts, Reels, and TikTok.</p>
-                        </div>
-                        <div className="flex items-start gap-4">
-                          <div className="w-1.5 h-1.5 rounded-full bg-brand mt-2" />
-                          <p className="font-sans text-base opacity-50 font-light">Full data transparency through the Clipnic dashboard.</p>
+                        <div className="flex items-start gap-6">
+                          <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                            <Box size={18} className="text-brand" />
+                          </div>
+                          <div>
+                            <h4 className="font-display text-lg uppercase tracking-tight">Verified Assets</h4>
+                            <p className="font-sans text-sm opacity-40 font-light mt-1">Every clip is tracked and validated through our command center.</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Right: Featured Clips */}
-                  <div className="lg:col-span-3 px-8 md:px-16 py-16 bg-white/[0.01]">
-                    <div className="flex items-center justify-between mb-12">
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Top Performing Clips</p>
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-brand">Live Feed</span>
-                    </div>
+                  {/* Right: Intelligence Grid */}
+                  <div className="lg:col-span-3 px-8 md:px-16 py-20 bg-white/[0.01] relative">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(200,241,53,0.02)_0%,transparent_60%)]" />
+                    
+                    <div className="relative z-10 space-y-16">
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-1">
+                          <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Distribution Data</p>
+                          <h4 className="font-display text-3xl uppercase">Viral Components</h4>
+                        </div>
+                        <div className="px-4 py-2 bg-ink border border-white/10 rounded-xl font-mono text-[9px] uppercase tracking-widest opacity-60">
+                          Secure Archive
+                        </div>
+                      </div>
 
-                    <div className="grid grid-cols-2 gap-6 md:gap-10">
-                      {cs.featuredVideos.map((v) => (
-                        <a
-                          key={v.videoId}
-                          href={v.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group relative flex flex-col gap-4"
-                        >
-                          {/* Thumbnail */}
-                          <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border border-white/10 group-hover:border-brand/40 transition-all duration-500 shadow-2xl">
-                            <img
-                              src={`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`}
-                              alt={v.label}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-ink/40 group-hover:bg-ink/10 transition-colors duration-500" />
-                            
-                            {/* Play Button */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_40px_rgba(200,241,53,0.4)]">
-                                <Play size={18} fill="currentColor" />
+                      <div className="grid grid-cols-2 gap-8 md:gap-12">
+                        {cs.featuredVideos.map((v) => (
+                          <a
+                            key={v.videoId}
+                            href={v.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group relative flex flex-col gap-6"
+                          >
+                            {/* Thumbnail */}
+                            <div className="relative aspect-[9/16] rounded-[2.5rem] overflow-hidden border border-white/10 group-hover:border-brand/40 transition-all duration-700 shadow-2xl">
+                              <img
+                                src={`https://i.ytimg.com/vi/${v.videoId}/hqdefault.jpg`}
+                                alt={v.label}
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                              />
+                              <div className="absolute inset-0 bg-ink/50 group-hover:bg-ink/20 transition-colors duration-700" />
+                              
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-14 h-14 rounded-full bg-brand text-ink flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-[0_0_60px_rgba(200,241,53,0.5)]">
+                                  <Play size={22} fill="currentColor" />
+                                </div>
+                              </div>
+
+                              <div className="absolute top-6 right-6 font-display text-base px-5 py-2 rounded-2xl bg-ink/90 backdrop-blur-xl border border-white/10 text-white">
+                                {v.views}
                               </div>
                             </div>
-
-                            {/* Views Badge */}
-                            <div className="absolute top-4 right-4 font-display text-sm px-4 py-1.5 rounded-full bg-ink/80 backdrop-blur-md border border-white/10 text-white">
-                              {v.views}
+                            
+                            <div className="space-y-1 px-4">
+                              <p className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-30">{v.type}</p>
+                              <h4 className="font-display text-xl uppercase tracking-tight group-hover:text-brand transition-colors duration-300">{v.label}</h4>
                             </div>
-                          </div>
-                          
-                          <div className="px-2">
-                            <p className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 mb-1">{v.type}</p>
-                            <h4 className="font-display text-lg uppercase tracking-tight group-hover:text-brand transition-colors">{v.label}</h4>
-                          </div>
-                        </a>
-                      ))}
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Footer Metrics */}
-                <div className="px-8 md:px-16 py-10 bg-white/[0.03] border-t border-white/5 flex flex-wrap items-center justify-between gap-12">
-                   <div className="flex items-center gap-16">
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Clipper Nodes</p>
-                      <p className="font-display text-3xl text-brand">{cs.clippers}</p>
-                    </div>
-                    <div className="w-px h-10 bg-white/10" />
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Duration</p>
-                      <p className="font-display text-3xl">{cs.duration}</p>
-                    </div>
-                    <div className="w-px h-10 bg-white/10" />
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-1">Ad Spend</p>
-                      <p className="font-display text-3xl">$0</p>
-                    </div>
-                   </div>
-                   
-                   <div className="flex items-center gap-4 px-6 py-3 bg-brand/5 border border-brand/20 rounded-full">
-                     <div className="w-2 h-2 rounded-full bg-brand animate-pulse" />
-                     <span className="font-mono text-[10px] uppercase tracking-widest text-brand">Campaign Status: Scaled</span>
-                   </div>
                 </div>
               </div>
             </motion.div>
