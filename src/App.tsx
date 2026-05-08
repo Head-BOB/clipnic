@@ -543,9 +543,10 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
 const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: any, title: string, desc: string, dashPreview?: ReactNode, index: number }) => (
   <section className={`py-32 px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-center ${index % 2 !== 0 ? 'bg-ink text-paper' : 'bg-paper text-ink'}`}>
     <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`space-y-6 ${index % 2 !== 0 ? 'lg:order-2' : ''}`}
     >
       <div className={`mb-8 p-6 inline-block rounded-full border-2 ${index % 2 !== 0 ? 'bg-paper text-ink border-paper' : 'bg-ink text-paper border-ink'}`}>
@@ -1856,8 +1857,14 @@ export default function App() {
               >
                 {/* 1. WHAT WE DO */}
                 <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
-                  <div className="max-w-6xl mx-auto">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12">What are we?</p>
+                  <motion.div 
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="max-w-6xl mx-auto"
+                  >
+                    <p className="font-sans text-[10px] uppercase tracking-[0.4em] opacity-40 mb-12 font-bold">What are we?</p>
                     <h2 className="font-display text-5xl md:text-8xl tracking-tighter uppercase mb-16 leading-[0.9]">
                       We are a <br /><span className="text-brand">Content Distribution</span><br />Platform.
                     </h2>
@@ -1878,7 +1885,7 @@ export default function App() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </section>
 
                 {/* 2. WHY CHOOSE US */}
