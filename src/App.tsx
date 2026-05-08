@@ -1796,9 +1796,9 @@ export default function App() {
                       whileInView={{ y: 0, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 }}
-                      className="font-sans text-xl opacity-60 font-light max-w-lg mx-auto leading-relaxed"
+                      className="font-sans text-xl opacity-60 font-light max-w-2xl mx-auto leading-relaxed"
                     >
-                      No complex contracts. No waiting for clients. Just your skills, your phone, and your bank account growing.
+                      Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey.
                     </motion.p>
                   </div>
                 </section>
