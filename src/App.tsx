@@ -540,6 +540,50 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
   );
 };
 
+const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
+  const letters = Array.from(text);
+  
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.015, delayChildren: delay },
+    },
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 25,
+        stiffness: 200,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 10,
+    },
+  };
+
+  return (
+    <motion.span
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      className={className}
+    >
+      {letters.map((letter, index) => (
+        <motion.span variants={child} key={index} className="inline-block">
+          {letter === " " ? "\u00A0" : letter}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};
+
 const ProcessStep = ({ icon: Icon, title, desc, dashPreview, index }: { icon: any, title: string, desc: string, dashPreview?: ReactNode, index: number }) => (
   <section className={`py-24 md:py-40 px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-center ${index % 2 !== 0 ? 'bg-ink text-paper' : 'bg-paper text-ink'}`}>
     <motion.div
@@ -1784,36 +1828,18 @@ export default function App() {
                 {/* Intro Section for Clippers */}
                 <section className="pt-64 pb-32 px-6 lg:px-12 text-center bg-paper text-ink relative overflow-hidden border-b border-ink/5">
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/10 blur-[120px] rounded-full pointer-events-none" />
-                  <div className="max-w-5xl mx-auto space-y-10 relative z-10">
-                    <motion.h2
-                      initial={{ y: 60, opacity: 0, scale: 0.98 }}
-                      whileInView={{ y: 0, opacity: 1, scale: 1 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ 
-                        type: "spring",
-                        damping: 30,
-                        stiffness: 100,
-                        duration: 1.2
-                      }}
-                      className="font-display text-4xl md:text-8xl tracking-tighter uppercase leading-[0.85]"
-                    >
-                      Wanna get paid by just <br /> <span className="text-brand">editing</span> short form contents?
-                    </motion.h2>
-                    <motion.p
-                      initial={{ y: 40, opacity: 0, scale: 0.98 }}
-                      whileInView={{ y: 0, opacity: 1, scale: 1 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ 
-                        type: "spring",
-                        damping: 30,
-                        stiffness: 100,
-                        duration: 1.2,
-                        delay: 0.15 
-                      }}
-                      className="font-sans text-xl md:text-2xl text-ink/70 font-light max-w-4xl mx-auto leading-relaxed"
-                    >
-                      Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey.
-                    </motion.p>
+                  <div className="max-w-5xl mx-auto space-y-12 relative z-10">
+                    <h2 className="font-display text-4xl md:text-8xl tracking-tighter uppercase leading-[0.85] flex flex-wrap justify-center gap-x-[0.2em]">
+                      <LetterReveal text="Wanna get paid by just" />
+                      <LetterReveal text="editing" className="text-brand" />
+                      <LetterReveal text="short form contents?" />
+                    </h2>
+                    <p className="font-sans text-xl md:text-2xl text-ink/70 font-light max-w-4xl mx-auto leading-relaxed flex flex-wrap justify-center">
+                      <LetterReveal 
+                        delay={0.5}
+                        text="Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey." 
+                      />
+                    </p>
                    </div>
                 </section>
 
