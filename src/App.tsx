@@ -951,8 +951,8 @@ const Footer = () => (
       </div>
 
       {/* Bottom Bar */}
-      <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="font-sans text-[9px] uppercase tracking-[0.3em] opacity-30 text-center md:text-left font-bold">
+      <div className="pt-12 border-t border-white/5 flex flex-col items-center justify-center gap-6">
+        <div className="font-sans text-[9px] uppercase tracking-[0.3em] opacity-30 text-center font-bold">
           © 2026 CLIPNIC.COM · ALL RIGHTS RESERVED
         </div>
       </div>
@@ -1780,27 +1780,41 @@ export default function App() {
                 exit={{ opacity: 0 }}
               >
                 {/* Intro Section for Clippers */}
-                <section className="py-24 px-6 lg:px-12 text-center bg-paper text-ink relative overflow-hidden border-y border-ink/5">
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/10 blur-[120px] rounded-full pointer-events-none" />
-                  <div className="max-w-4xl mx-auto space-y-8 relative z-10">
-                    <motion.h2
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      className="font-display text-4xl md:text-7xl tracking-tighter uppercase leading-[0.9]"
-                    >
-                      Wanna get paid by just <br /> <span className="text-brand">editing</span> short form contents?
-                    </motion.h2>
-                    <motion.p
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.1 }}
-                      className="font-sans text-xl text-ink/70 font-light max-w-2xl mx-auto leading-relaxed"
-                    >
-                      Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey.
-                    </motion.p>
-                  </div>
+                <section className="pt-32 pb-24 px-6 lg:px-12 bg-ink relative overflow-hidden">
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0, y: 50 }}
+                    whileInView={{ scale: 1, opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ 
+                      type: "spring",
+                      damping: 25,
+                      stiffness: 100,
+                      duration: 1
+                    }}
+                    className="max-w-6xl mx-auto bg-paper text-ink rounded-[3rem] md:rounded-[5rem] p-12 md:py-24 md:px-20 shadow-[0_50px_120px_-20px_rgba(0,0,0,0.6)] relative z-10 border border-white/5 overflow-hidden"
+                  >
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand/10 blur-[120px] rounded-full pointer-events-none" />
+                    
+                    <div className="relative z-10 space-y-10 text-center">
+                      <motion.h2
+                        initial={{ y: 20, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="font-display text-4xl md:text-8xl tracking-tighter uppercase leading-[0.85]"
+                      >
+                        Wanna get paid by just <br /> <span className="text-brand">editing</span> short form contents?
+                      </motion.h2>
+                      <motion.p
+                        initial={{ y: 20, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="font-sans text-xl md:text-2xl text-ink/70 font-light max-w-3xl mx-auto leading-relaxed"
+                      >
+                        Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey.
+                      </motion.p>
+                    </div>
+                  </motion.div>
                 </section>
 
                 <ProcessStep
