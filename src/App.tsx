@@ -923,7 +923,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6">Channels to contact us</p>
+          <p className="font-sans text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6 font-bold">Channels to contact us</p>
           <div className="flex flex-col gap-3 font-sans text-sm font-light">
             <a href="mailto:hello@clipnic.com" className="opacity-60 hover:opacity-100 hover:text-brand transition-all">hello@clipnic.com</a>
             <a href="mailto:support@clipnic.com" className="opacity-60 hover:opacity-100 hover:text-brand transition-all">support@clipnic.com</a>
@@ -932,7 +932,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6">Ecosystem</p>
+          <p className="font-sans text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6 font-bold">Ecosystem</p>
           <div className="flex flex-col gap-3 font-sans text-sm font-light">
             <a href="#" className="opacity-60 hover:opacity-100 transition-all">Success Ledger</a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-all">Revenue Model</a>
@@ -941,7 +941,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6">Legal</p>
+          <p className="font-sans text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6 font-bold">Legal</p>
           <div className="flex flex-col gap-3 font-sans text-sm font-light">
             <a href="/privacy" className="opacity-60 hover:opacity-100 transition-all">Privacy Policy</a>
             <a href="/terms" className="opacity-60 hover:opacity-100 transition-all">Terms of Service</a>
@@ -952,7 +952,7 @@ const Footer = () => (
 
       {/* Bottom Bar */}
       <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-30 text-center md:text-left">
+        <div className="font-sans text-[9px] uppercase tracking-[0.3em] opacity-30 text-center md:text-left font-bold">
           © 2026 CLIPNIC.COM · ALL RIGHTS RESERVED
         </div>
       </div>
