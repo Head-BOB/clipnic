@@ -1779,6 +1779,30 @@ export default function App() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
+                {/* Intro Section for Clippers */}
+                <section className="py-24 px-6 lg:px-12 text-center bg-ink relative overflow-hidden">
+                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[120px] rounded-full pointer-events-none" />
+                   <div className="max-w-4xl mx-auto space-y-8 relative z-10">
+                    <motion.h2 
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="font-display text-4xl md:text-7xl tracking-tighter uppercase leading-[0.9]"
+                    >
+                      Wanna get paid by just <br /> <span className="text-brand">editing</span> short form contents?
+                    </motion.h2>
+                    <motion.p 
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 }}
+                      className="font-sans text-xl opacity-60 font-light max-w-lg mx-auto leading-relaxed"
+                    >
+                      No complex contracts. No waiting for clients. Just your skills, your phone, and your bank account growing.
+                    </motion.p>
+                  </div>
+                </section>
+
                 <ProcessStep
                   index={0}
                   icon={LinkIcon}
@@ -1790,7 +1814,15 @@ export default function App() {
                   index={1}
                   icon={UploadIcon}
                   title="POST A CLIP & SHARE THE LINK"
-                  desc="Browse open campaigns, pick a video, cut a short clip from it (we show you exactly how), post it on your account, then paste the link into your dashboard. Done. We track your views automatically."
+                  desc={
+                    <>
+                      Browse open campaigns, pick a video, cut a short clip from it (we show you exactly how). 
+                      <span className="block mt-4 text-brand font-bold uppercase tracking-wider text-sm">
+                        Add your video's hooks and make it reach millions
+                      </span>
+                      Post it on your account, then paste the link into your dashboard. Done. We track your views automatically.
+                    </>
+                  }
                   dashPreview={<SubmissionDash />}
                 />
                 <ProcessStep
