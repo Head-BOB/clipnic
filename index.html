@@ -61,7 +61,18 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Static SEO Fallback: Visible to bots, replaced by React on load -->
+    <section style="opacity: 0; position: absolute; pointer-events: none;">
+      <h1>Clipnic | Content Distribution Agency & Clipping Infrastructure</h1>
+      <p>Clipnic is the premier content distribution infrastructure for brands. Scale your viral reach across TikTok, Reels, and Shorts through our decentralized network of clippers. We help brands distribute content and clippers earn capital.</p>
+      <ul>
+        <li>Content Distribution for Brands</li>
+        <li>Clipping Bounties for Creators</li>
+        <li>Viral Marketing Infrastructure</li>
+      </ul>
+    </section>
+  </div>
   <script type="module" src="./src/main.tsx"></script>
 </body>
 
