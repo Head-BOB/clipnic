@@ -1782,23 +1782,34 @@ export default function App() {
                 exit={{ opacity: 0 }}
               >
                 {/* Intro Section for Clippers */}
-                <section className="pt-32 pb-24 px-6 lg:px-12 text-center bg-paper text-ink relative overflow-hidden border-b border-ink/5">
+                <section className="pt-64 pb-32 px-6 lg:px-12 text-center bg-paper text-ink relative overflow-hidden border-b border-ink/5">
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/10 blur-[120px] rounded-full pointer-events-none" />
                   <div className="max-w-5xl mx-auto space-y-10 relative z-10">
                     <motion.h2
-                      initial={{ y: 40, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      initial={{ y: 60, opacity: 0, scale: 0.98 }}
+                      whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ 
+                        type: "spring",
+                        damping: 30,
+                        stiffness: 100,
+                        duration: 1.2
+                      }}
                       className="font-display text-4xl md:text-8xl tracking-tighter uppercase leading-[0.85]"
                     >
                       Wanna get paid by just <br /> <span className="text-brand">editing</span> short form contents?
                     </motion.h2>
                     <motion.p
-                      initial={{ y: 40, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      initial={{ y: 40, opacity: 0, scale: 0.98 }}
+                      whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ 
+                        type: "spring",
+                        damping: 30,
+                        stiffness: 100,
+                        duration: 1.2,
+                        delay: 0.15 
+                      }}
                       className="font-sans text-xl md:text-2xl text-ink/70 font-light max-w-4xl mx-auto leading-relaxed"
                     >
                       Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey.
