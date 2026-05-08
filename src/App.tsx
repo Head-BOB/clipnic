@@ -56,8 +56,8 @@ const BrandPartnershipPage = () => {
           className="space-y-12"
         >
           <div className="space-y-6">
-            <h1 className="font-display text-[12vw] lg:text-[7vw] leading-[0.85] tracking-tighter uppercase">Scale <br /> Your <br /> <span className="text-brand">Viral</span> Velocity</h1>
-            <p className="font-sans text-xl opacity-60 font-light max-w-md leading-relaxed">Join the global infrastructure for short form video distribution. Deploy your first high velocity campaign today.</p>
+            <h1 className="font-display text-[12vw] lg:text-[7vw] leading-[0.85] tracking-tighter uppercase">Clipnic: <br /> Scale Your <br /> <span className="text-brand">Viral</span> Velocity</h1>
+            <p className="font-sans text-xl opacity-60 font-light max-w-md leading-relaxed">Join the world's leading clipping company and decentralized infrastructure for short form video distribution. Deploy your first high velocity campaign today.</p>
           </div>
 
           <div className="space-y-8">
