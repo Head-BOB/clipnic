@@ -547,7 +547,7 @@ const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.008, delayChildren: delay },
+      transition: { staggerChildren: 0.004, delayChildren: delay },
     },
   };
 
@@ -557,8 +557,8 @@ const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?
       y: 0,
       transition: {
         type: "spring",
-        damping: 30,
-        stiffness: 250,
+        damping: 35,
+        stiffness: 300,
       },
     },
     hidden: {
