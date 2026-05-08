@@ -346,8 +346,8 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             {view === 'options' ? (
               <div className="space-y-10 relative z-10">
                 <div className="text-center space-y-4">
-                  <h2 className="font-display text-4xl md:text-5xl tracking-tighter leading-none uppercase">Select <br /> Gateway</h2>
-                  <p className="font-sans opacity-60 text-sm max-w-xs mx-auto">Choose your preferred channel to initiate a partnership.</p>
+                  <h2 className="font-display text-4xl md:text-5xl tracking-tighter leading-none uppercase">Select <br /> Platform</h2>
+                  <p className="font-sans opacity-60 text-sm max-w-xs mx-auto">Choose your preferred platform to initiate a partnership.</p>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4">
@@ -358,7 +358,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                     className="group p-8 rounded-3xl bg-ink text-paper flex items-center justify-between hover:bg-black transition-all"
                   >
                     <div className="text-left space-y-1">
-                      <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Asynchronous</p>
+                      <p className="text-[10px] opacity-40 uppercase tracking-widest font-black"></p>
                       <h4 className="font-display text-2xl uppercase">Email  </h4>
                     </div>
                     <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -374,7 +374,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                   >
                     <div className="text-left space-y-1">
                       <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Direct Access</p>
-                      <h4 className="font-display text-2xl uppercase">Discord Uplink</h4>
+                      <h4 className="font-display text-2xl uppercase">Discord </h4>
                     </div>
                     <div className="w-12 h-12 rounded-full border-2 border-ink flex items-center justify-center group-hover:rotate-12 transition-transform">
                       <Share2 size={24} />
@@ -1780,10 +1780,10 @@ export default function App() {
                 exit={{ opacity: 0 }}
               >
                 {/* Intro Section for Clippers */}
-                <section className="py-24 px-6 lg:px-12 text-center bg-ink relative overflow-hidden">
-                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[120px] rounded-full pointer-events-none" />
-                   <div className="max-w-4xl mx-auto space-y-8 relative z-10">
-                    <motion.h2 
+                <section className="py-24 px-6 lg:px-12 text-center bg-paper text-ink relative overflow-hidden border-y border-ink/5">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/10 blur-[120px] rounded-full pointer-events-none" />
+                  <div className="max-w-4xl mx-auto space-y-8 relative z-10">
+                    <motion.h2
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       viewport={{ once: true }}
@@ -1791,12 +1791,12 @@ export default function App() {
                     >
                       Wanna get paid by just <br /> <span className="text-brand">editing</span> short form contents?
                     </motion.h2>
-                    <motion.p 
+                    <motion.p
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 }}
-                      className="font-sans text-xl opacity-60 font-light max-w-2xl mx-auto leading-relaxed"
+                      className="font-sans text-xl text-ink/70 font-light max-w-2xl mx-auto leading-relaxed"
                     >
                       Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey.
                     </motion.p>
@@ -1816,7 +1816,7 @@ export default function App() {
                   title="POST A CLIP & SHARE THE LINK"
                   desc={
                     <>
-                      Browse open campaigns, pick a video, cut a short clip from it (we show you exactly how). 
+                      Browse open campaigns, pick a video, cut a short clip from it (we show you exactly how).
                       <span className="block mt-4 text-brand font-bold uppercase tracking-wider text-sm">
                         Add your video's hooks and make it reach millions
                       </span>
