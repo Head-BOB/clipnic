@@ -178,11 +178,15 @@ export const Tier1Guide = () => {
                     <p className="text-2xl font-mono text-white">USA VPN/Proxy Active</p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="h-2 flex-grow bg-white/5 rounded-full overflow-hidden">
+                    <div className="relative h-2 flex-grow bg-white/5 rounded-full overflow-hidden">
                       <motion.div
-                        animate={{ x: ['-100%', '100%'] }}
-                        transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                        className="h-full w-1/3 bg-brand"
+                        animate={{ left: ["-100%", "100%"] }}
+                        transition={{ 
+                          repeat: Infinity, 
+                          duration: 2.5, 
+                          ease: "linear" 
+                        }}
+                        className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-brand/40 to-transparent"
                       />
                     </div>
 
