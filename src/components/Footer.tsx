@@ -36,7 +36,7 @@ export const Footer = () => (
         <div>
           <p className="font-sans text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6 font-bold text-white">Ecosystem</p>
           <div className="flex flex-col gap-3 font-sans text-sm font-light">
-            <a href="/coming-soon" className="opacity-60 hover:opacity-100 transition-all">Documentation</a>
+            <a href="/docs" className="opacity-60 hover:opacity-100 transition-all">Documentation</a>
             <a href="/coming-soon" className="opacity-60 hover:opacity-100 transition-all">Success Ledger</a>
             <a href="/coming-soon" className="opacity-60 hover:opacity-100 transition-all">Revenue Model</a>
             <a href="/coming-soon" className="opacity-60 hover:opacity-100 transition-all">Viral Metrics</a>
