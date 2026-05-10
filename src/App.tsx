@@ -51,7 +51,7 @@ const BrandPartnershipPage = () => {
         </div>
         <button onClick={() => window.location.href = '/'} className="font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity flex items-center gap-2">
           <ArrowLeft size={12} />
-          Back to Feed
+          Back Home
         </button>
       </nav>
 
@@ -187,7 +187,7 @@ const NotFound = () => (
           onClick={() => window.location.href = '/'}
           className="px-16 py-6 rounded-full bg-paper text-ink font-sans font-bold text-xl hover:opacity-90 transition-all uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(255,255,255,0.1)]"
         >
-          Return to Feed
+          Return Home
         </button>
       </div>
     </div>
