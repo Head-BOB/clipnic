@@ -166,10 +166,7 @@ export const HowToPage = () => {
 
       <main className="max-w-7xl mx-auto px-6 pt-32 md:pt-48 pb-32">
         <header className="max-w-3xl mb-16 md:mb-32 space-y-6 md:space-y-8 text-center lg:text-left">
-          <div className="flex items-center gap-4 justify-center lg:justify-start">
-            <div className="w-8 md:w-12 h-px bg-brand" />
-            <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-brand">Operational Blueprint</p>
-          </div>
+
           <h1 className="font-display text-[14vw] md:text-[8vw] leading-[0.85] tracking-tighter uppercase text-white">
             How to <br /> <span className="text-brand">Earn</span>
           </h1>
