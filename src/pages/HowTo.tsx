@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
@@ -33,36 +33,69 @@ import {
   Shield,
   CheckCircle,
   ExternalLink,
+  ChevronDown,
+  ChevronUp,
   User as UserIcon 
 } from 'lucide-react';
 
-const Step = ({ number, title, description, children, icon: Icon }: { number: string, title: string, description: string, children?: React.ReactNode, icon: any }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    className="relative grid lg:grid-cols-2 gap-8 md:gap-12 items-center py-12 md:py-20 border-b border-white/5 last:border-0"
-  >
-    <div className="space-y-4 md:space-y-6">
-      <div className="flex items-center gap-4">
-        <span className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-brand text-black flex items-center justify-center font-display text-lg md:text-xl font-bold shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.3)]">
-          {number}
-        </span>
-        <div className="p-2.5 md:p-3 rounded-xl bg-white/5 border border-white/10">
-          <Icon size={18} className="text-brand md:w-5 md:h-5" />
+const Step = ({ id, number, title, description, details, children, icon: Icon }: { id: string, number: string, title: string, description: string, details?: React.ReactNode, children?: React.ReactNode, icon: any }) => {
+  const [showMore, setShowMore] = useState(false);
+
+  return (
+    <motion.div 
+      id={id}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="relative grid lg:grid-cols-2 gap-8 md:gap-12 items-center py-12 md:py-20 border-b border-white/5 last:border-0 scroll-mt-32"
+    >
+      <div className="space-y-4 md:space-y-6">
+        <div className="flex items-center gap-4">
+          <span className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-brand text-black flex items-center justify-center font-display text-lg md:text-xl font-bold shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.3)]">
+            {number}
+          </span>
+          <div className="p-2.5 md:p-3 rounded-xl bg-white/5 border border-white/10">
+            <Icon size={18} className="text-brand md:w-5 md:h-5" />
+          </div>
+        </div>
+        <h3 className="font-display text-3xl md:text-5xl uppercase tracking-tighter leading-none text-white">{title}</h3>
+        <p className="font-sans text-base md:text-lg opacity-60 font-light leading-relaxed max-w-md">{description}</p>
+        
+        {details && (
+          <div className="pt-4">
+            <button 
+              onClick={() => setShowMore(!showMore)}
+              className="group flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-brand hover:text-white transition-colors"
+            >
+              {showMore ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              {showMore ? 'Show Less' : 'Show Detailed Steps'}
+            </button>
+            <AnimatePresence>
+              {showMore && (
+                <motion.div 
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-6 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/40 leading-relaxed space-y-4">
+                    {details}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
+      </div>
+      <div className="relative group mt-6 lg:mt-0">
+        <div className="absolute inset-0 bg-brand/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="relative bg-[#080808] border border-white/10 rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 backdrop-blur-xl overflow-hidden shadow-2xl">
+          {children}
         </div>
       </div>
-      <h3 className="font-display text-3xl md:text-5xl uppercase tracking-tighter leading-none text-white">{title}</h3>
-      <p className="font-sans text-base md:text-lg opacity-60 font-light leading-relaxed max-w-md">{description}</p>
-    </div>
-    <div className="relative group mt-6 lg:mt-0">
-      <div className="absolute inset-0 bg-brand/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-      <div className="relative bg-[#080808] border border-white/10 rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 backdrop-blur-xl overflow-hidden shadow-2xl">
-        {children}
-      </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 const DashPreview = ({ children }: { children: React.ReactNode }) => (
   <div className="space-y-6">
@@ -70,7 +103,7 @@ const DashPreview = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-// Mock Social Icons to match Dashboard
+// Mock Social Icons
 const YoutubeIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
 );
@@ -82,6 +115,28 @@ const InstagramIcon = ({ className }: { className?: string }) => (
 );
 
 export const HowToPage = () => {
+  useEffect(() => {
+    // Handle deep linking on mount
+    const pathParts = window.location.pathname.split('/');
+    const stepId = pathParts[pathParts.length - 1];
+    if (stepId && stepId !== 'get-started') {
+      const el = document.getElementById(stepId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Also check hash
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
+  const navigateToStep = (id: string) => {
+    window.history.pushState({}, '', `/docs/get-started/${id}`);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] text-[#F5F5F5] selection:bg-brand selection:text-black">
       {/* Navbar */}
@@ -126,13 +181,21 @@ export const HowToPage = () => {
         <div className="space-y-12">
           {/* Step 1: Visit Dash */}
           <Step 
+            id="visit-dash"
             number="01"
             title="Visit dash.clipnic.com"
             description="Go to the Clipnic dashboard. This is your primary command center for managing all your clipping activities."
+            details={
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Type <strong className="text-white">dash.clipnic.com</strong> into your browser.</li>
+                <li>Ensure you are on a secure connection (look for the padlock icon).</li>
+                <li>Bookmark this page for easy access to your earnings and campaigns.</li>
+              </ul>
+            }
             icon={LayoutGrid}
           >
             <DashPreview>
-              <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center justify-between">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center justify-between shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-white/5 rounded flex items-center justify-center border border-white/10">
                     <LayoutGrid size={14} className="text-white/40" />
@@ -140,7 +203,7 @@ export const HowToPage = () => {
                   <span className="font-mono text-[10px] md:text-xs text-white/60">dash.clipnic.com</span>
                 </div>
                 <div className="flex gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/50 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                   <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                   <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                 </div>
@@ -150,9 +213,17 @@ export const HowToPage = () => {
 
           {/* Step 2: Authenticate */}
           <Step 
+            id="authenticate"
             number="02"
             title="Authenticate Account"
             description="Securely link your account using Discord. This identifies you as a verified clipper in our network."
+            details={
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Click the <strong className="text-white">Login with Discord</strong> button.</li>
+                <li>Authorize Clipnic to view your basic profile (no sensitive data).</li>
+                <li>This step creates your unique clipper ID and links your upcoming payouts.</li>
+              </ul>
+            }
             icon={LinkIcon}
           >
             <DashPreview>
@@ -169,9 +240,17 @@ export const HowToPage = () => {
 
           {/* Step 3: Active Campaigns (EXACT DASHBOARD UI) */}
           <Step 
+            id="active-campaigns"
             number="03"
             title="Active Campaigns"
             description="Navigate to the Active Campaigns tab in the sidebar to browse all available opportunities."
+            details={
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Use the sidebar to navigate to <strong className="text-white">Active Campaigns</strong>.</li>
+                <li>Browse through cards showing <strong className="text-white">CPM rates</strong> and <strong className="text-white">remaining budget</strong>.</li>
+                <li>Look for the <strong className="text-brand">Join Campaign</strong> button to start participating.</li>
+              </ul>
+            }
             icon={Box}
           >
             <DashPreview>
@@ -189,7 +268,7 @@ export const HowToPage = () => {
                     </div>
                     <div className="py-2 px-2 md:px-3 rounded-lg bg-white/10 text-white border border-white/5 flex items-center justify-center md:justify-start gap-3">
                       <Box size={12} className="md:w-3.5 md:h-3.5" />
-                      <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest hidden md:block">Campaigns</span>
+                      <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest hidden md:block">Active Campaigns</span>
                     </div>
                     <div className="py-2 px-2 md:px-3 rounded-lg text-white/30 flex items-center justify-center md:justify-start gap-3">
                       <Target size={12} className="md:w-3.5 md:h-3.5" />
@@ -201,9 +280,7 @@ export const HowToPage = () => {
                 {/* Content Area */}
                 <div className="flex-1 overflow-hidden flex flex-col">
                   <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar bg-white/[0.01]">
-                    {/* EXACT CAMPAIGN CARD UI FROM DASHBOARD */}
                     <div className="group relative rounded-3xl bg-[#0c0c0c] border border-white/[0.06] overflow-hidden shadow-lg hover:border-white/15 transition-all">
-                        {/* Card Banner */}
                         <div className="h-28 w-full relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-tr from-brand/20 to-emerald-500/10" />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/60 to-transparent" />
@@ -269,14 +346,21 @@ export const HowToPage = () => {
 
           {/* Step 4: Resources & Rules (EXACT DASHBOARD UI) */}
           <Step 
+            id="resources-rules"
             number="04"
             title="Visit Resources & Rules"
             description="Once joined, check the specific rules and grab the source content. This ensures your videos are approved and eligible for payouts."
+            details={
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Click into a campaign to see the <strong className="text-white">Platform Rules</strong>.</li>
+                <li>Read the <strong className="text-white">Minimum Views</strong> requirement carefully.</li>
+                <li>Join the <strong className="text-white">Discord Channel</strong> to download raw brand assets and high-quality clips.</li>
+              </ul>
+            }
             icon={FileText}
           >
             <DashPreview>
               <div className="space-y-6">
-                {/* PLATFORM RULES BLOCK FROM DASHBOARD */}
                 <div className="p-6 md:p-8 rounded-[32px] bg-emerald-500/5 border border-emerald-500/10 space-y-4">
                     <div className="flex items-center gap-2 text-emerald-400">
                         <Shield className="w-5 h-5" />
@@ -298,7 +382,6 @@ export const HowToPage = () => {
                     </div>
                 </div>
 
-                {/* CAMPAIGN RESOURCES BLOCK FROM DASHBOARD */}
                 <div className="p-6 md:p-8 rounded-[32px] bg-[#5865F2]/5 border border-[#5865F2]/10 space-y-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-[#5865F2]">
@@ -320,13 +403,21 @@ export const HowToPage = () => {
 
           {/* Step 5: Edit Videos */}
           <Step 
+            id="edit-videos"
             number="05"
             title="Edit the Videos"
             description="Use the source content to create engaging short-form clips. Add your own style, subtitles, and hooks to maximize your reach."
+            details={
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Keep clips between <strong className="text-white">15-60 seconds</strong> for optimal engagement.</li>
+                <li>Add <strong className="text-white">Captions</strong> and a strong hook in the first 3 seconds.</li>
+                <li>Focus on high-retention editing styles to reach the <strong className="text-white">Min Views</strong> threshold.</li>
+              </ul>
+            }
             icon={Video}
           >
             <DashPreview>
-              <div className="relative aspect-video rounded-xl md:rounded-2xl border border-white/10 overflow-hidden bg-black flex items-center justify-center">
+              <div className="relative aspect-video rounded-xl md:rounded-2xl border border-white/10 overflow-hidden bg-black flex items-center justify-center shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
                 <div className="flex flex-col items-center gap-3 md:gap-4">
                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand/10 border-2 border-brand/30 flex items-center justify-center">
@@ -345,71 +436,88 @@ export const HowToPage = () => {
             </DashPreview>
           </Step>
 
-          {/* Step 6: Upload & Submit */}
+          {/* Step 6: Upload & Submit (EXACT MODAL UI) */}
           <Step 
+            id="upload-submit"
             number="06"
             title="Upload and Submit"
             description="Post your edited video on TikTok, Reels, or Shorts. Then, copy the video link and submit it through our dashboard."
+            details={
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Upload to your social profile and <strong className="text-white">copy the share link</strong>.</li>
+                <li>Go back to the campaign page and click <strong className="text-white">Submit Clip</strong>.</li>
+                <li>Paste the URL and our system will automatically detect the platform and verify the post.</li>
+              </ul>
+            }
             icon={UploadIcon}
           >
             <DashPreview>
-              <div className="space-y-4 md:space-y-6">
-                <div className="p-4 md:p-6 rounded-2xl md:rounded-[2rem] bg-[#0c0c0c] border border-white/[0.06] shadow-xl">
-                  <p className="font-sans text-[8px] md:text-[10px] text-white/40 uppercase tracking-[0.2em] mb-3 md:mb-4">Paste Video Link</p>
-                  <div className="relative">
-                    <input
-                      disabled
-                      value="tiktok.com/@user/vid/123..."
-                      className="w-full bg-white/[0.03] border border-white/10 rounded-lg md:rounded-xl pl-4 pr-10 md:pl-5 md:pr-12 py-3 md:py-4 font-mono text-[10px] md:text-xs text-white/40 focus:outline-none"
-                    />
-                    <div className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2">
-                      <button className="p-1.5 md:p-2 bg-brand rounded-md md:rounded-lg text-black shadow-lg">
-                        <ArrowRight size={14} className="md:w-4 md:h-4" />
-                      </button>
-                    </div>
-                  </div>
+              <div className="bg-[#0D0D0D] border border-white/10 rounded-[32px] p-6 md:p-8 space-y-6 shadow-2xl">
+                <div className="space-y-2">
+                    <h4 className="text-xl md:text-2xl font-bold tracking-tight text-white">Submit Your Clip</h4>
+                    <p className="text-xs md:text-sm text-white/40">Provide the link to your published video.</p>
                 </div>
-                <div className="flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2.5 md:py-3 rounded-xl md:rounded-2xl bg-emerald-500/5 border border-emerald-500/15">
-                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="font-mono text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-emerald-400">Verifying link</span>
+
+                <div className="space-y-4">
+                    <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-white/20 uppercase tracking-widest">Video URL</label>
+                        <div className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-[10px] md:text-xs font-mono text-white/40">
+                            https://tiktok.com/@user/vid/123...
+                        </div>
+                    </div>
+
+                    <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-white/60">
+                                <TikTokIcon className="w-4 h-4" />
+                            </div>
+                            <p className="text-xs font-bold text-white/70">TikTok detected</p>
+                        </div>
+                        <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                    </div>
+
+                    <div className="w-full py-4 rounded-2xl bg-white text-black font-bold uppercase tracking-widest text-[10px] text-center shadow-xl">
+                        Confirm Submission
+                    </div>
                 </div>
               </div>
             </DashPreview>
           </Step>
 
-          {/* Step 7: Monitor Performance */}
+          {/* Step 7: Monitor Performance (EXACT EARNINGS UI) */}
           <Step 
+            id="monitor-performance"
             number="07"
             title="Monitor Performance"
             description="Our system automatically tracks your views. When the campaign ends, your total earnings are settled and ready for payout."
+            details={
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Visit the <strong className="text-white">Earnings</strong> tab to see your revenue breakdown.</li>
+                <li>Monitor <strong className="text-white">Ready to Claim</strong> balance which clears after campaign conclusion.</li>
+                <li>Request payouts directly to your linked wallet once goals are met.</li>
+              </ul>
+            }
             icon={BarChart3}
           >
             <DashPreview>
-              <div className="grid grid-cols-2 gap-3 md:gap-4">
-                <div className="p-4 md:p-6 rounded-2xl md:rounded-[2rem] bg-[#0c0c0c] border border-white/[0.06] flex flex-col justify-between h-28 md:h-32">
-                  <div className="space-y-3 md:space-y-4">
-                    <div className="flex items-center gap-1.5 md:gap-2">
-                      <div className="p-1 rounded bg-brand/10">
-                        <TrendingUp size={10} className="text-brand md:w-3 md:h-3" />
-                      </div>
-                      <span className="text-[7px] md:text-[8px] font-bold text-white/25 uppercase tracking-widest">Total Reach</span>
-                    </div>
-                    <p className="text-xl md:text-3xl font-display text-white uppercase tracking-tighter">420K</p>
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-6 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] transition-all duration-500 h-32 flex flex-col justify-between shadow-xl">
+                    <p className="text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 text-blue-400">
+                        <TrendingUp size={14} /> Available Balance
+                    </p>
+                    <p className="text-3xl font-mono tracking-tight font-medium text-white/90">$1,680.00</p>
+                    <p className="text-[8px] uppercase tracking-widest text-white/20">Active Campaign Reach</p>
                 </div>
-                <div className="p-4 md:p-6 rounded-2xl md:rounded-[2rem] bg-brand/5 border border-brand/20 flex flex-col justify-between h-28 md:h-32">
-                  <div className="space-y-3 md:space-y-4">
-                    <div className="flex items-center gap-1.5 md:gap-2">
-                      <div className="p-1 rounded bg-brand/10">
-                        <DollarSign size={10} className="text-brand md:w-3 md:h-3" />
-                      </div>
-                      <span className="text-[7px] md:text-[8px] font-bold text-white/25 uppercase tracking-widest">Earnings</span>
-                    </div>
-                    <p className="text-xl md:text-3xl font-display font-bold text-brand">$1,680</p>
-                  </div>
+
+                <div className="p-6 rounded-3xl bg-white text-black border-white/20 hover:bg-white/90 transition-all duration-500 h-32 flex flex-col justify-between shadow-2xl">
+                    <p className="text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 text-black/50">
+                        <Wallet size={14} /> Ready to Claim
+                    </p>
+                    <p className="text-3xl font-mono tracking-tight font-black text-black">$420.00</p>
+                    <p className="text-[8px] uppercase tracking-widest text-black/30">Campaign Concluded</p>
                 </div>
               </div>
-              <div className="p-3.5 md:p-5 rounded-xl md:rounded-2xl border border-white/10 bg-white/5 flex items-center justify-between">
+              <div className="p-4 md:p-5 rounded-xl md:rounded-2xl border border-white/10 bg-white/5 flex items-center justify-between">
                 <div className="flex items-center gap-2 md:gap-3">
                   <Clock size={12} className="text-white/20 md:w-3.5 md:h-3.5" />
                   <span className="text-[8px] md:text-[9px] text-white/40 uppercase tracking-widest font-mono">Campaign ends soon</span>

@@ -1810,7 +1810,7 @@ export default function App() {
   const isPrivacyPath = currentPath === '/privacy';
   const isTermsPath = currentPath === '/terms' || currentPath === '/clipper-terms';
   const isCaseStudiesPath = currentPath === '/case-studies';
-  const isHowToPath = currentPath === '/docs/get-started';
+  const isHowToPath = currentPath.startsWith('/docs/get-started');
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
 
