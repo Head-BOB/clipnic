@@ -39,7 +39,6 @@ import {
 } from 'lucide-react';
 
 const Step = ({ id, number, title, description, details, children, icon: Icon }: { id: string, number: string, title: string, description: string, details?: React.ReactNode, children?: React.ReactNode, icon: any }) => {
-  const [showMore, setShowMore] = useState(false);
 
   return (
     <motion.div
@@ -62,34 +61,14 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
         <p className="font-sans text-base md:text-lg opacity-60 font-light leading-relaxed max-w-md">{description}</p>
 
         {details && (
-          <div className="pt-4">
-            <button
-              onClick={() => setShowMore(!showMore)}
-              className="group flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-brand hover:text-white transition-colors"
-            >
-              {showMore ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-              {showMore ? 'Show Less' : 'Show Detailed Steps'}
-            </button>
-            <AnimatePresence>
-              {showMore && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="overflow-hidden"
-                >
-                  <div className="mt-6 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
-                    {details}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <div className="mt-8 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
+            {details}
           </div>
         )}
       </div>
-      <div className="relative group mt-6 lg:mt-0 lg:sticky lg:top-32">
+      <div className="relative group mt-6 lg:mt-0 lg:sticky lg:top-32 h-full flex flex-col justify-start">
         <div className="absolute inset-0 bg-brand/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-        <div className="relative bg-[#080808] border border-white/10 rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 backdrop-blur-xl overflow-hidden shadow-2xl">
+        <div className="relative bg-[#080808]/50 border border-white/5 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-fit">
           {children}
         </div>
       </div>

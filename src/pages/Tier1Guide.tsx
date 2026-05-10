@@ -59,7 +59,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
                   exit={{ height: 0, opacity: 0 }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-6 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
+                  <div className="mt-6 p-6 rounded-2xl bg-white/[0.02] border-l-2 border-l-brand/30 border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
                     {details}
                   </div>
                 </motion.div>
@@ -125,14 +125,14 @@ export const Tier1Guide = () => {
           <Step
             id="hardware"
             number="01"
-            title="Hardware Protocol"
-            description="Isolate your distribution environment using a dedicated mobile device."
+            title="Use a Separate iPhone & Android"
+            description="(optional) It would be more efficient if you use a separate iPhone or Android device for clippingThis makes the device appear as a USA phone."
             details={
               <ul className="list-disc pl-5 space-y-2">
-                <li>Use a separate iPhone or Android device dedicated solely to clipping.</li>
+                <li>Use a separate iPhone or Android device to clipping.</li>
                 <li><strong className="text-white">Factory Reset</strong> the device before initial setup to clear all previous location data.</li>
                 <li>Configure the system settings to the <strong className="text-white">USA Region</strong>.</li>
-                <li>This ensures the hardware ID is associated with a Tier 1 demographic.</li>
+                <li>This ensures the device is associated with a Tier 1 demographic.</li>
               </ul>
             }
             icon={Smartphone}
@@ -141,16 +141,9 @@ export const Tier1Guide = () => {
               <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6 space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-[10px] uppercase tracking-widest text-white/40">Device Status</span>
-                  <span className="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-[9px] font-bold rounded-full">USA REGION SET</span>
+                  <span className="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-[9px] font-bold rounded-full">USA REGION </span>
                 </div>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5">
-                    <div className="flex items-center gap-3">
-                      <Cpu size={14} className="text-white/40" />
-                      <span className="text-[10px] text-white/60">System Clean</span>
-                    </div>
-                    <CheckCircle2 size={12} className="text-emerald-500" />
-                  </div>
                   <div className="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5">
                     <div className="flex items-center gap-3">
                       <Globe size={14} className="text-white/40" />
