@@ -27,6 +27,7 @@ import {
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { HowToPage } from './pages/HowTo';
+import { Tier1Guide } from './pages/Tier1Guide';
 
 const BrandPartnershipPage = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -1813,11 +1814,13 @@ export default function App() {
   const isTermsPath = currentPath === '/terms' || currentPath === '/clipper-terms';
   const isCaseStudiesPath = currentPath === '/case-studies';
   const isHowToPath = currentPath.startsWith('/docs/get-started');
+  const isTier1GuidePath = currentPath.startsWith('/docs/how-to-target-tier1-audience');
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
 
   if (isBrandPath || isComingSoon) return <BrandPartnershipPage />;
   if (isHowToPath) return <HowToPage />;
+  if (isTier1GuidePath) return <Tier1Guide />;
   if (isPrivacyPath) return <PrivacyOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isTermsPath) return <TermsOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isCaseStudiesPath) return <CaseStudiesPage activeView={activeView} setActiveView={setActiveView} onBrandLaunch={() => setBrandGatewayOpen(true)} />;
