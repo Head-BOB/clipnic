@@ -345,7 +345,7 @@ export const Tier1Guide = () => {
           <div className="mt-32 flex flex-col md:flex-row justify-between items-center gap-8 opacity-20 font-mono text-[9px] uppercase tracking-[0.3em]">
             <p>© 2026 CLIPNIC.COM</p>
             <div className="flex gap-8">
-              <a href="/privacy" className="hover:text-brand transition-colors">Privacy Protocol</a>
+              <a href="/privacy" className="hover:text-brand transition-colors">Privacy Policy</a>
               <a href="/terms" className="hover:text-brand transition-colors">Service Terms</a>
             </div>
           </div>
