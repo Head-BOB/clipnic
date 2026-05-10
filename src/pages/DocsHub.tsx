@@ -19,7 +19,7 @@ const GuideCard = ({ title, description, icon: Icon, href, tag, color }: { title
     className="group relative bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-8 md:p-12 cursor-pointer transition-all hover:bg-white/[0.04] hover:border-white/10 overflow-hidden shadow-2xl"
   >
     <div className={`absolute top-0 right-0 p-12 opacity-0 group-hover:opacity-10 transition-opacity blur-3xl rounded-full`} style={{ backgroundColor: color }} />
-    
+
     <div className="space-y-8 relative z-10">
       <div className="flex items-center justify-between">
         <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-brand group-hover:scale-110 transition-transform">
@@ -29,7 +29,7 @@ const GuideCard = ({ title, description, icon: Icon, href, tag, color }: { title
           {tag}
         </span>
       </div>
-      
+
       <div className="space-y-4">
         <h3 className="font-display text-3xl md:text-5xl uppercase tracking-tighter leading-none text-white">
           {title}
@@ -73,14 +73,12 @@ export const DocsHub = () => {
 
       <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-32 md:pt-48 pb-32">
         <header className="max-w-4xl mb-16 md:mb-32 space-y-6 md:space-y-8 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/10 border border-brand/20 text-brand font-mono text-[10px] uppercase tracking-[0.2em]">
-            <BookOpen size={12} /> CLIPPER RESOURCES
-          </div>
+
           <h1 className="font-display text-[12vw] md:text-[8vw] leading-[0.85] tracking-tighter uppercase text-white">
-            Success <br /> <span className="text-brand">Center</span>
+            Guide<br /> <span className="text-brand"></span>
           </h1>
           <p className="font-sans text-lg md:text-2xl opacity-60 font-light leading-relaxed text-balance">
-            The complete blueprint for becoming a top-tier clipper. From setting up your account to mastering the algorithm—everything you need is here.
+            Here is your complete guide to becoming a successful clipper.
           </p>
         </header>
 
