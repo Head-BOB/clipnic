@@ -12,7 +12,8 @@ import {
   TrendingUp,
   Smartphone,
   CheckCircle2,
-  Star
+  Star,
+  Lock
 } from 'lucide-react';
 import { Footer as SharedFooter } from '../components/Footer';
 
