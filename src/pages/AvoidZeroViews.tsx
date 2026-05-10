@@ -24,7 +24,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="relative grid lg:grid-cols-2 gap-12 md:gap-20 items-start py-20 md:py-32 border-b border-white/5 last:border-0 scroll-mt-32"
+      className="relative grid lg:grid-cols-2 gap-12 md:gap-20 items-start py-12 md:py-20 border-b border-white/5 last:border-0 scroll-mt-32"
     >
       {/* Timeline Dot */}
       <div className="absolute -left-8 md:-left-12 top-40 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-brand shadow-[0_0_20px_rgba(var(--color-brand-rgb),0.6)] hidden lg:block z-10" />
@@ -45,7 +45,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
         </div>
 
         {details && (
-          <div className="mt-8 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
+          <div className="mt-8 p-6 rounded-2xl bg-white/[0.03] border border-white/5 font-sans text-sm md:text-base text-white/60 leading-relaxed space-y-4">
             {details}
           </div>
         )}
@@ -53,14 +53,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
 
       {children && (
         <div className="relative lg:sticky lg:top-40 group/preview">
-          {/* Background Glow */}
-          <div className="absolute inset-0 bg-brand/5 blur-[100px] rounded-full opacity-0 group-hover/preview:opacity-100 transition-opacity duration-1000" />
-          
-          <div className="relative rounded-[2rem] md:rounded-[3rem] border border-white/10 bg-[#080808]/60 backdrop-blur-md overflow-hidden shadow-2xl transition-all duration-700 group-hover/preview:border-white/20">
-            {/* Subtle Inner Border/Bezel */}
-            <div className="absolute inset-0 border border-white/5 rounded-[inherit] pointer-events-none" />
-            {children}
-          </div>
+          {children}
         </div>
       )}
     </motion.div>
@@ -110,7 +103,7 @@ export const AvoidZeroViews = () => {
           </p>
         </header>
 
-        <div className="relative space-y-12">
+        <div className="relative space-y-6">
           {/* Continuous Connection Line */}
           <div className="absolute -left-8 md:-left-12 top-40 bottom-40 w-px bg-gradient-to-b from-brand/50 via-brand/20 to-transparent hidden lg:block" />
 
