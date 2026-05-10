@@ -101,7 +101,7 @@ export const Tier1Guide = () => {
         </button>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-32 md:pt-48 pb-20 md:pb-40">
+      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-32 md:pt-48 pb-10 md:pb-20">
         <header className="max-w-3xl mb-16 md:mb-32 space-y-6 md:space-y-8 text-center lg:text-left">
 
           <h1 className="font-display text-[10vw] md:text-[7vw] leading-[0.85] tracking-tighter uppercase text-white">
@@ -354,7 +354,7 @@ export const Tier1Guide = () => {
         {/* Footer CTA */}
       </main>
 
-      <div className="mt-20 md:mt-40">
+      <div className="mt-10 md:mt-20">
         <SharedFooter />
       </div>
 

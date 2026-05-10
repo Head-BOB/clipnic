@@ -156,7 +156,7 @@ export const HowToPage = () => {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-6 pt-32 md:pt-48 pb-32">
+      <main className="max-w-7xl mx-auto px-6 pt-32 md:pt-48 pb-10 md:pb-20">
         <header className="max-w-3xl mb-16 md:mb-32 space-y-6 md:space-y-8 text-center lg:text-left">
 
           <h1 className="font-display text-[14vw] md:text-[8vw] leading-[0.85] tracking-tighter uppercase text-white">
@@ -398,61 +398,20 @@ export const HowToPage = () => {
             icon={Video}
           >
             <DashPreview>
-              <div className="bg-[#080808] border border-white/10 rounded-[2.5rem] p-6 md:p-8 flex items-center justify-center shadow-2xl">
-                <div className="w-full max-w-[200px] aspect-[9/16] bg-[#0D0D0D] rounded-3xl border border-white/10 overflow-hidden relative group/embed">
-                  {/* Mock Interface Header */}
-                  <div className="absolute top-0 left-0 w-full p-4 flex items-center gap-3 z-10 bg-gradient-to-b from-black/80 to-transparent">
-                    <div className="w-7 h-7 rounded-full bg-brand/20 border border-brand/40 flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-                    </div>
-                    <div className="space-y-1.5">
-                      <div className="h-1.5 w-12 bg-white/20 rounded-full" />
-                      <div className="h-1 w-8 bg-white/10 rounded-full" />
-                    </div>
+              <div className="relative aspect-video rounded-xl md:rounded-2xl border border-white/10 overflow-hidden bg-black flex items-center justify-center shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                <div className="flex flex-col items-center gap-3 md:gap-4">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand/10 border-2 border-brand/30 flex items-center justify-center">
+                    <Video size={20} className="text-brand md:w-6 md:h-6" />
                   </div>
-
-                  {/* Main Content Animation */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-brand/5 group-hover/embed:bg-brand/10 transition-colors" />
-                    <motion.div
-                      animate={{ scale: [1, 1.08, 1], opacity: [0.6, 1, 0.6] }}
-                      transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                      className="relative z-10 w-16 h-16 rounded-full bg-brand/10 border border-brand/30 flex items-center justify-center shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.2)]"
-                    >
-                      <Video className="text-brand w-7 h-7" />
-                    </motion.div>
-                  </div>
-
-                  {/* Sidebar Interactions */}
-                  <div className="absolute bottom-16 right-3 flex flex-col items-center gap-5 z-10 opacity-30 group-hover/embed:opacity-60 transition-opacity">
-                    <div className="space-y-1 text-center">
-                      <div className="w-5 h-5 rounded-lg bg-white/10" />
-                      <div className="h-1 w-3 bg-white/10 mx-auto rounded-full" />
-                    </div>
-                    <div className="space-y-1 text-center">
-                      <div className="w-5 h-5 rounded-lg bg-white/10" />
-                      <div className="h-1 w-3 bg-white/10 mx-auto rounded-full" />
-                    </div>
-                    <div className="space-y-1 text-center">
-                      <div className="w-5 h-5 rounded-lg bg-white/10" />
-                      <div className="h-1 w-3 bg-white/10 mx-auto rounded-full" />
-                    </div>
-                  </div>
-
-                  {/* Caption Mockup */}
-                  <div className="absolute bottom-5 left-4 right-10 space-y-2 z-10">
-                    <div className="h-2 w-full bg-white/10 rounded-full" />
-                    <div className="h-2 w-2/3 bg-white/10 rounded-full" />
-                  </div>
-
-                  {/* Progress Bar */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-white/5 z-20">
-                    <motion.div
-                      animate={{ width: ["0%", "100%"] }}
-                      transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
-                      className="h-full bg-brand shadow-[0_0_10px_rgba(var(--color-brand-rgb),0.8)]"
-                    />
-                  </div>
+                  <p className="font-mono text-[8px] md:text-[9px] uppercase tracking-[0.3em] text-brand font-black"></p>
+                </div>
+                <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 right-3 md:right-4 h-1 bg-white/10 rounded-full overflow-hidden">
+                  <motion.div
+                    animate={{ width: ['0%', '100%'] }}
+                    transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                    className="h-full bg-brand"
+                  />
                 </div>
               </div>
             </DashPreview>
@@ -601,7 +560,7 @@ export const HowToPage = () => {
         </section>
       </main>
 
-      <div className="mt-20 md:mt-40">
+      <div className="mt-10 md:mt-20">
         <SharedFooter />
       </div>
 

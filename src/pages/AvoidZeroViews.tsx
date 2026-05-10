@@ -98,7 +98,7 @@ export const AvoidZeroViews = () => {
         </button>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-32 md:pt-48 pb-20 md:pb-40">
+      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-32 md:pt-48 pb-10 md:pb-20">
         <header className="max-w-4xl mb-16 md:mb-32 space-y-6 md:space-y-8 text-center lg:text-left">
 
           <h1 className="font-display text-[10vw] md:text-[7vw] leading-[0.85] tracking-tighter uppercase text-white">
@@ -269,48 +269,12 @@ export const AvoidZeroViews = () => {
             icon={Zap}
           >
             <DashPreview>
-              <div className="bg-[#0D0D0D] border border-white/10 rounded-[32px] p-6 md:p-8 flex items-center justify-center shadow-2xl overflow-hidden relative group/post">
-                <div className="w-full max-w-[200px] aspect-[9/16] bg-black rounded-3xl border border-white/5 overflow-hidden relative">
-                  {/* Viral Overlay */}
-                  <div className="absolute inset-0 bg-brand/5 z-0" />
-                  
-                  {/* Top Bar */}
-                  <div className="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-10">
-                    <div className="h-1.5 w-12 bg-white/20 rounded-full" />
-                    <TrendingUp size={14} className="text-brand animate-pulse" />
-                  </div>
-
-                  {/* Center Content */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4">
-                    <motion.div
-                      animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-                      transition={{ repeat: Infinity, duration: 5 }}
-                      className="w-16 h-16 rounded-2xl bg-brand text-black flex items-center justify-center shadow-[0_0_40px_rgba(var(--color-brand-rgb),0.3)]"
-                    >
-                      <Star size={32} />
-                    </motion.div>
-                    <div className="text-center space-y-1">
-                      <p className="text-[10px] font-black text-brand uppercase tracking-widest">Viral Potential</p>
-                      <p className="text-xl font-display text-white uppercase">Critical Mass</p>
-                    </div>
-                  </div>
-
-                  {/* Interaction Buttons */}
-                  <div className="absolute bottom-12 right-3 space-y-4 opacity-40">
-                    <div className="w-6 h-6 rounded-full bg-white/10" />
-                    <div className="w-6 h-6 rounded-full bg-white/10" />
-                    <div className="w-6 h-6 rounded-full bg-white/10" />
-                  </div>
-
-                  {/* Progress Line */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10">
-                    <motion.div
-                      animate={{ width: ["0%", "100%"] }}
-                      transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                      className="h-full bg-brand"
-                    />
-                  </div>
+              <div className="p-8 bg-brand text-black rounded-2xl space-y-4 shadow-[0_0_50px_rgba(var(--color-brand-rgb),0.4)]">
+                <div className="flex items-center justify-between">
+                  <p className="text-[10px] font-black uppercase tracking-widest">Trending Sound</p>
+                  <TrendingUp size={14} />
                 </div>
+                <p className="text-2xl font-display uppercase tracking-tight">Viral Potential: High</p>
               </div>
             </DashPreview>
           </Step>
@@ -344,7 +308,7 @@ export const AvoidZeroViews = () => {
 
       </main>
 
-      <div className="mt-20 md:mt-40">
+      <div className="mt-10 md:mt-20">
         <SharedFooter />
       </div>
 
