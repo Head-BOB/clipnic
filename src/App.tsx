@@ -1805,13 +1805,14 @@ export default function App() {
   const [termsOpen, setTermsOpen] = useState(false);
   const [getStartedOpen, setGetStartedOpen] = useState(false);
   const [brandGatewayOpen, setBrandGatewayOpen] = useState(false);
-  const isBrandPath = window.location.pathname === '/brand' || window.location.pathname === '/brands';
-  const isPrivacyPath = window.location.pathname === '/privacy';
-  const isTermsPath = window.location.pathname === '/terms' || window.location.pathname === '/clipper-terms';
-  const isCaseStudiesPath = window.location.pathname === '/case-studies';
-  const isHowToPath = window.location.pathname === '/docs/how-to';
-  const isHome = window.location.pathname === '/';
-  const isComingSoon = window.location.pathname === '/coming-soon';
+  const currentPath = window.location.pathname.replace(/\/$/, "");
+  const isBrandPath = currentPath === '/brand' || currentPath === '/brands';
+  const isPrivacyPath = currentPath === '/privacy';
+  const isTermsPath = currentPath === '/terms' || currentPath === '/clipper-terms';
+  const isCaseStudiesPath = currentPath === '/case-studies';
+  const isHowToPath = currentPath === '/docs/how-to';
+  const isHome = currentPath === '' || currentPath === '/';
+  const isComingSoon = currentPath === '/coming-soon';
 
   if (isBrandPath || isComingSoon) return <BrandPartnershipPage />;
   if (isHowToPath) return <HowToPage />;
