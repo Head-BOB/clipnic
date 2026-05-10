@@ -191,18 +191,12 @@ export const HowToPage = () => {
                 onClick={() => window.open('https://dash.clipnic.com', '_blank')}
                 className="relative w-56 h-56 md:w-80 md:h-80 flex items-center justify-center cursor-pointer group"
               >
-                {/* High-Intensity Pulsing Glow */}
-                <motion.div 
-                  animate={{ 
-                    opacity: [0.15, 0.35, 0.15],
-                    scale: [0.8, 1.1, 0.8]
-                  }}
-                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-brand blur-[120px] rounded-full" 
+                {/* The Actual Logo with Image-Specific Glow */}
+                <img 
+                  src="/logo.webp" 
+                  className="w-full h-full object-contain relative z-10 filter drop-shadow-[0_0_30px_rgba(5,213,136,0.5)] group-hover:drop-shadow-[0_0_50px_rgba(5,213,136,0.8)] transition-all duration-700" 
+                  alt="Clipnic Logo" 
                 />
-
-                {/* The Actual Logo */}
-                <img src="/logo.webp" className="w-full h-full object-contain relative z-10" alt="Clipnic Logo" />
 
                 {/* High-Intensity Shine Overlay (Masked to Logo) */}
                 <div 
@@ -224,9 +218,6 @@ export const HowToPage = () => {
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent skew-x-[-30deg]"
                   />
                 </div>
-
-                {/* Steady Core Glow */}
-                <div className="absolute inset-0 bg-brand/10 blur-[120px] rounded-full group-hover:bg-brand/20 transition-all duration-500" />
               </motion.div>
             </div>
           </Step>
