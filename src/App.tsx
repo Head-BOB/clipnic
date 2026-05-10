@@ -30,6 +30,7 @@ import { HowToPage } from './pages/HowTo';
 import { Tier1Guide } from './pages/Tier1Guide';
 import { AvoidZeroViews } from './pages/AvoidZeroViews';
 import { DocsHub } from './pages/DocsHub';
+import { ComingSoon } from './pages/ComingSoon';
 import { Footer as SharedFooter } from './components/Footer';
 
 const BrandPartnershipPage = () => {
@@ -1810,7 +1811,8 @@ export default function App() {
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
 
-  if (isBrandPath || isComingSoon) return <BrandPartnershipPage />;
+  if (isBrandPath) return <BrandPartnershipPage />;
+  if (isComingSoon) return <ComingSoon />;
   if (isHowToPath) return <HowToPage />;
   if (isTier1GuidePath) return <Tier1Guide />;
   if (isAvoidZeroViewsPath) return <AvoidZeroViews />;
