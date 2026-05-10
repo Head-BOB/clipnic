@@ -204,7 +204,7 @@ const Navigation = ({ onGetStarted }: { onGetStarted: () => void }) => {
         <span className="font-display text-xl md:text-2xl tracking-widest">CLIPNIC.COM</span>
       </motion.div>
       <div className="flex items-center gap-4 md:gap-8">
-        <a href="/docs/how-to" className="font-sans font-bold text-[10px] md:text-xs tracking-widest hover:text-brand transition-colors uppercase">How it works</a>
+        <a href="/docs/get-started" className="font-sans font-bold text-[10px] md:text-xs tracking-widest hover:text-brand transition-colors uppercase">How it works</a>
         <motion.button
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -532,7 +532,7 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
               </button>
             </div>
             {activeView === 'clipper' && (
-              <a href="/docs/how-to" className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand hover:underline decoration-brand decoration-2 underline-offset-8">
+              <a href="/docs/get-started" className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand hover:underline decoration-brand decoration-2 underline-offset-8">
                 View Visual Guide →
               </a>
             )}
@@ -991,7 +991,7 @@ const Footer = () => (
         <div>
           <p className="font-sans text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6 font-bold">Ecosystem</p>
           <div className="flex flex-col gap-3 font-sans text-sm font-light">
-            <a href="/docs/how-to" className="opacity-60 hover:opacity-100 text-brand font-bold transition-all">How it works</a>
+            <a href="/docs/get-started" className="opacity-60 hover:opacity-100 text-brand font-bold transition-all">How it works</a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-all">Success Ledger</a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-all">Revenue Model</a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-all">Viral Metrics</a>
@@ -1810,7 +1810,7 @@ export default function App() {
   const isPrivacyPath = currentPath === '/privacy';
   const isTermsPath = currentPath === '/terms' || currentPath === '/clipper-terms';
   const isCaseStudiesPath = currentPath === '/case-studies';
-  const isHowToPath = currentPath === '/docs/how-to';
+  const isHowToPath = currentPath === '/docs/get-started';
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
 

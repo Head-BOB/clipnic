@@ -131,26 +131,7 @@ export const HowToPage = () => {
                   <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                 </div>
               </div>
-              <div className="pt-4 grid grid-cols-2 gap-3">
-                <div className="p-4 rounded-2xl bg-[#0c0c0c] border border-white/[0.06] flex flex-col justify-between h-20 md:h-24">
-                  <div className="flex items-center gap-2">
-                    <div className="p-1 rounded bg-brand/10">
-                      <Activity size={10} className="text-brand" />
-                    </div>
-                    <span className="text-[7px] font-bold text-white/25 uppercase tracking-widest">Network</span>
-                  </div>
-                  <p className="text-sm md:text-xl font-mono font-bold text-white/90 uppercase tracking-tighter">Connected</p>
-                </div>
-                <div className="p-4 rounded-2xl bg-brand/5 border border-brand/15 flex flex-col justify-between h-20 md:h-24">
-                  <div className="flex items-center gap-2">
-                    <div className="p-1 rounded bg-brand/10">
-                      <Wallet size={10} className="text-brand" />
-                    </div>
-                    <span className="text-[7px] font-bold text-white/25 uppercase tracking-widest">Balance</span>
-                  </div>
-                  <p className="text-sm md:text-xl font-mono font-bold text-brand">$0.00</p>
-                </div>
-              </div>
+
             </DashPreview>
           </Step>
 
