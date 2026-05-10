@@ -67,7 +67,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon, i
         </div>
 
         {details && (
-          <div className="mt-8 font-sans text-sm md:text-base text-white/60 leading-relaxed space-y-4">
+          <div className="mt-8 p-6 rounded-2xl bg-white/[0.03] border border-white/5 font-sans text-sm md:text-base text-white/60 leading-relaxed space-y-4">
             {details}
           </div>
         )}
@@ -142,7 +142,7 @@ export const HowToPage = () => {
           </button>
           <button
             onClick={() => window.location.href = 'https://dash.clipnic.com/'}
-            className="px-4 md:px-6 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
+            className="px-3 md:px-6 py-2 rounded-full border border-white font-sans font-bold text-[8px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
           >
             Getting Started
           </button>
@@ -177,7 +177,7 @@ export const HowToPage = () => {
             }
             icon={LayoutGrid}
           >
-            <div className="flex items-center justify-center relative py-12 md:py-20">
+            <div className="flex flex-col items-center relative py-12 md:py-20">
               <motion.div 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -212,6 +212,7 @@ export const HowToPage = () => {
                   />
                 </div>
               </motion.div>
+              <p className="mt-8 font-display text-xl md:text-2xl tracking-[0.4em] text-white/20 uppercase select-none">clipnic.com</p>
             </div>
           </Step>
 
