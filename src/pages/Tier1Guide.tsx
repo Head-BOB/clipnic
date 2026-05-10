@@ -343,15 +343,57 @@ export const Tier1Guide = () => {
             icon={Terminal}
           >
             <DashPreview>
-              <div className="relative group">
-                <div className="absolute inset-0 bg-brand/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                <img 
-                  src="/usa_sim_card_premium_1778436652040.png" 
-                  alt="USA SIM Card" 
-                  className="relative rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl w-full h-auto object-cover"
-                />
-                <div className="absolute top-4 right-4 px-3 py-1 bg-brand text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-full shadow-xl">
-                  Advanced Setup
+              <div className="bg-black border border-white/10 rounded-3xl p-10 flex flex-col items-center justify-center space-y-8 shadow-2xl relative overflow-hidden group">
+                <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <div className="relative">
+                  {/* Animated SIM Card Body */}
+                  <motion.div 
+                    animate={{ 
+                      y: [0, -8, 0],
+                      rotateX: [0, 10, 0],
+                      rotateY: [0, 5, 0]
+                    }}
+                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                    className="w-24 h-32 rounded-2xl bg-gradient-to-br from-white/15 to-white/5 border border-white/20 flex flex-col items-center justify-center relative shadow-2xl preserve-3d"
+                  >
+                    {/* Golden Chip Area */}
+                    <div className="w-14 h-10 bg-brand/20 border border-brand/40 rounded-lg flex items-center justify-center relative overflow-hidden mb-4">
+                      <Cpu size={24} className="text-brand opacity-80" />
+                      <motion.div
+                        animate={{ left: ["-100%", "200%"] }}
+                        transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                        className="absolute inset-y-0 w-8 bg-gradient-to-r from-transparent via-brand/30 to-transparent"
+                      />
+                    </div>
+                    
+                    {/* SIM Lines */}
+                    <div className="w-12 space-y-1.5 opacity-20">
+                      <div className="h-1 w-full bg-white rounded-full" />
+                      <div className="h-1 w-4/5 bg-white rounded-full" />
+                      <div className="h-1 w-full bg-white rounded-full" />
+                    </div>
+
+                    {/* Edge Cut */}
+                    <div className="absolute top-0 right-0 w-6 h-6 bg-[#080808] border-b border-l border-white/20 -translate-y-1/2 translate-x-1/2 rotate-45" />
+                  </motion.div>
+
+                  {/* Floating Status Badge */}
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                    className="absolute -bottom-3 -right-6 px-4 py-1.5 bg-brand text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-xl shadow-2xl border-4 border-[#080808]"
+                  >
+                    USA-SIM
+                  </motion.div>
+                </div>
+
+                <div className="text-center space-y-2 relative z-10">
+                  <p className="text-xs font-bold text-white uppercase tracking-[0.3em]">Hardware ID Verified</p>
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
+                    <p className="text-[10px] text-brand/60 font-mono uppercase tracking-widest">Network Secure</p>
+                  </div>
                 </div>
               </div>
             </DashPreview>
