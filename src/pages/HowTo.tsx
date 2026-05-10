@@ -180,8 +180,6 @@ export const HowToPage = () => {
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Type <a href="https://dash.clipnic.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand">dash.clipnic.com</a> into your browser.</li>
-                <li>Ensure you are on a secure connection (look for the padlock icon).</li>
-                <li>Bookmark this page for easy access to your earnings and campaigns.</li>
               </ul>
             }
             icon={LayoutGrid}
