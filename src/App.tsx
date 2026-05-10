@@ -191,7 +191,7 @@ const NotFound = () => (
 
 // --- Components ---
 
-const Navigation = ({ onGetStarted }: { onGetStarted: () => void }) => {
+const Navigation = ({ onGetStarted, activeView }: { onGetStarted: () => void, activeView: 'clipper' | 'brand' }) => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-8 px-6 lg:px-12 flex justify-between items-center">
       <motion.div
@@ -204,7 +204,9 @@ const Navigation = ({ onGetStarted }: { onGetStarted: () => void }) => {
         <span className="font-display text-xl md:text-2xl tracking-widest">CLIPNIC.COM</span>
       </motion.div>
       <div className="flex items-center gap-4 md:gap-8">
-        <a href="/docs/get-started" className="font-sans font-bold text-[10px] md:text-xs tracking-widest hover:text-brand transition-colors uppercase">How it works</a>
+        {activeView === 'clipper' && (
+          <a href="/docs/get-started" className="font-sans font-bold text-[10px] md:text-xs tracking-widest hover:text-brand transition-colors uppercase">How it works</a>
+        )}
         <motion.button
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -552,13 +554,13 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
 };
 
 const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
-  const letters = Array.from(text);
+  const words = text.split(' ');
   
   const container = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.004, delayChildren: delay },
+      transition: { staggerChildren: 0.05, delayChildren: delay },
     },
   };
 
@@ -568,8 +570,8 @@ const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?
       y: 0,
       transition: {
         type: "spring",
-        damping: 35,
-        stiffness: 300,
+        damping: 25,
+        stiffness: 200,
       },
     },
     hidden: {
@@ -584,11 +586,11 @@ const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      className={className}
+      className={`inline-flex flex-wrap gap-x-[0.25em] ${className}`}
     >
-      {letters.map((letter, index) => (
-        <motion.span variants={child} key={index} className="inline-block">
-          {letter === " " ? "\u00A0" : letter}
+      {words.map((word, index) => (
+        <motion.span variants={child} key={index} className="inline-block whitespace-nowrap">
+          {word}
         </motion.span>
       ))}
     </motion.span>
@@ -1824,7 +1826,7 @@ export default function App() {
   return (
     <div className="relative font-sans selection:bg-ink selection:text-paper">
       <SpeedInsights />
-      <Navigation onGetStarted={() => setGetStartedOpen(true)} />
+      <Navigation onGetStarted={() => setGetStartedOpen(true)} activeView={activeView} />
 
       <main className="relative">
         <Hero
