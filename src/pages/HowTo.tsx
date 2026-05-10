@@ -47,7 +47,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="relative grid lg:grid-cols-2 gap-8 md:gap-12 items-center py-12 md:py-20 border-b border-white/5 last:border-0 scroll-mt-32"
+      className="relative grid lg:grid-cols-2 gap-8 md:gap-12 items-start py-12 md:py-20 border-b border-white/5 last:border-0 scroll-mt-32"
     >
       <div className="space-y-4 md:space-y-6">
         <div className="flex items-center gap-4">
@@ -78,7 +78,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
                   exit={{ height: 0, opacity: 0 }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-6 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/40 leading-relaxed space-y-4">
+                  <div className="mt-6 p-6 rounded-2xl bg-white/[0.02] border-l-2 border-l-brand/30 border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
                     {details}
                   </div>
                 </motion.div>
@@ -87,7 +87,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
           </div>
         )}
       </div>
-      <div className="relative group mt-6 lg:mt-0">
+      <div className="relative group mt-6 lg:mt-0 lg:sticky lg:top-32">
         <div className="absolute inset-0 bg-brand/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
         <div className="relative bg-[#080808] border border-white/10 rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 backdrop-blur-xl overflow-hidden shadow-2xl">
           {children}
@@ -195,12 +195,15 @@ export const HowToPage = () => {
             icon={LayoutGrid}
           >
             <DashPreview>
-              <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center justify-between shadow-lg">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center justify-between shadow-lg group-hover:border-white/20 transition-colors">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-white/5 rounded flex items-center justify-center border border-white/10">
-                    <LayoutGrid size={14} className="text-white/40" />
+                  <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center border border-white/10 group-hover:bg-brand/10 group-hover:border-brand/20 transition-all">
+                    <Terminal size={14} className="text-white/40 group-hover:text-brand" />
                   </div>
-                  <span className="font-mono text-[10px] md:text-xs text-white/60">dash.clipnic.com</span>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-mono text-[10px] md:text-xs text-white/60">dash.clipnic.com</span>
+                    <div className="h-0.5 w-full bg-brand/30 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                  </div>
                 </div>
                 <div className="flex gap-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/50 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
@@ -425,12 +428,22 @@ export const HowToPage = () => {
                   </div>
                   <p className="font-mono text-[8px] md:text-[9px] uppercase tracking-[0.3em] text-brand font-black">Timeline Active</p>
                 </div>
-                <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 right-3 md:right-4 h-1 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div 
-                    animate={{ width: ['0%', '100%'] }}
-                    transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                    className="h-full bg-brand"
-                  />
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5 bg-black/80 backdrop-blur-xl border-t border-white/10">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex gap-1.5">
+                      {[1,2,3].map(i => <div key={i} className="w-10 h-2 rounded-sm bg-brand/30" />)}
+                      <div className="w-14 h-2 rounded-sm bg-brand shadow-[0_0_10px_rgba(var(--color-brand-rgb),0.4)]" />
+                      {[1,2].map(i => <div key={i} className="w-8 h-2 rounded-sm bg-white/10" />)}
+                    </div>
+                    <span className="font-mono text-[9px] text-white/40 tracking-wider">00:42 / 01:00</span>
+                  </div>
+                  <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+                    <motion.div 
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                      className="h-full bg-gradient-to-r from-transparent via-brand to-transparent w-1/2"
+                    />
+                  </div>
                 </div>
               </div>
             </DashPreview>
