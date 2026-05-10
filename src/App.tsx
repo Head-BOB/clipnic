@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { HowToPage } from './pages/HowTo';
 
 const BrandPartnershipPage = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -202,14 +203,17 @@ const Navigation = ({ onGetStarted }: { onGetStarted: () => void }) => {
         <img src="logo.webp" className="w-8 h-8 md:w-10 md:h-10 rounded-lg object-cover" alt="Clipnic Logo" />
         <span className="font-display text-xl md:text-2xl tracking-widest">CLIPNIC.COM</span>
       </motion.div>
-      <motion.button
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        onClick={onGetStarted}
-        className="px-6 py-2 rounded-full border border-white font-sans font-bold text-xs tracking-widest hover:bg-white hover:text-black transition-all"
-      >
-        GET STARTED
-      </motion.button>
+      <div className="flex items-center gap-4 md:gap-8">
+        <a href="/docs/how-to" className="font-sans font-bold text-[10px] md:text-xs tracking-widest hover:text-brand transition-colors uppercase">How it works</a>
+        <motion.button
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          onClick={onGetStarted}
+          className="px-6 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
+        >
+          GET STARTED
+        </motion.button>
+      </div>
     </nav>
   );
 };
@@ -504,27 +508,34 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
           transition={{ delay: 0.6 }}
           className="mt-12 flex flex-col items-center gap-12"
         >
-          <div className="bg-white/5 p-2 rounded-full border border-white/10 flex gap-2 relative z-20">
-            <button
-              onMouseEnter={() => setActiveView('clipper')}
-              onClick={() => {
-                if (activeView === 'clipper') window.location.href = 'https://dash.clipnic.com/clipper';
-                else setActiveView('clipper');
-              }}
-              className={`px-8 py-3 rounded-full font-sans font-bold text-[10px] md:text-sm transition-all ${activeView === 'clipper' ? 'bg-brand text-black shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.4)]' : 'text-white hover:bg-white/10'}`}
-            >
-              START EARNING
-            </button>
-            <button
-              onMouseEnter={() => setActiveView('brand')}
-              onClick={() => {
-                if (activeView === 'brand') onBrandLaunch();
-                else setActiveView('brand');
-              }}
-              className={`px-8 py-3 rounded-full font-sans font-bold text-[10px] md:text-sm transition-all ${activeView === 'brand' ? 'bg-brand text-black shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.4)]' : 'text-white hover:bg-white/10'}`}
-            >
-              LAUNCH CAMPAIGN
-            </button>
+          <div className="flex flex-col items-center gap-6">
+            <div className="bg-white/5 p-2 rounded-full border border-white/10 flex gap-2 relative z-20">
+              <button
+                onMouseEnter={() => setActiveView('clipper')}
+                onClick={() => {
+                  if (activeView === 'clipper') window.location.href = 'https://dash.clipnic.com/clipper';
+                  else setActiveView('clipper');
+                }}
+                className={`px-8 py-3 rounded-full font-sans font-bold text-[10px] md:text-sm transition-all ${activeView === 'clipper' ? 'bg-brand text-black shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.4)]' : 'text-white hover:bg-white/10'}`}
+              >
+                START EARNING
+              </button>
+              <button
+                onMouseEnter={() => setActiveView('brand')}
+                onClick={() => {
+                  if (activeView === 'brand') onBrandLaunch();
+                  else setActiveView('brand');
+                }}
+                className={`px-8 py-3 rounded-full font-sans font-bold text-[10px] md:text-sm transition-all ${activeView === 'brand' ? 'bg-brand text-black shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.4)]' : 'text-white hover:bg-white/10'}`}
+              >
+                LAUNCH CAMPAIGN
+              </button>
+            </div>
+            {activeView === 'clipper' && (
+              <a href="/docs/how-to" className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand hover:underline decoration-brand decoration-2 underline-offset-8">
+                View Visual Guide →
+              </a>
+            )}
           </div>
         </motion.div>
       </div>
@@ -980,6 +991,7 @@ const Footer = () => (
         <div>
           <p className="font-sans text-[10px] uppercase tracking-[0.4em] opacity-40 mb-6 font-bold">Ecosystem</p>
           <div className="flex flex-col gap-3 font-sans text-sm font-light">
+            <a href="/docs/how-to" className="opacity-60 hover:opacity-100 text-brand font-bold transition-all">How it works</a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-all">Success Ledger</a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-all">Revenue Model</a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-all">Viral Metrics</a>
@@ -1382,12 +1394,14 @@ const caseStudiesData = [
         videoId: 'zqdjDLRnvUE',
         views: '190K+',
         label: 'Top Performing Clip',
+        type: 'YouTube Short',
       },
       {
         url: 'https://www.youtube.com/shorts/zNv2-8o4-78',
         videoId: 'zNv2-8o4-78',
         views: '40K+',
         label: 'Viral Moment',
+        type: 'YouTube Short',
       },
     ],
     metrics: [
@@ -1405,7 +1419,7 @@ const caseStudiesData = [
 
 // ─── CaseStudiesPage ─────────────────────────────────────────────────────────
 
-const CaseStudiesPage = () => {
+const CaseStudiesPage = ({ activeView, setActiveView, onBrandLaunch }: { activeView: string, setActiveView: (v: 'clipper' | 'brand') => void, onBrandLaunch: () => void }) => {
   return (
     <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
       {/* Nav */}
@@ -1795,13 +1809,15 @@ export default function App() {
   const isPrivacyPath = window.location.pathname === '/privacy';
   const isTermsPath = window.location.pathname === '/terms' || window.location.pathname === '/clipper-terms';
   const isCaseStudiesPath = window.location.pathname === '/case-studies';
+  const isHowToPath = window.location.pathname === '/docs/how-to';
   const isHome = window.location.pathname === '/';
   const isComingSoon = window.location.pathname === '/coming-soon';
 
   if (isBrandPath || isComingSoon) return <BrandPartnershipPage />;
+  if (isHowToPath) return <HowToPage />;
   if (isPrivacyPath) return <PrivacyOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isTermsPath) return <TermsOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
-  if (isCaseStudiesPath) return <CaseStudiesPage />;
+  if (isCaseStudiesPath) return <CaseStudiesPage activeView={activeView} setActiveView={setActiveView} onBrandLaunch={() => setBrandGatewayOpen(true)} />;
   if (!isHome) return <NotFound />;
 
   return (
