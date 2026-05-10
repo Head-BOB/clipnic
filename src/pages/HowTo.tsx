@@ -168,7 +168,7 @@ export const HowToPage = () => {
         <header className="max-w-3xl mb-16 md:mb-32 space-y-6 md:space-y-8 text-center lg:text-left">
           <div className="flex items-center gap-4 justify-center lg:justify-start">
             <div className="w-8 md:w-12 h-px bg-brand" />
-            <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-brand">Instructional Ledger</p>
+            <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-brand">Operational Blueprint</p>
           </div>
           <h1 className="font-display text-[14vw] md:text-[8vw] leading-[0.85] tracking-tighter uppercase text-white">
             How to <br /> <span className="text-brand">Earn</span>
@@ -558,7 +558,7 @@ export const HowToPage = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.open('https://discord.gg/clipnic', '_blank')}
+                onClick={() => window.open('https://discord.gg/8KXdFCxZsR', '_blank')}
                 className="inline-flex items-center gap-3 md:gap-4 px-10 md:px-16 py-4 md:py-6 rounded-full bg-[#5865F2] text-white font-sans font-bold text-sm md:text-lg uppercase tracking-widest shadow-[0_20px_60px_rgba(88,101,242,0.3)] hover:shadow-[0_20px_80px_rgba(88,101,242,0.5)] transition-all"
               >
                 Join Discord
