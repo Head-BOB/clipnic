@@ -50,7 +50,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon, i
     >
       {/* Timeline Dot */}
       <div className="absolute -left-8 md:-left-12 top-40 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-brand shadow-[0_0_20px_rgba(var(--color-brand-rgb),0.6)] hidden lg:block z-10" />
-      
+
       <div className="space-y-8 md:space-y-12">
         <div className="space-y-6">
           <div className="flex items-center gap-4">
@@ -77,7 +77,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon, i
         <div className="relative lg:sticky lg:top-40 group/preview">
           {/* Background Glow */}
           <div className="absolute inset-0 bg-brand/5 blur-[100px] rounded-full opacity-0 group-hover/preview:opacity-100 transition-opacity duration-1000" />
-          
+
           <div className="relative rounded-[2rem] md:rounded-[3rem] border border-white/10 bg-[#080808]/60 backdrop-blur-md overflow-hidden shadow-2xl transition-all duration-700 group-hover/preview:border-white/20">
             {/* Subtle Inner Border/Bezel */}
             <div className="absolute inset-0 border border-white/5 rounded-[inherit] pointer-events-none" />
@@ -170,7 +170,7 @@ export const HowToPage = () => {
         <div className="relative space-y-12">
           {/* Continuous Connection Line */}
           <div className="absolute -left-8 md:-left-12 top-40 bottom-40 w-px bg-gradient-to-b from-brand/50 via-brand/20 to-transparent hidden lg:block" />
-          
+
           {/* Step 1: Visit Dash */}
           <Step
             id="visit-dash"
@@ -515,7 +515,7 @@ export const HowToPage = () => {
             <div className="bg-brand/5 border border-brand/20 rounded-[2.5rem] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 group hover:bg-brand/10 transition-all">
               <div className="space-y-6 text-center md:text-left">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand text-black font-mono text-[9px] font-black uppercase tracking-widest">
-                  NEXT LEVEL
+                  NEXT STEP
                 </div>
                 <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter leading-none">
                   How to Avoid <br /> <span className="text-brand">0 Views</span>
