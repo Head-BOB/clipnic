@@ -28,7 +28,7 @@ export const ComingSoon = () => {
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             className="absolute -top-4 -right-4 bg-brand text-black font-display font-bold text-xl md:text-2xl px-4 py-2 rounded-2xl border-4 border-[#050505] rotate-12 shadow-2xl"
           >
-            SOON
+            WIP
           </motion.div>
         </motion.div>
 
@@ -39,7 +39,7 @@ export const ComingSoon = () => {
             transition={{ delay: 0.3, duration: 1 }}
             className="font-display text-[12vw] md:text-[8vw] tracking-tighter leading-none uppercase"
           >
-            Under <br /> <span className="text-brand">Development</span>
+            Under <br /> <span className="text-brand">development</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -47,7 +47,7 @@ export const ComingSoon = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="font-sans opacity-40 text-lg md:text-xl font-light max-w-lg mx-auto"
           >
-            This page is currently under development.
+            this page is currently under development
           </motion.p>
         </div>
 
