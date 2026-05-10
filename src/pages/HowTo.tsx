@@ -46,7 +46,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon, i
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="relative grid lg:grid-cols-2 gap-12 md:gap-20 items-start py-20 md:py-32 border-b border-white/5 last:border-0 scroll-mt-32"
+      className="relative grid lg:grid-cols-2 gap-12 md:gap-20 items-start py-12 md:py-20 border-b border-white/5 last:border-0 scroll-mt-32"
     >
       {/* Timeline Dot */}
       <div className="absolute -left-8 md:-left-12 top-40 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-brand shadow-[0_0_20px_rgba(var(--color-brand-rgb),0.6)] hidden lg:block z-10" />
@@ -160,7 +160,7 @@ export const HowToPage = () => {
           </p>
         </header>
 
-        <div className="relative space-y-12">
+        <div className="relative space-y-6">
           {/* Continuous Connection Line */}
           <div className="absolute -left-8 md:-left-12 top-40 bottom-40 w-px bg-gradient-to-b from-brand/50 via-brand/20 to-transparent hidden lg:block" />
 
