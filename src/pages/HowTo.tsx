@@ -185,51 +185,64 @@ export const HowToPage = () => {
             icon={LayoutGrid}
           >
             <DashPreview>
-              <div className="bg-[#080808] border border-white/10 rounded-[2.5rem] p-8 md:p-10 space-y-8 overflow-hidden relative group shadow-2xl">
+              <div className="bg-[#080808] border border-white/10 rounded-[2.5rem] p-12 md:p-20 flex flex-col items-center justify-center overflow-hidden relative group shadow-2xl min-h-[400px]">
                 <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                 
-                <div className="flex items-center justify-between relative z-10">
-                  <div className="space-y-1">
-                    <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-mono">Infrastructure Hub</p>
-                    <h4 className="text-xl md:text-2xl font-display uppercase tracking-tight text-white">Active Campaigns</h4>
-                  </div>
-                  <div className="px-3 py-1 bg-brand/10 border border-brand/20 rounded-full flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-                    <span className="text-[9px] text-brand font-black uppercase tracking-widest">Live</span>
-                  </div>
-                </div>
-
-                <div className="space-y-4 relative z-10">
-                  {[
-                    { name: 'RedBull Gaming', payout: '$4.20', progress: 75, color: '#05D588' },
-                    { name: 'Gymshark Performance', payout: '$3.50', progress: 40, color: '#ffffff' }
-                  ].map((campaign, i) => (
-                    <motion.div 
-                      key={i}
-                      initial={{ x: -20, opacity: 0 }}
-                      whileInView={{ x: 0, opacity: 1 }}
-                      transition={{ delay: i * 0.2 }}
-                      className="p-5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-between group/item hover:bg-white/10 transition-all cursor-default"
+                <div className="relative flex flex-col items-center">
+                  {/* Animated Logo Assembly */}
+                  <div className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center">
+                    {/* Top Fragment */}
+                    <motion.div
+                      initial={{ y: -60, x: -60, opacity: 0, rotate: -45 }}
+                      whileInView={{ y: 0, x: 0, opacity: 1, rotate: 0 }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                      className="absolute inset-0 flex items-center justify-center text-brand"
                     >
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand font-black text-sm">
-                          {campaign.name[0]}
-                        </div>
-                        <div>
-                          <p className="text-xs font-bold text-white uppercase tracking-wider">{campaign.name}</p>
-                          <p className="text-[10px] text-white/40 font-mono tracking-widest mt-0.5">{campaign.payout} / 1K VIEWS</p>
-                        </div>
-                      </div>
-                      <div className="w-24 h-1 bg-white/5 rounded-full overflow-hidden hidden sm:block">
-                        <motion.div 
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${campaign.progress}%` }}
-                          transition={{ duration: 1.5, delay: 0.5 + (i * 0.2), ease: "circOut" }}
-                          className="h-full bg-brand shadow-[0_0_10px_rgba(var(--color-brand-rgb),0.5)]"
-                        />
-                      </div>
+                      <Zap size={140} className="fill-brand" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 40%, 0 40%)' }} />
                     </motion.div>
-                  ))}
+                    
+                    {/* Middle Fragment */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.8, ease: "backOut", delay: 0.6 }}
+                      className="absolute inset-0 flex items-center justify-center text-brand"
+                    >
+                      <Zap size={140} className="fill-brand" style={{ clipPath: 'polygon(0 40%, 100% 40%, 100% 70%, 0 70%)' }} />
+                    </motion.div>
+
+                    {/* Bottom Fragment */}
+                    <motion.div
+                      initial={{ y: 60, x: 60, opacity: 0, rotate: 45 }}
+                      whileInView={{ y: 0, x: 0, opacity: 1, rotate: 0 }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+                      className="absolute inset-0 flex items-center justify-center text-brand"
+                    >
+                      <Zap size={140} className="fill-brand" style={{ clipPath: 'polygon(0 70%, 100% 70%, 100% 100%, 0 100%)' }} />
+                    </motion.div>
+
+                    {/* Core Pulse Glow */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: [0, 0.4, 0.2] }}
+                      transition={{ delay: 1.2, duration: 2, repeat: Infinity }}
+                      className="absolute inset-0 bg-brand blur-[80px] rounded-full"
+                    />
+                  </div>
+
+                  {/* System Status Label */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.4 }}
+                    className="text-center mt-16 space-y-3"
+                  >
+                    <p className="font-display text-3xl md:text-5xl uppercase tracking-[0.2em] text-white">CLIPNIC</p>
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
+                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand/60">System Initialized</p>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </DashPreview>
