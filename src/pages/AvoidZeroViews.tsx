@@ -131,21 +131,37 @@ export const AvoidZeroViews = () => {
           >
             <DashPreview>
                <div className="p-8 bg-white/[0.03] border border-white/10 rounded-2xl space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
-                    <UserCheck size={20} className="text-brand" />
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center">
+                      <UserCheck size={20} className="text-brand" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-white uppercase tracking-wider">Human Check</p>
+                      <motion.p 
+                        initial={{ opacity: 0.4 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 1.5 }}
+                        className="text-[10px] text-brand font-bold uppercase tracking-widest"
+                      >
+                        Verification Complete
+                      </motion.p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs font-bold text-white uppercase tracking-wider">Human Check</p>
-                    <p className="text-[10px] text-white/40">Verified Activity Found</p>
-                  </div>
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1.7, type: "spring", stiffness: 200 }}
+                  >
+                    <CheckCircle2 size={20} className="text-brand shadow-[0_0_20px_rgba(var(--color-brand-rgb),0.4)]" />
+                  </motion.div>
                 </div>
                 <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                   <motion.div 
                     initial={{ width: 0 }}
-                    whileInView={{ width: '75%' }}
-                    transition={{ duration: 2 }}
-                    className="h-full bg-brand"
+                    whileInView={{ width: '100%' }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="h-full bg-brand shadow-[0_0_10px_rgba(var(--color-brand-rgb),0.5)]"
                   />
                 </div>
               </div>
