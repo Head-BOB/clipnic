@@ -28,6 +28,7 @@ import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { HowToPage } from './pages/HowTo';
 import { Tier1Guide } from './pages/Tier1Guide';
+import { AvoidZeroViews } from './pages/AvoidZeroViews';
 
 const BrandPartnershipPage = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -273,12 +274,20 @@ const GetStartedModal = ({ isOpen, onClose, onBrandLaunch }: { isOpen: boolean, 
             </button>
           </div>
 
-          <button
-            onClick={onClose}
-            className="w-full py-4 text-xs font-bold uppercase tracking-[0.3em] opacity-40 hover:opacity-100 transition-opacity"
-          >
-            Cancel
-          </button>
+          <div className="flex flex-col items-center gap-4">
+            <button
+              onClick={onClose}
+              className="w-full py-4 text-xs font-bold uppercase tracking-[0.3em] opacity-40 hover:opacity-100 transition-opacity"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => window.location.href = '/docs/get-started'}
+              className="px-6 py-2 rounded-full border border-ink/10 text-ink/40 font-mono text-[9px] uppercase tracking-widest hover:border-ink/30 hover:text-ink/60 transition-all"
+            >
+              Need help? View our Guides
+            </button>
+          </div>
         </motion.div>
       </div>
     )}
@@ -1854,12 +1863,14 @@ export default function App() {
   const isCaseStudiesPath = currentPath === '/case-studies';
   const isHowToPath = currentPath.startsWith('/docs/get-started');
   const isTier1GuidePath = currentPath.startsWith('/docs/how-to-target-tier1-audience');
+  const isAvoidZeroViewsPath = currentPath.startsWith('/docs/avoid-0-views');
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
 
   if (isBrandPath || isComingSoon) return <BrandPartnershipPage />;
   if (isHowToPath) return <HowToPage />;
   if (isTier1GuidePath) return <Tier1Guide />;
+  if (isAvoidZeroViewsPath) return <AvoidZeroViews />;
   if (isPrivacyPath) return <PrivacyOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isTermsPath) return <TermsOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isCaseStudiesPath) return <CaseStudiesPage activeView={activeView} setActiveView={setActiveView} onBrandLaunch={() => setBrandGatewayOpen(true)} />;

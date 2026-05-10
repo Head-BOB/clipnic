@@ -50,12 +50,14 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
         )}
       </div>
 
-      <div className="relative lg:sticky lg:top-40 group/preview">
-        <div className="absolute inset-0 bg-brand/5 blur-[100px] rounded-full opacity-0 group-hover/preview:opacity-100 transition-opacity duration-1000" />
-        <div className="relative rounded-[2.5rem] border border-white/5 bg-[#080808]/40 backdrop-blur-sm overflow-hidden shadow-2xl transition-all duration-700 group-hover/preview:border-white/10">
-          {children}
+      {children && (
+        <div className="relative lg:sticky lg:top-40 group/preview">
+          <div className="absolute inset-0 bg-brand/5 blur-[100px] rounded-full opacity-0 group-hover/preview:opacity-100 transition-opacity duration-1000" />
+          <div className="relative rounded-[2.5rem] border border-white/5 bg-[#080808]/40 backdrop-blur-sm overflow-hidden shadow-2xl transition-all duration-700 group-hover/preview:border-white/10">
+            {children}
+          </div>
         </div>
-      </div>
+      )}
     </motion.div>
   );
 };
@@ -197,7 +199,7 @@ export const Tier1Guide = () => {
               <ul className="list-disc pl-5 space-y-2">
                 <li>Ensure your VPN/Proxy is <strong className="text-white">active</strong> before accessing the App Store or Play Store.</li>
                 <li>Download the relevant social application while connected to the USA gateway.</li>
-                <li>This ensures the app cache initializes with USA localization metadata.</li>
+                <li>This ensures the app cache initializes with USA localization .</li>
               </ul>
             }
             icon={Download}
@@ -304,9 +306,31 @@ export const Tier1Guide = () => {
               </ul>
             }
             icon={Terminal}
-          >
+          />
 
-          </Step>
+          {/* New Guide Bridge: Avoid 0 Views */}
+          <section className="py-20 md:py-32 border-t border-white/5">
+            <div className="bg-brand/5 border border-brand/20 rounded-[2.5rem] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 group hover:bg-brand/10 transition-all text-left">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand text-black font-mono text-[9px] font-black uppercase tracking-widest">
+                  CRITICAL STEP
+                </div>
+                <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter leading-none text-white">
+                  Stop Getting <br /> <span className="text-brand">0 Views</span>
+                </h2>
+                <p className="font-sans text-lg opacity-60 font-light max-w-md">
+                  Setting up the account is only half the battle. Learn how to properly warm it up so TikTok actually trusts you.
+                </p>
+              </div>
+              <button 
+                onClick={() => window.location.href = '/docs/avoid-0-views'}
+                className="px-12 py-6 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-xl flex items-center gap-4 group-hover:scale-105"
+              >
+                View Warmup Guide <ArrowRight size={16} />
+              </button>
+            </div>
+          </section>
+        </div>
         </div>
 
         {/* Footer CTA */}
