@@ -39,26 +39,28 @@ import {
 } from 'lucide-react';
 
 const Step = ({ id, number, title, description, details, children, icon: Icon }: { id: string, number: string, title: string, description: string, details?: React.ReactNode, children?: React.ReactNode, icon: any }) => {
-
   return (
     <motion.div
       id={id}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="relative grid lg:grid-cols-2 gap-8 md:gap-12 items-start py-12 md:py-20 border-b border-white/5 last:border-0 scroll-mt-32"
+      className="relative grid lg:grid-cols-2 gap-12 md:gap-20 items-start py-20 md:py-32 border-b border-white/5 last:border-0 scroll-mt-32"
     >
-      <div className="space-y-4 md:space-y-6">
-        <div className="flex items-center gap-4">
-          <span className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-brand text-black flex items-center justify-center font-display text-lg md:text-xl font-bold shadow-[0_0_30px_rgba(var(--color-brand-rgb),0.3)]">
-            {number}
-          </span>
-          <div className="p-2.5 md:p-3 rounded-xl bg-white/5 border border-white/10">
-            <Icon size={18} className="text-brand md:w-5 md:h-5" />
+      <div className="space-y-8 md:space-y-12">
+        <div className="space-y-6">
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand/40">Step {number}</span>
+            <div className="h-px flex-grow bg-white/5" />
+          </div>
+          <div className="space-y-4">
+            <div className="inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-brand">
+              <Icon size={24} />
+            </div>
+            <h3 className="font-display text-4xl md:text-6xl uppercase tracking-tighter leading-none text-white">{title}</h3>
+            <p className="font-sans text-lg md:text-xl opacity-60 font-light leading-relaxed">{description}</p>
           </div>
         </div>
-        <h3 className="font-display text-3xl md:text-5xl uppercase tracking-tighter leading-none text-white">{title}</h3>
-        <p className="font-sans text-base md:text-lg opacity-60 font-light leading-relaxed max-w-md">{description}</p>
 
         {details && (
           <div className="mt-8 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
@@ -66,9 +68,10 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
           </div>
         )}
       </div>
-      <div className="relative group mt-6 lg:mt-0 lg:sticky lg:top-32 h-full flex flex-col justify-start">
-        <div className="absolute inset-0 bg-brand/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-        <div className="relative bg-[#080808]/50 border border-white/5 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl h-fit">
+
+      <div className="relative lg:sticky lg:top-40 group/preview">
+        <div className="absolute inset-0 bg-brand/5 blur-[100px] rounded-full opacity-0 group-hover/preview:opacity-100 transition-opacity duration-1000" />
+        <div className="relative rounded-[2.5rem] border border-white/5 bg-[#080808]/40 backdrop-blur-sm overflow-hidden shadow-2xl transition-all duration-700 group-hover/preview:border-white/10">
           {children}
         </div>
       </div>

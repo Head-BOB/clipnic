@@ -1423,9 +1423,9 @@ const caseStudiesData = [
     handle: '@daxmainfocus',
     handleUrl: 'https://www.youtube.com/@daxmainfocus',
     category: 'Music Artist',
-    tagline: 'Internal Pilot · Authorized Simulation',
+    tagline: 'Internal Pilot · Real-World Testing',
     description:
-      'The Dax campaign served as a high-velocity internal pilot. Clipnic utilized authorized source content to stress-test our decentralized clipping pipeline, demonstrating how viral moments could be systematically identified and distributed through a controlled simulation of our clipper network.',
+      'The Dax campaign was our first internal test to show how effectively our community of editors can drive growth. By providing authorized videos to our editors, we proved that viral moments can be systematically found and shared at scale without any traditional advertising.',
     result: '250K+',
     resultLabel: 'Organic Views Generated',
     duration: '6 Weeks',
@@ -1453,7 +1453,7 @@ const caseStudiesData = [
       { label: 'Impressions', value: '400K+', icon: TrendingUp },
     ],
     highlight:
-      'Every single view was organic, no ad spend, no botted traffic. Pure clipper driven distribution across short form platforms.',
+      'Every single view was organic, no ad spend, no botted traffic. Pure editor-driven sharing across all short-form platforms.',
     color: '#C8F135',
     accentRgb: '200,241,53',
   },
@@ -1508,7 +1508,7 @@ const CaseStudiesPage = ({ activeView, setActiveView, onBrandLaunch }: { activeV
             <span className="text-brand">Studies</span>
           </h1>
           <p className="font-sans text-lg md:text-2xl opacity-60 font-light max-w-2xl leading-relaxed">
-            Real distribution. Real impact. Zero paid spend. This is the Clipnic standard for organic short form growth.
+            Real views. Real growth. Zero ad spend. This is the Clipnic standard for organic short form success.
           </p>
         </motion.div>
       </div>
