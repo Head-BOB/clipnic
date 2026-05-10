@@ -26,6 +26,9 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
       viewport={{ once: true }}
       className="relative grid lg:grid-cols-2 gap-12 md:gap-20 items-start py-20 md:py-32 border-b border-white/5 last:border-0 scroll-mt-32"
     >
+      {/* Connection Line */}
+      <div className="absolute -left-8 md:-left-12 top-40 bottom-0 w-px bg-gradient-to-b from-brand/30 via-brand/5 to-transparent hidden lg:block" />
+
       <div className="space-y-8 md:space-y-12">
         <div className="space-y-6">
           <div className="flex items-center gap-4">
@@ -33,8 +36,10 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
             <div className="h-px flex-grow bg-white/5" />
           </div>
           <div className="space-y-4">
-            <div className="inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-brand">
+            <div className="relative inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-brand">
               <Icon size={24} />
+              {/* Little dot for timeline */}
+              <div className="absolute -left-12 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand shadow-[0_0_10px_rgba(var(--color-brand-rgb),0.5)] hidden lg:block" />
             </div>
             <h3 className="font-display text-4xl md:text-6xl uppercase tracking-tighter leading-none text-white">{title}</h3>
             <p className="font-sans text-lg md:text-xl opacity-60 font-light leading-relaxed">{description}</p>
