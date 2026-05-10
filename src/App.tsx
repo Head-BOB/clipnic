@@ -26,6 +26,8 @@ import {
 } from 'lucide-react';
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { HowToPage } from './pages/HowTo';
+import { Tier1Guide } from './pages/Tier1Guide';
 import { AvoidZeroViews } from './pages/AvoidZeroViews';
 import { DocsHub } from './pages/DocsHub';
 import { Footer as SharedFooter } from './components/Footer';
