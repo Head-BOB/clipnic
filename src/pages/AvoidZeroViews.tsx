@@ -32,7 +32,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
       <div className="space-y-8 md:space-y-12">
         <div className="space-y-6">
           <div className="flex items-center gap-4">
-            <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand/40">Phase {number}</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand/40">Step {number}</span>
             <div className="h-px flex-grow bg-white/5" />
           </div>
           <div className="space-y-4">
