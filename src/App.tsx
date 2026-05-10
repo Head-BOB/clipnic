@@ -555,6 +555,50 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
 };
 
 const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
+  const letters = Array.from(text);
+  
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.004, delayChildren: delay },
+    },
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 35,
+        stiffness: 300,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 10,
+    },
+  };
+
+  return (
+    <motion.span
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      className={className}
+    >
+      {letters.map((letter, index) => (
+        <motion.span variants={child} key={index} className="inline-block">
+          {letter === " " ? "\u00A0" : letter}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};
+
+const WordReveal = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
   const words = text.split(' ');
   
   const container = {
@@ -1857,7 +1901,7 @@ export default function App() {
                       <LetterReveal text="short form contents?" />
                     </h2>
                     <p className="font-sans text-xl md:text-2xl text-ink/70 font-light max-w-4xl mx-auto leading-relaxed flex flex-wrap justify-center">
-                      <LetterReveal 
+                      <WordReveal 
                         delay={0.5}
                         text="Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey." 
                       />
