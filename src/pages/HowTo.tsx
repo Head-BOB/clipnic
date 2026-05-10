@@ -187,7 +187,7 @@ export const HowToPage = () => {
             description="Go to the Clipnic dashboard. This is your primary command center for managing all your clipping activities."
             details={
               <ul className="list-disc pl-5 space-y-2">
-                <li>Type <strong className="text-white">dash.clipnic.com</strong> into your browser.</li>
+                <li>Type <a href="https://dash.clipnic.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand">dash.clipnic.com</a> into your browser.</li>
                 <li>Ensure you are on a secure connection (look for the padlock icon).</li>
                 <li>Bookmark this page for easy access to your earnings and campaigns.</li>
               </ul>
@@ -195,13 +195,18 @@ export const HowToPage = () => {
             icon={LayoutGrid}
           >
             <DashPreview>
-              <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center justify-between shadow-lg group-hover:border-white/20 transition-colors">
+              <a 
+                href="https://dash.clipnic.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center justify-between shadow-lg group-hover:border-white/20 transition-all hover:bg-white/[0.06] cursor-pointer block"
+              >
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center border border-white/10 group-hover:bg-brand/10 group-hover:border-brand/20 transition-all">
                     <Terminal size={14} className="text-white/40 group-hover:text-brand" />
                   </div>
                   <div className="flex flex-col gap-0.5">
-                    <span className="font-mono text-[10px] md:text-xs text-white/60">dash.clipnic.com</span>
+                    <span className="font-mono text-[10px] md:text-xs text-white/60 group-hover:text-white transition-colors">dash.clipnic.com</span>
                     <div className="h-0.5 w-full bg-brand/30 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                   </div>
                 </div>
@@ -210,7 +215,7 @@ export const HowToPage = () => {
                   <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                   <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                 </div>
-              </div>
+              </a>
             </DashPreview>
           </Step>
 
