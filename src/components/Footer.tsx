@@ -7,7 +7,7 @@ export const Footer = () => (
       {/* Top Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-24">
         <div className="col-span-2 md:col-span-1 space-y-6">
-          <div className="font-display text-2xl tracking-widest uppercase text-brand">CLIPNIC.COM</div>
+          <div className="font-display text-2xl tracking-widest uppercase text-white">CLIPNIC.COM</div>
           <p className="font-sans text-sm opacity-40 leading-relaxed max-w-xs font-light">
             Empowering the next generation of creators through high-velocity decentralized distribution.
           </p>
