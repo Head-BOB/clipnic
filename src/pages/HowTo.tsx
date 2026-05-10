@@ -67,7 +67,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon, i
         </div>
 
         {details && (
-          <div className="mt-8 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
+          <div className="mt-8 font-sans text-sm md:text-base text-white/60 leading-relaxed space-y-4">
             {details}
           </div>
         )}
