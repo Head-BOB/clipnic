@@ -534,12 +534,7 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
                 LAUNCH CAMPAIGN
               </button>
             </div>
-            {activeView === 'clipper' && (
-              <a href="/docs/get-started" className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand hover:underline decoration-brand decoration-2 underline-offset-8">
-                View Visual Guide →
-              </a>
-            )}
-          </div>
+            </div>
         </motion.div>
       </div>
 
