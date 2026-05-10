@@ -259,9 +259,9 @@ export const HowToPage = () => {
             description="Navigate to the Active Campaigns tab in the sidebar to browse all available opportunities."
             details={
               <ul className="list-disc pl-5 space-y-2">
-                <li>Use the sidebar to navigate to <strong className="text-white">Active Campaigns</strong>.</li>
+                <li>Use the sidebar to navigate to <a href="https://dash.clipnic.com/clippers/campaigns" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand font-bold">Active Campaigns</a>.</li>
                 <li>Browse through cards showing <strong className="text-white">CPM rates</strong> and <strong className="text-white">remaining budget</strong>.</li>
-                <li>Look for the <strong className="text-brand">Join Campaign</strong> button to start participating.</li>
+                <li>Look for the <a href="https://dash.clipnic.com/clippers/campaigns" target="_blank" rel="noopener noreferrer" className="text-brand hover:text-white transition-colors underline underline-offset-4 decoration-brand/20 hover:decoration-white font-bold">Join Campaign</a> button to start participating.</li>
               </ul>
             }
             icon={Box}
@@ -275,18 +275,18 @@ export const HowToPage = () => {
                     <span className="font-display text-[7px] md:text-[9px] tracking-widest text-white uppercase hidden md:block">CLIPNIC</span>
                   </div>
                   <div className="space-y-1">
-                    <div className="py-2 px-2 md:px-3 rounded-lg text-white/30 flex items-center justify-center md:justify-start gap-3">
+                    <a href="https://dash.clipnic.com/clippers/dashboard" target="_blank" rel="noopener noreferrer" className="py-2 px-2 md:px-3 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all flex items-center justify-center md:justify-start gap-3">
                       <LayoutGrid size={12} className="md:w-3.5 md:h-3.5" />
                       <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest hidden md:block">Dashboard</span>
-                    </div>
-                    <div className="py-2 px-2 md:px-3 rounded-lg bg-white/10 text-white border border-white/5 flex items-center justify-center md:justify-start gap-3">
+                    </a>
+                    <a href="https://dash.clipnic.com/clippers/campaigns" target="_blank" rel="noopener noreferrer" className="py-2 px-2 md:px-3 rounded-lg bg-white/10 text-white border border-white/5 flex items-center justify-center md:justify-start gap-3">
                       <Box size={12} className="md:w-3.5 md:h-3.5" />
                       <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest hidden md:block">Active Campaigns</span>
-                    </div>
-                    <div className="py-2 px-2 md:px-3 rounded-lg text-white/30 flex items-center justify-center md:justify-start gap-3">
+                    </a>
+                    <a href="https://dash.clipnic.com/clippers/campaigns/joined" target="_blank" rel="noopener noreferrer" className="py-2 px-2 md:px-3 rounded-lg text-white/30 hover:text-white hover:bg-white/5 transition-all flex items-center justify-center md:justify-start gap-3">
                       <Target size={12} className="md:w-3.5 md:h-3.5" />
                       <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-widest hidden md:block">Joined</span>
-                    </div>
+                    </a>
                   </div>
                 </div>
 
@@ -438,22 +438,12 @@ export const HowToPage = () => {
                   </div>
                   <p className="font-mono text-[8px] md:text-[9px] uppercase tracking-[0.3em] text-brand font-black">Timeline Active</p>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5 bg-black/80 backdrop-blur-xl border-t border-white/10">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex gap-1.5">
-                      {[1,2,3].map(i => <div key={i} className="w-10 h-2 rounded-sm bg-brand/30" />)}
-                      <div className="w-14 h-2 rounded-sm bg-brand shadow-[0_0_10px_rgba(var(--color-brand-rgb),0.4)]" />
-                      {[1,2].map(i => <div key={i} className="w-8 h-2 rounded-sm bg-white/10" />)}
-                    </div>
-                    <span className="font-mono text-[9px] text-white/40 tracking-wider">00:42 / 01:00</span>
-                  </div>
-                  <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
-                    <motion.div 
-                      animate={{ x: ['-100%', '100%'] }}
-                      transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-                      className="h-full bg-gradient-to-r from-transparent via-brand to-transparent w-1/2"
-                    />
-                  </div>
+                <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 right-3 md:right-4 h-1 bg-white/10 rounded-full overflow-hidden">
+                  <motion.div 
+                    animate={{ width: ['0%', '100%'] }}
+                    transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                    className="h-full bg-brand"
+                  />
                 </div>
               </div>
             </DashPreview>
@@ -468,7 +458,7 @@ export const HowToPage = () => {
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Upload to your social profile and <strong className="text-white">copy the share link</strong>.</li>
-                <li>Go back to the campaign page and click <strong className="text-white">Submit Clip</strong>.</li>
+                <li>Go back to the campaign page and click <a href="https://dash.clipnic.com/clippers/campaigns" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand font-bold">Submit Clip</a>.</li>
                 <li>Paste the URL and our system will automatically detect the platform and verify the post.</li>
               </ul>
             }
@@ -499,9 +489,9 @@ export const HowToPage = () => {
                         <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                     </div>
 
-                    <div className="w-full py-4 rounded-2xl bg-white text-black font-bold uppercase tracking-widest text-[10px] text-center shadow-xl">
+                    <a href="https://dash.clipnic.com/clippers/campaigns" target="_blank" rel="noopener noreferrer" className="w-full py-4 rounded-2xl bg-white text-black font-bold uppercase tracking-widest text-[10px] text-center shadow-xl hover:bg-white/90 transition-all block">
                         Confirm Submission
-                    </div>
+                    </a>
                 </div>
               </div>
             </DashPreview>
@@ -515,8 +505,8 @@ export const HowToPage = () => {
             description="Our system automatically tracks your views. When the campaign ends, your total earnings are settled and ready for payout."
             details={
               <ul className="list-disc pl-5 space-y-2">
-                <li>Visit the <strong className="text-white">Earnings</strong> tab to see your revenue breakdown.</li>
-                <li>Monitor <strong className="text-white">Ready to Claim</strong> balance which clears after campaign conclusion.</li>
+                <li>Visit the <a href="https://dash.clipnic.com/clippers/earnings" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand font-bold">Earnings</a> tab to see your revenue breakdown.</li>
+                <li>Monitor <a href="https://dash.clipnic.com/clippers/earnings" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand font-bold">Ready to Claim</a> balance which clears after campaign conclusion.</li>
                 <li>Request payouts directly to your linked wallet once goals are met.</li>
               </ul>
             }
@@ -524,21 +514,21 @@ export const HowToPage = () => {
           >
             <DashPreview>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-6 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] transition-all duration-500 h-32 flex flex-col justify-between shadow-xl">
+                <a href="https://dash.clipnic.com/clippers/earnings" target="_blank" rel="noopener noreferrer" className="p-6 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] hover:border-blue-400/20 transition-all duration-500 h-32 flex flex-col justify-between shadow-xl group/card">
                     <p className="text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 text-blue-400">
                         <TrendingUp size={14} /> Available Balance
                     </p>
-                    <p className="text-3xl font-mono tracking-tight font-medium text-white/90">$1,680.00</p>
+                    <p className="text-3xl font-mono tracking-tight font-medium text-white/90 group-hover/card:text-white transition-colors">$1,680.00</p>
                     <p className="text-[8px] uppercase tracking-widest text-white/20">Active Campaign Reach</p>
-                </div>
+                </a>
 
-                <div className="p-6 rounded-3xl bg-white text-black border-white/20 hover:bg-white/90 transition-all duration-500 h-32 flex flex-col justify-between shadow-2xl">
+                <a href="https://dash.clipnic.com/clippers/earnings" target="_blank" rel="noopener noreferrer" className="p-6 rounded-3xl bg-white text-black border-white/20 hover:bg-white/90 transition-all duration-500 h-32 flex flex-col justify-between shadow-2xl group/card">
                     <p className="text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 text-black/50">
                         <Wallet size={14} /> Ready to Claim
                     </p>
                     <p className="text-3xl font-mono tracking-tight font-black text-black">$420.00</p>
                     <p className="text-[8px] uppercase tracking-widest text-black/30">Campaign Concluded</p>
-                </div>
+                </a>
               </div>
               <div className="p-4 md:p-5 rounded-xl md:rounded-2xl border border-white/10 bg-white/5 flex items-center justify-between">
                 <div className="flex items-center gap-2 md:gap-3">
