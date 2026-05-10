@@ -11,6 +11,7 @@ import {
   LayoutGrid,
   Sparkles
 } from 'lucide-react';
+import { Footer as SharedFooter } from '../components/Footer';
 
 const GuideCard = ({ title, description, icon: Icon, href, tag, color }: { title: string, description: string, icon: any, href: string, tag: string, color: string }) => (
   <motion.div
@@ -129,14 +130,7 @@ export const DocsHub = () => {
           </div>
         </section>
 
-        <footer className="mt-32 pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 opacity-20 font-mono text-[9px] uppercase tracking-[0.3em]">
-          <p>© 2026 CLIPNIC.COM</p>
-          <div className="flex gap-8">
-            <a href="/privacy" className="hover:text-brand transition-colors">Privacy</a>
-            <a href="/terms" className="hover:text-brand transition-colors">Terms</a>
-            <a href="mailto:hello@clipnic.com" className="hover:text-brand transition-colors">Contact</a>
-          </div>
-        </footer>
+        <SharedFooter />
       </main>
 
       <style>{`

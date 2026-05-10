@@ -18,6 +18,7 @@ import {
   Lock,
   Cpu
 } from 'lucide-react';
+import { Footer as SharedFooter } from '../components/Footer';
 
 const Step = ({ id, number, title, description, details, children, icon: Icon }: { id: string, number: string, title: string, description: string, details?: React.ReactNode, children?: React.ReactNode, icon: any }) => {
   return (
@@ -57,7 +58,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
         <div className="relative lg:sticky lg:top-40 group/preview">
           {/* Background Glow */}
           <div className="absolute inset-0 bg-brand/5 blur-[100px] rounded-full opacity-0 group-hover/preview:opacity-100 transition-opacity duration-1000" />
-          
+
           <div className="relative rounded-[2rem] md:rounded-[3rem] border border-white/10 bg-[#080808]/60 backdrop-blur-md overflow-hidden shadow-2xl transition-all duration-700 group-hover/preview:border-white/20">
             {/* Subtle Inner Border/Bezel */}
             <div className="absolute inset-0 border border-white/5 rounded-[inherit] pointer-events-none" />
@@ -120,7 +121,7 @@ export const Tier1Guide = () => {
             id="hardware"
             number="01"
             title="Use a Separate iPhone & Android"
-            description="(optional) It would be more efficient if you use a separate iPhone or Android device for clippingThis makes the device appear as a USA phone."
+            description="(optional) It would be more efficient if you use a separate iPhone or Android device for clipping This makes the device appear as a USA phone."
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Use a separate iPhone or Android device to clipping.</li>
@@ -323,7 +324,7 @@ export const Tier1Guide = () => {
             <div className="bg-brand/5 border border-brand/20 rounded-[2.5rem] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 group hover:bg-brand/10 transition-all text-left">
               <div className="space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand text-black font-mono text-[9px] font-black uppercase tracking-widest">
-                  CRITICAL STEP
+                  NEXT STEP
                 </div>
                 <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter leading-none text-white">
                   Stop Getting <br /> <span className="text-brand">0 Views</span>
@@ -332,7 +333,7 @@ export const Tier1Guide = () => {
                   Setting up the account is only half the battle. Learn how to properly warm it up so TikTok actually trusts you.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => window.location.href = '/docs/avoid-0-views'}
                 className="px-12 py-6 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-xl flex items-center gap-4 group-hover:scale-105"
               >
@@ -343,28 +344,9 @@ export const Tier1Guide = () => {
         </div>
 
         {/* Footer CTA */}
-        <footer className="mt-32 pt-20 border-t border-white/5 text-center">
-          <div className="space-y-8">
-            <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter">Ready to <span className="text-brand">Scale</span>?</h2>
-            <p className="font-sans opacity-40 text-sm max-w-md mx-auto">Apply these steps to your next campaign for maximum revenue efficiency.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => window.location.href = '/docs'}
-                className="px-12 py-5 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-[0_20px_60px_rgba(var(--color-brand-rgb),0.3)]"
-              >
-                Go Back to Hub
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-32 flex flex-col md:flex-row justify-between items-center gap-8 opacity-20 font-mono text-[9px] uppercase tracking-[0.3em]">
-            <p>© 2026 CLIPNIC.COM</p>
-            <div className="flex gap-8">
-              <a href="/privacy" className="hover:text-brand transition-colors">Privacy Policy</a>
-              <a href="/terms" className="hover:text-brand transition-colors">Service Terms</a>
-            </div>
-          </div>
-        </footer>
+        <div className="mt-20 md:mt-40">
+          <SharedFooter />
+        </div>
       </main>
 
       <style>{`

@@ -12,10 +12,9 @@ import {
   TrendingUp,
   Smartphone,
   CheckCircle2,
-  Lock,
-  ExternalLink,
   Star
 } from 'lucide-react';
+import { Footer as SharedFooter } from '../components/Footer';
 
 const Step = ({ id, number, title, description, details, children, icon: Icon }: { id: string, number: string, title: string, description: string, details?: React.ReactNode, children?: React.ReactNode, icon: any }) => {
   return (
@@ -292,28 +291,9 @@ export const AvoidZeroViews = () => {
           </div>
         </section>
 
-        <footer className="mt-32 pt-20 border-t border-white/5 text-center">
-          <div className="space-y-8">
-            <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter">Ready to <span className="text-brand">Get Views</span>?</h2>
-            <p className="font-sans opacity-40 text-sm max-w-md mx-auto">Check the other guides for more detailed explanations on going viral.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => window.location.href = '/docs'}
-                className="px-12 py-5 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-[0_20px_60px_rgba(var(--color-brand-rgb),0.3)]"
-              >
-                Go Back to Hub
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-32 flex flex-col md:flex-row justify-between items-center gap-8 opacity-20 font-mono text-[9px] uppercase tracking-[0.3em]">
-            <p>© 2026 CLIPNIC.COM</p>
-            <div className="flex gap-8">
-              <a href="/privacy" className="hover:text-brand transition-colors">Privacy Policy</a>
-              <a href="/terms" className="hover:text-brand transition-colors">Service Terms</a>
-            </div>
-          </div>
-        </footer>
+        <div className="mt-20 md:mt-40">
+          <SharedFooter />
+        </div>
       </main>
 
       <style>{`
