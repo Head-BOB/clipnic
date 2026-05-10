@@ -1604,15 +1604,15 @@ const CaseStudiesPage = ({ activeView, setActiveView, onBrandLaunch }: { activeV
                     </div>
 
                     <div className="space-y-8 md:space-y-10">
-                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Integrity Matrix</p>
+                      <p className="font-mono text-[10px] uppercase tracking-widest opacity-30">Our Standards</p>
                       <div className="space-y-6 md:space-y-8">
                         <div className="flex items-start gap-5 md:gap-6">
                           <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                             <TrendingUp size={16} className="text-brand" />
                           </div>
                           <div>
-                            <h4 className="font-display text-base md:text-lg uppercase tracking-tight">Exponential Scale</h4>
-                            <p className="font-sans text-xs md:text-sm opacity-40 font-light mt-1">Growth achieved through decentralized distribution nodes.</p>
+                            <h4 className="font-display text-base md:text-lg uppercase tracking-tight">Massive Scale</h4>
+                            <p className="font-sans text-xs md:text-sm opacity-40 font-light mt-1">Growth achieved through our decentralized network of editors.</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-5 md:gap-6">
@@ -1621,14 +1621,14 @@ const CaseStudiesPage = ({ activeView, setActiveView, onBrandLaunch }: { activeV
                           </div>
                           <div>
                             <h4 className="font-display text-base md:text-lg uppercase tracking-tight">Verified Assets</h4>
-                            <p className="font-sans text-xs md:text-sm opacity-40 font-light mt-1">Every clip is tracked and validated through our command center.</p>
+                            <p className="font-sans text-xs md:text-sm opacity-40 font-light mt-1">Every clip is tracked and validated through our hub.</p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Right: Intelligence Grid */}
+                  {/* Right: Video Grid */}
                   <div className="lg:col-span-3 px-6 md:px-16 py-12 md:py-20 bg-white/[0.01] relative">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(200,241,53,0.02)_0%,transparent_60%)]" />
 
@@ -1639,7 +1639,7 @@ const CaseStudiesPage = ({ activeView, setActiveView, onBrandLaunch }: { activeV
                           <h4 className="font-display text-2xl md:text-3xl uppercase">Viral Components</h4>
                         </div>
                         <div className="px-3 py-1.5 md:px-4 md:py-2 bg-ink border border-white/10 rounded-lg md:rounded-xl font-mono text-[8px] md:text-[9px] uppercase tracking-widest opacity-60">
-                          Performance Ledger
+                          Live Results
                         </div>
                       </div>
 

@@ -116,7 +116,7 @@ export const Tier1Guide = () => {
             Targeting <br /> <span className="text-brand">Tier 1</span>
           </h1>
           <p className="font-sans text-lg md:text-2xl opacity-60 font-light leading-relaxed text-balance">
-            Strategic guide to establishing a USA-based presence for maximum algorithmic reach and premium CPM distribution.
+            Strategic guide to establishing a USA-based presence to reach more people and earn higher payouts.
           </p>
         </header>
 
@@ -313,12 +313,12 @@ export const Tier1Guide = () => {
             id="optional"
             number="OPT"
             title="(optional) USA SIM Integration"
-            description="Enhanced hardware masking for ultimate distribution success."
+            description="Extra setup for privacy and ultimate distribution success."
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Using a <strong className="text-white">Physical USA SIM Card</strong> can further solidify your Tier 1 status.</li>
                 <li>While not mandatory, it significantly reduces the risk of flagging.</li>
-                <li>The device will detect the carrier as USA-based, bypassing secondary location checks.</li>
+                <li>The device will detect the carrier as USA-based, passing secondary location checks.</li>
               </ul>
             }
             icon={Terminal}
@@ -331,7 +331,7 @@ export const Tier1Guide = () => {
         <footer className="mt-32 pt-20 border-t border-white/5 text-center">
           <div className="space-y-8">
             <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter">Ready to <span className="text-brand">Scale</span>?</h2>
-            <p className="font-sans opacity-40 text-sm max-w-md mx-auto">Apply these protocols to your next campaign for maximum revenue efficiency.</p>
+            <p className="font-sans opacity-40 text-sm max-w-md mx-auto">Apply these steps to your next campaign for maximum revenue efficiency.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => window.location.href = 'https://dash.clipnic.com/'}

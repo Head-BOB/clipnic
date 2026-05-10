@@ -160,7 +160,7 @@ export const HowToPage = () => {
             id="visit-dash"
             number="01"
             title="Visit dash.clipnic.com"
-            description="Go to the Clipnic dashboard. This is your primary command center for managing all your clipping activities."
+            description="Go to the Clipnic dashboard. This is your primary hub for managing all your clipping activities."
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Type <a href="https://dash.clipnic.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand">dash.clipnic.com</a> into your browser.</li>
@@ -179,7 +179,7 @@ export const HowToPage = () => {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center border border-white/10 group-hover:bg-brand/10 group-hover:border-brand/20 transition-all">
-                    <Terminal size={14} className="text-white/40 group-hover:text-brand" />
+                    <LayoutGrid size={14} className="text-white/40 group-hover:text-brand" />
                   </div>
                   <div className="flex flex-col gap-0.5">
                     <span className="font-mono text-[10px] md:text-xs text-white/60 group-hover:text-white transition-colors">dash.clipnic.com</span>
@@ -199,13 +199,13 @@ export const HowToPage = () => {
           <Step
             id="authenticate"
             number="02"
-            title="Authenticate Account"
-            description="Securely link your account using Discord. This identifies you as a verified clipper in our network."
+            title="Login with Discord"
+            description="Securely link your account using Discord. This connects your account to our network."
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Click the <a href="https://dash.clipnic.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand">Login with Discord</a> button.</li>
                 <li>Authorize Clipnic to view your basic profile (no sensitive data).</li>
-                <li>This step creates your unique clipper ID and links your upcoming payouts.</li>
+                <li>This step creates your unique account ID and links your upcoming payouts.</li>
               </ul>
             }
             icon={LinkIcon}
@@ -338,7 +338,7 @@ export const HowToPage = () => {
             id="resources-rules"
             number="04"
             title="Visit Resources & Rules"
-            description="Once joined, check the specific rules and grab the source content. This ensures your videos are approved and eligible for payouts."
+            description="Once joined, check the rules and grab the videos to edit. This ensures your videos are approved and ready to get paid."
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Click into a campaign to see the <strong className="text-white">Platform Rules</strong>.</li>
@@ -380,7 +380,7 @@ export const HowToPage = () => {
                     <div className="w-2 h-2 rounded-full bg-[#5865F2] animate-pulse" />
                   </div>
                   <p className="text-[11px] text-white/30 leading-relaxed">
-                    Access raw footage, brand kits, and connect with other clippers in the dedicated assets channel.
+                    Access videos, brand kits, and connect with other clippers in the dedicated assets channel.
                   </p>
                   <div className="w-full py-4 rounded-2xl bg-[#5865F2] text-white font-bold uppercase tracking-widest text-[10px] shadow-2xl flex items-center justify-center gap-2 cursor-pointer">
                     Discord Channel <ExternalLink size={14} />
@@ -395,12 +395,12 @@ export const HowToPage = () => {
             id="edit-videos"
             number="05"
             title="Edit the Videos"
-            description="Use the source content to create engaging short-form clips. Add your own style, subtitles, and hooks to maximize your reach."
+            description="Use the provided videos to create engaging short-form clips. Add your own style, subtitles, and hooks to maximize your reach."
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Keep clips between <strong className="text-white">15-60 seconds</strong> for optimal engagement.</li>
                 <li>Add <strong className="text-white">Captions</strong> and a strong hook in the first 3 seconds.</li>
-                <li>Focus on high-retention editing styles to reach the <strong className="text-white">Min Views</strong> threshold.</li>
+                <li>Focus on high-retention editing styles to reach the <strong className="text-white">minimum views needed</strong>.</li>
               </ul>
             }
             icon={Video}
@@ -478,10 +478,10 @@ export const HowToPage = () => {
             id="monitor-performance"
             number="07"
             title={<a href="https://dash.clipnic.com/clippers/earnings" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">Monitor Performance</a>}
-            description="Our system automatically tracks your views. When the campaign ends, your total earnings are settled and ready for payout."
+            description="Our system automatically tracks your views. When the campaign ends, your total earnings are calculated and ready to withdraw."
             details={
               <ul className="list-disc pl-5 space-y-2">
-                <li>Visit the <a href="https://dash.clipnic.com/clippers/earnings" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand font-bold">Earnings</a> tab to see your revenue breakdown.</li>
+                <li>Visit the <a href="https://dash.clipnic.com/clippers/earnings" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand font-bold">Earnings</a> tab to see your earnings.</li>
                 <li>Monitor <a href="https://dash.clipnic.com/clippers/earnings" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand font-bold">Ready to Claim</a> balance which clears after campaign conclusion.</li>
                 <li>Request payouts directly to your linked wallet once goals are met.</li>
               </ul>
@@ -546,7 +546,7 @@ export const HowToPage = () => {
       </main>
 
       <footer className="py-12 md:py-16 border-t border-white/5 text-center font-mono text-[8px] md:text-[10px] uppercase tracking-[0.5em] opacity-30 px-6">
-        © 2026 CLIPNIC.COM · ALL SYSTEMS OPERATIONAL
+        © 2026 CLIPNIC.COM
       </footer>
 
       <style>{`
