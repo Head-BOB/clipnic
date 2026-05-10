@@ -160,8 +160,8 @@ export const Tier1Guide = () => {
           <Step
             id="network"
             number="02"
-            title="Network Masking"
-            description="Establish a secure, encrypted tunnel to a Tier 1 gateway."
+            title="Use a VPN/Proxy"
+            description="Establish VPN/Proxy for a Tier 1 country"
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Download and install a high-quality <strong className="text-white">VPN or Proxy</strong>.</li>
@@ -179,8 +179,8 @@ export const Tier1Guide = () => {
                 </div>
                 <div className="space-y-6">
                   <div>
-                    <p className="text-[10px] uppercase tracking-widest text-brand mb-1">Encrypted Tunnel</p>
-                    <p className="text-2xl font-mono text-white">USA Gateway Active</p>
+                    <p className="text-[10px] uppercase tracking-widest text-brand mb-1">VPN/Proxy</p>
+                    <p className="text-2xl font-mono text-white">USA VPN/Proxy Active</p>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="h-2 flex-grow bg-white/5 rounded-full overflow-hidden">
@@ -190,7 +190,7 @@ export const Tier1Guide = () => {
                         className="h-full w-1/3 bg-brand"
                       />
                     </div>
-                    <span className="text-[10px] font-mono text-brand">SECURED</span>
+
                   </div>
                   <a
                     href="https://apps.apple.com/lk/app/vpn-super-unlimited-proxy/id1370293473"
@@ -209,7 +209,7 @@ export const Tier1Guide = () => {
           <Step
             id="deployment"
             number="03"
-            title="App Deployment"
+            title="App Installation"
             description="Install the social platform within your secured environment."
             details={
               <ul className="list-disc pl-5 space-y-2">
@@ -226,8 +226,8 @@ export const Tier1Guide = () => {
                   <Download size={24} className="text-white/40" />
                 </div>
                 <div className="text-center space-y-1">
-                  <p className="text-xs font-bold text-white uppercase tracking-wider">Installing Metadata</p>
-                  <p className="text-[10px] text-white/30 uppercase tracking-[0.2em]">Package: Social_Platform_USA</p>
+                  <p className="text-xs font-bold text-white uppercase tracking-wider">Installing App</p>
+
                 </div>
               </div>
             </DashPreview>
@@ -238,7 +238,7 @@ export const Tier1Guide = () => {
             id="account"
             number="04"
             title="Identity Creation"
-            description="Register a fresh account under the USA protocol."
+            description="Register a fresh account under the USA"
             details={
               <ul className="list-disc pl-5 space-y-2">
                 <li>Open the application and initiate the sign-up process.</li>
@@ -256,7 +256,7 @@ export const Tier1Guide = () => {
                   <div className="p-4 bg-black rounded-xl border border-white/10 flex items-center justify-between">
                     <span className="text-sm font-mono text-white">+1 (USA)</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] text-emerald-500 font-bold uppercase tracking-widest">Protocol Matched</span>
+                      <span className="text-[9px] text-emerald-500 font-bold uppercase tracking-widest">USA Matched</span>
                       <CheckCircle2 size={14} className="text-emerald-500" />
                     </div>
                   </div>
@@ -274,7 +274,7 @@ export const Tier1Guide = () => {
           <Step
             id="engagement"
             number="05"
-            title="Social Integration"
+            title="Warm it up"
             description="Warm up the account to establish human-like activity markers."
             details={
               <ul className="list-disc pl-5 space-y-2">
@@ -312,7 +312,7 @@ export const Tier1Guide = () => {
           <Step
             id="optional"
             number="OPT"
-            title="USA SIM Integration"
+            title="(optional) USA SIM Integration"
             description="Enhanced hardware masking for ultimate distribution success."
             details={
               <ul className="list-disc pl-5 space-y-2">
@@ -323,20 +323,7 @@ export const Tier1Guide = () => {
             }
             icon={Terminal}
           >
-            <DashPreview>
-              <div className="p-6 rounded-2xl bg-[#0c0c0c] border border-brand/20 flex items-center justify-between group cursor-help">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center">
-                    <Search size={18} className="text-brand" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white uppercase tracking-wider">SIM Recognition</p>
-                    <p className="text-[9px] text-brand/60 uppercase font-mono">Carrier: T-Mobile USA</p>
-                  </div>
-                </div>
-                <div className="text-[10px] font-black text-brand bg-brand/10 px-3 py-1 rounded-full">RECOMMENDED</div>
-              </div>
-            </DashPreview>
+
           </Step>
         </div>
 
