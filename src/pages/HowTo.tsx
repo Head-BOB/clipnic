@@ -47,6 +47,9 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
       viewport={{ once: true }}
       className="relative grid lg:grid-cols-2 gap-12 md:gap-20 items-start py-20 md:py-32 border-b border-white/5 last:border-0 scroll-mt-32"
     >
+      {/* Connection Line */}
+      <div className="absolute -left-8 md:-left-12 top-40 bottom-0 w-px bg-gradient-to-b from-brand/30 via-brand/5 to-transparent hidden lg:block" />
+      
       <div className="space-y-8 md:space-y-12">
         <div className="space-y-6">
           <div className="flex items-center gap-4">
@@ -54,8 +57,10 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
             <div className="h-px flex-grow bg-white/5" />
           </div>
           <div className="space-y-4">
-            <div className="inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-brand">
+            <div className="relative inline-flex p-3 rounded-2xl bg-white/5 border border-white/10 text-brand">
               <Icon size={24} />
+              {/* Little dot for timeline */}
+              <div className="absolute -left-12 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand shadow-[0_0_10px_rgba(var(--color-brand-rgb),0.5)] hidden lg:block" />
             </div>
             <h3 className="font-display text-4xl md:text-6xl uppercase tracking-tighter leading-none text-white">{title}</h3>
             <p className="font-sans text-lg md:text-xl opacity-60 font-light leading-relaxed">{description}</p>
@@ -175,29 +180,7 @@ export const HowToPage = () => {
             }
             icon={LayoutGrid}
           >
-            <DashPreview>
-              <a
-                href="https://dash.clipnic.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center justify-between shadow-lg group-hover:border-white/20 transition-all hover:bg-white/[0.06] cursor-pointer block"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center border border-white/10 group-hover:bg-brand/10 group-hover:border-brand/20 transition-all">
-                    <LayoutGrid size={14} className="text-white/40 group-hover:text-brand" />
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                    <span className="font-mono text-[10px] md:text-xs text-white/60 group-hover:text-white transition-colors">dash.clipnic.com</span>
-                    <div className="h-0.5 w-full bg-brand/30 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                  </div>
-                </div>
-                <div className="flex gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/50 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
-                </div>
-              </a>
-            </DashPreview>
+
           </Step>
 
           {/* Step 2: Authenticate */}
@@ -535,7 +518,7 @@ export const HowToPage = () => {
                   Stop the shadowban before it starts. Learn how to warm up your account and get your clips seen by millions.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => window.location.href = '/docs/avoid-0-views'}
                 className="px-12 py-6 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-xl flex items-center gap-4 group-hover:scale-105"
               >
