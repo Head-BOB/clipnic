@@ -184,40 +184,36 @@ export const HowToPage = () => {
             }
             icon={LayoutGrid}
           >
-            <DashPreview>
-              <div className="flex items-center justify-center overflow-hidden relative group min-h-[400px]">
-                <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                
-                <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
-                  {/* The Actual Logo */}
-                  <img src="/logo.webp" className="w-full h-full object-contain relative z-10" alt="Clipnic Logo" />
+            <div className="flex items-center justify-center relative group py-12 md:py-20">
+              <div className="relative w-56 h-56 md:w-80 md:h-80 flex items-center justify-center">
+                {/* The Actual Logo */}
+                <img src="/logo.webp" className="w-full h-full object-contain relative z-10" alt="Clipnic Logo" />
 
-                  {/* Code-Based Shine Overlay (Masked to Logo) */}
-                  <div 
-                    className="absolute inset-0 z-20 pointer-events-none overflow-hidden"
-                    style={{
-                      maskImage: 'url(/logo.webp)',
-                      maskSize: 'contain',
-                      maskRepeat: 'no-repeat',
-                      maskPosition: 'center',
-                      WebkitMaskImage: 'url(/logo.webp)',
-                      WebkitMaskSize: 'contain',
-                      WebkitMaskRepeat: 'no-repeat',
-                      WebkitMaskPosition: 'center',
-                    }}
-                  >
-                    <motion.div 
-                      animate={{ x: ['-100%', '200%'] }}
-                      transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg]"
-                    />
-                  </div>
-
-                  {/* Steady Glow */}
-                  <div className="absolute inset-0 bg-brand/10 blur-[100px] rounded-full" />
+                {/* High-Intensity Shine Overlay (Masked to Logo) */}
+                <div 
+                  className="absolute inset-0 z-20 pointer-events-none overflow-hidden"
+                  style={{
+                    maskImage: 'url(/logo.webp)',
+                    maskSize: 'contain',
+                    maskRepeat: 'no-repeat',
+                    maskPosition: 'center',
+                    WebkitMaskImage: 'url(/logo.webp)',
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                  }}
+                >
+                  <motion.div 
+                    animate={{ x: ['-100%', '200%'] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent skew-x-[-30deg]"
+                  />
                 </div>
+
+                {/* Steady Core Glow */}
+                <div className="absolute inset-0 bg-brand/10 blur-[120px] rounded-full" />
               </div>
-            </DashPreview>
+            </div>
           </Step>
 
           {/* Step 2: Authenticate */}
