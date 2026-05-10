@@ -61,7 +61,7 @@ export const ComingSoon = () => {
             onClick={() => window.location.href = '/'}
             className="px-12 py-5 rounded-full bg-white text-black font-sans font-bold text-xs md:text-sm hover:bg-brand transition-all uppercase tracking-[0.2em] shadow-xl"
           >
-            Return to Feed
+            Return Home
           </button>
         </motion.div>
       </div>
