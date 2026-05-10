@@ -218,7 +218,7 @@ const Navigation = ({ onGetStarted, activeView }: { onGetStarted: () => void, ac
           onClick={onGetStarted}
           className="px-6 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
         >
-          GET STARTED
+          Getting Started
         </motion.button>
       </div>
     </nav>
@@ -1431,7 +1431,7 @@ const CaseStudiesPage = ({ activeView, setActiveView, onBrandLaunch }: { activeV
           onClick={() => (window.location.href = '/?v=brand')}
           className="px-5 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
         >
-          GET STARTED
+          Getting Started
         </button>
       </nav>
 

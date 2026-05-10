@@ -151,7 +151,7 @@ export const HowToPage = () => {
             onClick={() => window.location.href = 'https://dash.clipnic.com/'}
             className="px-4 md:px-6 py-2 rounded-full border border-white font-sans font-bold text-[10px] md:text-xs tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap"
           >
-            GET STARTED
+            Getting Started
           </button>
         </div>
       </nav>
