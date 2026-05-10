@@ -213,12 +213,12 @@ export const AvoidZeroViews = () => {
             icon={ShieldAlert}
           >
              <DashPreview>
-              <div className="p-8 bg-red-500/5 border border-red-500/20 rounded-2xl space-y-4">
-                <div className="flex items-center gap-3 text-red-500">
+              <div className="p-8 bg-amber-500/5 border border-amber-500/20 rounded-2xl space-y-4">
+                <div className="flex items-center gap-3 text-amber-500">
                   <Lock size={16} />
                   <p className="text-[10px] font-bold uppercase tracking-widest">Spam Filter: ACTIVE</p>
                 </div>
-                <p className="text-xs text-white/60">"Too many actions in 60 seconds will flag your account."</p>
+                <p className="text-xs text-white/60">Too many actions in 60 seconds will flag your account.</p>
               </div>
             </DashPreview>
           </Step>
