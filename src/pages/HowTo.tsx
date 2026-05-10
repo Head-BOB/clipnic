@@ -189,32 +189,56 @@ export const HowToPage = () => {
                 <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                 
                 <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
-                  {/* The Actual Logo */}
-                  <img src="/logo.webp" className="w-full h-full object-contain relative z-10" alt="Clipnic Logo" />
-
-                  {/* The Shine Overlay (Masked to Logo) */}
-                  <div 
-                    className="absolute inset-0 z-20 pointer-events-none overflow-hidden"
-                    style={{
-                      maskImage: 'url(/logo.webp)',
-                      maskSize: 'contain',
-                      maskRepeat: 'no-repeat',
-                      maskPosition: 'center',
-                      WebkitMaskImage: 'url(/logo.webp)',
-                      WebkitMaskSize: 'contain',
-                      WebkitMaskRepeat: 'no-repeat',
-                      WebkitMaskPosition: 'center',
-                    }}
-                  >
-                    <motion.div 
-                      animate={{ x: ['-100%', '200%'] }}
-                      transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg]"
+                  {/* Code-Based SVG Logo */}
+                  <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_50px_rgba(5,213,136,0.2)]">
+                    <defs>
+                      <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#05D588" />
+                        <stop offset="50%" stopColor="#04b875" />
+                        <stop offset="100%" stopColor="#05D588" />
+                      </linearGradient>
+                      <clipPath id="logoClip">
+                        <path d="M62 5L28 58h24l-6 37 34-53H46l16-42z" />
+                      </clipPath>
+                    </defs>
+                    
+                    {/* Main Shape */}
+                    <path 
+                      d="M62 5L28 58h24l-6 37 34-53H46l16-42z" 
+                      fill="url(#logoGrad)" 
+                      className="transition-all duration-1000 group-hover:fill-white"
                     />
-                  </div>
 
-                  {/* Steady Glow */}
-                  <div className="absolute inset-0 bg-brand/10 blur-[100px] rounded-full" />
+                    {/* Procedural Shine */}
+                    <motion.g clipPath="url(#logoClip)">
+                      <motion.rect
+                        x="-100"
+                        y="0"
+                        width="100"
+                        height="100"
+                        fill="white"
+                        initial={{ x: "-100%" }}
+                        animate={{ x: ["-100%", "200%"] }}
+                        transition={{ 
+                          repeat: Infinity, 
+                          duration: 2.5, 
+                          ease: "linear",
+                          repeatDelay: 0.5
+                        }}
+                        style={{ opacity: 0.6, skewX: -25 }}
+                      />
+                    </motion.g>
+                  </svg>
+
+                  {/* Dynamic Underglow */}
+                  <motion.div 
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      opacity: [0.1, 0.2, 0.1]
+                    }}
+                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                    className="absolute inset-0 bg-brand blur-[100px] rounded-full -z-10" 
+                  />
                 </div>
               </div>
             </DashPreview>
