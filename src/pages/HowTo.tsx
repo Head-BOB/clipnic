@@ -184,8 +184,23 @@ export const HowToPage = () => {
             }
             icon={LayoutGrid}
           >
-            <div className="flex items-center justify-center relative group py-12 md:py-20">
-              <div className="relative w-56 h-56 md:w-80 md:h-80 flex items-center justify-center">
+            <div className="flex items-center justify-center relative py-12 md:py-20">
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => window.open('https://dash.clipnic.com', '_blank')}
+                className="relative w-56 h-56 md:w-80 md:h-80 flex items-center justify-center cursor-pointer group"
+              >
+                {/* High-Intensity Pulsing Glow */}
+                <motion.div 
+                  animate={{ 
+                    opacity: [0.15, 0.35, 0.15],
+                    scale: [0.8, 1.1, 0.8]
+                  }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-brand blur-[120px] rounded-full" 
+                />
+
                 {/* The Actual Logo */}
                 <img src="/logo.webp" className="w-full h-full object-contain relative z-10" alt="Clipnic Logo" />
 
@@ -211,8 +226,8 @@ export const HowToPage = () => {
                 </div>
 
                 {/* Steady Core Glow */}
-                <div className="absolute inset-0 bg-brand/10 blur-[120px] rounded-full" />
-              </div>
+                <div className="absolute inset-0 bg-brand/10 blur-[120px] rounded-full group-hover:bg-brand/20 transition-all duration-500" />
+              </motion.div>
             </div>
           </Step>
 
