@@ -178,18 +178,24 @@ export const Tier1Guide = () => {
                     <p className="text-2xl font-mono text-white">USA VPN/Proxy Active</p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="relative h-2 flex-grow bg-white/5 rounded-full overflow-hidden">
+                    <div className="flex items-center gap-2">
+                      <div className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+                      </div>
+                      <span className="text-[9px] font-bold text-brand uppercase tracking-widest">Stable</span>
+                    </div>
+                    <div className="relative h-1 flex-grow bg-white/5 rounded-full overflow-hidden">
                       <motion.div
-                        animate={{ left: ["-100%", "100%"] }}
+                        animate={{ left: ["-100%", "200%"] }}
                         transition={{ 
                           repeat: Infinity, 
-                          duration: 2.5, 
+                          duration: 2, 
                           ease: "linear" 
                         }}
-                        className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-brand/40 to-transparent"
+                        className="absolute inset-y-0 w-20 bg-gradient-to-r from-transparent via-brand to-transparent"
                       />
                     </div>
-
                   </div>
                   <a
                     href="https://apps.apple.com/lk/app/vpn-super-unlimited-proxy/id1370293473"
@@ -220,13 +226,27 @@ export const Tier1Guide = () => {
             icon={Download}
           >
             <DashPreview>
-              <div className="bg-black border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center space-y-4">
-                <div className="w-16 h-16 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Download size={24} className="text-white/40" />
-                </div>
-                <div className="text-center space-y-1">
-                  <p className="text-xs font-bold text-white uppercase tracking-wider">Installing App</p>
-
+              <div className="bg-black border border-white/10 rounded-3xl p-8 flex flex-col items-center justify-center space-y-6 shadow-2xl">
+                <motion.div 
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                  className="w-20 h-20 rounded-3xl bg-brand/10 border border-brand/20 flex items-center justify-center shadow-[0_0_40px_rgba(var(--color-brand-rgb),0.15)]"
+                >
+                  <Download size={32} className="text-brand" />
+                </motion.div>
+                <div className="w-full space-y-3">
+                  <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-[0.2em]">
+                    <span className="text-white/40">Initializing Cache</span>
+                    <span className="text-brand animate-pulse">84%</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      whileInView={{ width: "84%" }}
+                      transition={{ duration: 2, ease: "easeOut" }}
+                      className="h-full bg-brand shadow-[0_0_15px_rgba(var(--color-brand-rgb),0.5)]"
+                    />
+                  </div>
                 </div>
               </div>
             </DashPreview>
@@ -321,7 +341,21 @@ export const Tier1Guide = () => {
               </ul>
             }
             icon={Terminal}
-          />
+          >
+            <DashPreview>
+              <div className="relative group">
+                <div className="absolute inset-0 bg-brand/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                <img 
+                  src="/usa_sim_card_premium_1778436652040.png" 
+                  alt="USA SIM Card" 
+                  className="relative rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl w-full h-auto object-cover"
+                />
+                <div className="absolute top-4 right-4 px-3 py-1 bg-brand text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-full shadow-xl">
+                  Advanced Setup
+                </div>
+              </div>
+            </DashPreview>
+          </Step>
 
           {/* New Guide Bridge: Avoid 0 Views */}
           <section className="py-20 md:py-32 border-t border-white/5">
