@@ -189,44 +189,78 @@ export const HowToPage = () => {
                 <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                 
                 <div className="relative flex flex-col items-center">
-                  {/* Animated Logo Assembly */}
-                  <div className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center">
-                    {/* Top Fragment */}
+                  {/* Animated Logo Joining & Shining */}
+                  <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+                    {/* Fragment Assembly (Top Left) */}
                     <motion.div
-                      initial={{ y: -60, x: -60, opacity: 0, rotate: -45 }}
-                      whileInView={{ y: 0, x: 0, opacity: 1, rotate: 0 }}
-                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                      className="absolute inset-0 flex items-center justify-center text-brand"
+                      initial={{ x: -60, y: -60, opacity: 0, rotate: -15 }}
+                      whileInView={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                      className="absolute inset-0 flex items-center justify-center"
                     >
-                      <Zap size={140} className="fill-brand" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 40%, 0 40%)' }} />
+                      <img src="/logo.webp" className="w-full h-full object-contain" style={{ clipPath: 'inset(0 50% 50% 0)' }} />
                     </motion.div>
                     
-                    {/* Middle Fragment */}
+                    {/* Fragment Assembly (Top Right) */}
                     <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.8, ease: "backOut", delay: 0.6 }}
-                      className="absolute inset-0 flex items-center justify-center text-brand"
+                      initial={{ x: 60, y: -60, opacity: 0, rotate: 15 }}
+                      whileInView={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                      className="absolute inset-0 flex items-center justify-center"
                     >
-                      <Zap size={140} className="fill-brand" style={{ clipPath: 'polygon(0 40%, 100% 40%, 100% 70%, 0 70%)' }} />
+                      <img src="/logo.webp" className="w-full h-full object-contain" style={{ clipPath: 'inset(0 0 50% 50%)' }} />
                     </motion.div>
 
-                    {/* Bottom Fragment */}
+                    {/* Fragment Assembly (Bottom Left) */}
                     <motion.div
-                      initial={{ y: 60, x: 60, opacity: 0, rotate: 45 }}
-                      whileInView={{ y: 0, x: 0, opacity: 1, rotate: 0 }}
-                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                      className="absolute inset-0 flex items-center justify-center text-brand"
+                      initial={{ x: -60, y: 60, opacity: 0, rotate: -15 }}
+                      whileInView={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                      className="absolute inset-0 flex items-center justify-center"
                     >
-                      <Zap size={140} className="fill-brand" style={{ clipPath: 'polygon(0 70%, 100% 70%, 100% 100%, 0 100%)' }} />
+                      <img src="/logo.webp" className="w-full h-full object-contain" style={{ clipPath: 'inset(50% 50% 0 0)' }} />
+                    </motion.div>
+
+                    {/* Fragment Assembly (Bottom Right) */}
+                    <motion.div
+                      initial={{ x: 60, y: 60, opacity: 0, rotate: 15 }}
+                      whileInView={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
+                      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+                      className="absolute inset-0 flex items-center justify-center"
+                    >
+                      <img src="/logo.webp" className="w-full h-full object-contain" style={{ clipPath: 'inset(50% 0 0 50%)' }} />
+                    </motion.div>
+
+                    {/* The Shine Overlay (Masked to Logo) */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 1 }}
+                      className="absolute inset-0 z-10 pointer-events-none overflow-hidden"
+                      style={{
+                        maskImage: 'url(/logo.webp)',
+                        maskSize: 'contain',
+                        maskRepeat: 'no-repeat',
+                        maskPosition: 'center',
+                        WebkitMaskImage: 'url(/logo.webp)',
+                        WebkitMaskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center',
+                      }}
+                    >
+                      <motion.div 
+                        animate={{ x: ['-100%', '200%'] }}
+                        transition={{ repeat: Infinity, duration: 2.5, ease: "linear", delay: 1.5 }}
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-[-20deg]"
+                      />
                     </motion.div>
 
                     {/* Core Pulse Glow */}
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: [0, 0.4, 0.2] }}
-                      transition={{ delay: 1.2, duration: 2, repeat: Infinity }}
-                      className="absolute inset-0 bg-brand blur-[80px] rounded-full"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: [0, 0.3, 0.1], scale: 1 }}
+                      transition={{ delay: 0.8, duration: 2 }}
+                      className="absolute inset-0 bg-brand blur-[100px] rounded-full"
                     />
                   </div>
 
@@ -234,13 +268,13 @@ export const HowToPage = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.4 }}
+                    transition={{ delay: 1.2 }}
                     className="text-center mt-16 space-y-3"
                   >
-                    <p className="font-display text-3xl md:text-5xl uppercase tracking-[0.2em] text-white">CLIPNIC</p>
+                    <p className="font-display text-4xl md:text-6xl uppercase tracking-[0.2em] text-white">CLIPNIC</p>
                     <div className="flex items-center justify-center gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand/60">System Initialized</p>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-brand/60">Interface Online</p>
                     </div>
                   </motion.div>
                 </div>
