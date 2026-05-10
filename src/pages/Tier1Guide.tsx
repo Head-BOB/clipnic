@@ -348,10 +348,11 @@ export const Tier1Guide = () => {
         </div>
 
         {/* Footer CTA */}
-        <div className="mt-20 md:mt-40">
-          <SharedFooter />
-        </div>
       </main>
+
+      <div className="mt-20 md:mt-40">
+        <SharedFooter />
+      </div>
 
       <style>{`
         @keyframes pulse {

@@ -292,10 +292,11 @@ export const AvoidZeroViews = () => {
           </div>
         </section>
 
-        <div className="mt-20 md:mt-40">
-          <SharedFooter />
-        </div>
       </main>
+
+      <div className="mt-20 md:mt-40">
+        <SharedFooter />
+      </div>
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
