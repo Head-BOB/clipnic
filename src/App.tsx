@@ -1779,6 +1779,32 @@ const CaseStudiesSection = () => {
   );
 };
 
+// ─── NotFound ─────────────────────────────────────────────────────────────
+
+const NotFound = () => (
+  <div className="min-h-screen bg-ink flex flex-col items-center justify-center text-center p-6 selection:bg-brand selection:text-ink">
+    <div className="absolute inset-0 bg-brand/5 blur-[120px] rounded-full pointer-events-none" />
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="space-y-8 relative z-10"
+    >
+      <h1 className="font-display text-8xl md:text-[15vw] text-white uppercase tracking-tighter leading-none">
+        4<span className="text-brand">0</span>4
+      </h1>
+      <p className="font-sans text-lg md:text-2xl opacity-40 font-light max-w-md mx-auto leading-relaxed">
+        The sector you are looking for has been moved or does not exist in the current grid.
+      </p>
+      <button 
+        onClick={() => window.location.href = '/'}
+        className="px-12 py-5 bg-brand text-ink font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-xl"
+      >
+        Return to Nexus
+      </button>
+    </motion.div>
+  </div>
+);
+
 // ─── App ─────────────────────────────────────────────────────────────────────
 
 export default function App() {
@@ -1797,7 +1823,7 @@ export default function App() {
   const isTermsPath = currentPath === '/terms' || currentPath === '/clipper-terms';
   const isCaseStudiesPath = currentPath === '/case-studies';
   const isHowToPath = currentPath.startsWith('/docs/get-started');
-  const isTier1GuidePath = currentPath.startsWith('/docs/how-to-target-tier1-audience');
+  const isTier1GuidePath = currentPath.startsWith('/docs/how-to-target-tier1');
   const isAvoidZeroViewsPath = currentPath.startsWith('/docs/avoid-0-views');
   const isDocsHubPath = currentPath === '/docs' || currentPath === '/docs/';
   const isHome = currentPath === '' || currentPath === '/';
