@@ -227,7 +227,7 @@ export const HowToPage = () => {
             description="Securely link your account using Discord. This identifies you as a verified clipper in our network."
             details={
               <ul className="list-disc pl-5 space-y-2">
-                <li>Click the <strong className="text-white">Login with Discord</strong> button.</li>
+                <li>Click the <a href="https://dash.clipnic.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-brand">Login with Discord</a> button.</li>
                 <li>Authorize Clipnic to view your basic profile (no sensitive data).</li>
                 <li>This step creates your unique clipper ID and links your upcoming payouts.</li>
               </ul>
