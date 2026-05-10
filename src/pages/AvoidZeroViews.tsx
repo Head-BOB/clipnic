@@ -100,9 +100,7 @@ export const AvoidZeroViews = () => {
 
       <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-32 md:pt-48 pb-20 md:pb-40">
         <header className="max-w-4xl mb-16 md:mb-32 space-y-6 md:space-y-8 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 font-mono text-[10px] uppercase tracking-[0.2em]">
-            <ShieldAlert size={12} /> STOP THE SHADOWBAN
-          </div>
+
           <h1 className="font-display text-[10vw] md:text-[7vw] leading-[0.85] tracking-tighter uppercase text-white">
             Avoid <br /> <span className="text-brand">0 Views</span>
           </h1>
