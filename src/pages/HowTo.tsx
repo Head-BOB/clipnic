@@ -75,14 +75,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon, i
 
       {children && (
         <div className="relative lg:sticky lg:top-40 group/preview">
-          {/* Background Glow */}
-          <div className="absolute inset-0 bg-brand/5 blur-[100px] rounded-full opacity-0 group-hover/preview:opacity-100 transition-opacity duration-1000" />
-
-          <div className="relative rounded-[2rem] md:rounded-[3rem] border border-white/10 bg-[#080808]/60 backdrop-blur-md overflow-hidden shadow-2xl transition-all duration-700 group-hover/preview:border-white/20">
-            {/* Subtle Inner Border/Bezel */}
-            <div className="absolute inset-0 border border-white/5 rounded-[inherit] pointer-events-none" />
-            {children}
-          </div>
+          {children}
         </div>
       )}
     </motion.div>
