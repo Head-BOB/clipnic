@@ -30,6 +30,9 @@ import {
   Youtube, 
   Music2, 
   Target, 
+  Shield,
+  CheckCircle,
+  ExternalLink,
   User as UserIcon 
 } from 'lucide-react';
 
@@ -65,6 +68,17 @@ const DashPreview = ({ children }: { children: React.ReactNode }) => (
   <div className="space-y-6">
     {children}
   </div>
+);
+
+// Mock Social Icons to match Dashboard
+const YoutubeIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+);
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.44-4.22-1.04-.15-.06-.29-.14-.44-.21V15.5c.03 2.15-1.02 4.31-2.9 5.43-2.15 1.34-5.22 1.13-7.14-.54-1.92-1.63-2.58-4.49-1.48-6.72 1.05-2.22 3.73-3.41 6.1-2.87v4.04c-.66-.23-1.42-.23-2.09.02-.97.35-1.6 1.36-1.55 2.39.05 1.18.96 2.18 2.14 2.3 1.25.13 2.51-.62 2.92-1.78.1-.28.14-.58.14-.88V.02z"/></svg>
+);
+const InstagramIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
 );
 
 export const HowToPage = () => {
@@ -131,7 +145,6 @@ export const HowToPage = () => {
                   <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                 </div>
               </div>
-
             </DashPreview>
           </Step>
 
@@ -154,7 +167,7 @@ export const HowToPage = () => {
             </DashPreview>
           </Step>
 
-          {/* Step 3: Active Campaigns */}
+          {/* Step 3: Active Campaigns (EXACT DASHBOARD UI) */}
           <Step 
             number="03"
             title="Active Campaigns"
@@ -188,39 +201,65 @@ export const HowToPage = () => {
                 {/* Content Area */}
                 <div className="flex-1 overflow-hidden flex flex-col">
                   <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar bg-white/[0.01]">
-                    <div className="relative group rounded-xl md:rounded-2xl bg-[#0c0c0c] border border-white/[0.06] overflow-hidden shadow-lg">
-                      <div className="h-20 md:h-24 w-full relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-brand/20 to-emerald-500/10" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/60 to-transparent" />
-                        <div className="absolute top-2 md:top-3 left-2 md:left-3 z-10 flex flex-col gap-1.5">
-                          <div className="px-1.5 py-0.5 rounded bg-emerald-500/20 backdrop-blur-md border border-emerald-500/30 text-[6px] md:text-[7px] font-bold text-emerald-400 flex items-center gap-1 uppercase tracking-wider">
-                            Active
-                          </div>
+                    {/* EXACT CAMPAIGN CARD UI FROM DASHBOARD */}
+                    <div className="group relative rounded-3xl bg-[#0c0c0c] border border-white/[0.06] overflow-hidden shadow-lg hover:border-white/15 transition-all">
+                        {/* Card Banner */}
+                        <div className="h-28 w-full relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-tr from-brand/20 to-emerald-500/10" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/60 to-transparent" />
+                            <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                <div className="px-2 py-1 rounded-lg bg-emerald-500/20 backdrop-blur-md border border-emerald-500/30 text-[9px] font-bold text-emerald-400 flex items-center gap-1 uppercase tracking-wider">
+                                    ACTIVE
+                                </div>
+                                <div className="px-2 py-1 rounded-lg bg-purple-500/20 backdrop-blur-md border border-purple-500/30 text-[9px] font-bold text-purple-400 flex items-center gap-1 uppercase tracking-wider">
+                                    <Star size={10} fill="currentColor" /> FEATURED
+                                </div>
+                            </div>
+                            <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/30">
+                                <ArrowUpRight className="w-4 h-4" />
+                            </div>
                         </div>
-                      </div>
 
-                      <div className="p-3 md:p-4 pt-1 md:pt-2 space-y-3">
-                        <h3 className="text-xs md:text-sm font-bold leading-tight tracking-tight text-white/90 uppercase">Prime Campaign</h3>
-                        <div className="grid grid-cols-2 gap-2">
-                          <div className="p-1.5 md:p-2 rounded-lg bg-white/[0.02] border border-white/[0.04]">
-                            <div className="flex items-center gap-1 text-white/20 mb-0.5">
-                              <DollarSign size={8} />
-                              <span className="text-[6px] md:text-[7px] font-bold uppercase tracking-widest">CPM</span>
+                        <div className="p-5 pt-2 space-y-4">
+                            <div>
+                                <h3 className="text-sm md:text-lg font-bold leading-tight tracking-tight text-white/90">Prime Opportunity</h3>
+                                <div className="flex gap-2 mt-2">
+                                    <div className="p-1.5 rounded-lg bg-white/[0.03] border border-white/[0.05] text-white/40">
+                                        <YoutubeIcon className="w-2.5 h-2.5" />
+                                    </div>
+                                    <div className="p-1.5 rounded-lg bg-white/[0.03] border border-white/[0.05] text-white/40">
+                                        <TikTokIcon className="w-2.5 h-2.5" />
+                                    </div>
+                                </div>
                             </div>
-                            <span className="font-mono text-[10px] md:text-xs font-bold text-white">$4.00</span>
-                          </div>
-                          <div className="p-1.5 md:p-2 rounded-lg bg-white/[0.02] border border-white/[0.04]">
-                            <div className="flex items-center gap-1 text-white/20 mb-0.5">
-                              <Wallet size={8} />
-                              <span className="text-[6px] md:text-[7px] font-bold uppercase tracking-widest">Left</span>
+
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.04]">
+                                    <div className="flex items-center gap-1.5 text-white/30 mb-1">
+                                        <DollarSign className="w-3 h-3" />
+                                        <span className="text-[9px] font-bold uppercase tracking-widest">CPM</span>
+                                    </div>
+                                    <span className="font-mono text-base md:text-lg font-bold text-white">$4.00</span>
+                                </div>
+                                <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.04]">
+                                    <div className="flex items-center gap-1.5 text-white/30 mb-1">
+                                        <Wallet className="w-3 h-3" />
+                                        <span className="text-[9px] font-bold uppercase tracking-widest">Left</span>
+                                    </div>
+                                    <span className="font-mono text-base md:text-lg font-bold text-emerald-400">$12,000</span>
+                                </div>
                             </div>
-                            <span className="font-mono text-[10px] md:text-xs font-bold text-emerald-400">$12K</span>
-                          </div>
+
+                            <div className="space-y-2">
+                                <div className="flex items-center justify-between text-[8px] font-bold uppercase tracking-widest px-1">
+                                    <span className="text-amber-500/60">Ends in 5d 12h</span>
+                                    <span className="text-white/20 font-mono">24% filled</span>
+                                </div>
+                                <div className="w-full bg-white/[0.04] h-1.5 rounded-full overflow-hidden">
+                                    <div className="h-full rounded-full bg-emerald-500/70 w-[24%]" />
+                                </div>
+                            </div>
                         </div>
-                        <button className="w-full bg-brand text-black font-sans font-bold py-2 rounded-lg md:rounded-xl uppercase tracking-widest text-[7px] md:text-[8px] shadow-lg">
-                          Join Campaign
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -228,7 +267,7 @@ export const HowToPage = () => {
             </DashPreview>
           </Step>
 
-          {/* Step 4: Resources & Rules */}
+          {/* Step 4: Resources & Rules (EXACT DASHBOARD UI) */}
           <Step 
             number="04"
             title="Visit Resources & Rules"
@@ -236,30 +275,44 @@ export const HowToPage = () => {
             icon={FileText}
           >
             <DashPreview>
-              <div className="space-y-4">
-                <div className="p-4 md:p-5 rounded-xl md:rounded-2xl bg-[#0c0c0c] border border-white/[0.06] flex items-center justify-between">
-                  <div className="flex items-center gap-3 md:gap-4">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-brand">
-                      <FileText size={16} className="md:w-[18px] md:h-[18px]" />
+              <div className="space-y-6">
+                {/* PLATFORM RULES BLOCK FROM DASHBOARD */}
+                <div className="p-6 md:p-8 rounded-[32px] bg-emerald-500/5 border border-emerald-500/10 space-y-4">
+                    <div className="flex items-center gap-2 text-emerald-400">
+                        <Shield className="w-5 h-5" />
+                        <h4 className="text-sm font-bold uppercase tracking-widest">Platform Rules</h4>
                     </div>
-                    <div>
-                      <p className="font-sans font-bold text-xs md:text-sm text-white/90">Rules & Guidelines</p>
-                      <p className="text-[8px] md:text-[9px] text-white/30 uppercase tracking-widest">Read Carefully</p>
+                    <div className="space-y-3">
+                        <div className="flex gap-2 text-[11px] text-white/50 leading-relaxed">
+                            <span className="text-emerald-500/40 mt-1">•</span>
+                            <span>Follow brand safety guidelines at all times.</span>
+                        </div>
+                        <div className="flex gap-2 text-[11px] text-white/50 leading-relaxed">
+                            <span className="text-emerald-500/40 mt-1">•</span>
+                            <span>No botting or artificial view generation.</span>
+                        </div>
+                        <div className="flex gap-2 text-[11px] text-white/50 leading-relaxed">
+                            <span className="text-emerald-500/40 mt-1">•</span>
+                            <span>Include campaign tags in your captions.</span>
+                        </div>
                     </div>
-                  </div>
-                  <ArrowRight size={14} className="text-white/20 md:w-4 md:h-4" />
                 </div>
-                <div className="p-4 md:p-5 rounded-xl md:rounded-2xl bg-[#0c0c0c] border border-brand/20 flex items-center justify-between">
-                  <div className="flex items-center gap-3 md:gap-4">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-brand/10 flex items-center justify-center border border-brand/20 text-brand">
-                      <PlaySquare size={16} className="md:w-[18px] md:h-[18px]" />
+
+                {/* CAMPAIGN RESOURCES BLOCK FROM DASHBOARD */}
+                <div className="p-6 md:p-8 rounded-[32px] bg-[#5865F2]/5 border border-[#5865F2]/10 space-y-4">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-[#5865F2]">
+                            <MessageSquare className="w-5 h-5" />
+                            <h4 className="text-sm font-bold uppercase tracking-widest">Campaign Resources</h4>
+                        </div>
+                        <div className="w-2 h-2 rounded-full bg-[#5865F2] animate-pulse" />
                     </div>
-                    <div>
-                      <p className="font-sans font-bold text-xs md:text-sm text-white/90">Source Content</p>
-                      <p className="text-[8px] md:text-[9px] text-brand uppercase tracking-widest">Download Folder</p>
+                    <p className="text-[11px] text-white/30 leading-relaxed">
+                        Access raw footage, brand kits, and connect with other clippers in the dedicated assets channel.
+                    </p>
+                    <div className="w-full py-4 rounded-2xl bg-[#5865F2] text-white font-bold uppercase tracking-widest text-[10px] shadow-2xl flex items-center justify-center gap-2 cursor-pointer">
+                        Discord Channel <ExternalLink size={14} />
                     </div>
-                  </div>
-                  <ArrowUpRight size={14} className="text-brand md:w-4 md:h-4" />
                 </div>
               </div>
             </DashPreview>
