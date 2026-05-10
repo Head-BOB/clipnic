@@ -105,7 +105,7 @@ export const HowToPage = () => {
             How to <br /> <span className="text-brand">Earn</span>
           </h1>
           <p className="font-sans text-lg md:text-2xl opacity-60 font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            Follow these steps to access the terminal, join campaigns, and get paid for your views.
+            Follow these steps to access the dashboard, join campaigns, and get paid for your views.
           </p>
         </header>
 
@@ -115,13 +115,13 @@ export const HowToPage = () => {
             number="01"
             title="Visit dash.clipnic.com"
             description="Go to the Clipnic dashboard. This is your primary command center for managing all your clipping activities."
-            icon={Terminal}
+            icon={LayoutGrid}
           >
             <DashPreview>
               <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-white/5 rounded flex items-center justify-center border border-white/10">
-                    <Terminal size={14} className="text-white/40" />
+                    <LayoutGrid size={14} className="text-white/40" />
                   </div>
                   <span className="font-mono text-[10px] md:text-xs text-white/60">dash.clipnic.com</span>
                 </div>
