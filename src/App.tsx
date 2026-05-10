@@ -29,6 +29,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { HowToPage } from './pages/HowTo';
 import { Tier1Guide } from './pages/Tier1Guide';
 import { AvoidZeroViews } from './pages/AvoidZeroViews';
+import { DocsHub } from './pages/DocsHub';
 
 const BrandPartnershipPage = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -282,7 +283,7 @@ const GetStartedModal = ({ isOpen, onClose, onBrandLaunch }: { isOpen: boolean, 
               Cancel
             </button>
             <button
-              onClick={() => window.location.href = '/docs/get-started'}
+              onClick={() => window.location.href = '/docs'}
               className="px-6 py-2 rounded-full border border-ink/10 text-ink/40 font-mono text-[9px] uppercase tracking-widest hover:border-ink/30 hover:text-ink/60 transition-all"
             >
               Need help? View our Guides
@@ -1864,6 +1865,7 @@ export default function App() {
   const isHowToPath = currentPath.startsWith('/docs/get-started');
   const isTier1GuidePath = currentPath.startsWith('/docs/how-to-target-tier1-audience');
   const isAvoidZeroViewsPath = currentPath.startsWith('/docs/avoid-0-views');
+  const isDocsHubPath = currentPath === '/docs' || currentPath === '/docs/';
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
 
@@ -1871,6 +1873,7 @@ export default function App() {
   if (isHowToPath) return <HowToPage />;
   if (isTier1GuidePath) return <Tier1Guide />;
   if (isAvoidZeroViewsPath) return <AvoidZeroViews />;
+  if (isDocsHubPath) return <DocsHub />;
   if (isPrivacyPath) return <PrivacyOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isTermsPath) return <TermsOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isCaseStudiesPath) return <CaseStudiesPage activeView={activeView} setActiveView={setActiveView} onBrandLaunch={() => setBrandGatewayOpen(true)} />;

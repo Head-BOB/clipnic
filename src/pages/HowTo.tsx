@@ -573,8 +573,16 @@ export const HowToPage = () => {
         </section>
       </main>
 
-      <footer className="py-12 md:py-16 border-t border-white/5 text-center font-mono text-[8px] md:text-[10px] uppercase tracking-[0.5em] opacity-30 px-6">
-        © 2026 CLIPNIC.COM
+      <footer className="py-20 md:py-32 border-t border-white/5 text-center space-y-8">
+        <button
+          onClick={() => window.location.href = '/docs'}
+          className="px-12 py-5 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-[0_20px_60px_rgba(var(--color-brand-rgb),0.3)]"
+        >
+          Go Back to Hub
+        </button>
+        <div className="pt-12 font-mono text-[8px] md:text-[10px] uppercase tracking-[0.5em] opacity-30 px-6">
+          © 2026 CLIPNIC.COM
+        </div>
       </footer>
 
       <style>{`

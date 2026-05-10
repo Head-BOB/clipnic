@@ -339,10 +339,10 @@ export const Tier1Guide = () => {
             <p className="font-sans opacity-40 text-sm max-w-md mx-auto">Apply these steps to your next campaign for maximum revenue efficiency.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => window.location.href = 'https://dash.clipnic.com/'}
+                onClick={() => window.location.href = '/docs'}
                 className="px-12 py-5 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-[0_20px_60px_rgba(var(--color-brand-rgb),0.3)]"
               >
-                Launch Dashboard
+                Go Back to Hub
               </button>
             </div>
           </div>

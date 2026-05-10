@@ -83,11 +83,11 @@ export const AvoidZeroViews = () => {
           <span className="font-display text-lg md:text-2xl tracking-widest uppercase">CLIPNIC.COM</span>
         </div>
         <button
-          onClick={() => window.location.href = '/docs/get-started'}
+          onClick={() => window.location.href = '/docs'}
           className="group flex items-center gap-2 font-mono text-[10px] md:text-xs uppercase tracking-widest opacity-60 hover:opacity-100 transition-all"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-          Back to Guides
+          Back to Hub
         </button>
       </nav>
 
@@ -288,7 +288,7 @@ export const AvoidZeroViews = () => {
             <p className="font-sans opacity-40 text-sm max-w-md mx-auto">Check the other guides for more detailed explanations on going viral.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => window.location.href = '/docs/get-started'}
+                onClick={() => window.location.href = '/docs'}
                 className="px-12 py-5 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-[0_20px_60px_rgba(var(--color-brand-rgb),0.3)]"
               >
                 Go Back to Hub
