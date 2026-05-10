@@ -59,7 +59,7 @@ const Step = ({ id, number, title, description, details, children, icon: Icon }:
                   exit={{ height: 0, opacity: 0 }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-6 p-6 rounded-2xl bg-white/[0.02] border-l-2 border-l-brand/30 border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
+                  <div className="mt-6 p-6 rounded-2xl bg-white/[0.02] border border-white/5 font-sans text-sm text-white/60 leading-relaxed space-y-4">
                     {details}
                   </div>
                 </motion.div>
