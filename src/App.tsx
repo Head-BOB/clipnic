@@ -605,47 +605,39 @@ const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?
   );
 };
 
-const WordReveal = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
+const WordReveal = ({ text, className }: { text: string, className?: string }) => {
+  const containerRef = useRef<HTMLSpanElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 90%", "end 30%"]
+  });
+
   const words = text.split(' ');
   
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.05, delayChildren: delay },
-    },
-  };
-
-  const child = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 25,
-        stiffness: 200,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      y: 10,
-    },
-  };
-
   return (
-    <motion.span
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      className={`inline-flex flex-wrap gap-x-[0.25em] ${className}`}
-    >
-      {words.map((word, index) => (
-        <motion.span variants={child} key={index} className="inline-block whitespace-nowrap">
-          {word}
-        </motion.span>
-      ))}
-    </motion.span>
+    <span ref={containerRef} className={`${className} inline-flex flex-wrap`}>
+      {words.map((word, i) => {
+        const start = i / words.length;
+        const end = start + (1 / words.length);
+        return (
+          <Word key={i} progress={scrollYProgress} range={[start, end]}>
+            {word}
+          </Word>
+        );
+      })}
+    </span>
+  );
+};
+
+const Word = ({ children, progress, range }: { children: ReactNode, progress: any, range: [number, number] }) => {
+  const opacity = useTransform(progress, range, [0.05, 1]);
+  return (
+    <span className="relative mr-[0.25em] leading-relaxed">
+      <span className="absolute opacity-[0.03] select-none pointer-events-none">{children}</span>
+      <motion.span style={{ opacity }}>
+        {children}
+      </motion.span>
+    </span>
   );
 };
 
@@ -1854,7 +1846,6 @@ export default function App() {
                     </h2>
                     <p className="font-sans text-xl md:text-2xl text-ink/70 font-light max-w-4xl mx-auto leading-relaxed flex flex-wrap justify-center">
                       <WordReveal 
-                        delay={0.5}
                         text="Whether you are a passionate editor or just a beginner who knows how the algorithm works or even if you want to learn the secrets of going viral, you can start earning right now. All you have to do is take the long form content from our brand campaigns, turn them into high impact clips, and watch the views turn into payouts. No more hunting for clients or dealing with complex contracts, just join a campaign and start your journey." 
                       />
                     </p>
