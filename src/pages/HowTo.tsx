@@ -184,7 +184,55 @@ export const HowToPage = () => {
             }
             icon={LayoutGrid}
           >
+            <DashPreview>
+              <div className="bg-[#080808] border border-white/10 rounded-[2.5rem] p-8 md:p-10 space-y-8 overflow-hidden relative group shadow-2xl">
+                <div className="absolute inset-0 bg-brand/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                
+                <div className="flex items-center justify-between relative z-10">
+                  <div className="space-y-1">
+                    <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-mono">Infrastructure Hub</p>
+                    <h4 className="text-xl md:text-2xl font-display uppercase tracking-tight text-white">Active Campaigns</h4>
+                  </div>
+                  <div className="px-3 py-1 bg-brand/10 border border-brand/20 rounded-full flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
+                    <span className="text-[9px] text-brand font-black uppercase tracking-widest">Live</span>
+                  </div>
+                </div>
 
+                <div className="space-y-4 relative z-10">
+                  {[
+                    { name: 'RedBull Gaming', payout: '$4.20', progress: 75, color: '#05D588' },
+                    { name: 'Gymshark Performance', payout: '$3.50', progress: 40, color: '#ffffff' }
+                  ].map((campaign, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ delay: i * 0.2 }}
+                      className="p-5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-between group/item hover:bg-white/10 transition-all cursor-default"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand font-black text-sm">
+                          {campaign.name[0]}
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-white uppercase tracking-wider">{campaign.name}</p>
+                          <p className="text-[10px] text-white/40 font-mono tracking-widest mt-0.5">{campaign.payout} / 1K VIEWS</p>
+                        </div>
+                      </div>
+                      <div className="w-24 h-1 bg-white/5 rounded-full overflow-hidden hidden sm:block">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${campaign.progress}%` }}
+                          transition={{ duration: 1.5, delay: 0.5 + (i * 0.2), ease: "circOut" }}
+                          className="h-full bg-brand shadow-[0_0_10px_rgba(var(--color-brand-rgb),0.5)]"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </DashPreview>
           </Step>
 
           {/* Step 2: Authenticate */}
