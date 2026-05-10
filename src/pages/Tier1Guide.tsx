@@ -331,7 +331,6 @@ export const Tier1Guide = () => {
             </div>
           </section>
         </div>
-        </div>
 
         {/* Footer CTA */}
         <footer className="mt-32 pt-20 border-t border-white/5 text-center">

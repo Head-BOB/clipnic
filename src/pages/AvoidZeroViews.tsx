@@ -13,7 +13,8 @@ import {
   Smartphone,
   CheckCircle2,
   Lock,
-  ExternalLink
+  ExternalLink,
+  Star
 } from 'lucide-react';
 
 const Step = ({ id, number, title, description, details, children, icon: Icon }: { id: string, number: string, title: string, description: string, details?: React.ReactNode, children?: React.ReactNode, icon: any }) => {
@@ -281,7 +282,6 @@ export const AvoidZeroViews = () => {
           </div>
         </section>
 
-        {/* Footer CTA */}
         <footer className="mt-32 pt-20 border-t border-white/5 text-center">
           <div className="space-y-8">
             <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter">Ready to <span className="text-brand">Get Views</span>?</h2>
