@@ -210,7 +210,7 @@ const Navigation = ({ onGetStarted, activeView }: { onGetStarted: () => void, ac
       </motion.div>
       <div className="flex items-center gap-4 md:gap-8">
         {activeView === 'clipper' && (
-          <a href="/docs/get-started" className="hidden md:block font-sans font-bold text-[10px] md:text-xs tracking-widest hover:text-brand transition-colors uppercase">How it works</a>
+          <a href="/docs/get-started" className="hidden min-[426px]:block font-sans font-bold text-[10px] md:text-xs tracking-widest hover:text-brand transition-colors uppercase">How it works</a>
         )}
         <motion.button
           initial={{ opacity: 0, x: 20 }}
