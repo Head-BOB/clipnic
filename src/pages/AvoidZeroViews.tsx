@@ -124,7 +124,7 @@ export const AvoidZeroViews = () => {
               <ul className="list-disc pl-5 space-y-2">
                 <li>For the first <strong className="text-white">24-48 hours</strong>, just act like a regular user.</li>
                 <li>Scroll through videos, like some, leave comments, and follow a few pages.</li>
-                <li>This tells TikTok you're a <strong className="text-white">real person</strong>, not a bot.</li>
+                <li>This tells platforms you're a <strong className="text-white">real person</strong>, not a bot.</li>
               </ul>
             }
             icon={Clock}
