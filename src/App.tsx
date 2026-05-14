@@ -563,82 +563,30 @@ const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipp
 };
 
 const LetterReveal = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
-  const letters = Array.from(text);
-  
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.004, delayChildren: delay },
-    },
-  };
-
-  const child = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 35,
-        stiffness: 300,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      y: 10,
-    },
-  };
-
   return (
     <motion.span
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
-      {letters.map((letter, index) => (
-        <motion.span variants={child} key={index} className="inline-block">
-          {letter === " " ? "\u00A0" : letter}
-        </motion.span>
-      ))}
+      {text}
     </motion.span>
   );
 };
 
 const WordReveal = ({ text, className }: { text: string, className?: string }) => {
-  const containerRef = useRef<HTMLSpanElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 90%", "end 30%"]
-  });
-
-  const words = text.split(' ');
-  
   return (
-    <span ref={containerRef} className={`${className} inline-flex flex-wrap`}>
-      {words.map((word, i) => {
-        const start = i / words.length;
-        const end = start + (1 / words.length);
-        return (
-          <Word key={i} progress={scrollYProgress} range={[start, end]}>
-            {word}
-          </Word>
-        );
-      })}
-    </span>
-  );
-};
-
-const Word = ({ children, progress, range }: { children: ReactNode, progress: any, range: [number, number] }) => {
-  const opacity = useTransform(progress, range, [0.05, 1]);
-  return (
-    <span className="relative mr-[0.25em] leading-relaxed">
-      <span className="absolute opacity-[0.03] select-none pointer-events-none">{children}</span>
-      <motion.span style={{ opacity }}>
-        {children}
-      </motion.span>
-    </span>
+    <motion.span
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
+    >
+      {text}
+    </motion.span>
   );
 };
 
