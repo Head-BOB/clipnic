@@ -1,13 +1,8 @@
-const getApiUrl = () => {
-    const envUrl = import.meta.env.VITE_API_URL;
-    if (envUrl) return envUrl.replace(/\/$/, '');
-    // Fallback to production API matching the dashboard
-    return 'https://api.clipnic.com/api';
-};
-
-const API_URL = getApiUrl();
+const DISCORD_WEBHOOK_URL = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
 
 export const reportVisit = async () => {
+    if (!DISCORD_WEBHOOK_URL) return;
+
     // Avoid double reporting in React Strict Mode dev
     const lastReport = sessionStorage.getItem('last-visit-report');
     const now = Date.now();
@@ -15,17 +10,45 @@ export const reportVisit = async () => {
     if (lastReport && now - parseInt(lastReport) < 5000) return;
     sessionStorage.setItem('last-visit-report', now.toString());
 
+    let locationInfo = '📍 Location: Unknown';
+    
     try {
-        await fetch(`${API_URL}/monitor/log`, {
+        // Try FreeIPAPI first (Reliable HTTPS)
+        const geoRes = await fetch('https://freeipapi.com/api/json');
+        const geoData = await geoRes.json();
+        if (geoData.cityName) {
+            locationInfo = `📍 **${geoData.cityName}, ${geoData.countryName}** (${geoData.ipVersion})`;
+        }
+    } catch (e) {
+        // Fallback to secondary geo service if first is blocked
+        try {
+            const altRes = await fetch('https://ipapi.co/json/');
+            const altData = await altRes.json();
+            if (altData.city) {
+                locationInfo = `📍 **${altData.city}, ${altData.country_name}**`;
+            }
+        } catch (err) {}
+    }
+
+    const payload = {
+        embeds: [{
+            title: '🌐 Landing Page Visit',
+            description: `A user has visited: **${window.location.pathname}${window.location.search}**\n\n${locationInfo}`,
+            color: 0x10b981, // Green
+            timestamp: new Date().toISOString(),
+            footer: { 
+                text: `Clipnic Monitor · ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true })} IST` 
+            }
+        }]
+    };
+
+    try {
+        await fetch(DISCORD_WEBHOOK_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                title: 'Landing Page Visit', 
-                message: `A user has visited the landing page: ${window.location.pathname}${window.location.search}`, 
-                level: 'info' 
-            })
+            body: JSON.stringify(payload)
         });
     } catch (e) {
-        // Silent fail
+        // Silent fail for production
     }
 };
