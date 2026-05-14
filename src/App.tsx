@@ -32,6 +32,7 @@ import { AvoidZeroViews } from './pages/AvoidZeroViews';
 import { DocsHub } from './pages/DocsHub';
 import { ComingSoon } from './pages/ComingSoon';
 import { Footer as SharedFooter } from './components/Footer';
+import { reportVisit } from './utils/monitor';
 
 const BrandPartnershipPage = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -1802,6 +1803,10 @@ export default function App() {
   const isDocsHubPath = currentPath === '/docs' || currentPath === '/docs/';
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
+  
+  useEffect(() => {
+    reportVisit();
+  }, []);
 
   if (isBrandPath) return <BrandPartnershipPage />;
   if (isComingSoon) return <ComingSoon />;
