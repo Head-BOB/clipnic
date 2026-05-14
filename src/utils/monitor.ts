@@ -12,10 +12,10 @@ export const reportVisit = async () => {
 
     let locationInfo = 'Location: Unknown';
     try {
-        const geoRes = await fetch('https://ip-api.com/json');
+        const geoRes = await fetch('https://ipapi.co/json/');
         const geoData = await geoRes.json();
-        if (geoData.status === 'success') {
-            locationInfo = `📍 **${geoData.city}, ${geoData.country}** (${geoData.isp})`;
+        if (!geoData.error) {
+            locationInfo = `📍 **${geoData.city}, ${geoData.country_name}** (${geoData.org})`;
         }
     } catch (e) {
         // Fallback if geo-api is blocked
