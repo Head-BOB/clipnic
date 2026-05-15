@@ -18,14 +18,15 @@ export const reportVisit = async () => {
     let locationInfo = '📍 Location: Unknown';
     
     try {
-        // Switch to FreeIPAPI (Supports HTTPS for free)
-        const geoRes = await fetch('https://freeipapi.com/api/json');
+        // Switch to ipapi.co (Supports HTTPS + Provides ISP/Org)
+        const geoRes = await fetch('https://ipapi.co/json/');
         const data = await geoRes.json();
         
-        if (data.cityName) {
-            const countryCode = data.countryCode ? data.countryCode.toLowerCase() : '';
+        if (data.city) {
+            const countryCode = data.country_code ? data.country_code.toLowerCase() : '';
             const flag = countryCode ? `:flag_${countryCode}: ` : '📍 ';
-            locationInfo = `${flag}**${data.cityName}, ${data.countryName}** (${data.ipVersion})`;
+            const isp = data.org || 'Unknown ISP';
+            locationInfo = `${flag}**${data.city}, ${data.country_name}** (${isp})`;
         }
     } catch (e) {
         console.warn('[Monitor] IP Lookup failed:', e);
