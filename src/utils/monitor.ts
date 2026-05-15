@@ -1,54 +1,29 @@
-const DISCORD_WEBHOOK_URL = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+/**
+ * Reports a visitor to the backend monitor.
+ * The backend handles IP enrichment (Location/ISP) and Discord logging securely.
+ */
 export const reportVisit = async () => {
-    if (!DISCORD_WEBHOOK_URL) return;
-
     // Avoid double reporting in React Strict Mode dev
     const lastReport = sessionStorage.getItem('last-visit-report');
     const now = Date.now();
     
-    if (lastReport && now - parseInt(lastReport) < 5000) return;
+    // Only report once per 30 minutes per session to avoid spam
+    if (lastReport && now - parseInt(lastReport) < 30 * 60 * 1000) return;
     sessionStorage.setItem('last-visit-report', now.toString());
 
-    let locationInfo = '📍 Location: Unknown';
-    
     try {
-        // Try FreeIPAPI first (Reliable HTTPS)
-        const geoRes = await fetch('https://freeipapi.com/api/json');
-        const geoData = await geoRes.json();
-        if (geoData.cityName) {
-            locationInfo = `📍 **${geoData.cityName}, ${geoData.countryName}** (${geoData.ipVersion})`;
-        }
-    } catch (e) {
-        // Fallback to secondary geo service if first is blocked
-        try {
-            const altRes = await fetch('https://ipapi.co/json/');
-            const altData = await altRes.json();
-            if (altData.city) {
-                locationInfo = `📍 **${altData.city}, ${altData.country_name}**`;
-            }
-        } catch (err) {}
-    }
-
-    const payload = {
-        embeds: [{
-            title: '🌐 Landing Page Visit',
-            description: `A user has visited: **${window.location.pathname}${window.location.search}**\n\n${locationInfo}`,
-            color: 0x10b981, // Green
-            timestamp: new Date().toISOString(),
-            footer: { 
-                text: `Clipnic Monitor · ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true })} IST` 
-            }
-        }]
-    };
-
-    try {
-        await fetch(DISCORD_WEBHOOK_URL, {
+        await fetch(`${API_URL}/monitor/visit`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            body: JSON.stringify({
+                page: window.location.pathname + window.location.search,
+                userAgent: navigator.userAgent
+            })
         });
     } catch (e) {
-        // Silent fail for production
+        // Silent fail in production
+        console.warn('[Monitor] Failed to report visit:', e);
     }
 };
