@@ -34,6 +34,43 @@ import { ComingSoon } from './pages/ComingSoon';
 import { Footer as SharedFooter } from './components/Footer';
 import { reportVisit } from './utils/monitor';
 
+// --- SEO Component ---
+const SEO = ({ title, description, image, url }: { title: string, description: string, image?: string, url?: string }) => {
+  useEffect(() => {
+    document.title = title;
+    
+    const updateMeta = (name: string, content: string, attr: 'name' | 'property' = 'name') => {
+      let element = document.querySelector(`meta[${attr}="${name}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attr, name);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
+    };
+
+    updateMeta('title', title);
+    updateMeta('description', description);
+    updateMeta('og:title', title, 'property');
+    updateMeta('og:description', description, 'property');
+    updateMeta('twitter:title', title, 'property');
+    updateMeta('twitter:description', description, 'property');
+    
+    if (image) {
+      updateMeta('og:image', image, 'property');
+      updateMeta('twitter:image', image, 'property');
+    }
+    
+    if (url) {
+      const fullUrl = url.startsWith('http') ? url : `https://clipnic.com${url}`;
+      updateMeta('og:url', fullUrl, 'property');
+      updateMeta('twitter:url', fullUrl, 'property');
+    }
+  }, [title, description, image, url]);
+
+  return null;
+};
+
 const BrandPartnershipPage = () => {
   const [submitted, setSubmitted] = useState(false);
 
@@ -200,6 +237,14 @@ const NotFound = () => (
 const Navigation = ({ onGetStarted, activeView }: { onGetStarted: () => void, activeView: 'clipper' | 'brand' }) => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-8 px-6 lg:px-12 flex justify-between items-center">
+      <SEO 
+        title={activeView === 'clipper' ? "Clipnic | Edit Content, Get Paid" : "Clipnic | Scale Your Brand Viral Velocity"}
+        description={activeView === 'clipper' 
+          ? "Join the world's leading clipping company. Edit short form content and get paid based on views. No experience needed." 
+          : "The premier content distribution infrastructure for brands. Scale your viral reach through our decentralized network of clippers."
+        }
+        url={activeView === 'clipper' ? "/" : "/brands"}
+      />
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -1357,6 +1402,11 @@ const caseStudiesData = [
 const CaseStudiesPage = ({ activeView, setActiveView, onBrandLaunch }: { activeView: string, setActiveView: (v: 'clipper' | 'brand') => void, onBrandLaunch: () => void }) => {
   return (
     <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
+      <SEO 
+        title="Clipnic | Case Studies - Viral Success Ledger"
+        description="See how Clipnic drives millions of organic views for brands through our decentralized editor network. Real results, zero ad spend."
+        url="/case-studies"
+      />
       {/* Nav */}
       <nav className="fixed top-0 left-0 w-full z-50 mix-blend-difference text-white py-6 md:py-8 px-6 lg:px-12 flex justify-between items-center">
         <div className="flex items-center gap-6 md:gap-12">
@@ -1733,7 +1783,9 @@ const CaseStudiesSection = () => {
 export default function App() {
   const getInitialView = (): 'clipper' | 'brand' => {
     const params = new URLSearchParams(window.location.search);
-    return params.get('v') === 'brand' ? 'brand' : 'clipper';
+    const currentPath = window.location.pathname.replace(/\/$/, "");
+    if (params.get('v') === 'brand' || currentPath === '/brand' || currentPath === '/brands') return 'brand';
+    return 'clipper';
   };
   const [activeView, setActiveView] = useState<'clipper' | 'brand'>(getInitialView);
   const [privacyOpen, setPrivacyOpen] = useState(false);
@@ -1754,18 +1806,24 @@ export default function App() {
   
   useEffect(() => {
     reportVisit();
-  }, []);
+    // Scroll to brands section if path is /brands
+    if (isBrandPath) {
+      const brandsSection = document.getElementById('brands');
+      if (brandsSection) {
+        brandsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [isBrandPath]);
 
-  if (isBrandPath) return <BrandPartnershipPage />;
   if (isComingSoon) return <ComingSoon />;
-  if (isHowToPath) return <HowToPage />;
-  if (isTier1GuidePath) return <Tier1Guide />;
-  if (isAvoidZeroViewsPath) return <AvoidZeroViews />;
-  if (isDocsHubPath) return <DocsHub />;
+  if (isHowToPath) return <><SEO title="Clipnic | How to Get Started" description="Complete guide on how to start earning with Clipnic. Connect socials, post clips, and track your yield." url="/docs/get-started" /><HowToPage /></>;
+  if (isTier1GuidePath) return <><SEO title="Clipnic | Tier 1 Targeting Guide" description="Master the art of targeting Tier 1 regions (USA, UK, Canada) to maximize your clipping earnings." url="/docs/how-to-target-tier1" /><Tier1Guide /></>;
+  if (isAvoidZeroViewsPath) return <><SEO title="Clipnic | Avoiding 0 Views Guide" description="Learn the essential techniques to ensure your clips get pushed by the algorithm and avoid the 0 views trap." url="/docs/avoid-0-views" /><AvoidZeroViews /></>;
+  if (isDocsHubPath) return <><SEO title="Clipnic | Documentation Hub" description="Explore our guides, tutorials, and resources to help you succeed as a clipper or brand on our platform." url="/docs" /><DocsHub /></>;
   if (isPrivacyPath) return <PrivacyOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isTermsPath) return <TermsOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isCaseStudiesPath) return <CaseStudiesPage activeView={activeView} setActiveView={setActiveView} onBrandLaunch={() => setBrandGatewayOpen(true)} />;
-  if (!isHome) return <NotFound />;
+  if (!isHome && !isBrandPath) return <NotFound />;
 
   return (
     <div className="relative font-sans selection:bg-ink selection:text-paper">
@@ -1843,7 +1901,7 @@ export default function App() {
                 exit={{ opacity: 0 }}
               >
                 {/* 1. WHAT WE DO */}
-                <section className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
+                <section id="brands" className="py-32 px-6 lg:px-12 bg-white text-ink border-t border-ink/5">
                   <motion.div 
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
