@@ -1403,7 +1403,7 @@ const CaseStudiesPage = ({ activeView, setActiveView, onBrandLaunch }: { activeV
   return (
     <div className="min-h-screen bg-ink text-paper selection:bg-brand selection:text-ink">
       <SEO 
-        title="Clipnic | Case Studies - Viral Success Ledger"
+        title="Clipnic | Case Studies Viral Success Ledger"
         description="See how Clipnic drives millions of organic views for brands through our decentralized editor network. Real results, zero ad spend."
         url="/case-studies"
       />
