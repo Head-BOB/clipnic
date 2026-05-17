@@ -578,7 +578,7 @@ export const HowToPage = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.open('https://discord.gg/8KXdFCxZsR', '_blank')}
+                onClick={() => window.open('https://discord.gg/yKbkSDfp7F', '_blank')}
                 className="inline-flex items-center gap-3 md:gap-4 px-10 md:px-16 py-4 md:py-6 rounded-full bg-[#5865F2] text-white font-sans font-bold text-sm md:text-lg uppercase tracking-widest shadow-[0_20px_60px_rgba(88,101,242,0.3)] hover:shadow-[0_20px_80px_rgba(88,101,242,0.5)] transition-all"
               >
                 Join Discord

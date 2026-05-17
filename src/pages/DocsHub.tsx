@@ -121,7 +121,7 @@ export const DocsHub = () => {
                 Join our Discord community to connect with fellow clippers, share tips, and get direct support from the Clipnic team.
               </p>
               <button
-                onClick={() => window.open('https://discord.gg/pW6RJs8Ctp', '_blank')}
+                onClick={() => window.open('https://discord.gg/yKbkSDfp7F', '_blank')}
                 className="px-12 py-5 bg-brand text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white transition-all shadow-xl"
               >
                 Join Our Discord
