@@ -1806,12 +1806,9 @@ export default function App() {
   
   useEffect(() => {
     reportVisit();
-    // Scroll to brands section if path is /brands
+    // Scroll to the top if path is /brands
     if (isBrandPath) {
-      const brandsSection = document.getElementById('brands');
-      if (brandsSection) {
-        brandsSection.scrollIntoView({ behavior: 'smooth' });
-      }
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
   }, [isBrandPath]);
 
