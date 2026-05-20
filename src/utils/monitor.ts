@@ -1,6 +1,28 @@
 const DISCORD_WEBHOOK_URL = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
 
 /**
+ * Helper to extract identity/name from URL parameters or session storage.
+ */
+export const getVisitorIdentity = (): string => {
+    try {
+        // 1. Try getting from sessionStorage
+        const cached = sessionStorage.getItem('visitor-name');
+        if (cached) return cached;
+
+        // 2. Try getting from query parameters
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name') || params.get('user') || params.get('username') || params.get('ref') || params.get('discord') || params.get('email');
+        if (name) {
+            sessionStorage.setItem('visitor-name', name);
+            return name;
+        }
+    } catch (e) {
+        // Silent fail
+    }
+    return 'Guest/Anonymous';
+};
+
+/**
  * Reports a visitor directly from the frontend.
  * Performs its own IP lookup for location/ISP data.
  */
@@ -35,10 +57,12 @@ export const reportVisit = async () => {
     // Cache the resolved location for click logging
     sessionStorage.setItem('visitor-location-info', locationInfo);
 
+    const visitorIdentity = getVisitorIdentity();
+
     const payload = {
         embeds: [{
             title: '🌐 New Visitor (Landing Page)',
-            description: `**Origin**: ${locationInfo}\n**Page**: \`${window.location.pathname}${window.location.search}\`\n**Device**: \`${navigator.userAgent.slice(0, 100)}\``,
+            description: `**Identity**: \`${visitorIdentity}\`\n**Origin**: ${locationInfo}\n**Page**: \`${window.location.pathname}${window.location.search}\`\n**Device**: \`${navigator.userAgent.slice(0, 100)}\``,
             color: 0x10b981, // Green
             timestamp: new Date().toISOString(),
             footer: { 
@@ -73,11 +97,12 @@ export const reportClick = async (elementName: string, additionalDetails?: strin
 
     // Use cached location information if available
     const locationInfo = sessionStorage.getItem('visitor-location-info') || '📍 Location: Unknown (or pending)';
+    const visitorIdentity = getVisitorIdentity();
 
     const payload = {
         embeds: [{
             title: '🖱️ Landing Page Click',
-            description: `**Action**: Clicked **${elementName}**\n**Details**: ${additionalDetails || 'None'}\n**Origin**: ${locationInfo}\n**Page**: \`${window.location.pathname}${window.location.search}\``,
+            description: `**Identity**: \`${visitorIdentity}\`\n**Action**: Clicked **${elementName}**\n**Details**: ${additionalDetails || 'None'}\n**Origin**: ${locationInfo}\n**Page**: \`${window.location.pathname}${window.location.search}\``,
             color: 0x3b82f6, // Blue
             timestamp: new Date().toISOString(),
             footer: { 

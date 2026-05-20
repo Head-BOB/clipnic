@@ -76,7 +76,12 @@ const BrandPartnershipPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Logic for sending data (e.g., to a backend or Formspree)
+    const target = e.currentTarget as HTMLFormElement;
+    const brandInput = target.querySelector('input[placeholder="Enter brand name"]') as HTMLInputElement;
+    const emailInput = target.querySelector('input[type="email"]') as HTMLInputElement;
+    if (brandInput && emailInput) {
+      sessionStorage.setItem('visitor-name', `${brandInput.value} (${emailInput.value})`);
+    }
     setSubmitted(true);
   };
 
@@ -352,6 +357,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     e.preventDefault();
     if (!formData.brand || !formData.email || !formData.goal) return;
 
+    sessionStorage.setItem('visitor-name', `${formData.brand} (${formData.email})`);
     setStatus('sending');
     try {
       const response = await fetch(import.meta.env.VITE_DISCORD_WEBHOOK_URL, {
@@ -1818,10 +1824,42 @@ export default function App() {
       if (!interactiveEl) return;
 
       const tagName = interactiveEl.tagName.toLowerCase();
-      const textContent = (interactiveEl.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
       const href = interactiveEl.getAttribute('href') || '';
       const id = interactiveEl.id || '';
       const classList = Array.from(interactiveEl.classList).join(' ').slice(0, 80);
+
+      // Get the cleanest name possible for the element
+      let elementText = (interactiveEl.textContent || '').trim().replace(/\s+/g, ' ');
+      
+      if (!elementText) {
+        elementText = interactiveEl.getAttribute('aria-label') || 
+                      interactiveEl.getAttribute('title') || 
+                      interactiveEl.getAttribute('name') || 
+                      '';
+      }
+
+      if (!elementText) {
+        const img = interactiveEl.querySelector('img');
+        if (img) {
+          elementText = img.getAttribute('alt') || '';
+        }
+      }
+
+      if (!elementText) {
+        if (href.includes('discord.gg') || href.includes('discord.com')) {
+          elementText = 'Discord Invite Icon';
+        } else if (href.includes('x.com') || href.includes('twitter.com')) {
+          elementText = 'X / Twitter Icon';
+        } else if (href.includes('instagram.com')) {
+          elementText = 'Instagram Icon';
+        } else if (href.startsWith('mailto:')) {
+          elementText = href.replace('mailto:', '');
+        } else {
+          elementText = href || id || 'Icon/Unnamed Button';
+        }
+      }
+
+      const elementName = elementText.slice(0, 60);
 
       // Determine parent section context
       let section = 'Main Layout';
@@ -1843,52 +1881,52 @@ export default function App() {
         section = 'Docs Hub / Guides';
       }
 
-      let name = '';
+      let logTitle = '';
       let details = '';
 
       // Discord links
       if (href.includes('discord.gg') || href.includes('discord.com')) {
-        name = '👾 Discord Link Clicked';
-        details = `**Invite/URL**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+        logTitle = `👾 Discord Link: "${elementName}"`;
+        details = `**Invite/URL**: \`${href}\`\n**Section**: \`${section}\``;
       } 
       // X / Twitter
       else if (href.includes('x.com') || href.includes('twitter.com')) {
-        name = '🐦 X/Twitter Link Clicked';
-        details = `**URL**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+        logTitle = `🐦 X/Twitter Link: "${elementName}"`;
+        details = `**URL**: \`${href}\`\n**Section**: \`${section}\``;
       } 
       // Instagram
       else if (href.includes('instagram.com')) {
-        name = '📸 Instagram Link Clicked';
-        details = `**URL**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+        logTitle = `📸 Instagram Link: "${elementName}"`;
+        details = `**URL**: \`${href}\`\n**Section**: \`${section}\``;
       } 
       // Emails
       else if (href.startsWith('mailto:')) {
-        name = '✉️ Contact Email Clicked';
+        logTitle = `✉️ Email Link: "${elementName}"`;
         details = `**Email**: \`${href.replace('mailto:', '')}\`\n**Section**: \`${section}\``;
       } 
       // Documentation
       else if (href.startsWith('/docs') || href.includes('/docs/')) {
-        name = '📚 Documentation Link Clicked';
-        details = `**Path**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+        logTitle = `📚 Docs Link: "${elementName}"`;
+        details = `**Path**: \`${href}\`\n**Section**: \`${section}\``;
       } 
       // Legal
       else if (href === '/privacy' || href === '/terms' || href === '/clipper-terms') {
-        name = '⚖️ Legal Page Clicked';
-        details = `**Page**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+        logTitle = `⚖️ Legal Link: "${elementName}"`;
+        details = `**Page**: \`${href}\`\n**Section**: \`${section}\``;
       } 
       // Standard buttons
       else if (tagName === 'button') {
-        name = `⚡ Button Clicked: "${textContent || 'Unnamed Button'}"`;
+        logTitle = `⚡ Button: "${elementName}"`;
         details = `**Section**: \`${section}\`\n**ID**: \`${id || 'None'}\`\n**Classes**: \`${classList || 'None'}\``;
       } 
       // Fallback for anchors
       else if (tagName === 'a') {
-        name = `🔗 Link Clicked: "${textContent || 'Unnamed Link'}"`;
+        logTitle = `🔗 Link: "${elementName}"`;
         details = `**Destination**: \`${href || 'None'}\`\n**Section**: \`${section}\``;
       }
 
-      if (name) {
-        reportClick(name, details);
+      if (logTitle) {
+        reportClick(logTitle, details);
       }
     };
 
