@@ -32,11 +32,53 @@ export const reportVisit = async () => {
         console.warn('[Monitor] IP Lookup failed:', e);
     }
 
+    // Cache the resolved location for click logging
+    sessionStorage.setItem('visitor-location-info', locationInfo);
+
     const payload = {
         embeds: [{
             title: '🌐 New Visitor (Landing Page)',
             description: `**Origin**: ${locationInfo}\n**Page**: \`${window.location.pathname}${window.location.search}\`\n**Device**: \`${navigator.userAgent.slice(0, 100)}\``,
             color: 0x10b981, // Green
+            timestamp: new Date().toISOString(),
+            footer: { 
+                text: `Clipnic Monitor · ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true })} IST` 
+            }
+        }]
+    };
+
+    try {
+        await fetch(DISCORD_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+    } catch (e) {
+        // Silent fail for production
+    }
+};
+
+/**
+ * Reports a granular click event directly to Discord.
+ * Uses cached location and prevents spamming/rate-limits.
+ */
+export const reportClick = async (elementName: string, additionalDetails?: string) => {
+    if (!DISCORD_WEBHOOK_URL) return;
+
+    // Rate limiting: Max 50 clicks logged per session to protect webhook
+    const clickCountKey = 'click-report-count';
+    const currentCount = parseInt(sessionStorage.getItem(clickCountKey) || '0', 10);
+    if (currentCount >= 50) return;
+    sessionStorage.setItem(clickCountKey, (currentCount + 1).toString());
+
+    // Use cached location information if available
+    const locationInfo = sessionStorage.getItem('visitor-location-info') || '📍 Location: Unknown (or pending)';
+
+    const payload = {
+        embeds: [{
+            title: '🖱️ Landing Page Click',
+            description: `**Action**: Clicked **${elementName}**\n**Details**: ${additionalDetails || 'None'}\n**Origin**: ${locationInfo}\n**Page**: \`${window.location.pathname}${window.location.search}\``,
+            color: 0x3b82f6, // Blue
             timestamp: new Date().toISOString(),
             footer: { 
                 text: `Clipnic Monitor · ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true })} IST` 

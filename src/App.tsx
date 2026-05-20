@@ -32,7 +32,7 @@ import { AvoidZeroViews } from './pages/AvoidZeroViews';
 import { DocsHub } from './pages/DocsHub';
 import { ComingSoon } from './pages/ComingSoon';
 import { Footer as SharedFooter } from './components/Footer';
-import { reportVisit } from './utils/monitor';
+import { reportVisit, reportClick } from './utils/monitor';
 
 // --- SEO Component ---
 const SEO = ({ title, description, image, url }: { title: string, description: string, image?: string, url?: string }) => {
@@ -1810,6 +1810,92 @@ export default function App() {
     if (isBrandPath) {
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
+
+    // Global click monitoring for the landing page
+    const handleGlobalClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const interactiveEl = target.closest('a, button');
+      if (!interactiveEl) return;
+
+      const tagName = interactiveEl.tagName.toLowerCase();
+      const textContent = (interactiveEl.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
+      const href = interactiveEl.getAttribute('href') || '';
+      const id = interactiveEl.id || '';
+      const classList = Array.from(interactiveEl.classList).join(' ').slice(0, 80);
+
+      // Determine parent section context
+      let section = 'Main Layout';
+      if (interactiveEl.closest('footer')) {
+        section = 'Footer Section';
+      } else if (interactiveEl.closest('nav')) {
+        section = 'Navbar / Navigation';
+      } else if (interactiveEl.closest('#hero') || interactiveEl.closest('.hero')) {
+        section = 'Hero Section';
+      } else if (interactiveEl.closest('#brands')) {
+        section = 'Brands Section';
+      } else if (interactiveEl.closest('#process')) {
+        section = 'Process Steps Section';
+      } else if (interactiveEl.closest('#faq')) {
+        section = 'FAQ Section';
+      } else if (interactiveEl.closest('.modal') || interactiveEl.closest('[role="dialog"]') || id.toLowerCase().includes('modal')) {
+        section = 'Modal Overlay';
+      } else if (window.location.pathname.startsWith('/docs')) {
+        section = 'Docs Hub / Guides';
+      }
+
+      let name = '';
+      let details = '';
+
+      // Discord links
+      if (href.includes('discord.gg') || href.includes('discord.com')) {
+        name = '👾 Discord Link Clicked';
+        details = `**Invite/URL**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+      } 
+      // X / Twitter
+      else if (href.includes('x.com') || href.includes('twitter.com')) {
+        name = '🐦 X/Twitter Link Clicked';
+        details = `**URL**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+      } 
+      // Instagram
+      else if (href.includes('instagram.com')) {
+        name = '📸 Instagram Link Clicked';
+        details = `**URL**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+      } 
+      // Emails
+      else if (href.startsWith('mailto:')) {
+        name = '✉️ Contact Email Clicked';
+        details = `**Email**: \`${href.replace('mailto:', '')}\`\n**Section**: \`${section}\``;
+      } 
+      // Documentation
+      else if (href.startsWith('/docs') || href.includes('/docs/')) {
+        name = '📚 Documentation Link Clicked';
+        details = `**Path**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+      } 
+      // Legal
+      else if (href === '/privacy' || href === '/terms' || href === '/clipper-terms') {
+        name = '⚖️ Legal Page Clicked';
+        details = `**Page**: \`${href}\`\n**Section**: \`${section}\`\n**Link Text**: "${textContent || 'None'}"`;
+      } 
+      // Standard buttons
+      else if (tagName === 'button') {
+        name = `⚡ Button Clicked: "${textContent || 'Unnamed Button'}"`;
+        details = `**Section**: \`${section}\`\n**ID**: \`${id || 'None'}\`\n**Classes**: \`${classList || 'None'}\``;
+      } 
+      // Fallback for anchors
+      else if (tagName === 'a') {
+        name = `🔗 Link Clicked: "${textContent || 'Unnamed Link'}"`;
+        details = `**Destination**: \`${href || 'None'}\`\n**Section**: \`${section}\``;
+      }
+
+      if (name) {
+        reportClick(name, details);
+      }
+    };
+
+    document.addEventListener('click', handleGlobalClick);
+    return () => {
+      document.removeEventListener('click', handleGlobalClick);
+    };
   }, [isBrandPath]);
 
   if (isComingSoon) return <ComingSoon />;
