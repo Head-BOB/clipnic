@@ -1933,7 +1933,7 @@ export default function App() {
                 <section className="pt-64 pb-32 px-6 lg:px-12 text-center bg-paper text-ink relative overflow-hidden border-b border-ink/5">
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand/10 blur-[120px] rounded-full pointer-events-none" />
                   <div className="max-w-5xl mx-auto space-y-12 relative z-10">
-                    <h2 className="font-display text-4xl md:text-8xl tracking-tighter uppercase leading-[0.85] flex flex-wrap justify-center gap-x-[0.2em]">
+                    <h2 className="font-display text-4xl md:text-8xl tracking-tighter uppercase leading-[0.95] flex flex-wrap justify-center gap-x-[0.35em] gap-y-3 md:gap-y-5">
                       <LetterReveal text="Wanna get paid by just" />
                       <LetterReveal text="editing" className="text-brand" />
                       <LetterReveal text="short form contents?" />
