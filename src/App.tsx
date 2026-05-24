@@ -360,6 +360,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [currentMonthOffset, setCurrentMonthOffset] = useState<number>(0);
   const timesRef = useRef<HTMLDivElement>(null);
+  const [selectedTimezone, setSelectedTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
 
   useEffect(() => {
     if (isOpen) {
@@ -408,7 +409,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
           clientName: bookingForm.brand,
           clientEmail: bookingForm.email,
           clientNotes: bookingForm.notes,
-          clientTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+          clientTimezone: selectedTimezone
         })
       });
       const data = await res.json();
@@ -467,7 +468,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
 
   const formatSlotTime = (isoString: string) => {
     try {
-      const clientTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const clientTz = selectedTimezone;
       const localStr = new Date(isoString).toLocaleString('en-US', {
         weekday: 'short',
         month: 'short',
@@ -514,13 +515,33 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl rounded-full -mr-16 -mt-16" />
 
             <div className="space-y-6 relative z-10">
-              <div className="flex items-center justify-between border-b-2 border-ink pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-ink pb-4 gap-4">
                 <div>
                   <h3 className="font-display text-2xl uppercase tracking-tighter">Call Scheduler</h3>
                   <p className="text-[9px] opacity-40 uppercase tracking-widest font-mono font-bold">Book a Strategy Session</p>
                 </div>
-                <div className="text-right">
-                  <p className="text-[9px] text-brand uppercase tracking-widest font-mono font-bold">{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
+                <div className="text-left sm:text-right space-y-1">
+                  <span className="text-[8px] opacity-40 uppercase tracking-widest font-mono font-bold block">Select Timezone</span>
+                  <select
+                    value={selectedTimezone}
+                    onChange={(e) => setSelectedTimezone(e.target.value)}
+                    className="bg-ink text-paper text-[10px] font-mono font-bold uppercase tracking-wider py-1.5 px-3 rounded-xl border border-paper/10 focus:outline-none focus:border-brand cursor-pointer hover:border-brand/40 transition-colors"
+                  >
+                    <option value="Asia/Kolkata">🇮🇳 Asia/Kolkata (IST)</option>
+                    <option value="America/New_York">🇺🇸 America/New_York (EST)</option>
+                    <option value="America/Chicago">🇺🇸 America/Chicago (CST)</option>
+                    <option value="America/Denver">🇺🇸 America/Denver (MST)</option>
+                    <option value="America/Los_Angeles">🇺🇸 America/Los_Angeles (PST)</option>
+                    <option value="Europe/London">🇬🇧 Europe/London (GMT/BST)</option>
+                    <option value="Europe/Paris">🇫🇷 Europe/Paris (CET)</option>
+                    <option value="Asia/Dubai">🇦🇪 Asia/Dubai (GST)</option>
+                    <option value="Asia/Singapore">🇸🇬 Asia/Singapore (SGT)</option>
+                    <option value="Australia/Sydney">🇦🇺 Australia/Sydney (AEST)</option>
+                    <option value="UTC">🌐 UTC (Coordinated Universal)</option>
+                  </select>
+                  <span className="text-[8px] opacity-35 uppercase tracking-widest font-mono font-bold block pt-1">
+                    Auto-tracked. Click to change.
+                  </span>
                 </div>
               </div>
 
@@ -582,7 +603,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
 
                         const formatTimeSlotButton = (isoString: string) => {
                           try {
-                            const clientTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                            const clientTz = selectedTimezone;
                             const localStr = new Date(isoString).toLocaleString('en-US', {
                               hour: '2-digit',
                               minute: '2-digit',
