@@ -9,6 +9,7 @@ import {
   ArrowRight,
   Instagram,
   ChevronDown,
+  Check,
   Link as LinkIcon,
   Upload as UploadIcon,
   DollarSign,
@@ -350,6 +351,20 @@ const GetStartedModal = ({ isOpen, onClose, onBrandLaunch }: { isOpen: boolean, 
   </AnimatePresence>
 );
 
+const TIMEZONE_OPTIONS = [
+  { value: "Asia/Kolkata", label: "Asia/Kolkata (IST)", flag: "🇮🇳" },
+  { value: "America/New_York", label: "America/New_York (EST)", flag: "🇺🇸" },
+  { value: "America/Chicago", label: "America/Chicago (CST)", flag: "🇺🇸" },
+  { value: "America/Denver", label: "America/Denver (MST)", flag: "🇺🇸" },
+  { value: "America/Los_Angeles", label: "America/Los_Angeles (PST)", flag: "🇺🇸" },
+  { value: "Europe/London", label: "Europe/London (GMT/BST)", flag: "🇬🇧" },
+  { value: "Europe/Paris", label: "Europe/Paris (CET)", flag: "🇫🇷" },
+  { value: "Asia/Dubai", label: "Asia/Dubai (GST)", flag: "🇦🇪" },
+  { value: "Asia/Singapore", label: "Asia/Singapore (SGT)", flag: "🇸🇬" },
+  { value: "Australia/Sydney", label: "Australia/Sydney (AEST)", flag: "🇦🇺" },
+  { value: "UTC", label: "UTC (Coordinated Universal)", flag: "🌐" }
+];
+
 const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
   // Calendar Booking States
   const [slots, setSlots] = useState<any[]>([]);
@@ -361,6 +376,27 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
   const [currentMonthOffset, setCurrentMonthOffset] = useState<number>(0);
   const timesRef = useRef<HTMLDivElement>(null);
   const [selectedTimezone, setSelectedTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  const [isTzOpen, setIsTzOpen] = useState(false);
+
+  const autoTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const timezoneOptions = React.useMemo(() => {
+    const list = [...TIMEZONE_OPTIONS];
+    const exists = list.some(opt => opt.value === autoTz);
+    if (!exists) {
+      list.unshift({
+        value: autoTz,
+        label: `${autoTz} (Detected)`,
+        flag: "📍"
+      });
+    }
+    return list;
+  }, [autoTz]);
+
+  const activeOption = timezoneOptions.find(opt => opt.value === selectedTimezone) || {
+    value: selectedTimezone,
+    label: selectedTimezone,
+    flag: "📍"
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -520,25 +556,65 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                   <h3 className="font-display text-2xl uppercase tracking-tighter">Call Scheduler</h3>
                   <p className="text-[9px] opacity-40 uppercase tracking-widest font-mono font-bold">Book a Strategy Session</p>
                 </div>
-                <div className="text-left sm:text-right space-y-1">
+                <div className="text-left sm:text-right space-y-1 relative">
                   <span className="text-[8px] opacity-40 uppercase tracking-widest font-mono font-bold block">Select Timezone</span>
-                  <select
-                    value={selectedTimezone}
-                    onChange={(e) => setSelectedTimezone(e.target.value)}
-                    className="bg-ink text-paper text-[10px] font-mono font-bold uppercase tracking-wider py-1.5 px-3 rounded-xl border border-paper/10 focus:outline-none focus:border-brand cursor-pointer hover:border-brand/40 transition-colors"
-                  >
-                    <option value="Asia/Kolkata">🇮🇳 Asia/Kolkata (IST)</option>
-                    <option value="America/New_York">🇺🇸 America/New_York (EST)</option>
-                    <option value="America/Chicago">🇺🇸 America/Chicago (CST)</option>
-                    <option value="America/Denver">🇺🇸 America/Denver (MST)</option>
-                    <option value="America/Los_Angeles">🇺🇸 America/Los_Angeles (PST)</option>
-                    <option value="Europe/London">🇬🇧 Europe/London (GMT/BST)</option>
-                    <option value="Europe/Paris">🇫🇷 Europe/Paris (CET)</option>
-                    <option value="Asia/Dubai">🇦🇪 Asia/Dubai (GST)</option>
-                    <option value="Asia/Singapore">🇸🇬 Asia/Singapore (SGT)</option>
-                    <option value="Australia/Sydney">🇦🇺 Australia/Sydney (AEST)</option>
-                    <option value="UTC">🌐 UTC (Coordinated Universal)</option>
-                  </select>
+                  
+                  {/* Custom Dropdown Trigger */}
+                  <div className="relative inline-block text-left sm:text-right">
+                    <button
+                      type="button"
+                      onClick={() => setIsTzOpen(prev => !prev)}
+                      className="bg-ink text-paper text-[9px] font-mono font-bold uppercase tracking-wider py-2.5 px-4 rounded-xl border border-paper/10 cursor-pointer hover:border-brand/60 hover:text-brand transition-all flex items-center gap-3 justify-between min-w-[190px]"
+                    >
+                      <span className="flex items-center gap-2 truncate">
+                        <span>{activeOption.flag}</span>
+                        <span className="truncate">{activeOption.label}</span>
+                      </span>
+                      <ChevronDown size={10} className={`transform transition-transform duration-300 ${isTzOpen ? 'rotate-180 text-brand' : 'opacity-60'}`} />
+                    </button>
+
+                    {/* Custom Floating Options Dropdown Menu */}
+                    <AnimatePresence>
+                      {isTzOpen && (
+                        <>
+                          {/* Overlay to detect click outside */}
+                          <div 
+                            className="fixed inset-0 z-[100]" 
+                            onClick={() => setIsTzOpen(false)}
+                          />
+                          <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            transition={{ duration: 0.15, ease: "easeOut" }}
+                            className="absolute right-0 mt-2 w-[240px] bg-ink border border-paper/15 rounded-2xl shadow-2xl z-[200] max-h-[220px] overflow-y-auto pr-1 py-2 custom-scrollbar text-left font-mono text-[9px] uppercase tracking-wider backdrop-blur-md"
+                          >
+                            {timezoneOptions.map(opt => {
+                              const isSelected = opt.value === selectedTimezone;
+                              return (
+                                <button
+                                  key={opt.value}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedTimezone(opt.value);
+                                    setIsTzOpen(false);
+                                  }}
+                                  className={`w-full px-4 py-2.5 text-left flex items-center justify-between transition-all hover:bg-brand hover:text-ink cursor-pointer group ${isSelected ? 'bg-brand/10 text-brand font-black' : 'text-paper/85'}`}
+                                >
+                                  <span className="flex items-center gap-2 truncate">
+                                    <span>{opt.flag}</span>
+                                    <span className="truncate">{opt.label}</span>
+                                  </span>
+                                  {isSelected && <Check size={10} className="text-brand group-hover:text-ink" />}
+                                </button>
+                              );
+                            })}
+                          </motion.div>
+                        </>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                  
                   <span className="text-[8px] opacity-35 uppercase tracking-widest font-mono font-bold block pt-1">
                     Auto-tracked. Click to change.
                   </span>
