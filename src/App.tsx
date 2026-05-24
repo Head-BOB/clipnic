@@ -645,7 +645,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                   {/* Time slots Selector */}
                   {!selectedSlot ? (
                     <div className="space-y-4">
-                      <p className="font-sans opacity-60 text-xs">Select one of our open times below. Slots are displayed in your chosen timezone alongside India Standard Time (IST).</p>
+                      <p className="font-sans opacity-60 text-xs">Select your preferred time and date.</p>
                       
                       {slotsLoading ? (
                         <div className="flex flex-col items-center justify-center py-10 gap-3">
