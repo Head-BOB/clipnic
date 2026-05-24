@@ -557,7 +557,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
-            className="relative w-full max-w-xl bg-paper p-8 md:p-12 rounded-[3rem] shadow-2xl text-ink border-4 border-ink overflow-hidden max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-xl bg-paper p-8 md:p-12 rounded-[3rem] shadow-2xl text-ink border-4 border-ink overflow-hidden max-h-[90vh] overflow-y-auto no-scrollbar"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl rounded-full -mr-16 -mt-16" />
 
@@ -598,7 +598,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 10, scale: 0.95 }}
                             transition={{ duration: 0.15, ease: "easeOut" }}
-                            className="absolute right-0 mt-2 w-[240px] bg-ink border border-paper/15 rounded-2xl shadow-2xl z-[200] max-h-[220px] overflow-y-auto pr-1 py-2 custom-scrollbar text-left font-mono text-[9px] uppercase tracking-wider backdrop-blur-md"
+                            className="absolute right-0 mt-2 w-[240px] bg-ink border border-paper/15 rounded-2xl shadow-2xl z-[200] max-h-[220px] overflow-y-auto pr-1 no-scrollbar text-left font-mono text-[9px] uppercase tracking-wider backdrop-blur-md"
                           >
                             {timezoneOptions.map(opt => {
                               const isSelected = opt.value === selectedTimezone;
@@ -797,7 +797,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                                   <p className="font-sans text-xs opacity-50 italic">No available times on this date. Please select another calendar day.</p>
                                 </div>
                               ) : (
-                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[220px] overflow-y-auto pr-1 custom-scrollbar">
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[220px] overflow-y-auto pr-1 no-scrollbar">
                                   {slotsForSelectedDate.map(s => {
                                     const { localStr, istStr, isSameTz } = formatTimeSlotButton(s.startTime || s.start_time);
                                     return (
@@ -2641,6 +2641,13 @@ export default function App() {
         }
         html {
           scroll-behavior: smooth;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
