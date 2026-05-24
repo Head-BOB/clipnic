@@ -22,7 +22,9 @@ import {
   Eye,
   Play,
   BarChart2,
-  ExternalLink
+  ExternalLink,
+  Calendar,
+  Clock
 } from 'lucide-react';
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -349,49 +351,146 @@ const GetStartedModal = ({ isOpen, onClose, onBrandLaunch }: { isOpen: boolean, 
 );
 
 const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
-  const [view, setView] = useState<'options' | 'form'>('options');
-  const [formData, setFormData] = useState({ brand: '', email: '', goal: '' });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  // Calendar Booking States
+  const [slots, setSlots] = useState<any[]>([]);
+  const [selectedSlot, setSelectedSlot] = useState<any>(null);
+  const [bookingForm, setBookingForm] = useState({ brand: '', email: '', notes: '' });
+  const [bookingStatus, setBookingStatus] = useState<'idle' | 'booking' | 'success' | 'error'>('idle');
+  const [slotsLoading, setSlotsLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string>('');
+  const [currentMonthOffset, setCurrentMonthOffset] = useState<number>(0);
+  const timesRef = useRef<HTMLDivElement>(null);
 
-  const handleWebhookSubmit = async (e: React.FormEvent) => {
+  useEffect(() => {
+    if (isOpen) {
+      const fetchSlots = async () => {
+        setSlotsLoading(true);
+        try {
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/bookings/slots`);
+          const data = await res.json();
+          if (data.success) {
+            const fetchedSlots = data.slots || [];
+            setSlots(fetchedSlots);
+            if (fetchedSlots.length > 0) {
+              const dates = Array.from(new Set(fetchedSlots.map((s: any) => {
+                const d = new Date(s.startTime || s.start_time);
+                return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+              }))).sort();
+              if (dates.length > 0) {
+                setSelectedDate(dates[0]);
+              }
+            } else {
+              setSlots([]);
+              setSelectedDate('');
+            }
+          }
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setSlotsLoading(false);
+        }
+      };
+      fetchSlots();
+    }
+  }, [isOpen]);
+
+  const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.brand || !formData.email || !formData.goal) return;
+    if (!selectedSlot || !bookingForm.brand || !bookingForm.email) return;
 
-    sessionStorage.setItem('visitor-name', `${formData.brand} (${formData.email})`);
-    setStatus('sending');
+    setBookingStatus('booking');
     try {
-      const response = await fetch(import.meta.env.VITE_DISCORD_WEBHOOK_URL, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/bookings/book`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          content: "<@&1495708238988181686> 🚨 **NEW BRAND INQUIRY RECEIVED**",
-          embeds: [{
-            title: "🚀 Brand Partnership Request",
-            color: 0x5865F2,
-            fields: [
-              { name: "🏢 Brand Name", value: formData.brand, inline: true },
-              { name: "📧 Contact Email", value: formData.email, inline: true },
-              { name: "🎯 Campaign Goal", value: formData.goal }
-            ],
-            timestamp: new Date().toISOString(),
-            footer: { text: "Clipnic   System" }
-          }]
+          startTime: selectedSlot.startTime || selectedSlot.start_time,
+          clientName: bookingForm.brand,
+          clientEmail: bookingForm.email,
+          clientNotes: bookingForm.notes,
+          clientTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         })
       });
+      const data = await res.json();
+      
+      if (res.ok && data.success) {
+        setBookingStatus('success');
 
-      if (response.ok) {
-        setStatus('success');
+        // Fire Discord notification to admin immediately
+        try {
+          const dateFormatted = new Date(selectedSlot.start_time || selectedSlot.startTime).toLocaleString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+
+          await fetch(import.meta.env.VITE_DISCORD_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              content: "<@&1502308156489994320> 📅 **NEW STRATEGY CALL BOOKED!**",
+              embeds: [{
+                title: "📅 Scheduled Booking Request",
+                color: 0x10B981,
+                fields: [
+                  { name: "🏢 Brand Name", value: bookingForm.brand, inline: true },
+                  { name: "📧 Contact Email", value: bookingForm.email, inline: true },
+                  { name: "🕒 Scheduled Time", value: dateFormatted },
+                  { name: "💬 Client Notes", value: bookingForm.notes || 'None' }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: { text: "Clipnic Booking Engine" }
+              }]
+            })
+          });
+        } catch (discordErr) {
+          console.warn('Discord booking alert failed to dispatch:', discordErr);
+        }
+
         setTimeout(() => {
           onClose();
-          setView('options');
-          setStatus('idle');
-          setFormData({ brand: '', email: '', goal: '' });
-        }, 2500);
+          setBookingStatus('idle');
+          setSelectedSlot(null);
+          setBookingForm({ brand: '', email: '', notes: '' });
+          setCurrentMonthOffset(0);
+        }, 3000);
       } else {
-        setStatus('error');
+        setBookingStatus('error');
       }
     } catch (err) {
-      setStatus('error');
+      setBookingStatus('error');
+    }
+  };
+
+  const formatSlotTime = (isoString: string) => {
+    try {
+      const clientTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const localStr = new Date(isoString).toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: clientTz
+      });
+      const istStr = new Date(isoString).toLocaleString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Kolkata'
+      });
+      
+      if (clientTz === 'Asia/Kolkata' || clientTz === 'IST' || clientTz.includes('Calcutta')) {
+        return `${localStr} (IST)`;
+      }
+      
+      return `${localStr} (${clientTz}) = ${istStr} IST`;
+    } catch (e) {
+      return new Date(isoString).toLocaleString('en-US');
     }
   };
 
@@ -410,102 +509,261 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
-            className="relative w-full max-w-xl bg-paper p-8 md:p-12 rounded-[3rem] shadow-2xl text-ink border-4 border-ink overflow-hidden"
+            className="relative w-full max-w-xl bg-paper p-8 md:p-12 rounded-[3rem] shadow-2xl text-ink border-4 border-ink overflow-hidden max-h-[90vh] overflow-y-auto"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl rounded-full -mr-16 -mt-16" />
 
-            {view === 'options' ? (
-              <div className="space-y-10 relative z-10">
-                <div className="text-center space-y-4">
-                  <h2 className="font-display text-4xl md:text-5xl tracking-tighter leading-none uppercase">Select <br /> Platform</h2>
-                  <p className="font-sans opacity-60 text-sm max-w-xs mx-auto">Choose your preferred platform to initiate a partnership.</p>
+            <div className="space-y-6 relative z-10">
+              <div className="flex items-center justify-between border-b-2 border-ink pb-4">
+                <div>
+                  <h3 className="font-display text-2xl uppercase tracking-tighter">Call Scheduler</h3>
+                  <p className="text-[9px] opacity-40 uppercase tracking-widest font-mono font-bold">Book a Strategy Session</p>
                 </div>
-
-                <div className="grid grid-cols-1 gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setView('form')}
-                    className="group p-8 rounded-3xl bg-ink text-paper flex items-center justify-between hover:bg-black transition-all"
-                  >
-                    <div className="text-left space-y-1">
-                      <p className="text-[10px] opacity-40 uppercase tracking-widest font-black"></p>
-                      <h4 className="font-display text-2xl uppercase">Email  </h4>
-                    </div>
-                    <div className="w-12 h-12 rounded-full bg-brand text-ink flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Box size={20} />
-                    </div>
-                  </motion.button>
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => window.open('https://discord.com/users/1497492779226366153', '_blank')}
-                    className="group p-8 rounded-3xl border-2 border-ink flex items-center justify-between hover:bg-ink/5 transition-all"
-                  >
-                    <div className="text-left space-y-1">
-                      <p className="text-[10px] opacity-40 uppercase tracking-widest font-black">Direct Access</p>
-                      <h4 className="font-display text-2xl uppercase">Discord </h4>
-                    </div>
-                    <div className="w-12 h-12 rounded-full border-2 border-ink flex items-center justify-center group-hover:rotate-12 transition-transform">
-                      <Share2 size={24} />
-                    </div>
-                  </motion.button>
+                <div className="text-right">
+                  <p className="text-[9px] text-brand uppercase tracking-widest font-mono font-bold">{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
                 </div>
               </div>
-            ) : (
-              <div className="space-y-8 relative z-10">
-                <div className="flex items-center justify-between">
-                  <button onClick={() => setView('options')} className="font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 flex items-center gap-2">
-                    <ArrowLeft size={12} /> Back
-                  </button>
-                  <h3 className="font-display text-2xl uppercase tracking-tighter">Inquiry Terminal</h3>
-                </div>
 
-                {status === 'success' ? (
-                  <div className="py-12 text-center space-y-4">
-                    <div className="w-16 h-16 bg-brand text-ink rounded-full flex items-center justify-center mx-auto mb-6">
-                      <CheckCircle2 size={32} />
-                    </div>
-                    <h4 className="font-display text-3xl uppercase">  Sent</h4>
-                    <p className="font-sans opacity-60 text-sm">Our team has been notified via Discord.</p>
+              {bookingStatus === 'success' ? (
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-16 h-16 bg-brand text-ink rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 size={32} />
                   </div>
-                ) : (
-                  <form onSubmit={handleWebhookSubmit} className="space-y-4">
-                    <input
-                      required
-                      placeholder="Brand / Company Name"
-                      value={formData.brand}
-                      onChange={e => setFormData({ ...formData, brand: e.target.value })}
-                      className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-ink/50 focus:outline-none transition-all"
-                    />
-                    <input
-                      required
-                      type="email"
-                      placeholder="Corporate Email"
-                      value={formData.email}
-                      onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-ink/50 focus:outline-none transition-all"
-                    />
-                    <textarea
-                      required
-                      rows={3}
-                      placeholder="Campaign Goals"
-                      value={formData.goal}
-                      onChange={e => setFormData({ ...formData, goal: e.target.value })}
-                      className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-ink/50 focus:outline-none transition-all resize-none"
-                    />
-                    <button
-                      disabled={status === 'sending'}
-                      className="w-full bg-ink text-paper font-sans font-bold py-5 rounded-2xl uppercase tracking-widest disabled:opacity-50"
-                    >
-                      {status === 'sending' ? 'Transmitting...' : 'Submit Inquiry'}
-                    </button>
-                    {status === 'error' && <p className="text-center text-red-500 text-[10px] uppercase font-bold">  Failed. Try again.</p>}
-                  </form>
-                )}
-              </div>
-            )}
+                  <h4 className="font-display text-3xl uppercase">Slot Reserved!</h4>
+                  <p className="font-sans opacity-60 text-sm">We've received your request. A confirmation email has been sent!</p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {/* Time slots Selector */}
+                  {!selectedSlot ? (
+                    <div className="space-y-4">
+                      <p className="font-sans opacity-60 text-xs">Select one of our open times below. Slots display your local timezone matched with India Standard Time (IST) in our portal.</p>
+                      
+                      {slotsLoading ? (
+                        <div className="flex flex-col items-center justify-center py-10 gap-3">
+                          <div className="w-6 h-6 border-2 border-ink/10 border-t-ink rounded-full animate-spin" />
+                          <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">Fetching slots...</p>
+                        </div>
+                      ) : slots.length === 0 ? (
+                        <div className="text-center py-10 rounded-2xl border border-ink/10 bg-ink/[0.02]">
+                          <p className="font-sans opacity-40 text-xs italic">No free time slots available right now. Please check back later!</p>
+                        </div>
+                      ) : (() => {
+                        const uniqueDatesWithSlots = Array.from(new Set(slots.map(s => {
+                          const d = new Date(s.startTime || s.start_time);
+                          return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                        }))).sort();
+
+                        const slotsForSelectedDate = slots.filter(s => {
+                          const d = new Date(s.startTime || s.start_time);
+                          const ds = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                          return ds === selectedDate;
+                        });
+
+                        const targetDate = new Date();
+                        targetDate.setDate(1); // CRITICAL: Avoid month-overflow rollover bugs!
+                        targetDate.setMonth(targetDate.getMonth() + currentMonthOffset);
+                        const calendarYear = targetDate.getFullYear();
+                        const calendarMonth = targetDate.getMonth();
+                        const monthName = targetDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+
+                        const firstDayIndex = new Date(calendarYear, calendarMonth, 1).getDay();
+                        const totalMonthDays = new Date(calendarYear, calendarMonth + 1, 0).getDate();
+
+                        const calendarCells = [];
+                        for (let i = 0; i < firstDayIndex; i++) {
+                          calendarCells.push({ dayNum: null, dateString: '', hasSlots: false });
+                        }
+                        for (let d = 1; d <= totalMonthDays; d++) {
+                          const ds = `${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                          const hasSlots = uniqueDatesWithSlots.includes(ds);
+                          calendarCells.push({ dayNum: d, dateString: ds, hasSlots });
+                        }
+
+                        const formatTimeSlotButton = (isoString: string) => {
+                          try {
+                            const clientTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                            const localStr = new Date(isoString).toLocaleString('en-US', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: true,
+                              timeZone: clientTz
+                            });
+                            const istStr = new Date(isoString).toLocaleString('en-US', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: true,
+                              timeZone: 'Asia/Kolkata'
+                            });
+                            
+                            return { 
+                              localStr, 
+                              istStr, 
+                              isSameTz: clientTz === 'Asia/Kolkata' || clientTz === 'IST' || clientTz.includes('Calcutta') 
+                            };
+                          } catch (e) {
+                            const time = new Date(isoString).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                            return { localStr: time, istStr: '', isSameTz: true };
+                          }
+                        };
+
+                        return (
+                          <div className="space-y-6">
+                            {/* Calendar date grid */}
+                            <div className="p-4 md:p-6 rounded-[2rem] border-2 border-ink bg-ink/5 relative overflow-hidden">
+                              <div className="flex items-center justify-between mb-4">
+                                <button 
+                                  type="button" 
+                                  disabled={currentMonthOffset <= 0}
+                                  onClick={() => setCurrentMonthOffset(prev => prev - 1)}
+                                  className="p-1.5 md:p-2 border border-ink/20 rounded-full hover:bg-ink/5 disabled:opacity-20 disabled:cursor-not-allowed font-bold"
+                                >
+                                  &larr;
+                                </button>
+                                <span className="font-display text-sm md:text-base uppercase tracking-tight font-black">{monthName}</span>
+                                <button 
+                                  type="button" 
+                                  disabled={currentMonthOffset >= 2} 
+                                  onClick={() => setCurrentMonthOffset(prev => prev + 1)}
+                                  className="p-1.5 md:p-2 border border-ink/20 rounded-full hover:bg-ink/5 disabled:opacity-20 disabled:cursor-not-allowed font-bold"
+                                >
+                                  &rarr;
+                                </button>
+                              </div>
+
+                              <div className="grid grid-cols-7 gap-1 text-center font-mono text-[9px] uppercase tracking-widest opacity-50 mb-2 font-bold">
+                                {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
+                                  <div key={day} className="py-1">{day}</div>
+                                ))}
+                              </div>
+
+                              <div className="grid grid-cols-7 gap-1 md:gap-1.5 text-center">
+                                {calendarCells.map((cell, idx) => {
+                                  if (!cell.dayNum) {
+                                    return <div key={`empty-${idx}`} className="aspect-square" />;
+                                  }
+
+                                  const isSelected = selectedDate === cell.dateString;
+                                  return (
+                                    <button
+                                      key={cell.dateString}
+                                      type="button"
+                                      disabled={!cell.hasSlots}
+                                      onClick={() => {
+                                        setSelectedDate(cell.dateString);
+                                        setTimeout(() => {
+                                          timesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                        }, 80);
+                                      }}
+                                      className={`
+                                        aspect-square rounded-full text-[10px] md:text-xs font-mono font-bold flex flex-col items-center justify-center transition-all cursor-pointer relative
+                                        ${!cell.hasSlots 
+                                          ? 'opacity-25 text-ink/30 cursor-not-allowed' 
+                                          : isSelected
+                                            ? 'bg-brand text-ink border border-ink shadow-[0_0_8px_rgba(255,255,255,0.15)] scale-110'
+                                            : 'bg-ink/5 hover:bg-brand/10 hover:border-brand/40 border border-ink/10 text-ink'
+                                        }
+                                      `}
+                                    >
+                                      {cell.dayNum}
+                                      {cell.hasSlots && !isSelected && (
+                                        <span className="absolute bottom-1 w-1 h-1 bg-brand rounded-full" />
+                                      )}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            {/* Time slots for selected date */}
+                            <div ref={timesRef} className="space-y-3">
+                              <div className="flex items-center justify-between border-b border-ink/10 pb-2">
+                                <h4 className="font-display text-xs md:text-sm uppercase tracking-wider text-ink/80">
+                                  Available Times: <span className="text-brand font-mono font-black">{selectedDate ? new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'Select Date'}</span>
+                                </h4>
+                                <span className="font-mono text-[8px] uppercase tracking-widest opacity-40">30 min duration</span>
+                              </div>
+
+                              {slotsForSelectedDate.length === 0 ? (
+                                <div className="text-center py-6 border border-ink/10 rounded-2xl bg-ink/[0.01]">
+                                  <p className="font-sans text-xs opacity-50 italic">No available times on this date. Please select another calendar day.</p>
+                                </div>
+                              ) : (
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[220px] overflow-y-auto pr-1 custom-scrollbar">
+                                  {slotsForSelectedDate.map(s => {
+                                    const { localStr, istStr, isSameTz } = formatTimeSlotButton(s.startTime || s.start_time);
+                                    return (
+                                      <button
+                                        key={s.id || s.startTime}
+                                        type="button"
+                                        onClick={() => setSelectedSlot(s)}
+                                        className="p-3 rounded-2xl bg-ink/5 border border-ink/10 hover:border-brand/50 hover:bg-brand text-ink hover:text-ink font-sans font-semibold transition-all hover:scale-[1.02] flex flex-col items-center justify-center gap-0.5 cursor-pointer text-center group"
+                                      >
+                                        <span className="font-mono text-xs font-black">{localStr}</span>
+                                        {!isSameTz && (
+                                          <span className="text-[9px] opacity-50 font-medium group-hover:text-ink/80 font-mono">({istStr} IST)</span>
+                                        )}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  ) : (
+                    /* Scheduling Form */
+                    <form onSubmit={handleBookingSubmit} className="space-y-4">
+                      <div className="p-4 bg-brand/5 border border-brand/20 rounded-2xl flex items-center justify-between">
+                        <div>
+                          <p className="text-[8px] opacity-40 uppercase tracking-widest font-black">Selected Call Slot</p>
+                          <p className="font-mono text-xs text-ink font-bold mt-1">{formatSlotTime(selectedSlot.startTime || selectedSlot.start_time)}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedSlot(null)}
+                          className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline"
+                        >
+                          Change Time
+                        </button>
+                      </div>
+
+                      <input
+                        required
+                        placeholder="Brand / Company Name"
+                        value={bookingForm.brand}
+                        onChange={e => setBookingForm({ ...bookingForm, brand: e.target.value })}
+                        className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all"
+                      />
+                      <input
+                        required
+                        type="email"
+                        placeholder="Corporate Email"
+                        value={bookingForm.email}
+                        onChange={e => setBookingForm({ ...bookingForm, email: e.target.value })}
+                        className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all"
+                      />
+                      <textarea
+                        rows={2}
+                        placeholder="Questions / Campaign Goals (Optional)"
+                        value={bookingForm.notes}
+                        onChange={e => setBookingForm({ ...bookingForm, notes: e.target.value })}
+                        className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all resize-none"
+                      />
+                      <button
+                        disabled={bookingStatus === 'booking'}
+                        className="w-full bg-ink text-paper font-sans font-bold py-5 rounded-2xl uppercase tracking-widest disabled:opacity-50"
+                      >
+                        {bookingStatus === 'booking' ? 'Reserving...' : 'Confirm Schedule'}
+                      </button>
+                      {bookingStatus === 'error' && <p className="text-center text-red-500 text-[10px] uppercase font-bold">Booking failed. Slot may already be reserved.</p>}
+                    </form>
+                  )}
+                </div>
+              )}
+            </div>
 
             <button
               onClick={onClose}
@@ -519,6 +777,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     </AnimatePresence>
   );
 };
+
 
 const Hero = ({ activeView, setActiveView, onBrandLaunch }: { activeView: 'clipper' | 'brand', setActiveView: (v: 'clipper' | 'brand') => void, onBrandLaunch: () => void }) => {
   const containerRef = useRef(null);
