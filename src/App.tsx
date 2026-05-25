@@ -580,11 +580,11 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-6"
           >
             <div className="space-y-4">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">One Final Step</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-bold">One Final Step</label>
               
               <div className="p-6 bg-brand/5 border-2 border-brand/20 rounded-[2rem] space-y-4">
-                <h5 className="font-display text-base text-ink uppercase tracking-tight font-black">Attendance Policy</h5>
-                <p className="font-sans text-xs text-ink/75 leading-relaxed">
+                <h5 className="font-sans text-sm md:text-base text-ink uppercase tracking-wider font-bold">Attendance Policy</h5>
+                <p className="font-sans text-xs md:text-sm text-ink/80 leading-relaxed font-normal">
                   To make the most of our strategy session, we require all key decision-makers to be present. If there are other stakeholders involved in approving investments or marketing channels, please ensure they are invited to join the call.
                 </p>
               </div>
@@ -802,7 +802,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             <div className="space-y-6 relative z-10">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-ink pb-4 gap-4">
                 <div>
-                  <h3 className="font-display text-2xl uppercase tracking-tighter">
+                  <h3 className="font-sans text-xl md:text-2xl uppercase tracking-tight font-extrabold">
                     {currentStep <= 4 ? "Onboarding Questionnaire" : selectedSlot ? "Review & Confirm" : "Call Scheduler"}
                   </h3>
                   <p className="text-[9px] opacity-40 uppercase tracking-widest font-mono font-bold">
