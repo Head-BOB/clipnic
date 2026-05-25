@@ -558,7 +558,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
           >
             <div className="space-y-2">
               <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Campaign Goals & Vision</label>
-              <p className="text-[10px] opacity-75 ml-4 font-sans leading-relaxed">What's your goal with our campaigns & how do you see us working long-term?</p>
+              <p className="text-xs md:text-sm opacity-85 ml-4 font-sans leading-relaxed">What's your goal with our campaigns?</p>
               <textarea
                 required
                 rows={4}
