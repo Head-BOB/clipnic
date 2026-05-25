@@ -498,7 +498,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-4"
           >
             <div className="space-y-2">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Your Name</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Your Name</label>
               <input
                 required
                 placeholder="Enter your name"
@@ -508,7 +508,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
               />
             </div>
             <div className="space-y-2">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Brand / Company Name</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Brand / Company Name</label>
               <input
                 required
                 placeholder="Enter brand or company name"
@@ -518,7 +518,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
               />
             </div>
             <div className="space-y-2">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Corporate Email</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Contact Email</label>
               <input
                 required
                 type="email"
@@ -540,8 +540,8 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-4"
           >
             <div className="space-y-2">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Website or Content Channel Link</label>
-              <p className="text-[10px] opacity-50 ml-4 font-sans leading-relaxed">Provide your main company website URL or content channel.</p>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Website or Content Channel Link</label>
+              <p className="text-[10px] opacity-75 ml-4 font-sans leading-relaxed">Provide your main company website URL or content channel.</p>
               <input
                 required
                 placeholder="https://yourcompany.com or @yourchannel"
@@ -562,8 +562,8 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-4"
           >
             <div className="space-y-2">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Campaign Goals & Vision</label>
-              <p className="text-[10px] opacity-50 ml-4 font-sans leading-relaxed">What's your goal with our campaigns & how do you see us working long-term?</p>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Campaign Goals & Vision</label>
+              <p className="text-[10px] opacity-75 ml-4 font-sans leading-relaxed">What's your goal with our campaigns & how do you see us working long-term?</p>
               <textarea
                 required
                 rows={4}
@@ -591,8 +591,8 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-4"
           >
             <div className="space-y-3">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Campaign Budget</label>
-              <p className="text-[10px] opacity-50 ml-4 font-sans leading-relaxed">Select your estimated monthly budget for short form campaigns.</p>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Campaign Budget</label>
+              <p className="text-[10px] opacity-75 ml-4 font-sans leading-relaxed">Select your estimated monthly budget for short form campaigns.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {budgetOptions.map(option => {
                   const isSelected = bookingForm.budget === option;
@@ -631,7 +631,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-6"
           >
             <div className="space-y-4">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Final Confirmation</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Final Confirmation</label>
               
               <div className="p-6 bg-brand/5 border-2 border-brand/20 rounded-[2rem] space-y-4">
                 <h5 className="font-display text-base text-ink uppercase tracking-tight font-black">Decision Maker Attendance Requirement</h5>
@@ -683,7 +683,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
 ### Onboarding Questionnaire Responses
 * **Client Contact Name**: ${bookingForm.clientName}
 * **Brand / Company Name**: ${bookingForm.brand}
-* **Corporate Email**: ${bookingForm.email}
+* **Contact Email**: ${bookingForm.email}
 * **Company Website/Content Channel**: ${bookingForm.website || 'Not provided'}
 * **Campaign Goals & Vision**: ${bookingForm.goal || 'Not provided'}
 * **Monthly Campaign Budget**: ${bookingForm.budget || 'Not specified'}
@@ -1184,32 +1184,32 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
 
                         <div className="grid grid-cols-2 gap-4 text-xs font-sans">
                           <div>
-                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Client Name</span>
+                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Client Name</span>
                             <span className="font-bold text-ink">{bookingForm.clientName}</span>
                           </div>
                           <div>
-                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Brand / Company</span>
+                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Brand / Company</span>
                             <span className="font-bold text-ink">{bookingForm.brand}</span>
                           </div>
                           <div className="col-span-2 pt-2">
-                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Corporate Email</span>
+                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Contact Email</span>
                             <span className="font-bold text-ink font-mono">{bookingForm.email}</span>
                           </div>
                           <div className="col-span-2 pt-2 border-t border-ink/5">
-                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Website / Channel</span>
+                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Website / Channel</span>
                             <span className="font-bold text-ink truncate block">{bookingForm.website}</span>
                           </div>
                           <div className="col-span-2 pt-2">
-                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Campaign Goals</span>
+                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Campaign Goals</span>
                             <p className="text-ink/80 font-normal leading-relaxed mt-1 text-[11px] max-h-[80px] overflow-y-auto no-scrollbar">{bookingForm.goal}</p>
                           </div>
                           <div className="col-span-2 pt-2 border-t border-ink/5 flex justify-between items-center">
                             <div>
-                              <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Monthly Budget</span>
+                              <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Monthly Budget</span>
                               <span className="font-bold text-ink">{bookingForm.budget}</span>
                             </div>
                             <div className="text-right">
-                              <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Decision Makers</span>
+                              <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Decision Makers</span>
                               <span className="text-emerald-500 font-bold flex items-center gap-1"><Check size={12} className="stroke-[3]" /> Confirmed</span>
                             </div>
                           </div>
