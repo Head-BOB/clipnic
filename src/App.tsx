@@ -369,7 +369,16 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
   // Calendar Booking States
   const [slots, setSlots] = useState<any[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<any>(null);
-  const [bookingForm, setBookingForm] = useState({ brand: '', email: '', notes: '' });
+  const [bookingForm, setBookingForm] = useState({
+    clientName: '',
+    brand: '',
+    email: '',
+    website: '',
+    goal: '',
+    budget: '',
+    decisionMakerConf: false
+  });
+  const [currentStep, setCurrentStep] = useState(1);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'booking' | 'success' | 'error'>('idle');
   const [slotsLoading, setSlotsLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string>('');
@@ -403,6 +412,19 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      // Reset form and step index on close
+      setBookingForm({
+        clientName: '',
+        brand: '',
+        email: '',
+        website: '',
+        goal: '',
+        budget: '',
+        decisionMakerConf: false
+      });
+      setCurrentStep(1);
+      setSelectedSlot(null);
+      setBookingStatus('idle');
     }
     return () => {
       document.body.style.overflow = '';
@@ -442,20 +464,241 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     }
   }, [isOpen]);
 
+  const isStepValid = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          bookingForm.clientName.trim().length > 0 &&
+          bookingForm.brand.trim().length > 0 &&
+          bookingForm.email.trim().length > 0 &&
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bookingForm.email)
+        );
+      case 2:
+        return bookingForm.website.trim().length > 0;
+      case 3:
+        return bookingForm.goal.trim().length >= 10;
+      case 4:
+        return bookingForm.budget !== '';
+      case 5:
+        return bookingForm.decisionMakerConf === true;
+      default:
+        return false;
+    }
+  };
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <motion.div
+            key="step1"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-4"
+          >
+            <div className="space-y-2">
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Your Name</label>
+              <input
+                required
+                placeholder="Enter your name"
+                value={bookingForm.clientName}
+                onChange={e => setBookingForm({ ...bookingForm, clientName: e.target.value })}
+                className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all placeholder:opacity-20 text-sm font-semibold"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Brand / Company Name</label>
+              <input
+                required
+                placeholder="Enter brand or company name"
+                value={bookingForm.brand}
+                onChange={e => setBookingForm({ ...bookingForm, brand: e.target.value })}
+                className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all placeholder:opacity-20 text-sm font-semibold"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Corporate Email</label>
+              <input
+                required
+                type="email"
+                placeholder="name@company.com"
+                value={bookingForm.email}
+                onChange={e => setBookingForm({ ...bookingForm, email: e.target.value })}
+                className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all placeholder:opacity-20 text-sm font-semibold"
+              />
+            </div>
+          </motion.div>
+        );
+      case 2:
+        return (
+          <motion.div
+            key="step2"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-4"
+          >
+            <div className="space-y-2">
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Website or Content Channel Link</label>
+              <p className="text-[10px] opacity-50 ml-4 font-sans leading-relaxed">Provide your main company website URL or content channel.</p>
+              <input
+                required
+                placeholder="https://yourcompany.com or @yourchannel"
+                value={bookingForm.website}
+                onChange={e => setBookingForm({ ...bookingForm, website: e.target.value })}
+                className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all placeholder:opacity-20 text-sm font-semibold"
+              />
+            </div>
+          </motion.div>
+        );
+      case 3:
+        return (
+          <motion.div
+            key="step3"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-4"
+          >
+            <div className="space-y-2">
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Campaign Goals & Vision</label>
+              <p className="text-[10px] opacity-50 ml-4 font-sans leading-relaxed">What's your goal with our campaigns & how do you see us working long-term?</p>
+              <textarea
+                required
+                rows={4}
+                placeholder="What are you looking to achieve with our campaigns?"
+                value={bookingForm.goal}
+                onChange={e => setBookingForm({ ...bookingForm, goal: e.target.value })}
+                className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all placeholder:opacity-20 text-sm font-semibold resize-none font-sans"
+              />
+            </div>
+          </motion.div>
+        );
+      case 4:
+        const budgetOptions = [
+          "Under $2,000 / month",
+          "$2,000 - $5,000 / month",
+          "$5,000 - $10,000 / month",
+          "$10,000+ / month"
+        ];
+        return (
+          <motion.div
+            key="step4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-4"
+          >
+            <div className="space-y-3">
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Campaign Budget</label>
+              <p className="text-[10px] opacity-50 ml-4 font-sans leading-relaxed">Select your estimated monthly budget for short form campaigns.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {budgetOptions.map(option => {
+                  const isSelected = bookingForm.budget === option;
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => setBookingForm({ ...bookingForm, budget: option })}
+                      className={`
+                        p-5 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between hover:scale-[1.01] duration-200
+                        ${isSelected 
+                          ? 'bg-brand/10 border-brand text-ink shadow-[0_0_12px_rgba(245,158,11,0.25)] font-bold'
+                          : 'bg-ink/5 border-ink/10 hover:border-brand/40 text-ink/80'
+                        }
+                      `}
+                    >
+                      <span className="font-sans text-xs uppercase tracking-wider">{option}</span>
+                      <div className="flex items-center justify-between w-full mt-4">
+                        <span className="font-mono text-[8px] opacity-45 uppercase font-black">Monthly Cap</span>
+                        {isSelected && <Check size={12} className="text-brand font-black" />}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        );
+      case 5:
+        return (
+          <motion.div
+            key="step5"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-6"
+          >
+            <div className="space-y-4">
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-40 ml-4 font-black">Final Confirmation</label>
+              
+              <div className="p-6 bg-brand/5 border-2 border-brand/20 rounded-[2rem] space-y-4">
+                <h5 className="font-display text-base text-ink uppercase tracking-tight font-black">Decision Maker Attendance Requirement</h5>
+                <p className="font-sans text-xs text-ink/75 leading-relaxed">
+                  We require all decision-makers present on the call. If someone else needs to approve the investment, invite them to the meeting too.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setBookingForm({ ...bookingForm, decisionMakerConf: !bookingForm.decisionMakerConf })}
+                className={`
+                  w-full p-5 rounded-2xl text-left border transition-all cursor-pointer flex items-center justify-between gap-4 hover:bg-ink/[0.02]
+                  ${bookingForm.decisionMakerConf 
+                    ? 'border-brand bg-brand/5 text-ink font-bold' 
+                    : 'border-ink/10 text-ink/70'
+                  }
+                `}
+              >
+                <span className="font-sans text-[11px] leading-relaxed select-none">
+                  Yes, I confirm that all decision-makers will attend this strategy session.
+                </span>
+                <div className={`
+                  w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all
+                  ${bookingForm.decisionMakerConf
+                    ? 'border-brand bg-brand text-ink'
+                    : 'border-ink/30 bg-transparent'
+                  }
+                `}>
+                  {bookingForm.decisionMakerConf && <Check size={14} className="stroke-[3]" />}
+                </div>
+              </button>
+            </div>
+          </motion.div>
+        );
+      default:
+        return null;
+    }
+  };
+
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedSlot || !bookingForm.brand || !bookingForm.email) return;
+    if (!selectedSlot || !bookingForm.clientName || !bookingForm.brand || !bookingForm.email) return;
 
     setBookingStatus('booking');
+
+    // Compile beautiful structured client notes
+    const compiledNotes = `
+### Onboarding Questionnaire Responses
+* **Client Contact Name**: ${bookingForm.clientName}
+* **Brand / Company Name**: ${bookingForm.brand}
+* **Corporate Email**: ${bookingForm.email}
+* **Company Website/Content Channel**: ${bookingForm.website || 'Not provided'}
+* **Campaign Goals & Vision**: ${bookingForm.goal || 'Not provided'}
+* **Monthly Campaign Budget**: ${bookingForm.budget || 'Not specified'}
+* **All Decision-Makers Present**: ${bookingForm.decisionMakerConf ? 'Yes (Confirmed)' : 'No'}
+`.trim();
+
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/bookings/book`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           startTime: selectedSlot.startTime || selectedSlot.start_time,
-          clientName: bookingForm.brand,
+          clientName: bookingForm.clientName,
           clientEmail: bookingForm.email,
-          clientNotes: bookingForm.notes,
+          clientNotes: compiledNotes,
           clientTimezone: selectedTimezone
         })
       });
@@ -484,10 +727,14 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                 title: "📅 Scheduled Booking Request",
                 color: 0x10B981,
                 fields: [
+                  { name: "👤 Client Name", value: bookingForm.clientName, inline: true },
                   { name: "🏢 Brand Name", value: bookingForm.brand, inline: true },
                   { name: "📧 Contact Email", value: bookingForm.email, inline: true },
+                  { name: "🌐 Website/Channel", value: bookingForm.website || 'None', inline: true },
+                  { name: "💰 Monthly Budget", value: bookingForm.budget || 'None', inline: true },
+                  { name: "👥 Decision Makers Present", value: bookingForm.decisionMakerConf ? "Yes, Confirmed" : "No", inline: true },
                   { name: "🕒 Scheduled Time", value: dateFormatted },
-                  { name: "💬 Client Notes", value: bookingForm.notes || 'None' }
+                  { name: "💬 Client Goals & Vision", value: bookingForm.goal || 'None' }
                 ],
                 timestamp: new Date().toISOString(),
                 footer: { text: "Clipnic Booking Engine" }
@@ -502,7 +749,16 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
           onClose();
           setBookingStatus('idle');
           setSelectedSlot(null);
-          setBookingForm({ brand: '', email: '', notes: '' });
+          setBookingForm({
+            clientName: '',
+            brand: '',
+            email: '',
+            website: '',
+            goal: '',
+            budget: '',
+            decisionMakerConf: false
+          });
+          setCurrentStep(1);
           setCurrentMonthOffset(0);
         }, 3000);
       } else {
@@ -822,8 +1078,8 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                       })()}
                     </div>
                   ) : (
-                    /* Scheduling Form */
-                    <form onSubmit={handleBookingSubmit} className="space-y-4">
+                    /* 5-Step Scheduling Onboarding Wizard Form */
+                    <form onSubmit={handleBookingSubmit} className="space-y-6">
                       <div className="p-4 bg-brand/5 border border-brand/20 rounded-2xl flex items-center justify-between">
                         <div>
                           <p className="text-[8px] opacity-40 uppercase tracking-widest font-black">Selected Call Slot</p>
@@ -831,42 +1087,108 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                         </div>
                         <button
                           type="button"
-                          onClick={() => setSelectedSlot(null)}
-                          className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline"
+                          onClick={() => {
+                            setSelectedSlot(null);
+                            setCurrentStep(1);
+                          }}
+                          className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline cursor-pointer"
                         >
                           Change Time
                         </button>
                       </div>
 
-                      <input
-                        required
-                        placeholder="Brand / Company Name"
-                        value={bookingForm.brand}
-                        onChange={e => setBookingForm({ ...bookingForm, brand: e.target.value })}
-                        className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all"
-                      />
-                      <input
-                        required
-                        type="email"
-                        placeholder="Corporate Email"
-                        value={bookingForm.email}
-                        onChange={e => setBookingForm({ ...bookingForm, email: e.target.value })}
-                        className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all"
-                      />
-                      <textarea
-                        rows={2}
-                        placeholder="Questions / Campaign Goals (Optional)"
-                        value={bookingForm.notes}
-                        onChange={e => setBookingForm({ ...bookingForm, notes: e.target.value })}
-                        className="w-full bg-ink/5 border border-ink/10 rounded-2xl px-6 py-4 focus:border-brand/40 focus:outline-none transition-all resize-none"
-                      />
-                      <button
-                        disabled={bookingStatus === 'booking'}
-                        className="w-full bg-ink text-paper font-sans font-bold py-5 rounded-2xl uppercase tracking-widest disabled:opacity-50"
-                      >
-                        {bookingStatus === 'booking' ? 'Reserving...' : 'Confirm Schedule'}
-                      </button>
-                      {bookingStatus === 'error' && <p className="text-center text-red-500 text-[10px] uppercase font-bold">Booking failed. Slot may already be reserved.</p>}
+                      {/* Premium Progress Indicator */}
+                      <div className="space-y-3 mb-8">
+                        <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-ink/40">
+                          <span>Questionnaire Progress</span>
+                          <span className="text-brand font-black">Step {currentStep} of 5</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-ink/5 border border-ink/10 rounded-full overflow-hidden relative">
+                          <motion.div 
+                            initial={{ width: "0%" }}
+                            animate={{ width: `${(currentStep / 5) * 100}%` }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="h-full bg-brand rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]"
+                          />
+                        </div>
+                        <div className="flex items-center justify-between px-1 pt-1">
+                          {[1, 2, 3, 4, 5].map((stepNum) => {
+                            const isCompleted = stepNum < currentStep;
+                            const isActive = stepNum === currentStep;
+                            return (
+                              <div key={stepNum} className="flex flex-col items-center">
+                                <div className={`
+                                  w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-mono font-bold transition-all duration-300
+                                  ${isCompleted 
+                                    ? 'bg-brand text-ink border border-ink shadow-[0_0_6px_rgba(245,158,11,0.3)]' 
+                                    : isActive
+                                      ? 'bg-ink text-paper border-2 border-brand scale-110 shadow-[0_0_8px_rgba(245,158,11,0.2)]'
+                                      : 'bg-ink/5 border border-ink/10 text-ink/40'
+                                  }
+                                `}>
+                                  {isCompleted ? <Check size={10} className="stroke-[3]" /> : stepNum}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Form Steps */}
+                      <div className="min-h-[220px]">
+                        <AnimatePresence mode="wait">
+                          {renderStepContent()}
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Form Navigation Controls */}
+                      <div className="flex items-center gap-4 pt-6 border-t border-ink/10">
+                        {currentStep > 1 ? (
+                          <button
+                            type="button"
+                            onClick={() => setCurrentStep(prev => prev - 1)}
+                            className="px-6 py-4 rounded-xl border border-ink/20 hover:border-ink text-ink font-sans font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
+                          >
+                            Back
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedSlot(null);
+                              setCurrentStep(1);
+                            }}
+                            className="px-6 py-4 rounded-xl border border-ink/20 hover:border-ink text-ink font-sans font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
+                          >
+                            Change Slot
+                          </button>
+                        )}
+                        
+                        {currentStep < 5 ? (
+                          <button
+                            type="button"
+                            disabled={!isStepValid()}
+                            onClick={() => setCurrentStep(prev => prev + 1)}
+                            className="flex-grow bg-ink hover:bg-brand hover:text-ink text-paper font-sans font-bold py-4 rounded-xl uppercase tracking-widest disabled:opacity-30 disabled:hover:bg-ink disabled:hover:text-paper transition-all cursor-pointer disabled:cursor-not-allowed text-xs text-center"
+                          >
+                            Next Step
+                          </button>
+                        ) : (
+                          <button
+                            type="submit"
+                            disabled={!isStepValid() || bookingStatus === 'booking'}
+                            className="flex-grow bg-brand text-ink font-sans font-bold py-4 rounded-xl uppercase tracking-widest disabled:opacity-30 transition-all cursor-pointer disabled:cursor-not-allowed text-xs text-center"
+                          >
+                            {bookingStatus === 'booking' ? 'Reserving...' : 'Confirm Schedule'}
+                          </button>
+                        )}
+                      </div>
+
+                      {bookingStatus === 'error' && (
+                        <p className="text-center text-red-500 text-[10px] uppercase font-bold mt-2">
+                          Booking failed. Slot may already be reserved.
+                        </p>
+                      )}
                     </form>
                   )}
                 </div>
