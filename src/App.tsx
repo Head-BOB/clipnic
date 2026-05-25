@@ -890,9 +890,11 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                     <CheckCircle2 size={32} />
                   </div>
                   <h4 className="font-display text-3xl uppercase">Slot Reserved!</h4>
-                  <p className="font-sans opacity-60 text-sm max-w-sm mx-auto leading-relaxed">
-                    We've received your request. A confirmation email has been sent!
-                  </p>
+                  <div className="font-sans opacity-60 text-sm max-w-md mx-auto leading-relaxed space-y-3">
+                    <p>We've received your request. A confirmation email has been sent!</p>
+                    <p>Please wait until our team finishes checking and we will send the rest of the details to your email.</p>
+                    <p className="font-bold text-brand mt-4">Thanks for contacting Clipnic!</p>
+                  </div>
                   <button
                     type="button"
                     onClick={onClose}
