@@ -375,7 +375,6 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     email: '',
     website: '',
     goal: '',
-    budget: '',
     decisionMakerConf: false
   });
   const [currentStep, setCurrentStep] = useState(1);
@@ -419,7 +418,6 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
         email: '',
         website: '',
         goal: '',
-        budget: '',
         decisionMakerConf: false
       });
       setCurrentStep(1);
@@ -478,8 +476,6 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
       case 3:
         return bookingForm.goal.trim().length >= 10;
       case 4:
-        return bookingForm.budget !== '';
-      case 5:
         return bookingForm.decisionMakerConf === true;
       default:
         return false;
@@ -575,55 +571,9 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
           </motion.div>
         );
       case 4:
-        const budgetOptions = [
-          "Under $2,000 / month",
-          "$2,000 - $5,000 / month",
-          "$5,000 - $10,000 / month",
-          "$10,000+ / month"
-        ];
         return (
           <motion.div
             key="step4"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="space-y-4"
-          >
-            <div className="space-y-3">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Campaign Budget</label>
-              <p className="text-[10px] opacity-75 ml-4 font-sans leading-relaxed">Select your estimated monthly budget for short form campaigns.</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {budgetOptions.map(option => {
-                  const isSelected = bookingForm.budget === option;
-                  return (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => setBookingForm({ ...bookingForm, budget: option })}
-                      className={`
-                        p-5 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between hover:scale-[1.01] duration-200
-                        ${isSelected 
-                          ? 'bg-brand/10 border-brand text-ink shadow-[0_0_12px_rgba(245,158,11,0.25)] font-bold'
-                          : 'bg-ink/5 border-ink/10 hover:border-brand/40 text-ink/80'
-                        }
-                      `}
-                    >
-                      <span className="font-sans text-xs uppercase tracking-wider">{option}</span>
-                      <div className="flex items-center justify-between w-full mt-4">
-                        <span className="font-mono text-[8px] opacity-45 uppercase font-black">Monthly Cap</span>
-                        {isSelected && <Check size={12} className="text-brand font-black" />}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </motion.div>
-        );
-      case 5:
-        return (
-          <motion.div
-            key="step5"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
@@ -686,10 +636,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     if (step >= 3 && bookingForm.goal) {
       fields.push({ name: "💬 Goals & Vision", value: bookingForm.goal, inline: false });
     }
-    if (step >= 4 && bookingForm.budget) {
-      fields.push({ name: "💰 Monthly Budget", value: bookingForm.budget, inline: true });
-    }
-    if (step >= 5) {
+    if (step >= 4) {
       fields.push({ name: "👥 Decision Makers Present", value: bookingForm.decisionMakerConf ? "Yes, Confirmed" : "No", inline: true });
     }
 
@@ -703,7 +650,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     // Fire Discord notification to log partial details in background
     try {
       const stepSummary = getStepFieldsForDiscord(stepNum);
-      await fetch(import.meta.env.VITE_DISCORD_WEBHOOK_URL, {
+      await fetch(import.meta.env.VITE_ONBOARDING_DISCORD_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -736,7 +683,6 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
 * **Contact Email**: ${bookingForm.email}
 * **website/social media handle**: ${bookingForm.website || 'Not provided'}
 * **Campaign Goals & Vision**: ${bookingForm.goal || 'Not provided'}
-* **Monthly Campaign Budget**: ${bookingForm.budget || 'Not specified'}
 * **All Decision-Makers Present**: ${bookingForm.decisionMakerConf ? 'Yes (Confirmed)' : 'No'}
 `.trim();
 
@@ -768,7 +714,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             minute: '2-digit'
           });
 
-          await fetch(import.meta.env.VITE_DISCORD_WEBHOOK_URL, {
+          await fetch(import.meta.env.VITE_ONBOARDING_DISCORD_WEBHOOK_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -781,7 +727,6 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                   { name: "🏢 Brand Name", value: bookingForm.brand, inline: true },
                   { name: "📧 Contact Email", value: bookingForm.email, inline: true },
                   { name: "🌐 Website/Channel", value: bookingForm.website || 'None', inline: true },
-                  { name: "💰 Monthly Budget", value: bookingForm.budget || 'None', inline: true },
                   { name: "👥 Decision Makers Present", value: bookingForm.decisionMakerConf ? "Yes, Confirmed" : "No", inline: true },
                   { name: "🕒 Scheduled Time", value: dateFormatted },
                   { name: "💬 Client Goals & Vision", value: bookingForm.goal || 'None' }
@@ -805,7 +750,6 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             email: '',
             website: '',
             goal: '',
-            budget: '',
             decisionMakerConf: false
           });
           setCurrentStep(1);
@@ -871,14 +815,14 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
               <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-ink pb-4 gap-4">
                 <div>
                   <h3 className="font-display text-2xl uppercase tracking-tighter">
-                    {currentStep <= 5 ? "Onboarding Questionnaire" : selectedSlot ? "Review & Confirm" : "Call Scheduler"}
+                    {currentStep <= 4 ? "Onboarding Questionnaire" : selectedSlot ? "Review & Confirm" : "Call Scheduler"}
                   </h3>
                   <p className="text-[9px] opacity-40 uppercase tracking-widest font-mono font-bold">
-                    {currentStep <= 5 ? `Step ${currentStep} of 5` : selectedSlot ? "Confirm your strategy session" : "Select your preferred date & time"}
+                    {currentStep <= 4 ? `Step ${currentStep} of 4` : selectedSlot ? "Confirm your strategy session" : "Select your preferred date & time"}
                   </p>
                 </div>
                 
-                {currentStep === 6 && (
+                {currentStep === 5 && (
                   <div className="text-left sm:text-right space-y-1 relative">
                     <span className="text-[8px] opacity-40 uppercase tracking-widest font-mono font-bold block">Select Timezone</span>
                     
@@ -955,14 +899,14 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {currentStep <= 5 ? (
-                    /* Onboarding Questionnaire steps 1 to 5 */
+                  {currentStep <= 4 ? (
+                    /* Onboarding Questionnaire steps 1 to 4 */
                     <div className="space-y-6">
                       {/* Premium Progress Indicator Overlay */}
                       <div className="space-y-3 mb-6 relative">
                         <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-ink/80">
                           <span>Questionnaire Progress</span>
-                          <span className="text-brand font-black">Step {currentStep} of 5</span>
+                          <span className="text-brand font-black">Step {currentStep} of 4</span>
                         </div>
                         
                         <div className="relative w-full pt-2 pb-2">
@@ -970,7 +914,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                           <div className="absolute top-1/2 left-0 right-0 h-1 bg-ink/5 border border-ink/10 rounded-full -translate-y-1/2 overflow-hidden">
                             <motion.div 
                               initial={{ width: "0%" }}
-                              animate={{ width: `${((currentStep - 1) / 4) * 100}%` }}
+                              animate={{ width: `${((currentStep - 1) / 3) * 100}%` }}
                               transition={{ duration: 0.3, ease: "easeInOut" }}
                               className="h-full bg-brand rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]"
                             />
@@ -978,7 +922,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
 
                           {/* Numbered Step Circles Over the Track Line */}
                           <div className="relative flex items-center justify-between w-full z-10">
-                            {[1, 2, 3, 4, 5].map((stepNum) => {
+                            {[1, 2, 3, 4].map((stepNum) => {
                               const isCompleted = stepNum < currentStep;
                               const isActive = stepNum === currentStep;
                               return (
@@ -1026,7 +970,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                           onClick={handleNextStep}
                           className="flex-grow bg-brand text-ink font-sans font-bold py-4 rounded-xl uppercase tracking-widest disabled:opacity-30 transition-all cursor-pointer disabled:cursor-not-allowed text-xs text-center shadow-[0_10px_30px_rgba(245,158,11,0.15)]"
                         >
-                          {currentStep === 5 ? "Choose Call Time \u2192" : "Next Step"}
+                          {currentStep === 4 ? "Choose Call Time \u2192" : "Next Step"}
                         </button>
                       </div>
                     </div>
@@ -1037,7 +981,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                         <p className="font-sans opacity-60 text-xs font-semibold">Select your preferred date and time.</p>
                         <button
                           type="button"
-                          onClick={() => setCurrentStep(5)}
+                          onClick={() => setCurrentStep(4)}
                           className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline cursor-pointer font-mono"
                         >
                           &larr; Back to questionnaire
@@ -1259,15 +1203,9 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                             <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Campaign Goals</span>
                             <p className="text-ink/80 font-normal leading-relaxed mt-1 text-[11px] max-h-[80px] overflow-y-auto no-scrollbar">{bookingForm.goal}</p>
                           </div>
-                          <div className="col-span-2 pt-2 border-t border-ink/5 flex justify-between items-center">
-                            <div>
-                              <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Monthly Budget</span>
-                              <span className="font-bold text-ink">{bookingForm.budget}</span>
-                            </div>
-                            <div className="text-right">
-                              <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Decision Makers</span>
-                              <span className="text-emerald-500 font-bold flex items-center gap-1"><Check size={12} className="stroke-[3]" /> Confirmed</span>
-                            </div>
+                          <div className="col-span-2 pt-2 border-t border-ink/5">
+                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Decision Makers</span>
+                            <span className="text-emerald-500 font-bold flex items-center gap-1 mt-1"><Check size={12} className="stroke-[3]" /> Confirmed</span>
                           </div>
                         </div>
                       </div>
