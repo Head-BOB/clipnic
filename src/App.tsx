@@ -740,21 +740,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
           console.warn('Discord booking alert failed to dispatch:', discordErr);
         }
 
-        setTimeout(() => {
-          onClose();
-          setBookingStatus('idle');
-          setSelectedSlot(null);
-          setBookingForm({
-            clientName: '',
-            brand: '',
-            email: '',
-            website: '',
-            goal: '',
-            decisionMakerConf: false
-          });
-          setCurrentStep(1);
-          setCurrentMonthOffset(0);
-        }, 3000);
+        // Success state set (no automatic close timeout, user closes manually)
       } else {
         setBookingStatus('error');
       }
@@ -897,12 +883,21 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
               </div>
 
               {bookingStatus === 'success' ? (
-                <div className="py-12 text-center space-y-4">
-                  <div className="w-16 h-16 bg-brand text-ink rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="py-12 text-center space-y-6">
+                  <div className="w-16 h-16 bg-brand text-ink rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 size={32} />
                   </div>
                   <h4 className="font-display text-3xl uppercase">Slot Reserved!</h4>
-                  <p className="font-sans opacity-60 text-sm">We've received your request. A confirmation email has been sent!</p>
+                  <p className="font-sans opacity-60 text-sm max-w-sm mx-auto leading-relaxed">
+                    We've received your request. A confirmation email has been sent!
+                  </p>
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="mt-6 px-8 py-4 bg-ink text-paper hover:bg-brand hover:text-ink font-sans font-bold text-xs uppercase tracking-widest rounded-xl transition-all cursor-pointer shadow-lg"
+                  >
+                    Done & Exit
+                  </button>
                 </div>
               ) : (
                 <div className="space-y-4">
