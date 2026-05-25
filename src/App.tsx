@@ -580,12 +580,12 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-6"
           >
             <div className="space-y-4">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Final Confirmation</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">One Final Step</label>
               
               <div className="p-6 bg-brand/5 border-2 border-brand/20 rounded-[2rem] space-y-4">
-                <h5 className="font-display text-base text-ink uppercase tracking-tight font-black">Decision Maker Attendance Requirement</h5>
+                <h5 className="font-display text-base text-ink uppercase tracking-tight font-black">Attendance Policy</h5>
                 <p className="font-sans text-xs text-ink/75 leading-relaxed">
-                  We require all decision-makers present on the call. If someone else needs to approve the investment, invite them to the meeting too.
+                  To make the most of our strategy session, we require all key decision-makers to be present. If there are other stakeholders involved in approving investments or marketing channels, please ensure they are invited to join the call.
                 </p>
               </div>
 
@@ -601,7 +601,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                 `}
               >
                 <span className="font-sans text-[11px] leading-relaxed select-none">
-                  Yes, I confirm that all decision-makers will attend this strategy session.
+                  I confirm that all key decision-makers will attend this strategy session.
                 </span>
                 <div className={`
                   w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all
@@ -818,11 +818,18 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                     {currentStep <= 4 ? "Onboarding Questionnaire" : selectedSlot ? "Review & Confirm" : "Call Scheduler"}
                   </h3>
                   <p className="text-[9px] opacity-40 uppercase tracking-widest font-mono font-bold">
-                    {currentStep <= 4 ? `Step ${currentStep} of 4` : selectedSlot ? "Confirm your strategy session" : "Select your preferred date & time"}
+                    {currentStep <= 4 
+                      ? `Step ${currentStep} of 4` 
+                      : selectedSlot 
+                        ? "Confirm your strategy session" 
+                        : currentStep === 5 
+                          ? "Select Preferred Date" 
+                          : "Select Preferred Time"
+                    }
                   </p>
                 </div>
                 
-                {currentStep === 5 && (
+                {currentStep >= 5 && (
                   <div className="text-left sm:text-right space-y-1 relative">
                     <span className="text-[8px] opacity-40 uppercase tracking-widest font-mono font-bold block">Select Timezone</span>
                     
@@ -975,192 +982,209 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                       </div>
                     </div>
                   ) : !selectedSlot ? (
-                    /* Date & Time Calendar Selection Step (Step 6 when no slot selected) */
+                    /* Date & Time Calendar Selection Steps */
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between border-b border-ink/10 pb-2">
-                        <p className="font-sans opacity-60 text-xs font-semibold">Select your preferred date and time.</p>
-                        <button
-                          type="button"
-                          onClick={() => setCurrentStep(4)}
-                          className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline cursor-pointer font-mono"
-                        >
-                          &larr; Back to questionnaire
-                        </button>
-                      </div>
+                      {currentStep === 5 ? (
+                        /* Step 5: Date Calendar Selection */
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between border-b border-ink/10 pb-2">
+                            <p className="font-sans opacity-60 text-xs font-semibold">Select your preferred strategy call date.</p>
+                            <button
+                              type="button"
+                              onClick={() => setCurrentStep(4)}
+                              className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline cursor-pointer font-mono"
+                            >
+                              &larr; Back to questionnaire
+                            </button>
+                          </div>
 
-                      {slotsLoading ? (
-                        <div className="flex flex-col items-center justify-center py-10 gap-3">
-                          <div className="w-6 h-6 border-2 border-ink/10 border-t-ink rounded-full animate-spin" />
-                          <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">Fetching slots...</p>
-                        </div>
-                      ) : slots.length === 0 ? (
-                        <div className="text-center py-10 rounded-2xl border border-ink/10 bg-ink/[0.02]">
-                          <p className="font-sans opacity-40 text-xs italic">No free time slots available right now. Please check back later!</p>
-                        </div>
-                      ) : (() => {
-                        const uniqueDatesWithSlots = Array.from(new Set(slots.map(s => {
-                          const d = new Date(s.startTime || s.start_time);
-                          return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-                        }))).sort();
-
-                        const slotsForSelectedDate = slots.filter(s => {
-                          const d = new Date(s.startTime || s.start_time);
-                          const ds = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-                          return ds === selectedDate;
-                        });
-
-                        const targetDate = new Date();
-                        targetDate.setDate(1); // CRITICAL: Avoid month-overflow rollover bugs!
-                        targetDate.setMonth(targetDate.getMonth() + currentMonthOffset);
-                        const calendarYear = targetDate.getFullYear();
-                        const calendarMonth = targetDate.getMonth();
-                        const monthName = targetDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
-
-                        const firstDayIndex = new Date(calendarYear, calendarMonth, 1).getDay();
-                        const totalMonthDays = new Date(calendarYear, calendarMonth + 1, 0).getDate();
-
-                        const calendarCells = [];
-                        for (let i = 0; i < firstDayIndex; i++) {
-                          calendarCells.push({ dayNum: null, dateString: '', hasSlots: false });
-                        }
-                        for (let d = 1; d <= totalMonthDays; d++) {
-                          const ds = `${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-                          const hasSlots = uniqueDatesWithSlots.includes(ds);
-                          calendarCells.push({ dayNum: d, dateString: ds, hasSlots });
-                        }
-
-                        const formatTimeSlotButton = (isoString: string) => {
-                          try {
-                            const clientTz = selectedTimezone;
-                            const localStr = new Date(isoString).toLocaleString('en-US', {
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              hour12: true,
-                              timeZone: clientTz
-                            });
-                            const istStr = new Date(isoString).toLocaleString('en-US', {
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              hour12: true,
-                              timeZone: 'Asia/Kolkata'
-                            });
-                            
-                            return { 
-                              localStr, 
-                              istStr, 
-                              isSameTz: clientTz === 'Asia/Kolkata' || clientTz === 'IST' || clientTz.includes('Calcutta') 
-                            };
-                          } catch (e) {
-                            const time = new Date(isoString).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-                            return { localStr: time, istStr: '', isSameTz: true };
-                          }
-                        };
-
-                        return (
-                          <div className="space-y-6">
-                            {/* Calendar date grid */}
-                            <div className="p-4 md:p-6 rounded-[2rem] border-2 border-ink bg-ink/5 relative overflow-hidden">
-                              <div className="flex items-center justify-between mb-4">
-                                <button 
-                                  type="button" 
-                                  disabled={currentMonthOffset <= 0}
-                                  onClick={() => setCurrentMonthOffset(prev => prev - 1)}
-                                  className="p-1.5 md:p-2 border border-ink/20 rounded-full hover:bg-ink/5 disabled:opacity-20 disabled:cursor-not-allowed font-bold"
-                                >
-                                  &larr;
-                                </button>
-                                <span className="font-display text-sm md:text-base uppercase tracking-tight font-black">{monthName}</span>
-                                <button 
-                                  type="button" 
-                                  disabled={currentMonthOffset >= 2} 
-                                  onClick={() => setCurrentMonthOffset(prev => prev + 1)}
-                                  className="p-1.5 md:p-2 border border-ink/20 rounded-full hover:bg-ink/5 disabled:opacity-20 disabled:cursor-not-allowed font-bold"
-                                >
-                                  &rarr;
-                                </button>
-                              </div>
-
-                              <div className="grid grid-cols-7 gap-1 text-center font-mono text-[9px] uppercase tracking-widest opacity-50 mb-2 font-bold">
-                                {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
-                                  <div key={day} className="py-1">{day}</div>
-                                ))}
-                              </div>
-
-                              <div className="grid grid-cols-7 gap-1 md:gap-1.5 text-center">
-                                {calendarCells.map((cell, idx) => {
-                                  if (!cell.dayNum) {
-                                    return <div key={`empty-${idx}`} className="aspect-square" />;
-                                  }
-
-                                  const isSelected = selectedDate === cell.dateString;
-                                  return (
-                                    <button
-                                      key={cell.dateString}
-                                      type="button"
-                                      disabled={!cell.hasSlots}
-                                      onClick={() => {
-                                        setSelectedDate(cell.dateString);
-                                        setTimeout(() => {
-                                          timesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                                        }, 80);
-                                      }}
-                                      className={`
-                                        aspect-square rounded-full text-[10px] md:text-xs font-mono font-bold flex flex-col items-center justify-center transition-all cursor-pointer relative
-                                        ${!cell.hasSlots 
-                                          ? 'opacity-25 text-ink/30 cursor-not-allowed' 
-                                          : isSelected
-                                            ? 'bg-brand text-ink border border-ink shadow-[0_0_8px_rgba(255,255,255,0.15)] scale-110'
-                                            : 'bg-ink/5 hover:bg-brand/10 hover:border-brand/40 border border-ink/10 text-ink'
-                                        }
-                                      `}
-                                    >
-                                      {cell.dayNum}
-                                      {cell.hasSlots && !isSelected && (
-                                        <span className="absolute bottom-1 w-1 h-1 bg-brand rounded-full" />
-                                      )}
-                                    </button>
-                                  );
-                                })}
-                              </div>
+                          {slotsLoading ? (
+                            <div className="flex flex-col items-center justify-center py-10 gap-3">
+                              <div className="w-6 h-6 border-2 border-ink/10 border-t-ink rounded-full animate-spin" />
+                              <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">Fetching dates...</p>
                             </div>
+                          ) : slots.length === 0 ? (
+                            <div className="text-center py-10 rounded-2xl border border-ink/10 bg-ink/[0.02]">
+                              <p className="font-sans opacity-40 text-xs italic">No free slots available right now. Please check back later!</p>
+                            </div>
+                          ) : (() => {
+                            const uniqueDatesWithSlots = Array.from(new Set(slots.map(s => {
+                              const d = new Date(s.startTime || s.start_time);
+                              return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                            }))).sort();
 
-                            {/* Time slots for selected date */}
-                            <div ref={timesRef} className="space-y-3">
-                              <div className="flex items-center justify-between border-b border-ink/10 pb-2">
-                                <h4 className="font-display text-xs md:text-sm uppercase tracking-wider text-ink/80">
-                                  Available Times: <span className="text-brand font-mono font-black">{selectedDate ? new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'Select Date'}</span>
-                                </h4>
-                                <span className="font-mono text-[8px] uppercase tracking-widest opacity-40">30 min duration</span>
-                              </div>
+                            const targetDate = new Date();
+                            targetDate.setDate(1); // CRITICAL: Avoid month-overflow rollover bugs!
+                            targetDate.setMonth(targetDate.getMonth() + currentMonthOffset);
+                            const calendarYear = targetDate.getFullYear();
+                            const calendarMonth = targetDate.getMonth();
+                            const monthName = targetDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
-                              {slotsForSelectedDate.length === 0 ? (
-                                <div className="text-center py-6 border border-ink/10 rounded-2xl bg-ink/[0.01]">
-                                  <p className="font-sans text-xs opacity-50 italic">No available times on this date. Please select another calendar day.</p>
+                            const firstDayIndex = new Date(calendarYear, calendarMonth, 1).getDay();
+                            const totalMonthDays = new Date(calendarYear, calendarMonth + 1, 0).getDate();
+
+                            const calendarCells = [];
+                            for (let i = 0; i < firstDayIndex; i++) {
+                              calendarCells.push({ dayNum: null, dateString: '', hasSlots: false });
+                            }
+                            for (let d = 1; d <= totalMonthDays; d++) {
+                              const ds = `${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                              const hasSlots = uniqueDatesWithSlots.includes(ds);
+                              calendarCells.push({ dayNum: d, dateString: ds, hasSlots });
+                            }
+
+                            return (
+                              <div className="p-4 md:p-6 rounded-[2rem] border-2 border-ink bg-ink/5 relative overflow-hidden">
+                                <div className="flex items-center justify-between mb-4">
+                                  <button 
+                                    type="button" 
+                                    disabled={currentMonthOffset <= 0}
+                                    onClick={() => setCurrentMonthOffset(prev => prev - 1)}
+                                    className="p-1.5 md:p-2 border border-ink/20 rounded-full hover:bg-ink/5 disabled:opacity-20 disabled:cursor-not-allowed font-bold"
+                                  >
+                                    &larr;
+                                  </button>
+                                  <span className="font-display text-sm md:text-base uppercase tracking-tight font-black">{monthName}</span>
+                                  <button 
+                                    type="button" 
+                                    disabled={currentMonthOffset >= 2} 
+                                    onClick={() => setCurrentMonthOffset(prev => prev + 1)}
+                                    className="p-1.5 md:p-2 border border-ink/20 rounded-full hover:bg-ink/5 disabled:opacity-20 disabled:cursor-not-allowed font-bold"
+                                  >
+                                    &rarr;
+                                  </button>
                                 </div>
-                              ) : (
-                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[220px] overflow-y-auto pr-1 no-scrollbar">
-                                  {slotsForSelectedDate.map(s => {
-                                    const { localStr, istStr, isSameTz } = formatTimeSlotButton(s.startTime || s.start_time);
+
+                                <div className="grid grid-cols-7 gap-1 text-center font-mono text-[9px] uppercase tracking-widest opacity-50 mb-2 font-bold">
+                                  {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
+                                    <div key={day} className="py-1">{day}</div>
+                                  ))}
+                                </div>
+
+                                <div className="grid grid-cols-7 gap-1 md:gap-1.5 text-center">
+                                  {calendarCells.map((cell, idx) => {
+                                    if (!cell.dayNum) {
+                                      return <div key={`empty-${idx}`} className="aspect-square" />;
+                                    }
+
+                                    const isSelected = selectedDate === cell.dateString;
                                     return (
                                       <button
-                                        key={s.id || s.startTime}
+                                        key={cell.dateString}
                                         type="button"
-                                        onClick={() => setSelectedSlot(s)}
-                                        className="p-3 rounded-2xl bg-ink/5 border border-ink/10 hover:border-brand/50 hover:bg-brand text-ink hover:text-ink font-sans font-semibold transition-all hover:scale-[1.02] flex flex-col items-center justify-center gap-0.5 cursor-pointer text-center group"
+                                        disabled={!cell.hasSlots}
+                                        onClick={() => {
+                                          setSelectedDate(cell.dateString);
+                                          setCurrentStep(6);
+                                        }}
+                                        className={`
+                                          aspect-square rounded-full text-[10px] md:text-xs font-mono font-bold flex flex-col items-center justify-center transition-all cursor-pointer relative
+                                          ${!cell.hasSlots 
+                                            ? 'opacity-25 text-ink/30 cursor-not-allowed' 
+                                            : isSelected
+                                              ? 'bg-brand text-ink border border-ink shadow-[0_0_8px_rgba(255,255,255,0.15)] scale-110'
+                                              : 'bg-ink/5 hover:bg-brand/10 hover:border-brand/40 border border-ink/10 text-ink'
+                                          }
+                                        `}
                                       >
-                                        <span className="font-mono text-xs font-black">{localStr}</span>
-                                        {!isSameTz && (
-                                          <span className="text-[9px] opacity-50 font-medium group-hover:text-ink/80 font-mono">({istStr} IST)</span>
+                                        {cell.dayNum}
+                                        {cell.hasSlots && !isSelected && (
+                                          <span className="absolute bottom-1 w-1 h-1 bg-brand rounded-full" />
                                         )}
                                       </button>
                                     );
                                   })}
                                 </div>
-                              )}
-                            </div>
+                              </div>
+                            );
+                          })()}
+                        </div>
+                      ) : (
+                        /* Step 6: Time Slot Selection */
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between border-b border-ink/10 pb-2">
+                            <p className="font-sans opacity-60 text-xs font-semibold">Select your preferred time slot.</p>
+                            <button
+                              type="button"
+                              onClick={() => setCurrentStep(5)}
+                              className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline cursor-pointer font-mono"
+                            >
+                              &larr; Back to calendar
+                            </button>
                           </div>
-                        );
-                      })()}
+
+                          {(() => {
+                            const slotsForSelectedDate = slots.filter(s => {
+                              const d = new Date(s.startTime || s.start_time);
+                              const ds = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                              return ds === selectedDate;
+                            });
+
+                            const formatTimeSlotButton = (isoString: string) => {
+                              try {
+                                const clientTz = selectedTimezone;
+                                const localStr = new Date(isoString).toLocaleString('en-US', {
+                                  hour: '2-digit',
+                                  minute: '2-digit',
+                                  hour12: true,
+                                  timeZone: clientTz
+                                });
+                                const istStr = new Date(isoString).toLocaleString('en-US', {
+                                  hour: '2-digit',
+                                  minute: '2-digit',
+                                  hour12: true,
+                                  timeZone: 'Asia/Kolkata'
+                                });
+                                
+                                return { 
+                                  localStr, 
+                                  istStr, 
+                                  isSameTz: clientTz === 'Asia/Kolkata' || clientTz === 'IST' || clientTz.includes('Calcutta') 
+                                };
+                              } catch (e) {
+                                const time = new Date(isoString).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                                return { localStr: time, istStr: '', isSameTz: true };
+                              }
+                            };
+
+                            return (
+                              <div className="space-y-4">
+                                <div className="flex items-center justify-between border-b border-ink/10 pb-2">
+                                  <h4 className="font-display text-xs md:text-sm uppercase tracking-wider text-ink/80">
+                                    Available Times: <span className="text-brand font-mono font-black">{selectedDate ? new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : 'Select Date'}</span>
+                                  </h4>
+                                  <span className="font-mono text-[8px] uppercase tracking-widest opacity-40">30 min duration</span>
+                                </div>
+
+                                {slotsForSelectedDate.length === 0 ? (
+                                  <div className="text-center py-6 border border-ink/10 rounded-2xl bg-ink/[0.01]">
+                                    <p className="font-sans text-xs opacity-50 italic">No available times on this date. Please go back and select another calendar day.</p>
+                                  </div>
+                                ) : (
+                                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[260px] overflow-y-auto pr-1 no-scrollbar">
+                                    {slotsForSelectedDate.map(s => {
+                                      const { localStr, istStr, isSameTz } = formatTimeSlotButton(s.startTime || s.start_time);
+                                      return (
+                                        <button
+                                          key={s.id || s.startTime}
+                                          type="button"
+                                          onClick={() => setSelectedSlot(s)}
+                                          className="p-3 rounded-2xl bg-ink/5 border border-ink/10 hover:border-brand/50 hover:bg-brand text-ink hover:text-ink font-sans font-semibold transition-all hover:scale-[1.02] flex flex-col items-center justify-center gap-0.5 cursor-pointer text-center group"
+                                        >
+                                          <span className="font-mono text-xs font-black">{localStr}</span>
+                                          {!isSameTz && (
+                                            <span className="text-[9px] opacity-50 font-medium group-hover:text-ink/80 font-mono">({istStr} IST)</span>
+                                          )}
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })()}
+                        </div>
+                      )}
                     </div>
                   ) : (
                     /* Step 6 Review & Final Confirmation Screen (when slot is selected) */
