@@ -540,7 +540,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-4"
           >
             <div className="space-y-2">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">Website or Content Channel Link</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">website/content channel list /socialmedia handle</label>
               <p className="text-[10px] opacity-75 ml-4 font-sans leading-relaxed">Provide your main company website URL or content channel.</p>
               <input
                 required
@@ -961,7 +961,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                     <div className="space-y-6">
                       {/* Premium Progress Indicator */}
                       <div className="space-y-3 mb-4">
-                        <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-ink/40">
+                        <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-ink/80">
                           <span>Questionnaire Progress</span>
                           <span className="text-brand font-black">Step {currentStep} of 5</span>
                         </div>
@@ -985,10 +985,10 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                                     ? 'bg-brand text-ink border border-ink shadow-[0_0_6px_rgba(245,158,11,0.3)]' 
                                     : isActive
                                       ? 'bg-ink text-paper border-2 border-brand scale-110 shadow-[0_0_8px_rgba(245,158,11,0.2)]'
-                                      : 'bg-ink/5 border border-ink/10 text-ink/40'
+                                      : 'bg-ink/5 border border-ink/15 text-ink/80'
                                   }
                                 `}>
-                                  {isCompleted ? <Check size={10} className="stroke-[3]" /> : stepNum}
+                                  {stepNum}
                                 </div>
                               </div>
                             );
@@ -1247,7 +1247,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                             <span className="font-bold text-ink font-mono">{bookingForm.email}</span>
                           </div>
                           <div className="col-span-2 pt-2 border-t border-ink/5">
-                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">Website / Channel</span>
+                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">website/content channel list /socialmedia handle</span>
                             <span className="font-bold text-ink truncate block">{bookingForm.website}</span>
                           </div>
                           <div className="col-span-2 pt-2">
