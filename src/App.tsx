@@ -654,7 +654,9 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          content: `<@&1502308156489994320> 📝 **Partial Onboarding Form Progress (Step ${stepNum} Completed)**`,
+          content: stepNum === 4
+            ? `<@&1502308156489994320> 📝 **Onboarding Questionnaire Completed (Step 4)**`
+            : `📝 **Partial Onboarding Form Progress (Step ${stepNum} Completed)**`,
           embeds: [{
             title: `📋 Questionnaire Step ${stepNum} Done`,
             color: 0x3B82F6,
