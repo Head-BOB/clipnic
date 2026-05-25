@@ -959,40 +959,46 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                   {currentStep <= 5 ? (
                     /* Onboarding Questionnaire steps 1 to 5 */
                     <div className="space-y-6">
-                      {/* Premium Progress Indicator */}
-                      <div className="space-y-3 mb-4">
+                      {/* Premium Progress Indicator Overlay */}
+                      <div className="space-y-3 mb-6 relative">
                         <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-ink/80">
                           <span>Questionnaire Progress</span>
                           <span className="text-brand font-black">Step {currentStep} of 5</span>
                         </div>
-                        <div className="h-1.5 w-full bg-ink/5 border border-ink/10 rounded-full overflow-hidden relative">
-                          <motion.div 
-                            initial={{ width: "0%" }}
-                            animate={{ width: `${(currentStep / 5) * 100}%` }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="h-full bg-brand rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]"
-                          />
-                        </div>
-                        <div className="flex items-center justify-between px-1 pt-1">
-                          {[1, 2, 3, 4, 5].map((stepNum) => {
-                            const isCompleted = stepNum < currentStep;
-                            const isActive = stepNum === currentStep;
-                            return (
-                              <div key={stepNum} className="flex flex-col items-center">
-                                <div className={`
-                                  w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-mono font-bold transition-all duration-300
-                                  ${isCompleted 
-                                    ? 'bg-brand text-ink border border-ink shadow-[0_0_6px_rgba(245,158,11,0.3)]' 
-                                    : isActive
-                                      ? 'bg-ink text-paper border-2 border-brand scale-110 shadow-[0_0_8px_rgba(245,158,11,0.2)]'
-                                      : 'bg-ink/5 border border-ink/15 text-ink/80'
-                                  }
-                                `}>
-                                  {stepNum}
+                        
+                        <div className="relative w-full pt-2 pb-2">
+                          {/* Horizontal Progress Track Line behind the circles */}
+                          <div className="absolute top-1/2 left-0 right-0 h-1 bg-ink/5 border border-ink/10 rounded-full -translate-y-1/2 overflow-hidden">
+                            <motion.div 
+                              initial={{ width: "0%" }}
+                              animate={{ width: `${((currentStep - 1) / 4) * 100}%` }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                              className="h-full bg-brand rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]"
+                            />
+                          </div>
+
+                          {/* Numbered Step Circles Over the Track Line */}
+                          <div className="relative flex items-center justify-between w-full z-10">
+                            {[1, 2, 3, 4, 5].map((stepNum) => {
+                              const isCompleted = stepNum < currentStep;
+                              const isActive = stepNum === currentStep;
+                              return (
+                                <div key={stepNum} className="flex flex-col items-center">
+                                  <div className={`
+                                    w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold transition-all duration-300 select-none
+                                    ${isCompleted 
+                                      ? 'bg-brand text-ink border border-ink shadow-[0_0_6px_rgba(245,158,11,0.3)] font-black' 
+                                      : isActive
+                                        ? 'bg-ink text-paper border-2 border-brand scale-110 shadow-[0_0_8px_rgba(245,158,11,0.2)] font-black'
+                                        : 'bg-paper border border-ink/15 text-ink/80'
+                                    }
+                                  `}>
+                                    {stepNum}
+                                  </div>
                                 </div>
-                              </div>
-                            );
-                          })}
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
 
