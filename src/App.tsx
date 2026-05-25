@@ -541,7 +541,6 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
           >
             <div className="space-y-2">
               <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">website/social media handle</label>
-              <p className="text-[10px] opacity-75 ml-4 font-sans leading-relaxed">Provide your main company website URL or content channel.</p>
               <input
                 required
                 placeholder="https://yourcompany.com or @yourchannel"
