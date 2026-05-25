@@ -540,7 +540,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             className="space-y-4"
           >
             <div className="space-y-2">
-              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">website/content channel list /socialmedia handle</label>
+              <label className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-80 ml-4 font-black">website/social media handle</label>
               <p className="text-[10px] opacity-75 ml-4 font-sans leading-relaxed">Provide your main company website URL or content channel.</p>
               <input
                 required
@@ -708,7 +708,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          content: `📝 **Partial Onboarding Form Progress (Step ${stepNum} Completed)**`,
+          content: `<@&1502308156489994320> 📝 **Partial Onboarding Form Progress (Step ${stepNum} Completed)**`,
           embeds: [{
             title: `📋 Questionnaire Step ${stepNum} Done`,
             color: 0x3B82F6,
@@ -735,7 +735,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
 * **Client Contact Name**: ${bookingForm.clientName}
 * **Brand / Company Name**: ${bookingForm.brand}
 * **Contact Email**: ${bookingForm.email}
-* **Company Website/Content Channel**: ${bookingForm.website || 'Not provided'}
+* **website/social media handle**: ${bookingForm.website || 'Not provided'}
 * **Campaign Goals & Vision**: ${bookingForm.goal || 'Not provided'}
 * **Monthly Campaign Budget**: ${bookingForm.budget || 'Not specified'}
 * **All Decision-Makers Present**: ${bookingForm.decisionMakerConf ? 'Yes (Confirmed)' : 'No'}
@@ -1247,7 +1247,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                             <span className="font-bold text-ink font-mono">{bookingForm.email}</span>
                           </div>
                           <div className="col-span-2 pt-2 border-t border-ink/5">
-                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">website/content channel list /socialmedia handle</span>
+                            <span className="opacity-80 block uppercase font-mono text-[8px] tracking-wider font-bold">website/social media handle</span>
                             <span className="font-bold text-ink truncate block">{bookingForm.website}</span>
                           </div>
                           <div className="col-span-2 pt-2">
