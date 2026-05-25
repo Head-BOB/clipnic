@@ -820,72 +820,79 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             <div className="space-y-6 relative z-10">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-ink pb-4 gap-4">
                 <div>
-                  <h3 className="font-display text-2xl uppercase tracking-tighter">Call Scheduler</h3>
-                  <p className="text-[9px] opacity-40 uppercase tracking-widest font-mono font-bold">Book a Strategy Session</p>
+                  <h3 className="font-display text-2xl uppercase tracking-tighter">
+                    {currentStep <= 5 ? "Onboarding Questionnaire" : selectedSlot ? "Review & Confirm" : "Call Scheduler"}
+                  </h3>
+                  <p className="text-[9px] opacity-40 uppercase tracking-widest font-mono font-bold">
+                    {currentStep <= 5 ? `Step ${currentStep} of 5` : selectedSlot ? "Confirm your strategy session" : "Select your preferred date & time"}
+                  </p>
                 </div>
-                <div className="text-left sm:text-right space-y-1 relative">
-                  <span className="text-[8px] opacity-40 uppercase tracking-widest font-mono font-bold block">Select Timezone</span>
-                  
-                  {/* Custom Dropdown Trigger */}
-                  <div className="relative inline-block text-left sm:text-right">
-                    <button
-                      type="button"
-                      onClick={() => setIsTzOpen(prev => !prev)}
-                      className="bg-ink text-paper text-[9px] font-mono font-bold uppercase tracking-wider py-2.5 px-4 rounded-xl border border-paper/10 cursor-pointer hover:border-brand/60 hover:text-brand transition-all flex items-center gap-3 justify-between min-w-[190px]"
-                    >
-                      <span className="flex items-center gap-2 truncate">
-                        <span>{activeOption.flag}</span>
-                        <span className="truncate">{activeOption.label}</span>
-                      </span>
-                      <ChevronDown size={10} className={`transform transition-transform duration-300 ${isTzOpen ? 'rotate-180 text-brand' : 'opacity-60'}`} />
-                    </button>
+                
+                {currentStep === 6 && (
+                  <div className="text-left sm:text-right space-y-1 relative">
+                    <span className="text-[8px] opacity-40 uppercase tracking-widest font-mono font-bold block">Select Timezone</span>
+                    
+                    {/* Custom Dropdown Trigger */}
+                    <div className="relative inline-block text-left sm:text-right">
+                      <button
+                        type="button"
+                        onClick={() => setIsTzOpen(prev => !prev)}
+                        className="bg-ink text-paper text-[9px] font-mono font-bold uppercase tracking-wider py-2.5 px-4 rounded-xl border border-paper/10 cursor-pointer hover:border-brand/60 hover:text-brand transition-all flex items-center gap-3 justify-between min-w-[190px]"
+                      >
+                        <span className="flex items-center gap-2 truncate">
+                          <span>{activeOption.flag}</span>
+                          <span className="truncate">{activeOption.label}</span>
+                        </span>
+                        <ChevronDown size={10} className={`transform transition-transform duration-300 ${isTzOpen ? 'rotate-180 text-brand' : 'opacity-60'}`} />
+                      </button>
 
-                    {/* Custom Floating Options Dropdown Menu */}
-                    <AnimatePresence>
-                      {isTzOpen && (
-                        <>
-                          {/* Overlay to detect click outside */}
-                          <div 
-                            className="fixed inset-0 z-[100]" 
-                            onClick={() => setIsTzOpen(false)}
-                          />
-                          <motion.div
-                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                            transition={{ duration: 0.15, ease: "easeOut" }}
-                            className="absolute right-0 mt-2 w-[240px] bg-ink border border-paper/15 rounded-2xl shadow-2xl z-[200] max-h-[220px] overflow-y-auto pr-1 no-scrollbar text-left font-mono text-[9px] uppercase tracking-wider backdrop-blur-md"
-                          >
-                            {timezoneOptions.map(opt => {
-                              const isSelected = opt.value === selectedTimezone;
-                              return (
-                                <button
-                                  key={opt.value}
-                                  type="button"
-                                  onClick={() => {
-                                    setSelectedTimezone(opt.value);
-                                    setIsTzOpen(false);
-                                  }}
-                                  className={`w-full px-4 py-2.5 text-left flex items-center justify-between transition-all hover:bg-brand hover:text-ink cursor-pointer group ${isSelected ? 'bg-brand/10 text-brand font-black' : 'text-paper/85'}`}
-                                >
-                                  <span className="flex items-center gap-2 truncate">
-                                    <span>{opt.flag}</span>
-                                    <span className="truncate">{opt.label}</span>
-                                  </span>
-                                  {isSelected && <Check size={10} className="text-brand group-hover:text-ink" />}
-                                </button>
-                              );
-                            })}
-                          </motion.div>
-                        </>
-                      )}
-                    </AnimatePresence>
+                      {/* Custom Floating Options Dropdown Menu */}
+                      <AnimatePresence>
+                        {isTzOpen && (
+                          <>
+                            {/* Overlay to detect click outside */}
+                            <div 
+                              className="fixed inset-0 z-[100]" 
+                              onClick={() => setIsTzOpen(false)}
+                            />
+                            <motion.div
+                              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                              transition={{ duration: 0.15, ease: "easeOut" }}
+                              className="absolute right-0 mt-2 w-[240px] bg-ink border border-paper/15 rounded-2xl shadow-2xl z-[200] max-h-[220px] overflow-y-auto pr-1 no-scrollbar text-left font-mono text-[9px] uppercase tracking-wider backdrop-blur-md"
+                            >
+                              {timezoneOptions.map(opt => {
+                                const isSelected = opt.value === selectedTimezone;
+                                return (
+                                  <button
+                                    key={opt.value}
+                                    type="button"
+                                    onClick={() => {
+                                      setSelectedTimezone(opt.value);
+                                      setIsTzOpen(false);
+                                    }}
+                                    className={`w-full px-4 py-2.5 text-left flex items-center justify-between transition-all hover:bg-brand hover:text-ink cursor-pointer group ${isSelected ? 'bg-brand/10 text-brand font-black' : 'text-paper/85'}`}
+                                  >
+                                    <span className="flex items-center gap-2 truncate">
+                                      <span>{opt.flag}</span>
+                                      <span className="truncate">{opt.label}</span>
+                                    </span>
+                                    {isSelected && <Check size={10} className="text-brand group-hover:text-ink" />}
+                                  </button>
+                                );
+                              })}
+                            </motion.div>
+                          </>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                    
+                    <span className="text-[8px] opacity-35 uppercase tracking-widest font-mono font-bold block pt-1">
+                      Auto-tracked. Click to change.
+                    </span>
                   </div>
-                  
-                  <span className="text-[8px] opacity-35 uppercase tracking-widest font-mono font-bold block pt-1">
-                    Auto-tracked. Click to change.
-                  </span>
-                </div>
+                )}
               </div>
 
               {bookingStatus === 'success' ? (
@@ -898,11 +905,89 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {/* Time slots Selector */}
-                  {!selectedSlot ? (
+                  {currentStep <= 5 ? (
+                    /* Onboarding Questionnaire steps 1 to 5 */
+                    <div className="space-y-6">
+                      {/* Premium Progress Indicator */}
+                      <div className="space-y-3 mb-4">
+                        <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-ink/40">
+                          <span>Questionnaire Progress</span>
+                          <span className="text-brand font-black">Step {currentStep} of 5</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-ink/5 border border-ink/10 rounded-full overflow-hidden relative">
+                          <motion.div 
+                            initial={{ width: "0%" }}
+                            animate={{ width: `${(currentStep / 5) * 100}%` }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="h-full bg-brand rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]"
+                          />
+                        </div>
+                        <div className="flex items-center justify-between px-1 pt-1">
+                          {[1, 2, 3, 4, 5].map((stepNum) => {
+                            const isCompleted = stepNum < currentStep;
+                            const isActive = stepNum === currentStep;
+                            return (
+                              <div key={stepNum} className="flex flex-col items-center">
+                                <div className={`
+                                  w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-mono font-bold transition-all duration-300
+                                  ${isCompleted 
+                                    ? 'bg-brand text-ink border border-ink shadow-[0_0_6px_rgba(245,158,11,0.3)]' 
+                                    : isActive
+                                      ? 'bg-ink text-paper border-2 border-brand scale-110 shadow-[0_0_8px_rgba(245,158,11,0.2)]'
+                                      : 'bg-ink/5 border border-ink/10 text-ink/40'
+                                  }
+                                `}>
+                                  {isCompleted ? <Check size={10} className="stroke-[3]" /> : stepNum}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Form Steps */}
+                      <div className="min-h-[220px]">
+                        <AnimatePresence mode="wait">
+                          {renderStepContent()}
+                        </AnimatePresence>
+                      </div>
+
+                      {/* Form Navigation Controls */}
+                      <div className="flex items-center gap-4 pt-6 border-t border-ink/10">
+                        {currentStep > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => setCurrentStep(prev => prev - 1)}
+                            className="px-6 py-4 rounded-xl border border-ink/20 hover:border-ink text-ink font-sans font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
+                          >
+                            Back
+                          </button>
+                        )}
+                        
+                        <button
+                          type="button"
+                          disabled={!isStepValid()}
+                          onClick={() => setCurrentStep(prev => prev + 1)}
+                          className="flex-grow bg-brand text-ink font-sans font-bold py-4 rounded-xl uppercase tracking-widest disabled:opacity-30 transition-all cursor-pointer disabled:cursor-not-allowed text-xs text-center shadow-[0_10px_30px_rgba(245,158,11,0.15)]"
+                        >
+                          {currentStep === 5 ? "Choose Call Time \u2192" : "Next Step"}
+                        </button>
+                      </div>
+                    </div>
+                  ) : !selectedSlot ? (
+                    /* Date & Time Calendar Selection Step (Step 6 when no slot selected) */
                     <div className="space-y-4">
-                      <p className="font-sans opacity-60 text-xs">Select your preferred time and date.</p>
-                      
+                      <div className="flex items-center justify-between border-b border-ink/10 pb-2">
+                        <p className="font-sans opacity-60 text-xs font-semibold">Select your preferred date and time.</p>
+                        <button
+                          type="button"
+                          onClick={() => setCurrentStep(5)}
+                          className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline cursor-pointer font-mono"
+                        >
+                          &larr; Back to questionnaire
+                        </button>
+                      </div>
+
                       {slotsLoading ? (
                         <div className="flex flex-col items-center justify-center py-10 gap-3">
                           <div className="w-6 h-6 border-2 border-ink/10 border-t-ink rounded-full animate-spin" />
@@ -1078,110 +1163,77 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                       })()}
                     </div>
                   ) : (
-                    /* 5-Step Scheduling Onboarding Wizard Form */
+                    /* Step 6 Review & Final Confirmation Screen (when slot is selected) */
                     <form onSubmit={handleBookingSubmit} className="space-y-6">
-                      <div className="p-4 bg-brand/5 border border-brand/20 rounded-2xl flex items-center justify-between">
-                        <div>
-                          <p className="text-[8px] opacity-40 uppercase tracking-widest font-black">Selected Call Slot</p>
-                          <p className="font-mono text-xs text-ink font-bold mt-1">{formatSlotTime(selectedSlot.startTime || selectedSlot.start_time)}</p>
+                      <div className="p-5 bg-brand/5 border-2 border-brand/20 rounded-[2.5rem] space-y-4">
+                        <div className="flex items-center justify-between border-b border-ink/10 pb-3">
+                          <div>
+                            <p className="text-[8px] opacity-40 uppercase tracking-widest font-black">Selected Call Slot</p>
+                            <p className="font-mono text-xs text-ink font-bold mt-1">
+                              {formatSlotTime(selectedSlot.startTime || selectedSlot.start_time)}
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedSlot(null)}
+                            className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline cursor-pointer"
+                          >
+                            Change Time
+                          </button>
                         </div>
+
+                        <div className="grid grid-cols-2 gap-4 text-xs font-sans">
+                          <div>
+                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Client Name</span>
+                            <span className="font-bold text-ink">{bookingForm.clientName}</span>
+                          </div>
+                          <div>
+                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Brand / Company</span>
+                            <span className="font-bold text-ink">{bookingForm.brand}</span>
+                          </div>
+                          <div className="col-span-2 pt-2">
+                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Corporate Email</span>
+                            <span className="font-bold text-ink font-mono">{bookingForm.email}</span>
+                          </div>
+                          <div className="col-span-2 pt-2 border-t border-ink/5">
+                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Website / Channel</span>
+                            <span className="font-bold text-ink truncate block">{bookingForm.website}</span>
+                          </div>
+                          <div className="col-span-2 pt-2">
+                            <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Campaign Goals</span>
+                            <p className="text-ink/80 font-normal leading-relaxed mt-1 text-[11px] max-h-[80px] overflow-y-auto no-scrollbar">{bookingForm.goal}</p>
+                          </div>
+                          <div className="col-span-2 pt-2 border-t border-ink/5 flex justify-between items-center">
+                            <div>
+                              <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Monthly Budget</span>
+                              <span className="font-bold text-ink">{bookingForm.budget}</span>
+                            </div>
+                            <div className="text-right">
+                              <span className="opacity-45 block uppercase font-mono text-[8px] tracking-wider font-bold">Decision Makers</span>
+                              <span className="text-emerald-500 font-bold flex items-center gap-1"><Check size={12} className="stroke-[3]" /> Confirmed</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-4 pt-6 border-t border-ink/10">
                         <button
                           type="button"
                           onClick={() => {
                             setSelectedSlot(null);
-                            setCurrentStep(1);
+                            setCurrentStep(5);
                           }}
-                          className="text-[9px] font-bold text-ink/40 hover:text-ink uppercase tracking-wider underline cursor-pointer"
+                          className="px-6 py-4 rounded-xl border border-ink/20 hover:border-ink text-ink font-sans font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
                         >
-                          Change Time
+                          Edit Info
                         </button>
-                      </div>
-
-                      {/* Premium Progress Indicator */}
-                      <div className="space-y-3 mb-8">
-                        <div className="flex items-center justify-between text-[10px] font-mono font-bold uppercase tracking-widest text-ink/40">
-                          <span>Questionnaire Progress</span>
-                          <span className="text-brand font-black">Step {currentStep} of 5</span>
-                        </div>
-                        <div className="h-1.5 w-full bg-ink/5 border border-ink/10 rounded-full overflow-hidden relative">
-                          <motion.div 
-                            initial={{ width: "0%" }}
-                            animate={{ width: `${(currentStep / 5) * 100}%` }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="h-full bg-brand rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]"
-                          />
-                        </div>
-                        <div className="flex items-center justify-between px-1 pt-1">
-                          {[1, 2, 3, 4, 5].map((stepNum) => {
-                            const isCompleted = stepNum < currentStep;
-                            const isActive = stepNum === currentStep;
-                            return (
-                              <div key={stepNum} className="flex flex-col items-center">
-                                <div className={`
-                                  w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-mono font-bold transition-all duration-300
-                                  ${isCompleted 
-                                    ? 'bg-brand text-ink border border-ink shadow-[0_0_6px_rgba(245,158,11,0.3)]' 
-                                    : isActive
-                                      ? 'bg-ink text-paper border-2 border-brand scale-110 shadow-[0_0_8px_rgba(245,158,11,0.2)]'
-                                      : 'bg-ink/5 border border-ink/10 text-ink/40'
-                                  }
-                                `}>
-                                  {isCompleted ? <Check size={10} className="stroke-[3]" /> : stepNum}
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      {/* Form Steps */}
-                      <div className="min-h-[220px]">
-                        <AnimatePresence mode="wait">
-                          {renderStepContent()}
-                        </AnimatePresence>
-                      </div>
-
-                      {/* Form Navigation Controls */}
-                      <div className="flex items-center gap-4 pt-6 border-t border-ink/10">
-                        {currentStep > 1 ? (
-                          <button
-                            type="button"
-                            onClick={() => setCurrentStep(prev => prev - 1)}
-                            className="px-6 py-4 rounded-xl border border-ink/20 hover:border-ink text-ink font-sans font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
-                          >
-                            Back
-                          </button>
-                        ) : (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setSelectedSlot(null);
-                              setCurrentStep(1);
-                            }}
-                            className="px-6 py-4 rounded-xl border border-ink/20 hover:border-ink text-ink font-sans font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
-                          >
-                            Change Slot
-                          </button>
-                        )}
-                        
-                        {currentStep < 5 ? (
-                          <button
-                            type="button"
-                            disabled={!isStepValid()}
-                            onClick={() => setCurrentStep(prev => prev + 1)}
-                            className="flex-grow bg-ink hover:bg-brand hover:text-ink text-paper font-sans font-bold py-4 rounded-xl uppercase tracking-widest disabled:opacity-30 disabled:hover:bg-ink disabled:hover:text-paper transition-all cursor-pointer disabled:cursor-not-allowed text-xs text-center"
-                          >
-                            Next Step
-                          </button>
-                        ) : (
-                          <button
-                            type="submit"
-                            disabled={!isStepValid() || bookingStatus === 'booking'}
-                            className="flex-grow bg-brand text-ink font-sans font-bold py-4 rounded-xl uppercase tracking-widest disabled:opacity-30 transition-all cursor-pointer disabled:cursor-not-allowed text-xs text-center"
-                          >
-                            {bookingStatus === 'booking' ? 'Reserving...' : 'Confirm Schedule'}
-                          </button>
-                        )}
+                        <button
+                          type="submit"
+                          disabled={bookingStatus === 'booking'}
+                          className="flex-grow bg-brand text-ink font-sans font-bold py-4 rounded-xl uppercase tracking-widest disabled:opacity-30 transition-all cursor-pointer disabled:cursor-not-allowed text-xs text-center shadow-[0_10px_30px_rgba(245,158,11,0.25)] hover:shadow-[0_10px_40px_rgba(245,158,11,0.45)]"
+                        >
+                          {bookingStatus === 'booking' ? 'Reserving...' : 'Confirm Strategy Call'}
+                        </button>
                       </div>
 
                       {bookingStatus === 'error' && (
