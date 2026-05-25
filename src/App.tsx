@@ -1251,7 +1251,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
               onClick={onClose}
               className="w-full mt-8 py-2 text-[10px] font-black uppercase tracking-[0.4em] opacity-30 hover:opacity-100 transition-opacity"
             >
-              ABORT UPLINK
+              EXIT
             </button>
           </motion.div>
         </div>
