@@ -672,6 +672,57 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     }
   };
 
+  const getStepFieldsForDiscord = (step: number) => {
+    const fields = [
+      { name: "👤 Client Name", value: bookingForm.clientName || 'None', inline: true },
+      { name: "🏢 Brand Name", value: bookingForm.brand || 'None', inline: true }
+    ];
+
+    if (step >= 1) {
+      fields.push({ name: "📧 Contact Email", value: bookingForm.email || 'None', inline: true });
+    }
+    if (step >= 2 && bookingForm.website) {
+      fields.push({ name: "🌐 Website/Channel", value: bookingForm.website, inline: true });
+    }
+    if (step >= 3 && bookingForm.goal) {
+      fields.push({ name: "💬 Goals & Vision", value: bookingForm.goal, inline: false });
+    }
+    if (step >= 4 && bookingForm.budget) {
+      fields.push({ name: "💰 Monthly Budget", value: bookingForm.budget, inline: true });
+    }
+    if (step >= 5) {
+      fields.push({ name: "👥 Decision Makers Present", value: bookingForm.decisionMakerConf ? "Yes, Confirmed" : "No", inline: true });
+    }
+
+    return fields;
+  };
+
+  const handleNextStep = async () => {
+    const stepNum = currentStep;
+    setCurrentStep(prev => prev + 1);
+
+    // Fire Discord notification to log partial details in background
+    try {
+      const stepSummary = getStepFieldsForDiscord(stepNum);
+      await fetch(import.meta.env.VITE_DISCORD_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          content: `📝 **Partial Onboarding Form Progress (Step ${stepNum} Completed)**`,
+          embeds: [{
+            title: `📋 Questionnaire Step ${stepNum} Done`,
+            color: 0x3B82F6,
+            fields: stepSummary,
+            timestamp: new Date().toISOString(),
+            footer: { text: "Clipnic Onboarding Engine" }
+          }]
+        })
+      });
+    } catch (discordErr) {
+      console.warn('Discord step progress alert failed to dispatch:', discordErr);
+    }
+  };
+
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedSlot || !bookingForm.clientName || !bookingForm.brand || !bookingForm.email) return;
@@ -967,7 +1018,7 @@ const BrandGatewayModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
                         <button
                           type="button"
                           disabled={!isStepValid()}
-                          onClick={() => setCurrentStep(prev => prev + 1)}
+                          onClick={handleNextStep}
                           className="flex-grow bg-brand text-ink font-sans font-bold py-4 rounded-xl uppercase tracking-widest disabled:opacity-30 transition-all cursor-pointer disabled:cursor-not-allowed text-xs text-center shadow-[0_10px_30px_rgba(245,158,11,0.15)]"
                         >
                           {currentStep === 5 ? "Choose Call Time \u2192" : "Next Step"}
