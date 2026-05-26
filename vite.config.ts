@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: './', // Ensures assets load correctly on GitHub Pages sub-paths
+    base: '/', // Fixes asset loading on subpaths
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
@@ -20,9 +20,19 @@ export default defineConfig(({mode}) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          brands: path.resolve(__dirname, 'brands.html'),
+          caseStudies: path.resolve(__dirname, 'case-studies.html'),
+          docs: path.resolve(__dirname, 'docs.html')
+        }
+      }
+    },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      host: '0.0.0.0',
+      port: 3000,
       hmr: process.env.DISABLE_HMR !== 'true',
     },
   };
