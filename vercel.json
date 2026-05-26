@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/referral-guide", "destination": "/docs" },
     { "source": "/brand", "destination": "/brands" },
     { "source": "/docs/(.*)", "destination": "/docs" },
     { "source": "/(.*)", "destination": "/" }
