@@ -9,7 +9,8 @@ import {
   ArrowLeft,
   BookOpen,
   LayoutGrid,
-  Sparkles
+  Sparkles,
+  Users
 } from 'lucide-react';
 import { Footer as SharedFooter } from '../components/Footer';
 
@@ -107,6 +108,14 @@ export const DocsHub = () => {
             href="/docs/how-to-target-tier1-audience"
             tag="Advanced Strategy"
             color="#3b82f6"
+          />
+          <GuideCard
+            title="Referral Program"
+            description="Earn $5.00 cash rewards instantly for each friend who generates $5.00 in platform revenue."
+            icon={Users}
+            href="/docs/referrals"
+            tag="Bonus Rewards"
+            color="#f59e0b"
           />
         </div>
 

@@ -34,6 +34,7 @@ import { Tier1Guide } from './pages/Tier1Guide';
 import { AvoidZeroViews } from './pages/AvoidZeroViews';
 import { DocsHub } from './pages/DocsHub';
 import { ComingSoon } from './pages/ComingSoon';
+import { ReferralsGuideDocs } from './pages/ReferralsGuideDocs';
 import { Footer as SharedFooter } from './components/Footer';
 import { reportVisit, reportClick } from './utils/monitor';
 
@@ -2564,6 +2565,7 @@ export default function App() {
   const isHowToPath = currentPath.startsWith('/docs/get-started');
   const isTier1GuidePath = currentPath.startsWith('/docs/how-to-target-tier1');
   const isAvoidZeroViewsPath = currentPath.startsWith('/docs/avoid-0-views');
+  const isReferralGuideDocsPath = currentPath.startsWith('/docs/referrals');
   const isDocsHubPath = currentPath === '/docs' || currentPath === '/docs/';
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
@@ -2698,6 +2700,7 @@ export default function App() {
   if (isHowToPath) return <><SEO title="Clipnic | How to Get Started" description="Complete guide on how to start earning with Clipnic. Connect socials, post clips, and track your yield." url="/docs/get-started" /><HowToPage /></>;
   if (isTier1GuidePath) return <><SEO title="Clipnic | Tier 1 Targeting Guide" description="Master the art of targeting Tier 1 regions (USA, UK, Canada) to maximize your clipping earnings." url="/docs/how-to-target-tier1" /><Tier1Guide /></>;
   if (isAvoidZeroViewsPath) return <><SEO title="Clipnic | Avoiding 0 Views Guide" description="Learn the essential techniques to ensure your clips get pushed by the algorithm and avoid the 0 views trap." url="/docs/avoid-0-views" /><AvoidZeroViews /></>;
+  if (isReferralGuideDocsPath) return <><SEO title="Clipnic | Referral Program Guide" description="Learn how the Clipnic referral system works, invite friends, and collect cash bonuses." url="/docs/referrals" /><ReferralsGuideDocs /></>;
   if (isDocsHubPath) return <><SEO title="Clipnic | Documentation Hub" description="Explore our guides, tutorials, and resources to help you succeed as a clipper or brand on our platform." url="/docs" /><DocsHub /></>;
   if (isPrivacyPath) return <PrivacyOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
   if (isTermsPath) return <TermsOverlay isOpen={true} onClose={() => window.location.href = '/'} />;
