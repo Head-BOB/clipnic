@@ -30,7 +30,7 @@ export const ReferralsGuideDocs = () => {
 
       <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-32 md:pt-48 pb-32">
         <header className="max-w-4xl mb-16 md:mb-32 space-y-6 md:space-y-8 text-center lg:text-left">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand">Bonus Rewards</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-brand">Earn by referring friends</span>
           <h1 className="font-display text-[12vw] md:text-[8vw] leading-[0.85] tracking-tighter uppercase text-white">
             Referral<br /> <span className="text-brand">Program</span>
           </h1>
@@ -61,7 +61,7 @@ export const ReferralsGuideDocs = () => {
             <span className="font-mono text-[10px] uppercase tracking-widest text-brand font-bold">Step 03</span>
             <h3 className="font-display text-2xl uppercase text-white">Generate platform Yield</h3>
             <p className="font-sans text-base opacity-40 font-light leading-relaxed">
-              Once your referred friend generates **$5.00 in platform revenue** (for example: accumulating qualified views on campaigns that fund platform-retained revenue), the reward condition is met!
+              Once your referred friend generates <strong className="text-white font-semibold">$5.00 in platform revenue</strong> (for example: accumulating qualified views on campaigns that fund platform-retained revenue), the reward condition is met!
             </p>
           </div>
 
@@ -69,7 +69,7 @@ export const ReferralsGuideDocs = () => {
             <span className="font-mono text-[10px] uppercase tracking-widest text-brand font-bold">Step 04</span>
             <h3 className="font-display text-2xl uppercase text-white">Claim $5.00 cash rewards</h3>
             <p className="font-sans text-base opacity-40 font-light leading-relaxed">
-              The moment the $5 milestone is cleared, a **$5.00 cash bonus** is automatically deposited straight into your pending clipper balance and included in your next payout!
+              The moment the $5 milestone is cleared, a <strong className="text-white font-semibold">$5.00 cash bonus</strong> is automatically deposited straight into your pending clipper balance and included in your next payout!
             </p>
           </div>
         </div>
