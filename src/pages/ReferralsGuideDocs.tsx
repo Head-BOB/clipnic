@@ -45,7 +45,7 @@ export const ReferralsGuideDocs = () => {
             <span className="font-mono text-[10px] uppercase tracking-widest text-brand font-bold">Step 01</span>
             <h3 className="font-display text-2xl uppercase text-white">Share Invitation Code</h3>
             <p className="font-sans text-base opacity-40 font-light leading-relaxed">
-              Every registered Clipper receives a unique referral code. Invite your creative friends to sign up to Clipnic using your code to link your referral chain.
+              Every registered Clipper receives a unique referral code. Go to the <a href="https://dash.clipnic.com/referrals" target="_blank" rel="noopener noreferrer" className="text-brand underline hover:text-white transition-colors">Referrals page on your Dashboard</a> to grab your code, and invite your creative friends to sign up to Clipnic using it to link your referral chain.
             </p>
           </div>
 
