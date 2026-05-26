@@ -2565,7 +2565,7 @@ export default function App() {
   const isHowToPath = currentPath.startsWith('/docs/get-started');
   const isTier1GuidePath = currentPath.startsWith('/docs/how-to-target-tier1');
   const isAvoidZeroViewsPath = currentPath.startsWith('/docs/avoid-0-views');
-  const isReferralGuideDocsPath = currentPath.startsWith('/docs/referrals');
+  const isReferralGuideDocsPath = currentPath.startsWith('/docs/referrals') || currentPath === '/referral-guide';
   const isDocsHubPath = currentPath === '/docs' || currentPath === '/docs/';
   const isHome = currentPath === '' || currentPath === '/';
   const isComingSoon = currentPath === '/coming-soon';
